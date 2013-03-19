@@ -11,6 +11,7 @@ import org.celllife.ohsc.domain.province.ProvinceRepository;
 import org.celllife.ohsc.domain.subdistrict.SubDistrict;
 import org.celllife.ohsc.domain.subdistrict.SubDistrictRepository;
 import org.celllife.ohsc.test.TestConfiguration;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Date: 2013-03-18
  * Time: 10h34
  */
+
+@Ignore
 @ContextConfiguration(classes = TestConfiguration.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 public class DhisApplicationServiceIntegrationTest {

@@ -3,6 +3,7 @@ package org.celllife.ohsc.integration.cqm;
 import junit.framework.Assert;
 import org.celllife.ohsc.test.TestConfiguration;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ import java.util.concurrent.TimeUnit;
  * Date: 2013-03-16
  * Time: 09h09
  */
+
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfiguration.class)
 public class CqmUssdSubmissionMediatorIntegrationTest {

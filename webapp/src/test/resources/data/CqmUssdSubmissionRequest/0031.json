@@ -1,0 +1,71 @@
+{
+    "CqmUssdSubmissionRequest": {
+        "ussdSession": {
+            "id": "1",
+            "string": "*130*555*1000#",
+            "startDateTime": "2013-03-19T12:45:31",
+            "endDateTime": "2013-03-19T12:45:31"
+        },
+        "user": {
+            "msisdn": "+27721239747",
+            "mnoCode": "3"
+        },
+        "questionnaire": {
+            "version": "1.0"
+        },
+        "submission": {
+            "clinicCode": "0441",
+            "languageCode": "nr_ZA",
+            "questions": [
+                {
+                    "domainCode": "1",
+                    "text": "How clean were the toilets",
+                    "answer": {
+                        "text": "Very clean",
+                        "rating": "4"
+                    }
+                },
+                {
+                    "domainCode": "2",
+                    "text": "How helpful were the staff",
+                    "answer": {
+                        "text": "Very unhelpful",
+                        "rating": "3"
+                    }
+                },
+                {
+                    "domainCode": "3",
+                    "text": "How long did you wait?",
+                    "answer": {
+                        "text": "4-6 hours",
+                        "rating": "1"
+                    }
+                },
+                {
+                    "domainCode": "4",
+                    "text": "Was there security?",
+                    "answer": {
+                        "text": "A little.",
+                        "rating": "1"
+                    }
+                },
+                {
+                    "domainCode": "5",
+                    "text": "Was the hospital clean.",
+                    "answer": {
+                        "text": "It was acceptably clean.",
+                        "rating": "2"
+                    }
+                },
+                {
+                    "domainCode": "6",
+                    "text": "Did you get the medicine you needed?",
+                    "answer": {
+                        "text": "Some of it.",
+                        "rating": "2"
+                    }
+                }
+            ]
+        }
+    }
+}
