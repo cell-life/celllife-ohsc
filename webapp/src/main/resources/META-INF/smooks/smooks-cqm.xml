@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<smooks-resource-list xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd"
+                      xmlns:json="http://www.milyn.org/xsd/smooks/json-1.1.xsd"
+                      xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.4.xsd"
+                      xmlns:dao="http://www.milyn.org/xsd/smooks/persistence-1.4.xsd">
+
+    <json:reader rootName="root"/>
+
+    <resource-config selector="/root/CqmUssdSubmissionRequest">
+        <resource>org.milyn.delivery.DomModelCreator</resource>
+    </resource-config>
+
+    <!-- Java Beans -->
+
+    <jb:bean beanId="rating"
+             class="org.celllife.ohsc.domain.rating.Rating"
+             createOnElement="CqmUssdSubmissionRequest">
+
+        <jb:wiring property="user" beanIdRef="user"/>
+        <jb:wiring property="questionnaire" beanIdRef="questionnaire"/>
+
+        <jb:wiring property="clinic" beanIdRef="clinic"/>
+        <jb:wiring property="language" beanIdRef="language"/>
+        <jb:wiring property="questions" beanIdRef="questions" />
+    </jb:bean>
+
+    <jb:bean beanId="user"
+             class="org.celllife.ohsc.domain.user.User"
+             createOnElement="user">
+
+        <jb:value property="msisdn" data="msisdn"/>
+        <jb:wiring property="mobileNetworkOperator" beanIdRef="mobileNetworkOperator"/>
+    </jb:bean>
+
+    <jb:bean beanId="questionnaire"
+             class="org.celllife.ohsc.domain.rating.Questionnaire"
+             createOnElement="questionnaire">
+
+        <jb:value property="version" data="version"/>
+    </jb:bean>
+
+    <jb:bean beanId="questions"
+             class="java.util.ArrayList"
+             createOnElement="submission/questions">
+
+        <jb:wiring beanType="org.celllife.ohsc.domain.rating.Question"/>
+    </jb:bean>
+
+    <jb:bean beanId="question"
+             class="org.celllife.ohsc.domain.rating.Question"
+             createOnElement="element">
+
+        <jb:value property="domainCode" data="domainCode"/>
+        <jb:value property="text" data="element/text"/>
+        <jb:wiring property="answer" beanIdRef="answer"/>
+    </jb:bean>
+
+    <jb:bean beanId="answer"
+             class="org.celllife.ohsc.domain.rating.Answer"
+             createOnElement="answer">
+
+        <jb:value property="value" data="rating"/>
+        <jb:value property="text" data="text"/>
+    </jb:bean>
+
+    <!-- DAO Locators -->
+
+    <dao:locator beanId="clinic"
+                 dao="clinicRepository"
+                 lookup="code"
+                 lookupOnElement="submission"
+                 onNoResult="EXCEPTION">
+        <dao:params>
+            <dao:value name="code" data="clinicCode" decoder="String"/>
+        </dao:params>
+    </dao:locator>
+
+    <dao:locator beanId="language"
+                 dao="languageRepository"
+                 lookup="code"
+                 onNoResult="EXCEPTION">
+
+        <dao:params>
+            <dao:value name="code" data="languageCode" decoder="String"/>
+        </dao:params>
+    </dao:locator>
+
+    <dao:locator beanId="mobileNetworkOperator"
+                 dao="mobileNetworkOperatorRepository"
+                 lookup="code"
+                 lookupOnElement="user"
+                 onNoResult="EXCEPTION">
+
+        <dao:params>
+            <dao:value name="code" data="mnoCode" decoder="String"/>
+        </dao:params>
+    </dao:locator>
+
+</smooks-resource-list>

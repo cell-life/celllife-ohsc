@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:int-http="http://www.springframework.org/schema/integration/http"
+       xmlns:int-jdbc="http://www.springframework.org/schema/integration/jdbc"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http.xsd
+                           http://www.springframework.org/schema/integration/jdbc http://www.springframework.org/schema/integration/jdbc/spring-integration-jdbc.xsd
+                           http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+    <int:annotation-config />
+
+    <int:channel id="aatRequestChannel" />
+
+    <int:channel id="aatResponseChannel" />
+
+    <int-http:inbound-gateway id="httpInbound"
+                              request-channel="aatRequestChannel"
+                              reply-channel="aatResponseChannel"
+                              name="/services/cqmUssdSubmission"
+                              supported-methods="POST"
+            />
+
+    <int:service-activator id="cqmUssdSubmissionIntegrationServiceActivator"
+                           input-channel="aatRequestChannel"
+                           output-channel="aatResponseChannel"
+                           ref="cqmUssdSubmissionMediator"
+                           method="handleCqmUssdSubmission"/>
+
+    <int-jdbc:message-store id="messageStore"
+                            data-source="dataSource"  />
+
+</beans>

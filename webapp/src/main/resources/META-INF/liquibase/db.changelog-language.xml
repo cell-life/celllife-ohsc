@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet author="kevin.sewell" id="language-1">
+        <createTable tableName="language">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="code" type="VARCHAR(255)"/>
+        </createTable>
+
+        <insert tableName="language">
+            <column name="id">1</column>
+            <column name="name">Afrikaans</column>
+            <column name="code">af_ZA</column>
+        </insert>
+
+        <insert tableName="language">
+            <column name="id">2</column>
+            <column name="name">English</column>
+            <column name="code">en_ZA</column>
+        </insert>
+
+        <insert tableName="language">
+            <column name="id">3</column>
+            <column name="name">Ndebele</column>
+            <column name="code">nr_ZA</column>
+        </insert>
+
+        <insert tableName="language">
+            <column name="id">4</column>
+            <column name="name">Northern Sotho</column>
+            <column name="code">nso_ZA</column>
+        </insert>
+
+        <insert tableName="language">
+            <column name="id">5</column>
+            <column name="name">Sotho</column>
+            <column name="code">st_ZA</column>
+        </insert>
+
+        <insert tableName="language">
+            <column name="id">6</column>
+            <column name="name">Swati</column>
+            <column name="code">ss_ZA</column>
+        </insert>
+
+        <insert tableName="language">
+            <column name="id">7</column>
+            <column name="name">Tsonga</column>
+            <column name="code">ts_ZA</column>
+        </insert>
+
+        <insert tableName="language">
+            <column name="id">8</column>
+            <column name="name">Tswana</column>
+            <column name="code">tn_ZA</column>
+        </insert>
+
+        <insert tableName="language">
+            <column name="id">9</column>
+            <column name="name">Venda</column>
+            <column name="code">ve_ZA</column>
+        </insert>
+
+        <insert tableName="language">
+            <column name="id">10</column>
+            <column name="name">Xhosa</column>
+            <column name="code">xh_ZA</column>
+        </insert>
+
+        <insert tableName="language">
+            <column name="id">11</column>
+            <column name="name">Zulu</column>
+            <column name="code">zu_ZA</column>
+        </insert>
+
+        <insert tableName="hibernate_sequences">
+            <column name="sequence_name">lagnuage</column>
+            <column name="sequence_next_hi_value">1</column>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>

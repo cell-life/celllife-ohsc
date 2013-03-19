@@ -1,0 +1,61 @@
+{
+    "name": "ec Aberdeen Hospital",
+    "lastUpdated": "2012-07-09T09:11:45.618+0000",
+    "alternativeName": "ec Aberdeen Hospital",
+    "shortName": "ec Aberdeen Hospital",
+    "parent": {
+        "name": "ec Camdeboo Health sub-District",
+        "lastUpdated": "2012-11-13T21:20:52.739+0000",
+        "link": "http://hct.cell-life.org:8080/dhis/api/organisationUnits/ZOTioGx21G5",
+        "internalId": 170,
+        "id": "ZOTioGx21G5"
+    },
+    "active": true,
+    "featureType": "Point",
+    "coordinates": "[24.0609,-32.4862]",
+    "dataSets": [
+        {
+            "name": "HCT expansion 2010 ->",
+            "lastUpdated": "2012-12-10T13:24:27.938+0000",
+            "link": "http://hct.cell-life.org:8080/dhis/api/dataSets/kInemuIBprW",
+            "internalId": 62,
+            "id": "kInemuIBprW"
+        },
+        {
+            "name": "ART Expansion 2010 ->",
+            "lastUpdated": "2012-12-10T13:41:18.388+0000",
+            "link": "http://hct.cell-life.org:8080/dhis/api/dataSets/Yk74sL0wTXR",
+            "internalId": 63,
+            "id": "Yk74sL0wTXR"
+        }
+    ],
+    "hasPatients": false,
+    "link": "http://hct.cell-life.org:8080/dhis/api/organisationUnits/cC7C6ArrJ0r",
+    "internalId": 64,
+    "id": "cC7C6ArrJ0r",
+    "organisationUnitGroups": [
+        {
+            "code": "Province Aided Facility",
+            "name": "Province Aided Facility",
+            "lastUpdated": "2012-04-30T11:51:26.421+0000",
+            "link": "http://hct.cell-life.org:8080/dhis/api/organisationUnitGroups/EBe9cQkDlfh",
+            "internalId": 7555,
+            "id": "EBe9cQkDlfh"
+        },
+        {
+            "code": "District Hospital",
+            "name": "District Hospital",
+            "lastUpdated": "2012-04-30T11:51:26.421+0000",
+            "link": "http://hct.cell-life.org:8080/dhis/api/organisationUnitGroups/dEZlrXxqmtb",
+            "internalId": 7562,
+            "id": "dEZlrXxqmtb"
+        },
+        {
+            "code": "Urban",
+            "name": "Urban",
+            "lastUpdated": "2012-04-30T11:51:26.421+0000",
+            "link": "http://hct.cell-life.org:8080/dhis/api/organisationUnitGroups/vq90WT6IDPg",
+            "internalId": 7580,
+            "id": "vq90WT6IDPg"
+        }
+    ]}

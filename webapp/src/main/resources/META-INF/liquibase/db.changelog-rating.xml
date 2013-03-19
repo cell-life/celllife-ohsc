@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet author="kevin.sewell" id="rating-1">
+        <createTable tableName="rating">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="questionnaire" type="BIGINT"/>
+            <column name="user" type="BIGINT"/>
+            <column name="clinic" type="BIGINT"/>
+            <column name="language" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="kevin.sewell" id="rating-2">
+        <createTable tableName="question">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="domain_code" type="VARCHAR(255)"/>
+            <column name="text" type="VARCHAR(255)"/>
+            <column name="answer_text" type="VARCHAR(255)"/>
+            <column name="answer_value" type="BIGINT"/>
+            <column name="rating" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="kevin.sewell" id="rating-3">
+        <createTable tableName="questionnaire">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="version" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="kevin.sewell" id="rating-4">
+        <addForeignKeyConstraint baseColumnNames="questionnaire"
+                                 baseTableName="rating"
+                                 constraintName="FKEAA4C4D467D3BCFB"
+                                 referencedColumnNames="id"
+                                 referencedTableName="questionnaire"
+                                 referencesUniqueColumn="false"/>
+    </changeSet>
+
+    <changeSet author="kevin.sewell" id="rating-5">
+        <addForeignKeyConstraint baseColumnNames="rating"
+                                 baseTableName="question"
+                                 constraintName="FKBA823BE6A55C3903"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rating"
+                                 referencesUniqueColumn="false"/>
+    </changeSet>
+
+</databaseChangeLog>
