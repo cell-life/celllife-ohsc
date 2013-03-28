@@ -44,15 +44,6 @@ public class ClinicAverageApplicationServiceImpl implements ClinicAverageApplica
         }
     }
 
-    private boolean getLock(ILock lock)  {
-
-        try {
-            return lock.tryLock(10, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private void doAddRating(Rating rating) {
 
         Clinic clinic = rating.getClinic();
@@ -68,7 +59,16 @@ public class ClinicAverageApplicationServiceImpl implements ClinicAverageApplica
         clinicAverageRepository.save(clinicAverage);
     }
 
-    private ClinicAverage updateClinicAverage(Rating rating, ClinicAverage clinicAverage) {
+    private static boolean getLock(ILock lock)  {
+
+        try {
+            return lock.tryLock(10, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static ClinicAverage updateClinicAverage(Rating rating, ClinicAverage clinicAverage) {
 
         Integer oldTotalResponses = clinicAverage.getTotalResponses();
 
@@ -90,7 +90,7 @@ public class ClinicAverageApplicationServiceImpl implements ClinicAverageApplica
         return clinicAverage;
     }
 
-    private ClinicAverage newClinicAverage(Rating rating, Clinic clinic) {
+    private static ClinicAverage newClinicAverage(Rating rating, Clinic clinic) {
 
         ClinicAverage clinicAverage = new ClinicAverage();
         clinicAverage.setClinic(clinic);

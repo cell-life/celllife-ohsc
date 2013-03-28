@@ -31,7 +31,7 @@ public final class ClinicAverage implements Serializable {
     private Integer totalResponses;
 
     public ClinicAverage() {
-        this.totalResponses = 1;
+        this.totalResponses = 0;
 
         this.domainAverages = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
