@@ -57,12 +57,11 @@
 
     <center>
         <h3>Total Clinics Monitored</h3>
-    </center>
 
-    <iframe class="row-fluid"
-            src="${pageContext.request.contextPath}/js/donut-graphs.jsp"
-            marginwidth="0" marginheight="0" scrolling="no"></iframe>
-    <!-- TODO: find a better place to put iframe jsp-->
+			<div class="row-fluid" id="donut"><jsp:include
+					page="${pageContext.request.contextPath}/js/donut-graphs.jsp" /></div>
+
+	</center>
 
     <hr>
 
