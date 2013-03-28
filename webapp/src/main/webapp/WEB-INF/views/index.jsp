@@ -30,6 +30,7 @@
             <li class="active"><a href="${pageContext.request.contextPath}/report/nationalRatingPerDomain">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
+            <li><a href="j_spring_cas_security_logout">Logout</a>
         </ul>
         <h3 class="muted">OHSC</h3>
     </div>

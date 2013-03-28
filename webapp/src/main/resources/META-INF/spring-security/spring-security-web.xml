@@ -16,6 +16,10 @@
 
         <security:http-basic/>
         <security:custom-filter position="CAS_FILTER" ref="casFilter"/>
-    </security:http>
+    	
+    	<security:logout logout-success-url="/cas-logout.jsp"/>
+    	<security:custom-filter ref="requestSingleLogoutFilter" before="LOGOUT_FILTER"/>
+    	<security:custom-filter ref="singleLogoutFilter" before="CAS_FILTER"/>
+  </security:http>
 
 </beans>

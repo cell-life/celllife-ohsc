@@ -34,4 +34,16 @@
         </property>
     </bean>
 
+    <!-- This filter handles a Single Logout Request from the CAS Server -->
+    <bean id="singleLogoutFilter" class="org.jasig.cas.client.session.SingleSignOutFilter"/>
+
+    <!-- This filter redirects to the CAS Server to signal Single Logout should be performed -->
+    <bean id="requestSingleLogoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+      <constructor-arg value="${cas.base.url}/logout"/>
+      <constructor-arg>
+        <bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
+      </constructor-arg>
+      <property name="filterProcessesUrl" value="/j_spring_cas_security_logout"/>
+    </bean>
+
 </beans>
