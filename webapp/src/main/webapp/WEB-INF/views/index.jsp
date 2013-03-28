@@ -9,15 +9,20 @@
 
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <style type="text/css">
-        body {
-            padding-top: 20px;
-            padding-bottom: 40px;
-        }
+body {
+	padding-top: 20px;
+	padding-bottom: 40px;
+	font: 10px sans-serif;
+}
 
-        iframe {
-            border: none;
-        }
-    </style>
+svg {
+	padding: 10px 0 0 10px;
+}
+
+.arc {
+	stroke: #fff;
+}
+</style>
     <link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
 </head>
 <body>
@@ -37,12 +42,7 @@
 
     <hr>
 
-    <c:forEach items="${provinces.content}" var="province">
-        <p>${province.shortName}</p>
-
-    </c:forEach>
-
-    <h1>${result.person.name}</h1>
+    <h1>Reports</h1>
 
     <p>
     <ul>
@@ -59,10 +59,11 @@
     <center>
         <h3>Total Clinics Monitored</h3>
 
-			<div class="row-fluid" id="donut"><jsp:include
-					page="${pageContext.request.contextPath}/js/donut-graphs.jsp" /></div>
-
-	</center>
+			<div class="row-fluid" id="donut"> </div>
+			<script src="http://d3js.org/d3.v3.min.js"></script>
+			<script src="${pageContext.request.contextPath}/js/donut-graphs.js"></script>
+			
+		</center>
 
     <hr>
 
