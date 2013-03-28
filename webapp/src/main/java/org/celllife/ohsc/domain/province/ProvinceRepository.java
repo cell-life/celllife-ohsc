@@ -1,7 +1,10 @@
 package org.celllife.ohsc.domain.province;
 
+import java.util.List;
+
 import org.celllife.ohsc.framework.logging.LogLevel;
 import org.celllife.ohsc.framework.logging.Loggable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.repository.annotation.RestResource;
 
@@ -13,6 +16,10 @@ import org.springframework.data.rest.repository.annotation.RestResource;
 @Loggable(LogLevel.DEBUG)
 @RestResource(path = "provinces")
 public interface ProvinceRepository extends PagingAndSortingRepository<Province, Long> {
-
     Province findByExternalId(String externalId);
+
+    @Query("select distinct p.shortName from Province p")
+    List<String> findAllProvinceNames();
+    
 }
+
