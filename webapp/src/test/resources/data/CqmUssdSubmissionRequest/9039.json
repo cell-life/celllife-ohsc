@@ -1,20 +1,20 @@
 {
     "CqmUssdSubmissionRequest": {
         "ussdSession": {
-            "id": "1",
+            "id": "9039",
             "string": "*130*555*1000#",
-            "startDateTime": "2013-03-19T12:45:32",
-            "endDateTime": "2013-03-19T12:45:32"
+            "startDateTime": "2013-04-02T14:12:43",
+            "endDateTime": "2013-04-02T14:12:43"
         },
         "user": {
-            "msisdn": "+27721232636",
-            "mnoCode": "1"
+            "msisdn": "+27721231556",
+            "mnoCode": "2"
         },
         "questionnaire": {
             "version": "1.0"
         },
         "submission": {
-            "clinicCode": "5227",
+            "clinicCode": "6699",
             "languageCode": "af_ZA",
             "questions": [
                 {
@@ -62,7 +62,7 @@
                     "text": "Did you get the medicine you needed?",
                     "answer": {
                         "text": "Some of it.",
-                        "rating": "3"
+                        "rating": "1"
                     }
                 }
             ]

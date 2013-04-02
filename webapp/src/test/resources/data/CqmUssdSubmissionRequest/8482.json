@@ -1,21 +1,21 @@
 {
     "CqmUssdSubmissionRequest": {
         "ussdSession": {
-            "id": "1",
+            "id": "8482",
             "string": "*130*555*1000#",
-            "startDateTime": "2013-03-19T12:45:32",
-            "endDateTime": "2013-03-19T12:45:32"
+            "startDateTime": "2013-04-02T14:12:43",
+            "endDateTime": "2013-04-02T14:12:43"
         },
         "user": {
-            "msisdn": "+27721237326",
-            "mnoCode": "1"
+            "msisdn": "+27721239084",
+            "mnoCode": "5"
         },
         "questionnaire": {
             "version": "1.0"
         },
         "submission": {
-            "clinicCode": "7028",
-            "languageCode": "st_ZA",
+            "clinicCode": "6459",
+            "languageCode": "ss_ZA",
             "questions": [
                 {
                     "domainCode": "1",
@@ -30,7 +30,7 @@
                     "text": "How helpful were the staff",
                     "answer": {
                         "text": "Very unhelpful",
-                        "rating": "2"
+                        "rating": "3"
                     }
                 },
                 {
@@ -54,7 +54,7 @@
                     "text": "Was the hospital clean.",
                     "answer": {
                         "text": "It was acceptably clean.",
-                        "rating": "3"
+                        "rating": "4"
                     }
                 },
                 {

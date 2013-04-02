@@ -1,21 +1,21 @@
 {
     "CqmUssdSubmissionRequest": {
         "ussdSession": {
-            "id": "1",
+            "id": "6144",
             "string": "*130*555*1000#",
-            "startDateTime": "2013-03-19T12:45:32",
-            "endDateTime": "2013-03-19T12:45:32"
+            "startDateTime": "2013-04-02T14:12:42",
+            "endDateTime": "2013-04-02T14:12:42"
         },
         "user": {
-            "msisdn": "+27721238880",
+            "msisdn": "+27721239431",
             "mnoCode": "1"
         },
         "questionnaire": {
             "version": "1.0"
         },
         "submission": {
-            "clinicCode": "2712",
-            "languageCode": "ts_ZA",
+            "clinicCode": "1295",
+            "languageCode": "st_ZA",
             "questions": [
                 {
                     "domainCode": "1",
@@ -30,7 +30,7 @@
                     "text": "How helpful were the staff",
                     "answer": {
                         "text": "Very unhelpful",
-                        "rating": "1"
+                        "rating": "2"
                     }
                 },
                 {

@@ -1,6 +1,7 @@
 package org.celllife.ohsc.integration.cqm;
 
 import junit.framework.Assert;
+import org.apache.commons.io.IOUtils;
 import org.celllife.ohsc.test.TestConfiguration;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -12,6 +13,7 @@ import org.springframework.integration.message.GenericMessage;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.io.FileWriter;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -27,6 +29,8 @@ import java.util.concurrent.TimeUnit;
 public class CqmUssdSubmissionMediatorIntegrationTest {
 
     public static final int MAX = 10000;
+
+    public static final String BASE_DIR = "/data/CqmUssdSubmissionRequest/";
 
     @Autowired
     private CqmUssdSubmissionMediator cqmUssdSubmissionMediator;
@@ -45,9 +49,27 @@ public class CqmUssdSubmissionMediatorIntegrationTest {
     }
 
     @Test
+    @Ignore("Used for generating test data")
+    public void testGenerateCqmUssdSubmissions() throws Exception {
+
+        String path = getClass().getResource(BASE_DIR).getPath();
+
+        for (int i = 0; i < MAX; i++) {
+
+            String nextRandomJson = randomClinicRatingDataGenerator.getNextRandomJson(i);
+
+            String fileName = path + String.format("/%04d.json", i);
+            FileWriter fileWriter = new FileWriter(fileName);
+            IOUtils.write(nextRandomJson, fileWriter);
+            fileWriter.flush();
+            fileWriter.close();
+        }
+    }
+
+    @Test
     public void testHandleCqmUssdSubmission() throws Exception {
 
-        String json = randomClinicRatingDataGenerator.getNextRandomJson();
+        String json = randomClinicRatingDataGenerator.getNextRandomJson(1);
 
         System.out.println(json);
 
@@ -63,12 +85,15 @@ public class CqmUssdSubmissionMediatorIntegrationTest {
         long start = System.currentTimeMillis();
 
         for (int i = 0; i < MAX; i++) {
+
+            final int ussdSessionId = i;
+
             threadPoolExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
                     try {
 
-                        String json = randomClinicRatingDataGenerator.getNextRandomJson();
+                        String json = randomClinicRatingDataGenerator.getNextRandomJson(ussdSessionId);
 
                         GenericMessage<byte[]> message = new GenericMessage<>(json.getBytes());
 

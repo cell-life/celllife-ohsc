@@ -1,28 +1,28 @@
 {
     "CqmUssdSubmissionRequest": {
         "ussdSession": {
-            "id": "1",
+            "id": "7102",
             "string": "*130*555*1000#",
-            "startDateTime": "2013-03-19T12:45:32",
-            "endDateTime": "2013-03-19T12:45:32"
+            "startDateTime": "2013-04-02T14:12:43",
+            "endDateTime": "2013-04-02T14:12:43"
         },
         "user": {
-            "msisdn": "+27721237588",
-            "mnoCode": "1"
+            "msisdn": "+27721235092",
+            "mnoCode": "2"
         },
         "questionnaire": {
             "version": "1.0"
         },
         "submission": {
-            "clinicCode": "2669",
-            "languageCode": "af_ZA",
+            "clinicCode": "6358",
+            "languageCode": "ts_ZA",
             "questions": [
                 {
                     "domainCode": "1",
                     "text": "How clean were the toilets",
                     "answer": {
                         "text": "Very clean",
-                        "rating": "2"
+                        "rating": "3"
                     }
                 },
                 {
@@ -62,7 +62,7 @@
                     "text": "Did you get the medicine you needed?",
                     "answer": {
                         "text": "Some of it.",
-                        "rating": "4"
+                        "rating": "1"
                     }
                 }
             ]

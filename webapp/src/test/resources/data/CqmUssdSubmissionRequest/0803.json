@@ -1,21 +1,21 @@
 {
     "CqmUssdSubmissionRequest": {
         "ussdSession": {
-            "id": "1",
+            "id": "803",
             "string": "*130*555*1000#",
-            "startDateTime": "2013-03-19T12:45:31",
-            "endDateTime": "2013-03-19T12:45:31"
+            "startDateTime": "2013-04-02T14:12:41",
+            "endDateTime": "2013-04-02T14:12:41"
         },
         "user": {
-            "msisdn": "+27721234947",
-            "mnoCode": "1"
+            "msisdn": "+27721231076",
+            "mnoCode": "2"
         },
         "questionnaire": {
             "version": "1.0"
         },
         "submission": {
-            "clinicCode": "6158",
-            "languageCode": "st_ZA",
+            "clinicCode": "2183",
+            "languageCode": "nso_ZA",
             "questions": [
                 {
                     "domainCode": "1",
@@ -30,7 +30,7 @@
                     "text": "How helpful were the staff",
                     "answer": {
                         "text": "Very unhelpful",
-                        "rating": "3"
+                        "rating": "2"
                     }
                 },
                 {
@@ -38,7 +38,7 @@
                     "text": "How long did you wait?",
                     "answer": {
                         "text": "4-6 hours",
-                        "rating": "4"
+                        "rating": "2"
                     }
                 },
                 {
@@ -62,7 +62,7 @@
                     "text": "Did you get the medicine you needed?",
                     "answer": {
                         "text": "Some of it.",
-                        "rating": "4"
+                        "rating": "1"
                     }
                 }
             ]

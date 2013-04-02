@@ -1,28 +1,28 @@
 {
     "CqmUssdSubmissionRequest": {
         "ussdSession": {
-            "id": "1",
+            "id": "814",
             "string": "*130*555*1000#",
-            "startDateTime": "2013-03-19T12:45:31",
-            "endDateTime": "2013-03-19T12:45:31"
+            "startDateTime": "2013-04-02T14:12:41",
+            "endDateTime": "2013-04-02T14:12:41"
         },
         "user": {
-            "msisdn": "+27721235852",
-            "mnoCode": "2"
+            "msisdn": "+27721235798",
+            "mnoCode": "3"
         },
         "questionnaire": {
             "version": "1.0"
         },
         "submission": {
-            "clinicCode": "6653",
-            "languageCode": "ss_ZA",
+            "clinicCode": "0911",
+            "languageCode": "ve_ZA",
             "questions": [
                 {
                     "domainCode": "1",
                     "text": "How clean were the toilets",
                     "answer": {
                         "text": "Very clean",
-                        "rating": "2"
+                        "rating": "1"
                     }
                 },
                 {
@@ -38,7 +38,7 @@
                     "text": "How long did you wait?",
                     "answer": {
                         "text": "4-6 hours",
-                        "rating": "2"
+                        "rating": "4"
                     }
                 },
                 {
@@ -46,7 +46,7 @@
                     "text": "Was there security?",
                     "answer": {
                         "text": "A little.",
-                        "rating": "3"
+                        "rating": "2"
                     }
                 },
                 {

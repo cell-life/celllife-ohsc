@@ -1,28 +1,28 @@
 {
     "CqmUssdSubmissionRequest": {
         "ussdSession": {
-            "id": "1",
+            "id": "3562",
             "string": "*130*555*1000#",
-            "startDateTime": "2013-03-19T12:45:32",
-            "endDateTime": "2013-03-19T12:45:32"
+            "startDateTime": "2013-04-02T14:12:42",
+            "endDateTime": "2013-04-02T14:12:42"
         },
         "user": {
-            "msisdn": "+27721236504",
-            "mnoCode": "5"
+            "msisdn": "+27721237149",
+            "mnoCode": "1"
         },
         "questionnaire": {
             "version": "1.0"
         },
         "submission": {
-            "clinicCode": "3683",
-            "languageCode": "tn_ZA",
+            "clinicCode": "6944",
+            "languageCode": "af_ZA",
             "questions": [
                 {
                     "domainCode": "1",
                     "text": "How clean were the toilets",
                     "answer": {
                         "text": "Very clean",
-                        "rating": "4"
+                        "rating": "1"
                     }
                 },
                 {
@@ -30,7 +30,7 @@
                     "text": "How helpful were the staff",
                     "answer": {
                         "text": "Very unhelpful",
-                        "rating": "3"
+                        "rating": "4"
                     }
                 },
                 {
@@ -38,7 +38,7 @@
                     "text": "How long did you wait?",
                     "answer": {
                         "text": "4-6 hours",
-                        "rating": "4"
+                        "rating": "2"
                     }
                 },
                 {
@@ -46,7 +46,7 @@
                     "text": "Was there security?",
                     "answer": {
                         "text": "A little.",
-                        "rating": "4"
+                        "rating": "3"
                     }
                 },
                 {
@@ -54,7 +54,7 @@
                     "text": "Was the hospital clean.",
                     "answer": {
                         "text": "It was acceptably clean.",
-                        "rating": "1"
+                        "rating": "4"
                     }
                 },
                 {

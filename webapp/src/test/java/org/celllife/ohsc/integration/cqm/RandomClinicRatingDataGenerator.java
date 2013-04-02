@@ -8,7 +8,6 @@ import org.celllife.ohsc.domain.clinic.ClinicRepository;
 import org.celllife.ohsc.domain.language.LanguageRepository;
 import org.celllife.ohsc.domain.mno.MobileNetworkOperatorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.integration.message.GenericMessage;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -38,9 +37,6 @@ public class RandomClinicRatingDataGenerator {
     @Autowired
     private MobileNetworkOperatorRepository mobileNetworkOperatorRepository;
 
-    @Autowired
-    private CqmUssdSubmissionMediator cqmUssdSubmissionMediator;
-
     private Configuration configuration;
 
     private List<String> languageCodes;
@@ -49,28 +45,13 @@ public class RandomClinicRatingDataGenerator {
 
     private List<String> mobileNetworkOperatorCodes;
 
-    public void generateRandomClinicRatingData(int count) {
-
-        for (int i = 0; i < count; i++) {
-            doGenerateRandomClinicRatingData();
-        }
-    }
-
-    private void doGenerateRandomClinicRatingData() {
-        byte[] nextRandomJson = getNextRandomJson().getBytes();
-
-        GenericMessage<byte[]> message = new GenericMessage<>(nextRandomJson);
-
-        cqmUssdSubmissionMediator.handleCqmUssdSubmission(message);
-    }
-
-    public String getNextRandomJson() {
+    public String getNextRandomJson(int i) {
 
         Template template = newTemplate("rating.ftl");
 
         Writer out = new StringWriter();
         try {
-            template.process(getNextRandomModel(), out);
+            template.process(getNextRandomModel(i), out);
             out.flush();
         } catch (IOException | TemplateException e) {
             throw new RuntimeException(e);
@@ -107,12 +88,13 @@ public class RandomClinicRatingDataGenerator {
         return configuration;
     }
 
-    public Map<String, String> getNextRandomModel() {
+    public Map<String, String> getNextRandomModel(int i) {
 
         HashMap<String, String> model = new HashMap<>();
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
+        model.put("ussdSessionId", String.format("%d", i));
         model.put("startDateTime", simpleDateFormat.format(new Date()));
         model.put("endDateTime", simpleDateFormat.format(new Date()));
         model.put("msisdn", getRandomMsisdn());

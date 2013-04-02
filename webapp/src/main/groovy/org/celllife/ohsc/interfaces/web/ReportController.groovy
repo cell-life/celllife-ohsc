@@ -19,15 +19,14 @@ class ReportController {
     def String baseUri;
 
     @RequestMapping(method = RequestMethod.GET)
-    String index(Model model) {
+    def index(Model model) {
 
-        def api = new RESTClient("${baseUri}/api")
-
-        def provinces = api.get(path: "provinces").data
-
-        model.putAt("provinces", provinces)
+        model.putAt("provinces", get("${baseUri}/api/provinces"))
 
         return "report/index";
     }
 
+    def static get(String uri) {
+        return new RESTClient(uri).get().data
+    }
 }

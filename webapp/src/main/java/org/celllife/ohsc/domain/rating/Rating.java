@@ -1,6 +1,7 @@
 package org.celllife.ohsc.domain.rating;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,6 +16,14 @@ public final class Rating implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "id", column = @Column(name = "ussdSessionId")),
+            @AttributeOverride(name = "startDateTime", column = @Column(name = "ussdSessionStartDateTime")),
+            @AttributeOverride(name = "endDateTime", column = @Column(name = "ussdSessionEndDateTime"))
+    })
+    private UssdSession ussdSession;
 
     @Embedded
     @AttributeOverrides({
@@ -45,6 +54,14 @@ public final class Rating implements Serializable {
         this.id = id;
     }
 
+    public UssdSession getUssdSession() {
+        return ussdSession;
+    }
+
+    public void setUssdSession(UssdSession ussdSession) {
+        this.ussdSession = ussdSession;
+    }
+
     public User getUser() {
         return user;
     }
@@ -65,7 +82,7 @@ public final class Rating implements Serializable {
         return clinicCode;
     }
 
-    public void setClinicCode(String clinic) {
+    public void setClinicCode(String clinicCode) {
         this.clinicCode = clinicCode;
     }
 
@@ -83,5 +100,41 @@ public final class Rating implements Serializable {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    public Double getRatingForDomain(Domain domain) {
+        
+        for (Question question : questions) {
+            if (question.getDomainCode().equals(domain.getCode())) {
+                return question.getAnswer().getValue().doubleValue();
+            }
+        }
+        
+        return null;  
+    }
+
+    public Double getOverallRating() {
+        
+        Double sum = 0.0d;
+                
+        for (Question question : questions) {
+            sum += question.getAnswer().getValue();
+        }
+
+        return sum / questions.size();
+    }
+    
+    public boolean isComplete() {
+
+        for (Domain domain : Domain.values()) {
+
+            Double ratingForDomain = getRatingForDomain(domain);
+
+            if (ratingForDomain == null || ratingForDomain.equals(0.0D)) {
+                return false;
+            }
+        }
+        
+        return true;
     }
 }

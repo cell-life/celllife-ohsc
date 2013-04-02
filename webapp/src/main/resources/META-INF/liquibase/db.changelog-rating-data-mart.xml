@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet author="kevin.sewell" id="rating-data-mart-1">
+        <createTable tableName="rating_data_mart">
+            <column name="ussd_session_id" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="clinic" type="VARCHAR(255)"/>
+            <column name="sub_district" type="VARCHAR(255)"/> 
+            <column name="district" type="VARCHAR(255)"/> 
+            <column name="province" type="VARCHAR(255)"/> 
+            <column name="staff_attitude_rating" type="DOUBLE"/>
+            <column name="cleanliness_rating" type="DOUBLE"/>
+            <column name="waiting_times_rating" type="DOUBLE"/>
+            <column name="drug_availability_rating" type="DOUBLE"/>
+            <column name="infection_control_rating" type="DOUBLE"/>
+            <column name="safe_and_secure_care_rating" type="DOUBLE"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

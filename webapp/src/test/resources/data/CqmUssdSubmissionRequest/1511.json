@@ -1,20 +1,20 @@
 {
     "CqmUssdSubmissionRequest": {
         "ussdSession": {
-            "id": "1",
+            "id": "1511",
             "string": "*130*555*1000#",
-            "startDateTime": "2013-03-19T12:45:31",
-            "endDateTime": "2013-03-19T12:45:31"
+            "startDateTime": "2013-04-02T14:12:42",
+            "endDateTime": "2013-04-02T14:12:42"
         },
         "user": {
-            "msisdn": "+27721235742",
-            "mnoCode": "1"
+            "msisdn": "+27721239310",
+            "mnoCode": "2"
         },
         "questionnaire": {
             "version": "1.0"
         },
         "submission": {
-            "clinicCode": "5248",
+            "clinicCode": "6852",
             "languageCode": "en_ZA",
             "questions": [
                 {
@@ -38,7 +38,7 @@
                     "text": "How long did you wait?",
                     "answer": {
                         "text": "4-6 hours",
-                        "rating": "3"
+                        "rating": "4"
                     }
                 },
                 {
@@ -62,7 +62,7 @@
                     "text": "Did you get the medicine you needed?",
                     "answer": {
                         "text": "Some of it.",
-                        "rating": "4"
+                        "rating": "1"
                     }
                 }
             ]

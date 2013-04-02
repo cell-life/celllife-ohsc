@@ -1,7 +1,7 @@
 {
     "CqmUssdSubmissionRequest": {
         "ussdSession": {
-            "id": "1",
+            "id": "${ussdSessionId}",
             "string": "*130*555*1000#",
             "startDateTime": "${startDateTime}",
             "endDateTime": "${endDateTime}"

@@ -1,11 +1,8 @@
 package org.celllife.ohsc.integration.cqm;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.http.Header;
-import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.params.HttpConnectionParams;
@@ -27,6 +24,7 @@ public class CqmUssdSubmissionMediatorAcceptanceTest {
     public static final String BASE_DIR = "/data/CqmUssdSubmissionRequest/";
 
     @Test
+    @Ignore("Requires running Jetty instance")
     public void testHandleCqmUssdSubmissionLoad() throws Exception {
 
         String path = getClass().getResource(BASE_DIR).getPath();
@@ -46,10 +44,6 @@ public class CqmUssdSubmissionMediatorAcceptanceTest {
         HttpConnectionParams.setSoTimeout(params, 10000);
 
         method.setEntity(new StringEntity(json));
-
-        UsernamePasswordCredentials credentials = new UsernamePasswordCredentials("admin", "admin");
-        Header authenticate = BasicScheme.authenticate(credentials, "US-ASCII", false);
-        method.addHeader(authenticate);
         method.addHeader(new BasicHeader("Content-Type", "application/json"));
 
         DefaultHttpClient client = new DefaultHttpClient();

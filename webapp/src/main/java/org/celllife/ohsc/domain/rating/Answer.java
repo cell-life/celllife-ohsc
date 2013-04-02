@@ -16,6 +16,14 @@ public class Answer {
     @Basic
     private Integer value;
 
+    public Answer() {
+    }
+
+    public Answer(String text, Integer value) {
+        this.text = text;
+        this.value = value;
+    }
+
     public String getText() {
         return text;
     }

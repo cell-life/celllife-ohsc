@@ -1,21 +1,21 @@
 {
     "CqmUssdSubmissionRequest": {
         "ussdSession": {
-            "id": "1",
+            "id": "645",
             "string": "*130*555*1000#",
-            "startDateTime": "2013-03-19T12:45:31",
-            "endDateTime": "2013-03-19T12:45:31"
+            "startDateTime": "2013-04-02T14:12:41",
+            "endDateTime": "2013-04-02T14:12:41"
         },
         "user": {
-            "msisdn": "+27721238329",
+            "msisdn": "+27721232167",
             "mnoCode": "3"
         },
         "questionnaire": {
             "version": "1.0"
         },
         "submission": {
-            "clinicCode": "2510",
-            "languageCode": "af_ZA",
+            "clinicCode": "2929",
+            "languageCode": "ts_ZA",
             "questions": [
                 {
                     "domainCode": "1",
