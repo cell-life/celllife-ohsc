@@ -14,14 +14,10 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
-    @Basic
-    @Column(unique = true)
     private String externalId;
 
-    @Basic
     private String name;
 
-    @Basic
     private String shortName;
 
     public Country() {

@@ -16,13 +16,10 @@ public class SubDistrict {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
-    @Basic
     private String externalId;
 
-    @Basic
     private String name;
 
-    @Basic
     private String shortName;
 
     @Lob

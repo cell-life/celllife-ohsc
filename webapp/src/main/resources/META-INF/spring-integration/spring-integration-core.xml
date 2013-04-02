@@ -9,18 +9,17 @@
                            http://www.springframework.org/schema/integration/jdbc http://www.springframework.org/schema/integration/jdbc/spring-integration-jdbc.xsd
                            http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-    <int:annotation-config />
+    <int:annotation-config/>
 
-    <int:channel id="aatRequestChannel" />
+    <int:channel id="aatRequestChannel"/>
 
-    <int:channel id="aatResponseChannel" />
+    <int:channel id="aatResponseChannel"/>
 
     <int-http:inbound-gateway id="httpInbound"
                               request-channel="aatRequestChannel"
                               reply-channel="aatResponseChannel"
                               name="/services/cqmUssdSubmission"
-                              supported-methods="POST"
-            />
+                              supported-methods="POST"/>
 
     <int:service-activator id="cqmUssdSubmissionIntegrationServiceActivator"
                            input-channel="aatRequestChannel"
@@ -29,6 +28,6 @@
                            method="handleCqmUssdSubmission"/>
 
     <int-jdbc:message-store id="messageStore"
-                            data-source="dataSource"  />
+                            data-source="dataSource"/>
 
 </beans>

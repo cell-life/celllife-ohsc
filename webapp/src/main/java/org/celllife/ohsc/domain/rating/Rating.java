@@ -1,9 +1,5 @@
 package org.celllife.ohsc.domain.rating;
 
-import org.celllife.ohsc.domain.clinic.Clinic;
-import org.celllife.ohsc.domain.language.Language;
-import org.celllife.ohsc.domain.user.User;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -20,17 +16,22 @@ public final class Rating implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "msisdn", column = @Column(name = "userMsisdn")),
+            @AttributeOverride(name = "mnoCode", column = @Column(name = "userMnoCode"))
+    })
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "version", column = @Column(name = "questionnaireVersion"))
+    })
     private Questionnaire questionnaire;
 
-    @OneToOne
-    private Clinic clinic;
+    private String clinicCode;
 
-    @OneToOne
-    private Language language;
+    private String languageCode;
 
     @JoinColumn(name = "rating")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -60,21 +61,20 @@ public final class Rating implements Serializable {
         this.questionnaire = questionnaire;
     }
 
-
-    public Clinic getClinic() {
-        return clinic;
+    public String getClinicCode() {
+        return clinicCode;
     }
 
-    public void setClinic(Clinic clinic) {
-        this.clinic = clinic;
+    public void setClinicCode(String clinic) {
+        this.clinicCode = clinicCode;
     }
 
-    public Language getLanguage() {
-        return language;
+    public String getLanguageCode() {
+        return languageCode;
     }
 
-    public void setLanguage(Language languageCode) {
-        this.language = languageCode;
+    public void setLanguageCode(String languageCode) {
+        this.languageCode = languageCode;
     }
 
     public List<Question> getQuestions() {
@@ -83,16 +83,5 @@ public final class Rating implements Serializable {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
-    }
-
-    public Integer getDomainRating(String domainCode) {
-
-        for (Question question : questions) {
-            if (question.getDomainCode().equals(domainCode)) {
-                return question.getRatingValue();
-            }
-        }
-
-        return null;
     }
 }

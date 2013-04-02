@@ -11,6 +11,4 @@
         <constructor-arg name="resourceConfigStream" value="classpath:/META-INF/smooks/smooks-cqm.xml" />
     </bean>
 
-    <bean id="springRepositoryRegistry" class="org.celllife.ohsc.framework.smooks.SpringRepositoryRegister"/>
-
 </beans>

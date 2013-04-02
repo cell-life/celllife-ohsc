@@ -1,6 +1,5 @@
 package org.celllife.ohsc.application.rating;
 
-import org.celllife.ohsc.application.average.ClinicAverageApplicationService;
 import org.celllife.ohsc.domain.rating.Rating;
 import org.celllife.ohsc.domain.rating.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +16,9 @@ public class RatingApplicationServiceImpl implements RatingApplicationService {
     @Autowired
     private RatingRepository ratingRepository;
 
-    @Autowired
-    private ClinicAverageApplicationService clinicAverageApplicationService;
-
     public void save(Rating rating) {
 
         ratingRepository.save(rating);
-
-        clinicAverageApplicationService.addRating(rating);
 
     }
 }

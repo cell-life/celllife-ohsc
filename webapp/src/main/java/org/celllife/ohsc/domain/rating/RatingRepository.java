@@ -17,18 +17,4 @@ import java.util.List;
 @RestResource(path = "ratings")
 public interface RatingRepository extends PagingAndSortingRepository<Rating, Long> {
 
-    @Query("select c.shortName, q.domainCode, avg(q.answer.value), count(*) " +
-            "from Rating r " +
-            "join r.clinic c " +
-            "join r.questions q " +
-            "group by c.shortName, q.domainCode")
-    public List<Object[]> findClinicAverages();
-
-    @Query("select sd.shortName, q.domainCode, avg(q.answer.value), count(*) " +
-            "from Rating r " +
-            "join r.clinic c " +
-            "join c.subDistrict sd " +
-            "join r.questions q " +
-            "group by sd.shortName, q.domainCode")
-    public List<Object[]> findSubDistrictAverages();
 }

@@ -22,8 +22,6 @@ import java.util.concurrent.TimeUnit;
  * Date: 2013-03-16
  * Time: 09h09
  */
-
-@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfiguration.class)
 public class CqmUssdSubmissionMediatorIntegrationTest {

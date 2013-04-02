@@ -27,23 +27,7 @@
                                  referencedTableName="district"/>
     </changeSet>
 
-    <changeSet author="kevin.sewell" id="constraint-4">
-        <addForeignKeyConstraint baseColumnNames="user"
-                                 baseTableName="rating"
-                                 constraintName="FKEAA4C4D4734E8641"
-                                 referencedColumnNames="id"
-                                 referencedTableName="user"/>
-    </changeSet>
-
     <changeSet author="kevin.sewell" id="constraint-5">
-        <addForeignKeyConstraint baseColumnNames="clinic"
-                                 baseTableName="rating"
-                                 constraintName="FKEAA4C4D4734E8642"
-                                 referencedColumnNames="id"
-                                 referencedTableName="clinic"/>
-    </changeSet>
-
-    <changeSet author="kevin.sewell" id="constraint-6">
         <addForeignKeyConstraint baseColumnNames="country"
                                  baseTableName="province"
                                  constraintName="FKEAA4C4D4734E8643"
@@ -51,7 +35,7 @@
                                  referencedTableName="country"/>
     </changeSet>
 
-    <changeSet author="kevin.sewell" id="constraint-7">
+    <changeSet author="kevin.sewell" id="constraint-6">
         <addForeignKeyConstraint baseColumnNames="province"
                                  baseTableName="district"
                                  constraintName="FKEAA4C4D4734E8644"
@@ -59,28 +43,12 @@
                                  referencedTableName="province"/>
     </changeSet>
 
-    <changeSet author="kevin.sewell" id="constraint-8">
+    <changeSet author="kevin.sewell" id="constraint-7">
         <addForeignKeyConstraint baseColumnNames="district"
                                  baseTableName="sub_district"
                                  constraintName="FKEAA4C4D4734E8645"
                                  referencedColumnNames="id"
                                  referencedTableName="district"/>
-    </changeSet>
-
-    <changeSet author="kevin.sewell" id="constraint-9">
-        <addForeignKeyConstraint baseColumnNames="clinic"
-                                 baseTableName="clinic_average"
-                                 constraintName="FKEAA4C4D4734E8646"
-                                 referencedColumnNames="id"
-                                 referencedTableName="clinic"/>
-    </changeSet>
-
-    <changeSet author="kevin.sewell" id="constraint-10">
-        <addForeignKeyConstraint baseColumnNames="mobile_network_operator"
-                                 baseTableName="user"
-                                 constraintName="FKEAA4C4D4734E8647"
-                                 referencedColumnNames="id"
-                                 referencedTableName="mobile_network_operator"/>
     </changeSet>
 
 </databaseChangeLog>

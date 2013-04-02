@@ -22,15 +22,16 @@ import java.io.FileInputStream;
  * Date: 2013-03-16
  * Time: 09h09
  */
-@Ignore
 public class CqmUssdSubmissionMediatorAcceptanceTest {
 
-    public static final String BASE_DIR = "/home/kevin/projects/celllife/celllife-ohsc/webapp/src/test/resources/data/CqmUssdSubmissionRequest/";
+    public static final String BASE_DIR = "/data/CqmUssdSubmissionRequest/";
 
     @Test
     public void testHandleCqmUssdSubmissionLoad() throws Exception {
 
-        File baseDir = new File(BASE_DIR);
+        String path = getClass().getResource(BASE_DIR).getPath();
+
+        File baseDir = new File(path);
 
         for (File file : baseDir.listFiles()) {
             post(IOUtils.toString(new FileInputStream(file)));

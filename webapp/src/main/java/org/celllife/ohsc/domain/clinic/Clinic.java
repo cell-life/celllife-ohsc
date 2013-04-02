@@ -21,17 +21,12 @@ public final class Clinic implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
-    @Basic
-    @Column(unique = true)
     private String externalId;
 
-    @Basic
     private String name;
 
-    @Basic
     private String code;
 
-    @Basic
     private String shortName;
 
     @Lob

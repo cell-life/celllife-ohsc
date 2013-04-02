@@ -16,20 +16,20 @@
              class="org.celllife.ohsc.domain.rating.Rating"
              createOnElement="CqmUssdSubmissionRequest">
 
+        <jb:value property="languageCode" data="languageCode"/>
+        <jb:value property="clinicCode" data="clinicCode"/>
+
         <jb:wiring property="user" beanIdRef="user"/>
         <jb:wiring property="questionnaire" beanIdRef="questionnaire"/>
-
-        <jb:wiring property="clinic" beanIdRef="clinic"/>
-        <jb:wiring property="language" beanIdRef="language"/>
         <jb:wiring property="questions" beanIdRef="questions" />
     </jb:bean>
 
     <jb:bean beanId="user"
-             class="org.celllife.ohsc.domain.user.User"
+             class="org.celllife.ohsc.domain.rating.User"
              createOnElement="user">
 
         <jb:value property="msisdn" data="msisdn"/>
-        <jb:wiring property="mobileNetworkOperator" beanIdRef="mobileNetworkOperator"/>
+        <jb:value property="mnoCode" data="mnoCode"/>
     </jb:bean>
 
     <jb:bean beanId="questionnaire"
@@ -62,38 +62,5 @@
         <jb:value property="value" data="rating"/>
         <jb:value property="text" data="text"/>
     </jb:bean>
-
-    <!-- DAO Locators -->
-
-    <dao:locator beanId="clinic"
-                 dao="clinicRepository"
-                 lookup="code"
-                 lookupOnElement="submission"
-                 onNoResult="EXCEPTION">
-        <dao:params>
-            <dao:value name="code" data="clinicCode" decoder="String"/>
-        </dao:params>
-    </dao:locator>
-
-    <dao:locator beanId="language"
-                 dao="languageRepository"
-                 lookup="code"
-                 onNoResult="EXCEPTION">
-
-        <dao:params>
-            <dao:value name="code" data="languageCode" decoder="String"/>
-        </dao:params>
-    </dao:locator>
-
-    <dao:locator beanId="mobileNetworkOperator"
-                 dao="mobileNetworkOperatorRepository"
-                 lookup="code"
-                 lookupOnElement="user"
-                 onNoResult="EXCEPTION">
-
-        <dao:params>
-            <dao:value name="code" data="mnoCode" decoder="String"/>
-        </dao:params>
-    </dao:locator>
 
 </smooks-resource-list>

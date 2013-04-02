@@ -14,10 +14,8 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
-    @Basic
     private String domainCode;
 
-    @Basic
     private String text;
 
     @Embedded
@@ -57,13 +55,5 @@ public class Question {
 
     public void setAnswer(Answer answer) {
         this.answer = answer;
-    }
-
-    public Integer getRatingValue() {
-        return answer.getValue();
-    }
-
-    public Double getRatingValueAsDouble() {
-        return getRatingValue().doubleValue();
     }
 }

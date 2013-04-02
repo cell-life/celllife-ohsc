@@ -15,10 +15,8 @@ public final class Language implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
-    @Basic
     private String name;
 
-    @Basic
     private String code;
 
     public Language() {

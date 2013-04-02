@@ -8,10 +8,11 @@
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="questionnaire" type="BIGINT"/>
-            <column name="user" type="BIGINT"/>
-            <column name="clinic" type="BIGINT"/>
-            <column name="language" type="BIGINT"/>
+            <column name="questionnaire_version" type="VARCHAR(255)"/>
+            <column name="user_msisdn" type="VARCHAR(255)"/>
+            <column name="user_mno_code" type="VARCHAR(255)"/>
+            <column name="clinic_code" type="VARCHAR(255)"/>
+            <column name="language_code" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
 
@@ -29,24 +30,6 @@
     </changeSet>
 
     <changeSet author="kevin.sewell" id="rating-3">
-        <createTable tableName="questionnaire">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="version" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
-
-    <changeSet author="kevin.sewell" id="rating-4">
-        <addForeignKeyConstraint baseColumnNames="questionnaire"
-                                 baseTableName="rating"
-                                 constraintName="FKEAA4C4D467D3BCFB"
-                                 referencedColumnNames="id"
-                                 referencedTableName="questionnaire"
-                                 referencesUniqueColumn="false"/>
-    </changeSet>
-
-    <changeSet author="kevin.sewell" id="rating-5">
         <addForeignKeyConstraint baseColumnNames="rating"
                                  baseTableName="question"
                                  constraintName="FKBA823BE6A55C3903"

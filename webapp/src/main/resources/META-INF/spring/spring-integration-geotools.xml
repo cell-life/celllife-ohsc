@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="org.celllife.ohsc.integration.geotools"/>
+
+    <bean id="dataStoreFactory" class="org.geotools.data.shapefile.ShapefileDataStoreFactory"/>
+
+    <bean id="localityDataStore" factory-bean="dataStoreFactory" factory-method="createNewDataStore">
+        <constructor-arg name="params">
+            <map>
+                <entry key="url" value="classpath:/META-INF/shp/LocalMunicipalities2011.shp" value-type="java.net.URL"/>
+                <entry key="create spatial index" value="true"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="localityFeatureSource" factory-bean="localityDataStore" factory-method="getFeatureSource">
+        <constructor-arg name="typeName" value="LocalMunicipalities2011"/>
+    </bean>
+
+    <bean id="districtDataStore" factory-bean="dataStoreFactory" factory-method="createNewDataStore">
+        <constructor-arg name="params">
+            <map>
+                <entry key="url" value="classpath:/META-INF/shp/DistrictMunicipalities2011.shp" value-type="java.net.URL"/>
+                <entry key="create spatial index" value="true"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="districtFeatureSource" factory-bean="districtDataStore" factory-method="getFeatureSource">
+        <constructor-arg name="typeName" value="DistrictMunicipalities2011"/>
+    </bean>
+
+    <bean id="provinceDataStore" factory-bean="dataStoreFactory" factory-method="createNewDataStore">
+        <constructor-arg name="params">
+            <map>
+                <entry key="url" value="classpath:/META-INF/shp/Province_New_SANeighbours.shp" value-type="java.net.URL"/>
+                <entry key="create spatial index" value="true"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="provinceFeatureSource" factory-bean="provinceDataStore" factory-method="getFeatureSource">
+        <constructor-arg name="typeName" value="Province_New_SANeighbours"/>
+    </bean>
+
+</beans>

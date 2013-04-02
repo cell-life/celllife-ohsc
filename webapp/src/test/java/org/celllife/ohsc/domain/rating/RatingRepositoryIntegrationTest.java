@@ -31,27 +31,4 @@ public class RatingRepositoryIntegrationTest {
     public void shouldSave() throws Exception {
         ratingRepository.findAll();
     }
-
-    @Test
-    public void shouldCalculateClinicAverages() throws Exception {
-        List<Object[]> clinicAverages = ratingRepository.findClinicAverages();
-        for (Object[] clinicAverage : clinicAverages) {
-            for (Object o : clinicAverage) {
-                System.out.println(o + "\t");
-            }
-            System.out.println();
-        }
-    }
-
-    @Test
-    public void shouldCalculateSubDistrictAverages() throws Exception {
-
-        List<Object[]> clinicAverages = ratingRepository.findSubDistrictAverages();
-        for (Object[] clinicAverage : clinicAverages) {
-            for (Object o : clinicAverage) {
-                System.out.println(o + "\t");
-            }
-            System.out.println();
-        }
-    }
 }

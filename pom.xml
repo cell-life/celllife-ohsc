@@ -8,25 +8,24 @@
     <groupId>org.celllife.ohsc</groupId>
     <artifactId>celllife-ohsc-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <packaging>pom</packaging>
 
     <name>celllife-ohsc-parent</name>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.7</java.version>
-        <aspjectj.version>1.7.1</aspjectj.version>
-        <spring.version>3.2.1.RELEASE</spring.version>
-    </properties>
+    <modules>
+        <module>webapp</module>
+    </modules>
 
-    <repositories>
-        <repository>
-            <id>spring-milestone</id>
-            <name>Spring Maven MILESTONE Repository</name>
-            <url>http://repo.springsource.org/libs-milestone</url>
-        </repository>
-    </repositories>
+    <properties>
+        <aspjectj.version>1.7.1</aspjectj.version>
+        <geotools.version>8.6</geotools.version>
+        <java.version>1.7</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <slf4j.version>1.6.4</slf4j.version>
+        <spring.version>3.2.1.RELEASE</spring.version>
+        <spring-integration.version>2.2.1.RELEASE</spring-integration.version>
+        <spring-security.version>3.1.0.RELEASE</spring-security.version>
+    </properties>
 
     <build>
         <pluginManagement>
@@ -66,9 +65,15 @@
             <!-- Jackson -->
 
             <dependency>
-                <groupId>org.codehaus.jackson</groupId>
-                <artifactId>jackson-mapper-asl</artifactId>
-                <version>1.9.12</version>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.1.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-csv</artifactId>
+                <version>2.1.1</version>
             </dependency>
 
             <!-- Dozer -->
@@ -99,20 +104,6 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>4.1.4.Final</version>
-            </dependency>
-
-            <!-- Hazelcast -->
-
-            <dependency>
-                <groupId>com.hazelcast</groupId>
-                <artifactId>hazelcast-hibernate</artifactId>
-                <version>2.5</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hazelcast</groupId>
-                <artifactId>hazelcast-spring</artifactId>
-                <version>2.5</version>
             </dependency>
 
             <!-- Liquibase -->
@@ -228,19 +219,19 @@
             <dependency>
                 <groupId>org.springframework.integration</groupId>
                 <artifactId>spring-integration-core</artifactId>
-                <version>2.2.1.RELEASE</version>
+                <version>${spring-integration.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework.integration</groupId>
                 <artifactId>spring-integration-http</artifactId>
-                <version>2.2.1.RELEASE</version>
+                <version>${spring-integration.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework.integration</groupId>
                 <artifactId>spring-integration-jdbc</artifactId>
-                <version>2.2.1.RELEASE</version>
+                <version>${spring-integration.version}</version>
             </dependency>
 
             <!-- Spring - Data -->
@@ -261,38 +252,38 @@
 
             <dependency>
                 <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-config</artifactId>
-                <version>3.1.0.RELEASE</version>
-            </dependency>
-            
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-ldap</artifactId>
-                <version>3.1.0.RELEASE</version>
+                <artifactId>spring-security-cas</artifactId>
+                <version>${spring-security.version}</version>
             </dependency>
 
-             <dependency>
+            <dependency>
                 <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-cas</artifactId>
-                <version>3.1.0.RELEASE</version>
+                <artifactId>spring-security-config</artifactId>
+                <version>${spring-security.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-core</artifactId>
-                <version>3.1.0.RELEASE</version>
+                <version>${spring-security.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-ldap</artifactId>
+                <version>${spring-security.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-taglibs</artifactId>
-                <version>3.1.0.RELEASE</version>
+                <version>${spring-security.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-web</artifactId>
-                <version>3.1.0.RELEASE</version>
+                <version>${spring-security.version}</version>
             </dependency>
 
             <!-- HTTP Client -->
@@ -314,31 +305,31 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.6.4</version>
+                <version>${slf4j.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jcl-over-slf4j</artifactId>
-                <version>1.6.4</version>
+                <version>${slf4j.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jul-to-slf4j</artifactId>
-                <version>1.6.4</version>
+                <version>${slf4j.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>log4j-over-slf4j</artifactId>
-                <version>1.6.4</version>
+                <version>${slf4j.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.10</version>
             </dependency>
 
             <!-- Servlet -->
@@ -421,6 +412,32 @@
                 <groupId>org.codehaus.groovy.modules.http-builder</groupId>
                 <artifactId>http-builder</artifactId>
                 <version>0.6</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- GeoTools -->
+
+            <dependency>
+                <groupId>org.geotools</groupId>
+                <artifactId>gt-cql</artifactId>
+                <version>${geotools.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.geotools</groupId>
+                <artifactId>gt-shapefile</artifactId>
+                <version>${geotools.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.geotools</groupId>
+                <artifactId>gt-geojson</artifactId>
+                <version>${geotools.version}</version>
             </dependency>
 
             <!-- Smooks -->
@@ -440,8 +457,4 @@
         </dependencies>
 
     </dependencyManagement>
-
-    <modules>
-        <module>webapp</module>
-    </modules>
 </project>
