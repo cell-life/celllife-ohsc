@@ -71,8 +71,6 @@ public class CqmUssdSubmissionMediatorIntegrationTest {
 
         String json = randomClinicRatingDataGenerator.getNextRandomJson(1);
 
-        System.out.println(json);
-
         final GenericMessage<byte[]> input = new GenericMessage<>(json.getBytes());
 
         Message<String> result = cqmUssdSubmissionMediator.handleCqmUssdSubmission(input);

@@ -42,8 +42,8 @@ public final class Rating implements Serializable {
 
     private String languageCode;
 
+    @ElementCollection(fetch = FetchType.EAGER)
     @JoinColumn(name = "rating")
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Question> questions;
 
     public Long getId() {

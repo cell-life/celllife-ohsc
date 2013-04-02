@@ -18,10 +18,7 @@
             <column name="language_code" type="VARCHAR(255)"/>
         </createTable>
 
-        <createTable tableName="question">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
+        <createTable tableName="rating_questions">
             <column name="domain_code" type="VARCHAR(255)"/>
             <column name="text" type="VARCHAR(255)"/>
             <column name="answer_text" type="VARCHAR(255)"/>
@@ -30,7 +27,7 @@
         </createTable>
 
         <addForeignKeyConstraint baseColumnNames="rating"
-                                 baseTableName="question"
+                                 baseTableName="rating_questions"
                                  constraintName="FKBA823BE6A55C3903"
                                  referencedColumnNames="id"
                                  referencedTableName="rating"

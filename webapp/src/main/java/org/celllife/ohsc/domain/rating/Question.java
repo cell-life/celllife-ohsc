@@ -7,12 +7,8 @@ import javax.persistence.*;
  * Date: 2013-03-15
  * Time: 13h57
  */
-@Entity
+@Embeddable
 public class Question {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private Long id;
 
     private String domainCode;
 
@@ -24,14 +20,6 @@ public class Question {
             @AttributeOverride(name = "value", column = @Column(name = "answerValue", columnDefinition = "BIGINT"))
     })
     private Answer answer;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getDomainCode() {
         return domainCode;

@@ -87,6 +87,7 @@
                             <value>${project.basedir}/../etc/c3p0-config.xml</value>
                         </systemProperty>
                     </systemProperties>
+                    <jvmArgs>-Xmx1024m -Xms1024m -XX:MaxPermSize=256m</jvmArgs>
                 </configuration>
                 <dependencies>
                     <dependency>

@@ -8,7 +8,6 @@ import org.apache.http.message.BasicHeader;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HttpContext;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -24,7 +23,7 @@ public class CqmUssdSubmissionMediatorAcceptanceTest {
     public static final String BASE_DIR = "/data/CqmUssdSubmissionRequest/";
 
     @Test
-    @Ignore("Requires running Jetty instance")
+//    @Ignore("Requires running Jetty instance")
     public void testHandleCqmUssdSubmissionLoad() throws Exception {
 
         String path = getClass().getResource(BASE_DIR).getPath();
