@@ -9,6 +9,7 @@ import java.io.Serializable;
  * Time: 13h41
  */
 @Entity
+@Cacheable
 public final class MobileNetworkOperator implements Serializable {
 
     @Id

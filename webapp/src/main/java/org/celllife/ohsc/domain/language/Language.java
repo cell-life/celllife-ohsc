@@ -9,6 +9,7 @@ import java.io.Serializable;
  * Time: 12h00
  */
 @Entity
+@Cacheable
 public final class Language implements Serializable {
 
     @Id

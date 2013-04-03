@@ -10,6 +10,7 @@ import javax.persistence.*;
  * Time: 16h09
  */
 @Entity
+@Cacheable
 public class District {
 
     @Id

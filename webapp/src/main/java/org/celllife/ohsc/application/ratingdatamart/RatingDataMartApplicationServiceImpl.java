@@ -12,6 +12,8 @@ import org.celllife.ohsc.domain.ratingdatamart.RatingDataMartRepository;
 import org.celllife.ohsc.domain.subdistrict.SubDistrict;
 import org.celllife.ohsc.framework.logging.LogLevel;
 import org.celllife.ohsc.framework.logging.Loggable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;

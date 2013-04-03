@@ -1,5 +1,8 @@
 package org.celllife.ohsc.domain.rating;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
@@ -11,6 +14,7 @@ import java.util.List;
  * Time: 13h45
  */
 @Entity
+@Cacheable
 public final class Rating implements Serializable {
 
     @Id
@@ -42,6 +46,7 @@ public final class Rating implements Serializable {
 
     private String languageCode;
 
+    @Fetch(FetchMode.JOIN)
     @ElementCollection(fetch = FetchType.EAGER)
     @JoinColumn(name = "rating")
     private List<Question> questions;

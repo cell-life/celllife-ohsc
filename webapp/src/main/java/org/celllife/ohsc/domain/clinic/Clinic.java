@@ -15,6 +15,7 @@ import java.util.Set;
  * Time: 16h04
  */
 @Entity
+@Cacheable
 public final class Clinic implements Serializable {
 
     @Id

@@ -2,8 +2,11 @@ package org.celllife.ohsc.domain.subdistrict;
 
 import org.celllife.ohsc.framework.logging.LogLevel;
 import org.celllife.ohsc.framework.logging.Loggable;
+import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.repository.annotation.RestResource;
+
+import javax.persistence.QueryHint;
 
 /**
  * User: Kevin W. Sewell
@@ -14,6 +17,7 @@ import org.springframework.data.rest.repository.annotation.RestResource;
 @RestResource(path = "subDistricts")
 public interface SubDistrictRepository extends PagingAndSortingRepository<SubDistrict, Long> {
 
+    @QueryHints({ @QueryHint(name = "org.hibernate.cacheable", value ="true") })
     SubDistrict findByExternalId(String externalId);
 
 }

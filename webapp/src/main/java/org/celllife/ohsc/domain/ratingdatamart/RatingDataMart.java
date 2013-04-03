@@ -1,5 +1,6 @@
 package org.celllife.ohsc.domain.ratingdatamart;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -9,6 +10,7 @@ import javax.persistence.Id;
  * Time: 10h05
  */
 @Entity
+@Cacheable
 public final class RatingDataMart {
 
     @Id

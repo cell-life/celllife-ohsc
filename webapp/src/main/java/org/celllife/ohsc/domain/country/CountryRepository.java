@@ -2,8 +2,11 @@ package org.celllife.ohsc.domain.country;
 
 import org.celllife.ohsc.framework.logging.LogLevel;
 import org.celllife.ohsc.framework.logging.Loggable;
+import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.repository.annotation.RestResource;
+
+import javax.persistence.QueryHint;
 
 /**
  * User: Kevin W. Sewell
@@ -14,6 +17,7 @@ import org.springframework.data.rest.repository.annotation.RestResource;
 @RestResource(path = "countries")
 public interface CountryRepository extends PagingAndSortingRepository<Country, Long> {
 
+    @QueryHints({ @QueryHint(name = "org.hibernate.cacheable", value ="true") })
     Country findByExternalId(String externalId);
 
 }
