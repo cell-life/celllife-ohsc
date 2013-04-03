@@ -108,7 +108,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <daemon>true</daemon>
+                    <!--<daemon>true</daemon>-->
                     <stopKey>STOP</stopKey>
                     <stopPort>9001</stopPort>
                     <webAppConfig>
@@ -148,6 +148,11 @@
                         <groupId>com.h2database</groupId>
                         <artifactId>h2</artifactId>
                         <version>1.3.160</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.22</version>
                     </dependency>
                 </dependencies>
             </plugin>

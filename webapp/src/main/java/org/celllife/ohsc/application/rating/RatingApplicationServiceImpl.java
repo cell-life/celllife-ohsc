@@ -35,12 +35,12 @@ public final class RatingApplicationServiceImpl implements RatingApplicationServ
     private DataMartRatingRepository ratingDataMartRepository;
 
     @Override
-    @Loggable(value = LogLevel.INFO, exception = LogLevel.ERROR)
+    @Loggable(value = LogLevel.DEBUG, exception = LogLevel.ERROR)
     public void save(Rating rating) {
 
-        ratingRepository.save(rating);
+        rating = ratingRepository.save(rating);
 
-        if (!rating.isComplete()) {
+        if (rating.isComplete()) {
             insertToRatingDataMart(rating);
         }
     }

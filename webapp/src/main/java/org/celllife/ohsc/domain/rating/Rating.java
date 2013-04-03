@@ -142,4 +142,12 @@ public final class Rating implements Serializable {
         
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Rating{" +
+                "id=" + id +
+                ", ussdSession=" + ussdSession +
+                '}';
+    }
 }

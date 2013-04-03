@@ -45,4 +45,11 @@ public final class UssdSession implements Serializable {
     public void setEndDateTime(Date endDateTime) {
         this.endDateTime = endDateTime;
     }
+
+    @Override
+    public String toString() {
+        return "UssdSession{" +
+                "id='" + id + '\'' +
+                '}';
+    }
 }

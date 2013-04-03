@@ -1,5 +1,6 @@
 package org.celllife.ohsc.integration.cqm;
 
+import org.celllife.ohsc.application.rating.RatingApplicationService;
 import org.celllife.ohsc.domain.rating.Rating;
 import org.celllife.ohsc.domain.rating.RatingRepository;
 import org.milyn.Smooks;
@@ -21,7 +22,7 @@ public final class CqmUssdSubmissionMediator {
     public static final String HAPPY_RESULT = "{ \"CqmUssdSubmissionResponse\": { \"message\": \"Completed Successfully\" } }";
 
     @Autowired
-    private RatingRepository ratingRepository;
+    private RatingApplicationService ratingApplicationService;
 
     @Autowired
     private Smooks cqmSmooks;
@@ -37,7 +38,7 @@ public final class CqmUssdSubmissionMediator {
         //Filter the data from the source, putting the result into the JavaResult
         this.cqmSmooks.filterSource(source, result);
 
-        ratingRepository.save(result.getBean(Rating.class));
+        ratingApplicationService.save(result.getBean(Rating.class));
 
         return new GenericMessage<>(HAPPY_RESULT);
     }

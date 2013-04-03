@@ -24,6 +24,6 @@ class ReportController {
 
         model.putAt("provinces", get(provincesUrl))
 
-        return "report/index";
+        return "report/report";
     }
 }
