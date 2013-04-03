@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * User: Kevin W. Sewell
  * Date: 2013-03-18

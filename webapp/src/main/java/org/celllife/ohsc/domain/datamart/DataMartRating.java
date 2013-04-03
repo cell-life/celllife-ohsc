@@ -1,4 +1,4 @@
-package org.celllife.ohsc.domain.ratingdatamart;
+package org.celllife.ohsc.domain.datamart;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import javax.persistence.Id;
  */
 @Entity
 @Cacheable
-public final class RatingDataMart {
+public final class DataMartRating {
 
     @Id
     private String ussdSessionId;
@@ -36,7 +36,7 @@ public final class RatingDataMart {
 
     private Double safeAndSecureCareRating;
 
-    public RatingDataMart() {
+    public DataMartRating() {
     }
 
     public String getUssdSessionId() {

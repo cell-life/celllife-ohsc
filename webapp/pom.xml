@@ -29,6 +29,7 @@
         </testResources>
 
         <plugins>
+
             <plugin>
                 <groupId>org.codehaus.gmaven</groupId>
                 <artifactId>gmaven-plugin</artifactId>
@@ -49,11 +50,65 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-test</id>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>unit-test</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/*AcceptanceTest.java</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>acceptance-test</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <phase>integration-test</phase>
+                        <configuration>
+                            <includes>
+                                <include>**/*AcceptanceTest.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>8.0.4.v20111024</version>
+                <executions>
+                    <execution>
+                        <id>jetty-run</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                    </execution>
+                    <execution>
+                        <id>jetty-stop</id>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                        <phase>post-integration-test</phase>
+                    </execution>
+                </executions>
                 <configuration>
+                    <daemon>true</daemon>
                     <stopKey>STOP</stopKey>
                     <stopPort>9001</stopPort>
                     <webAppConfig>
@@ -87,7 +142,6 @@
                             <value>${project.basedir}/../etc/c3p0-config.xml</value>
                         </systemProperty>
                     </systemProperties>
-                    <jvmArgs>-Xmx1024m -Xms1024m -XX:MaxPermSize=256m</jvmArgs>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -95,13 +149,9 @@
                         <artifactId>h2</artifactId>
                         <version>1.3.160</version>
                     </dependency>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>5.1.23</version>
-                    </dependency>
                 </dependencies>
             </plugin>
+
         </plugins>
     </build>
 

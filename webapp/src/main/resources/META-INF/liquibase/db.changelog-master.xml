@@ -10,11 +10,11 @@
     <include file="db.changelog-average.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog-clinic.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog-country.xml" relativeToChangelogFile="true"/>
+    <include file="db.changelog-data-mart.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog-district.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog-language.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog-mno.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog-province.xml" relativeToChangelogFile="true"/>
-    <include file="db.changelog-rating-data-mart.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog-rating.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog-subdistrict.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog-user.xml" relativeToChangelogFile="true"/>
