@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod
 @RequestMapping("/test")
 class NewReportController {
 
-	@Value('${base.uri}')
-	def String baseUri;
-
 	@RequestMapping(method = RequestMethod.GET)
 	def index(Model model) {
 		return "report/report-new";
