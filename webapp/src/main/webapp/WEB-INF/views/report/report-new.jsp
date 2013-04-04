@@ -11,6 +11,8 @@
 	href="${pageContext.request.contextPath}/css/bootstrap-responsive.css"
 	rel="stylesheet">
 
+<link href="css/datatables_bootstrap.css" rel="stylesheet">
+
 <style type="text/css">
 	svg {
 		padding: 10px 0 0 10px;
@@ -45,70 +47,61 @@
 			<ul class="breadcrumb">
 				<div>South Africa | Eastern Cape</div>
 			</ul>
-
-			<p>Below are the ratings of the [Unit of Evaluation]s in each of
-				the 6 core standards for quality care.</p>
-
-			<table class="table table-striped table-bordered">
-				<thead>
-					<tr>
-						<th>[Unit of Evaluation]</th>
-						<th>Staff Attitudes</th>
-						<th>Cleanliness</th>
-						<th>Waiting Times</th>
-						<th>Safe & Secure Care</th>
-						<th>Infection Control</th>
-						<th>Drug Availability</th>
-						<th>Average Rating</th>
-						<th>Total Responses</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-					</tr>
-					<tr>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-					</tr>
-					<tr>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-					</tr>
-				</tbody>
-			</table>
-
-			<div class="pagination pull-right">
-				<ul>
-					<li><a href="#">Prev</a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">Next</a></li>
-				</ul>
-			</div>
 		</div>
+
+		<p>Below are the ratings of the [Unit of Evaluation]s in each of
+			the 6 core standards for quality care.</p>
+
+		<table class="table table-striped table-bordered" id="myTable">
+			<thead>
+				<tr>
+					<th>[Unit of Evaluation]</th>
+					<th>Staff Attitudes</th>
+					<th>Cleanliness</th>
+					<th>Waiting Times</th>
+					<th>Safe & Secure Care</th>
+					<th>Infection Control</th>
+					<th>Drug Availability</th>
+					<th>Average Rating</th>
+					<th>Total Responses</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+				</tr>
+				<tr>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+				</tr>
+				<tr>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+					<td>blank</td>
+				</tr>
+			</tbody>
+		</table>
 
 		<p>Disclaimer: These ratings are compiled only from responses to
 			the mobile phone survey by patients who reported on their personal
@@ -132,5 +125,23 @@
 		</div>
 
 	</div>
+
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="js/datatables_bootstrap.js"></script>
+<script>
+/* Table initialisation */
+$(document).ready(function() {
+	$('#myTable').dataTable( {
+		"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sPaginationType": "bootstrap",
+		"oLanguage": {
+			"sLengthMenu": "_MENU_ records per page"
+		}
+	} );
+} );
+</script>
+
 </body>
 </html>
