@@ -67,6 +67,7 @@
                         </goals>
                         <phase>test</phase>
                         <configuration>
+                            <skipTests>${skipTests}</skipTests>
                             <excludes>
                                 <exclude>**/*AcceptanceTest.java</exclude>
                             </excludes>
@@ -79,6 +80,7 @@
                         </goals>
                         <phase>integration-test</phase>
                         <configuration>
+                            <skipTests>${skipTests}</skipTests>
                             <includes>
                                 <include>**/*AcceptanceTest.java</include>
                             </includes>
@@ -108,7 +110,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <!--<daemon>true</daemon>-->
+                    <daemon>true</daemon>
                     <stopKey>STOP</stopKey>
                     <stopPort>9001</stopPort>
                     <webAppConfig>

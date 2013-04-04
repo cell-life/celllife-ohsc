@@ -1,6 +1,5 @@
 package org.celllife.ohsc.interfaces.web
 
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.RequestMapping
@@ -13,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod
 @Controller
 @RequestMapping("/test")
 class NewReportController {
-
-	@Value('${base.uri}')
-	def String baseUri;
 
 	@RequestMapping(method = RequestMethod.GET)
 	def index(Model model) {
