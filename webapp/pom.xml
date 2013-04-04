@@ -18,6 +18,10 @@
 
     <name>celllife-ohsc-webapp</name>
 
+    <properties>
+        <jetty.daemon>true</jetty.daemon>
+    </properties>
+
     <build>
         <testResources>
             <testResource>
@@ -57,7 +61,7 @@
                     <execution>
                         <id>default-test</id>
                         <configuration>
-                            <skip>true</skip>
+                            <skip>${jetty.daemon}</skip>
                         </configuration>
                     </execution>
                     <execution>
@@ -110,7 +114,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <daemon>true</daemon>
+                    <daemon>${jetty.daemon}</daemon>
                     <stopKey>STOP</stopKey>
                     <stopPort>9001</stopPort>
                     <webAppConfig>
