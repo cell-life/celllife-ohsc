@@ -1,6 +1,6 @@
 var radius = 74, padding = 10;
 
-var color = d3.scale.ordinal().range([ "#98abc5", "#C8D4E6" ]);
+var color = d3.scale.ordinal().range([ "#7CB46D", "#cae1c4" ]);
 
 var arc = d3.svg.arc().outerRadius(radius).innerRadius(radius - 30);
 
