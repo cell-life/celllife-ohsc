@@ -30,7 +30,7 @@ public class CqmUssdSubmissionMediatorIntegrationTest {
 
     public static final int MAX = 10000;
 
-    public static final String BASE_DIR = "/data/CqmUssdSubmissionRequest/";
+    public static final String BASE_DIR = "/data/CqmUssdSubmissionRequest_load/";
 
     @Autowired
     private CqmUssdSubmissionMediator cqmUssdSubmissionMediator;

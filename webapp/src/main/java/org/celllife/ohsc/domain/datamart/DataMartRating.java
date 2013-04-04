@@ -16,13 +16,21 @@ public final class DataMartRating {
     @Id
     private String ussdSessionId;
 
-    private String clinic;
+    private String clinicCode;
 
-    private String subDistrict;
+    private String clinicShortName;
 
-    private String district;
+    private String subDistrictName;
 
-    private String province;
+    private String subDistrictShortName;
+
+    private String districtName;
+
+    private String districtShortName;
+
+    private String provinceName;
+
+    private String provinceShortName;
 
     private Double staffAttitudeRating;
 
@@ -47,36 +55,68 @@ public final class DataMartRating {
         this.ussdSessionId = ussdSessionId;
     }
 
-    public String getClinic() {
-        return clinic;
+    public String getClinicCode() {
+        return clinicCode;
     }
 
-    public void setClinic(String clinic) {
-        this.clinic = clinic;
+    public void setClinicCode(String clinicCode) {
+        this.clinicCode = clinicCode;
     }
 
-    public String getSubDistrict() {
-        return subDistrict;
+    public String getClinicShortName() {
+        return clinicShortName;
     }
 
-    public void setSubDistrict(String subDistrict) {
-        this.subDistrict = subDistrict;
+    public void setClinicShortName(String clinicShortName) {
+        this.clinicShortName = clinicShortName;
     }
 
-    public String getDistrict() {
-        return district;
+    public String getSubDistrictName() {
+        return subDistrictName;
     }
 
-    public void setDistrict(String district) {
-        this.district = district;
+    public void setSubDistrictName(String subDistrictName) {
+        this.subDistrictName = subDistrictName;
     }
 
-    public String getProvince() {
-        return province;
+    public String getSubDistrictShortName() {
+        return subDistrictShortName;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
+    public void setSubDistrictShortName(String subDistrictShortName) {
+        this.subDistrictShortName = subDistrictShortName;
+    }
+
+    public String getDistrictName() {
+        return districtName;
+    }
+
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
+
+    public String getDistrictShortName() {
+        return districtShortName;
+    }
+
+    public void setDistrictShortName(String districtShortName) {
+        this.districtShortName = districtShortName;
+    }
+
+    public String getProvinceName() {
+        return provinceName;
+    }
+
+    public void setProvinceName(String provinceName) {
+        this.provinceName = provinceName;
+    }
+
+    public String getProvinceShortName() {
+        return provinceShortName;
+    }
+
+    public void setProvinceShortName(String provinceShortName) {
+        this.provinceShortName = provinceShortName;
     }
 
     public Double getStaffAttitudeRating() {
@@ -123,7 +163,7 @@ public final class DataMartRating {
         return safeAndSecureCareRating;
     }
 
-    public void setSafeAndSecureCareRating(Double safetyAndSecurityRating) {
-        this.safeAndSecureCareRating = safetyAndSecurityRating;
+    public void setSafeAndSecureCareRating(Double safeAndSecureCareRating) {
+        this.safeAndSecureCareRating = safeAndSecureCareRating;
     }
 }

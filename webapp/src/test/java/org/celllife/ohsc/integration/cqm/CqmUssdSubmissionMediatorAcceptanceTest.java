@@ -23,7 +23,7 @@ import java.io.FileInputStream;
  */
 public class CqmUssdSubmissionMediatorAcceptanceTest {
 
-    public static final String BASE_DIR = "/data/CqmUssdSubmissionRequest/";
+    public static final String BASE_DIR = "/data/CqmUssdSubmissionRequest_load/";
 
     @Test
 //    @Ignore("Used for generating test data")

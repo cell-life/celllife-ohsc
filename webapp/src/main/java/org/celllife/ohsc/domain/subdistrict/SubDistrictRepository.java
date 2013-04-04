@@ -20,4 +20,6 @@ public interface SubDistrictRepository extends PagingAndSortingRepository<SubDis
     @QueryHints({ @QueryHint(name = "org.hibernate.cacheable", value ="true") })
     SubDistrict findByExternalId(String externalId);
 
+    @QueryHints({ @QueryHint(name = "org.hibernate.cacheable", value ="true") })
+    SubDistrict findOneByName(String name);
 }

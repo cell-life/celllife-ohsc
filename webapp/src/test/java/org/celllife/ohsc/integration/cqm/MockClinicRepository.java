@@ -32,4 +32,9 @@ public class MockClinicRepository extends MockPagingAndSortingRepository<Clinic,
         return null;
     }
 
+    @Override
+    public Iterable<Clinic> findBySubDistrictName(String subDistrictName) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
 }

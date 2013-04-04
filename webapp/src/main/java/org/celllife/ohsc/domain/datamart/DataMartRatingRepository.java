@@ -13,7 +13,19 @@ import org.springframework.data.rest.repository.annotation.RestResource;
 @RestResource(path = "datamartratings")
 public interface DataMartRatingRepository extends PagingAndSortingRepository<DataMartRating, String> {
 
-    @Query("select clinic, avg(staffAttitudeRating) as staffAttitudeAverage from DataMartRating where subDistrict = :subDistrict group by clinic")
-    Iterable<ClinicAverages> findAllClinicAveragesBySubDistrict(@Param("subDistrict") String subDistrict);
+    @Query("select subDistrictName as subDistrictName, " +
+            "subDistrictShortName as subDistrictShortName, " +
+            "clinicCode as clinicCode, " +
+            "clinicShortName as clinicShortName, " +
+            "avg(staffAttitudeRating) as staffAttitudeAverage, " +
+            "avg(cleanlinessRating) as cleanlinessAverage, " +
+            "avg(waitingTimesRating) as waitingTimesAverage, " +
+            "avg(drugAvailabilityRating) as drugAvailabilityAverage, " +
+            "avg(infectionControlRating) as infectionControlAverage, " +
+            "avg(safeAndSecureCareRating) as safeAndSecureCareAverage " +
+            "from DataMartRating " +
+            "where subDistrictName = :subDistrictName " +
+            "group by subDistrictName, subDistrictShortName, clinicCode , clinicShortName")
+    Iterable<ClinicAverage> findAllClinicAveragesBySubDistrictName(@Param("subDistrictName") String subDistrictName);
 
 }
