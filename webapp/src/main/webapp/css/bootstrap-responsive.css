@@ -3,8 +3,8 @@
  * http://paintstrap.com/
  * 
  * Color scheme by Adobe kuler
- * ID: 2366633
- * http://kuler.adobe.com/index.cfm#themeID/2366633
+ * ID: 2369346
+ * http://kuler.adobe.com/index.cfm#themeID/2369346
  */
 /*!
  * Bootstrap Responsive v2.3.0
@@ -981,14 +981,14 @@
     display: none;
   }
   .nav-collapse .nav .nav-header {
-    color: #5e5247;
+    color: #c47d1e;
     text-shadow: none;
   }
   .nav-collapse .nav > li > a,
   .nav-collapse .dropdown-menu a {
     padding: 9px 15px;
     font-weight: bold;
-    color: #5e5247;
+    color: #c47d1e;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -1011,7 +1011,7 @@
   }
   .navbar-inverse .nav-collapse .nav > li > a,
   .navbar-inverse .nav-collapse .dropdown-menu a {
-    color: #fd8f49;
+    color: #7b6b5d;
   }
   .navbar-inverse .nav-collapse .nav > li > a:hover,
   .navbar-inverse .nav-collapse .nav > li > a:focus,

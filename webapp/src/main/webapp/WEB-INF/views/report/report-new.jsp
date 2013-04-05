@@ -7,50 +7,7 @@
 <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="/css/bootstrap-responsive.css" rel="stylesheet">
 <link href="css/datatables_bootstrap.css" rel="stylesheet">
-
-<style type="text/css">
-.ohsc-nav-btn-toolbar {
-	position: absolute;
-	top: 25px;
-	right: 0px;
-}
-
-.ohsc-welcome-text {
-	background: #fff;
-	color: #5e5247;
-}
-
-.ohsc-logo {
-	height: 100px;
-}
-
-.ohsc-border {
-	border: 1px solid #ddd;
-	padding: 30px 20px 30px;
-	margin: 20px 10px 20px;
-	width: 95%;
-	border-radius: 10px 10px 10px 10px;
-	-moz-border-radius: 10px 10px 10px 10px;
-	-webkit-border-radius: 10px 10px 10px 10px;
-	-webkit-box-shadow: 0px 0px 12px 1px rgba(122, 104, 88, 1);
-	-moz-box-shadow: 0px 0px 12px 1px rgba(122, 104, 88, 1);
-	box-shadow: 0px 0px 12px 1px rgba(122, 104, 88, 1);
-}
-
-.masthead {
-	position: relative;
-}
-
-svg {
-	padding: 10px 0 0 10px;
-	font: 8px sans-serif;
-}
-
-.arc {
-	stroke: #fff;
-}
-
-</style>
+<link href="css/ohsc.css" rel="stylesheet">
 
 </head>
 <body>
@@ -65,10 +22,16 @@ svg {
 			</div>
 		</div>
 
-		<p></p>
-		<ul class="breadcrumb">
-			<div>South Africa | Eastern Cape</div>
-		</ul>
+<div class="row-fluid">
+	<p>
+		<p id="breadcrumb">
+        <a href="#" class="active">Country<span>South Africa</span></a>
+        <a href="#" class="active">Province<span>Western Cape</span></a>
+        <a href="#" class="active">Municipality</a>
+        <a href="#">Clinic</a>
+     </p>
+     
+  </div>
 
 		<div class="row-fluid ohsc-border">
 
