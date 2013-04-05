@@ -4,47 +4,73 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OHSC</title>
-
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
-	rel="stylesheet" media="screen">
-<link
-	href="${pageContext.request.contextPath}/css/bootstrap-responsive.css"
-	rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/datatables_bootstrap.css" rel="stylesheet">
 
 <style type="text/css">
-	svg {
-		padding: 10px 0 0 10px;
-		font: 8px sans-serif;
-	}
+.ohsc-nav-btn-toolbar {
+	position: absolute;
+	top: 25px;
+	right: 0px;
+}
 
-	.arc {
-		stroke: #fff;
-	}
+.ohsc-welcome-text {
+	background: #fff;
+	color: #5e5247;
+}
+
+.ohsc-logo {
+	height: 100px;
+}
+
+.ohsc-border {
+	border: 1px solid #ddd;
+	padding: 30px 20px 30px;
+	margin: 20px 10px 20px;
+	width: 95%;
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	-webkit-box-shadow: 0px 0px 12px 1px rgba(122, 104, 88, 1);
+	-moz-box-shadow: 0px 0px 12px 1px rgba(122, 104, 88, 1);
+	box-shadow: 0px 0px 12px 1px rgba(122, 104, 88, 1);
+}
+
+.masthead {
+	position: relative;
+}
+
+svg {
+	padding: 10px 0 0 10px;
+	font: 8px sans-serif;
+}
+
+.arc {
+	stroke: #fff;
+}
+
 </style>
 
 </head>
-
 <body>
 	<div class="container-fluid">
-		<div class="masthead" style="position: relative">
+		<div class="masthead">
 			<h2>
-				<img
-					src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Coat_of_arms_of_South_Africa.svg/250px-Coat_of_arms_of_South_Africa.svg.png"
-					style="height: 100px"></img> OHSC
+				<img class="ohsc-logo" src="/img/coat-of-arms.png"></img> OHSC
 			</h2>
-			<div class="btn-toolbar"
-				style="position: absolute; top: 25px; right: 0px;">
-				<a class="btn btn-link disabled" style="background: #fff;">Welcome
-					Dr Radebe</a> <a class="btn btn-primary"> Log Out </a>
+			<div class="btn-toolbar ohsc-nav-btn-toolbar">
+				<a class="btn btn-link ohsc-welcome-text">Welcome Dr Radebe</a> <a
+					class="btn btn-primary"> Log Out </a>
 			</div>
 		</div>
 
 		<p></p>
+		<ul class="breadcrumb">
+			<div>South Africa | Eastern Cape</div>
+		</ul>
 
-		<div class="row-fluid ">
-			<ul class="breadcrumb">
-				<div>South Africa | Eastern Cape</div>
-			</ul>
+		<div class="row-fluid ohsc-border">
 
 			<p>Below are the ratings of the [Unit of Evaluation]s in each of
 				the 6 core standards for quality care.</p>
@@ -100,23 +126,14 @@
 				</tbody>
 			</table>
 
-			<div class="pagination pull-right">
-				<ul>
-					<li><a href="#">Prev</a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">Next</a></li>
-				</ul>
-			</div>
+
+			<p>Disclaimer: These ratings are compiled only from responses to
+				the mobile phone survey by patients who reported on their personal
+				experience at their specific health care facility.</p>
 		</div>
 
-		<p>Disclaimer: These ratings are compiled only from responses to
-			the mobile phone survey by patients who reported on their personal
-			experience at their specific health care facility.</p>
 
-		<hr>
-
-		<div class="row-fluid">
+		<div class="row-fluid ohsc-border">
 			<center>
 				<h3>Total Clinics Monitored</h3>
 				<div class="row-fluid" id="donut"></div>
@@ -132,5 +149,29 @@
 		</div>
 
 	</div>
+
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" charset="utf-8" language="javascript"
+		src="js/jquery.dataTables.js"></script>
+	<script type="text/javascript" charset="utf-8" language="javascript"
+		src="js/datatables_bootstrap.js"></script>
+	<script>
+		/* Table initialisation */
+		$(document)
+				.ready(
+						function() {
+							$('#myTable')
+									.dataTable(
+											{
+												"sDom" : "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+												"sPaginationType" : "bootstrap",
+												"oLanguage" : {
+													"sLengthMenu" : "_MENU_ records per page"
+												}
+											});
+						});
+	</script>
+	
 </body>
 </html>
