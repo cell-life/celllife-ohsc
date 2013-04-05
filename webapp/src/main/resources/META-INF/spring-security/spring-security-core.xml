@@ -14,6 +14,11 @@
         </security:authentication-provider>
         <!-- CAS Authentication Provider -->
         <security:authentication-provider ref="casAuthenticationProvider"/>
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user name="internal.username" authorities="SYSTEM" password="${internal.password}" />
+            </security:user-service>
+        </security:authentication-provider>
     </security:authentication-manager>
 
 </beans>

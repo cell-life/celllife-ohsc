@@ -10,86 +10,100 @@ public final class DataMartRatingBuilder {
     private final DataMartRating dataMartRating;
 
     public DataMartRatingBuilder() {
+
         this.dataMartRating = new DataMartRating();
     }
 
     public DataMartRatingBuilder setUssdSessionId(String ussdSessionId) {
 
         dataMartRating.setUssdSessionId(ussdSessionId);
-
         return this;
     }
 
-    public DataMartRatingBuilder setClinic(String clinic) {
+    public DataMartRatingBuilder setClinicCode(String clinicCode) {
 
-        dataMartRating.setClinic(clinic);
-
+        dataMartRating.setClinicCode(clinicCode);
         return this;
     }
 
-    public DataMartRatingBuilder setSubDistrict(String subDistrict) {
+    public DataMartRatingBuilder setClinicShortName(String clinicShortName) {
 
-        dataMartRating.setSubDistrict(subDistrict);
-
+        dataMartRating.setClinicShortName(clinicShortName);
         return this;
     }
 
-    public DataMartRatingBuilder setDistrict(String district) {
+    public DataMartRatingBuilder setSubDistrictName(String subDistrictName) {
 
-        dataMartRating.setDistrict(district);
-
+        dataMartRating.setSubDistrictName(subDistrictName);
         return this;
     }
 
-    public DataMartRatingBuilder setProvince(String province) {
+    public DataMartRatingBuilder setSubDistrictShortName(String subDistrictShortName) {
 
-        dataMartRating.setProvince(province);
+        dataMartRating.setSubDistrictShortName(subDistrictShortName);
+        return this;
+    }
 
+    public DataMartRatingBuilder setDistrictName(String districtName) {
+
+        dataMartRating.setDistrictName(districtName);
+        return this;
+    }
+
+    public DataMartRatingBuilder setDistrictShortName(String districtShortName) {
+
+        dataMartRating.setDistrictShortName(districtShortName);
+        return this;
+    }
+
+    public DataMartRatingBuilder setProvinceName(String provinceName) {
+
+        dataMartRating.setProvinceName(provinceName);
+        return this;
+    }
+
+    public DataMartRatingBuilder setProvinceShortName(String provinceShortName) {
+
+        dataMartRating.setProvinceShortName(provinceShortName);
         return this;
     }
 
     public DataMartRatingBuilder setStaffAttitudeRating(Double staffAttitudeRating) {
 
         dataMartRating.setStaffAttitudeRating(staffAttitudeRating);
-
         return this;
     }
 
     public DataMartRatingBuilder setCleanlinessRating(Double cleanlinessRating) {
 
         dataMartRating.setCleanlinessRating(cleanlinessRating);
-
         return this;
     }
 
     public DataMartRatingBuilder setWaitingTimesRating(Double waitingTimesRating) {
 
         dataMartRating.setWaitingTimesRating(waitingTimesRating);
-
         return this;
     }
 
     public DataMartRatingBuilder setDrugAvailabilityRating(Double drugAvailabilityRating) {
 
         dataMartRating.setDrugAvailabilityRating(drugAvailabilityRating);
-
         return this;
     }
 
     public DataMartRatingBuilder setInfectionControlRating(Double infectionControlRating) {
 
         dataMartRating.setInfectionControlRating(infectionControlRating);
-
         return this;
     }
 
     public DataMartRatingBuilder setSafeAndSecureCareRating(Double safeAndSecureCareRating) {
 
         dataMartRating.setSafeAndSecureCareRating(safeAndSecureCareRating);
-
         return this;
     }
-    
+
     public DataMartRating getDataMartRating() {
 
         return dataMartRating;

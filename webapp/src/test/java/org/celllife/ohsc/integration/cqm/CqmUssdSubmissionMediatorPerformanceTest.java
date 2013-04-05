@@ -15,18 +15,22 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * User: Kevin W. Sewell
  * Date: 2013-03-16
  * Time: 09h09
  */
-public class CqmUssdSubmissionMediatorAcceptanceTest {
+public class CqmUssdSubmissionMediatorPerformanceTest {
 
-    public static final String BASE_DIR = "/data/CqmUssdSubmissionRequest/";
+    public static final String BASE_DIR = "/data/CqmUssdSubmissionRequest_load/";
 
     @Test
-//    @Ignore("Used for generating test data")
     public void testHandleCqmUssdSubmissionLoad() throws Exception {
 
         String path = getClass().getResource(BASE_DIR).getPath();
@@ -40,7 +44,7 @@ public class CqmUssdSubmissionMediatorAcceptanceTest {
 
     private static void post(String json) throws Exception {
 
-        HttpPost method = new HttpPost("http://localhost:9000/services/cqmUssdSubmission");
+        HttpPost method = new HttpPost("http://localhost:9000/service/cqmUssdSubmission");
         HttpParams params = method.getParams();
         HttpConnectionParams.setConnectionTimeout(params, 10000);
         HttpConnectionParams.setSoTimeout(params, 10000);

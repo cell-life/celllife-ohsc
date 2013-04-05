@@ -26,6 +26,8 @@ public interface ProvinceRepository extends PagingAndSortingRepository<Province,
     @Query("select distinct p.shortName from Province p")
     @QueryHints({ @QueryHint(name = "org.hibernate.cacheable", value ="true") })
     List<String> findAllProvinceNames();
-    
+
+    @QueryHints({ @QueryHint(name = "org.hibernate.cacheable", value ="true") })
+    Province findOneByName(String provinceName);
 }
 

@@ -18,7 +18,7 @@
     <int-http:inbound-gateway id="httpInbound"
                               request-channel="aatRequestChannel"
                               reply-channel="aatResponseChannel"
-                              name="/services/cqmUssdSubmission"
+                              name="/service/cqmUssdSubmission"
                               supported-methods="POST"/>
 
     <int:service-activator id="cqmUssdSubmissionIntegrationServiceActivator"

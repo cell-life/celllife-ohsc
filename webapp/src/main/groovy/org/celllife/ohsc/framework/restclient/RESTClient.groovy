@@ -8,6 +8,10 @@ package org.celllife.ohsc.framework.restclient
 class RESTClient {
 
     def static get(String uri) {
-        return new groovyx.net.http.RESTClient(uri).get([:]).data
+
+        def client = new groovyx.net.http.RESTClient(uri)
+        client.auth.basic("internal", "password")
+
+        return client.get([:]).data
     }
 }

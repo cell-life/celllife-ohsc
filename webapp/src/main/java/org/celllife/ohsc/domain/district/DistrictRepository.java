@@ -17,7 +17,12 @@ import javax.persistence.QueryHint;
 @RestResource(path = "districts")
 public interface DistrictRepository extends PagingAndSortingRepository<District, Long> {
 
-    @QueryHints({ @QueryHint(name = "org.hibernate.cacheable", value ="true") })
+    @QueryHints({@QueryHint(name = "org.hibernate.cacheable", value = "true")})
     District findByExternalId(String externalId);
 
+    @QueryHints({@QueryHint(name = "org.hibernate.cacheable", value = "true")})
+    District findOneByName(String name);
+
+    @QueryHints({@QueryHint(name = "org.hibernate.cacheable", value = "true")})
+    Iterable<District> findByProvinceName(String provinceName);
 }
