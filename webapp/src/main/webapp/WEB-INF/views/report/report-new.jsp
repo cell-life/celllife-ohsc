@@ -4,8 +4,8 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OHSC</title>
-<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
 <link href="css/datatables_bootstrap.css" rel="stylesheet">
 <link href="css/ohsc.css" rel="stylesheet">
 
@@ -14,24 +14,22 @@
 	<div class="container-fluid">
 		<div class="masthead">
 			<h2>
-				<img class="ohsc-logo" src="/img/coat-of-arms.png"></img> OHSC
+				<img class="ohsc-logo" src="img/coat-of-arms.png"></img> OHSC
 			</h2>
 			<div class="btn-toolbar ohsc-nav-btn-toolbar">
-				<a class="btn btn-link ohsc-welcome-text">Welcome Dr Radebe</a> <a
-					class="btn btn-primary"> Log Out </a>
+				<a class="btn btn-link ohsc-welcome-text">Welcome Dr Radebe</a> 
+				<a class="btn btn-primary">Log Out</a>
 			</div>
 		</div>
 
 <div class="row-fluid">
-	<p>
-		<p id="breadcrumb">
+	<p id="breadcrumb">
         <a href="#" class="active">Country<span>South Africa</span></a>
         <a href="#" class="active">Province<span>Western Cape</span></a>
-        <a href="#" class="active">Municipality</a>
+        <a href="#">Municipality</a>
         <a href="#">Clinic</a>
-     </p>
-     
-  </div>
+	</p>
+</div>
 
 		<div class="row-fluid ohsc-border">
 
@@ -45,7 +43,7 @@
 						<th>Staff Attitudes</th>
 						<th>Cleanliness</th>
 						<th>Waiting Times</th>
-						<th>Safe & Secure Care</th>
+						<th>Safe &amp; Secure Care</th>
 						<th>Infection Control</th>
 						<th>Drug Availability</th>
 						<th>Average Rating</th>
@@ -90,9 +88,9 @@
 			</table>
 
 
-			<p>Disclaimer: These ratings are compiled only from responses to
+			<p><small>These ratings are compiled only from responses to
 				the mobile phone survey by patients who reported on their personal
-				experience at their specific health care facility.</p>
+				experience at their specific health care facility.</small></p>
 		</div>
 
 
@@ -101,7 +99,7 @@
 				<h3>Total Clinics Monitored</h3>
 				<div class="row-fluid" id="donut"></div>
 				<script src="http://d3js.org/d3.v3.min.js"></script>
-				<script src="${pageContext.request.contextPath}/js/donut-graphs.js"></script>
+				<script src="js/donut-graphs.js"></script>
 			</center>
 		</div>
 
@@ -115,25 +113,20 @@
 
 	<script src="js/jquery-1.9.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" charset="utf-8" language="javascript"
-		src="js/jquery.dataTables.js"></script>
-	<script type="text/javascript" charset="utf-8" language="javascript"
-		src="js/datatables_bootstrap.js"></script>
+	<script type="text/javascript" charset="utf-8" language="javascript" src="js/jquery.dataTables.js"></script>
+	<script type="text/javascript" charset="utf-8" language="javascript" src="js/datatables_bootstrap.js"></script>
 	<script>
 		/* Table initialisation */
-		$(document)
-				.ready(
-						function() {
-							$('#myTable')
-									.dataTable(
-											{
-												"sDom" : "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-												"sPaginationType" : "bootstrap",
-												"oLanguage" : {
-													"sLengthMenu" : "_MENU_ records per page"
-												}
-											});
-						});
+		$(document).ready(
+			function() {
+				$('#myTable').dataTable( {
+					"sDom" : "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+					"sPaginationType" : "bootstrap",
+					"oLanguage" : {
+						"sLengthMenu" : "_MENU_ records per page"
+					}
+				});
+			});
 	</script>
 	
 </body>
