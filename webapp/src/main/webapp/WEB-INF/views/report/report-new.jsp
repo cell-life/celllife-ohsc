@@ -75,7 +75,7 @@ svg {
 			<p>Below are the ratings of the [Unit of Evaluation]s in each of
 				the 6 core standards for quality care.</p>
 
-			<table class="table table-striped table-bordered">
+			<table class="table table-striped table-bordered" id="myTable">
 				<thead>
 					<tr>
 						<th>[Unit of Evaluation]</th>
