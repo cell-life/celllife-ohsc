@@ -1,7 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +11,8 @@
 <link
 	href="${pageContext.request.contextPath}/css/bootstrap-responsive.css"
 	rel="stylesheet">
+
+<link href="css/datatables_bootstrap.css" rel="stylesheet">
 
 <style type="text/css">
 	svg {
@@ -49,9 +48,10 @@
 			<ul class="breadcrumb">
 				<div>South Africa | Eastern Cape</div>
 			</ul>
+		</div>
 
-			<p>Below are the ratings of the [Unit of Evaluation]s in each of
-				the 6 core standards for quality care.</p>
+		<p>Below are the ratings of the [Unit of Evaluation]s in each of
+			the 6 core standards for quality care.</p>
 
 			<table class="table table-striped table-bordered">
 				<thead>
@@ -122,5 +122,23 @@
 		</div>
 
 	</div>
+
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="js/datatables_bootstrap.js"></script>
+<script>
+/* Table initialisation */
+$(document).ready(function() {
+	$('#myTable').dataTable( {
+		"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sPaginationType": "bootstrap",
+		"oLanguage": {
+			"sLengthMenu": "_MENU_ records per page"
+		}
+	} );
+} );
+</script>
+
 </body>
 </html>
