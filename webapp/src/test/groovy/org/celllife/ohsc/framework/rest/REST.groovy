@@ -9,17 +9,26 @@ import groovyx.net.http.*
  */
 class REST {
 
-    static private RESTClient client = new RESTClient("http://localhost:9000")
+    static String baseUrl = "http://localhost:9000"
+
+    static RESTClient client = new RESTClient(baseUrl)
 
     static {
         client.auth.basic("user@test.cell-life.org", "P@ssw0rd1")
     }
 
     static get(Map<String, ?> args) {
-        return client.get(args).data
+        def response = client.get(args)
+        return response.data
     }
 
     static post(Map<String, ?> args) {
-        return client.post(args).data
+        def response = client.post(args)
+        return response.data
+    }
+
+    static delete(Map<String, ?> args) {
+        def response = client.delete(args)
+        return response.data
     }
 }

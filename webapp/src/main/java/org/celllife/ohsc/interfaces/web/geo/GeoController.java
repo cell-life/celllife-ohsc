@@ -26,7 +26,7 @@ import java.io.StringWriter;
  * Time: 08h34
  */
 @Controller
-@RequestMapping("/services/geo")
+@RequestMapping("/service/geo")
 public class GeoController {
 
     private static final String ALL = "ALL";

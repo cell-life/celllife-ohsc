@@ -21,19 +21,13 @@ import java.util.Map;
  * Time: 08h57
  */
 @Service
-public class AveragesApplicationServiceImpl implements AveragesApplicationService {
+public class ClinicAverageApplicationServiceImpl implements ClinicAverageApplicationService {
 
     @Autowired
     private ClinicRepository clinicRepository;
 
     @Autowired
     private SubDistrictRepository subDistrictRepository;
-
-    @Autowired
-    private DistrictRepository districtRepository;
-
-    @Autowired
-    private ProvinceRepository provinceRepository;
 
     @Autowired
     private DataMartRatingRepository dataMartRatingRepository;
@@ -44,7 +38,8 @@ public class AveragesApplicationServiceImpl implements AveragesApplicationServic
 
         Iterable<Clinic> clinics = clinicRepository.findBySubDistrictName(subDistrictName);
 
-        Iterable<ClinicAverage> clinicAverages = dataMartRatingRepository.findAllClinicAveragesBySubDistrictName(subDistrictName);
+        Iterable<ClinicAverage> clinicAverages =
+                dataMartRatingRepository.findClinicAveragesBySubDistrictName(subDistrictName);
 
         Map<String, ClinicAverage> clinicAverageMap = new HashMap<>();
 

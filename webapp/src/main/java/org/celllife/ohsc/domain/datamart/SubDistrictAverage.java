@@ -7,15 +7,15 @@ import java.io.Serializable;
  * Date: 2013-04-03
  * Time: 15h34
  */
-public final class ClinicAverage implements Serializable {
+public final class SubDistrictAverage implements Serializable {
+
+    private String districtName;
+
+    private String districtShortName;
 
     private String subDistrictName;
 
     private String subDistrictShortName;
-
-    private String clinicCode;
-
-    private String clinicShortName;
 
     private Double staffAttitudeAverage;
 
@@ -29,25 +29,29 @@ public final class ClinicAverage implements Serializable {
 
     private Double safeAndSecureCareAverage;
 
-    public ClinicAverage() {
+    public SubDistrictAverage() {
     }
 
-    public ClinicAverage(String subDistrictName, String subDistrictShortName, String clinicCode, String clinicShortName) {
+    public SubDistrictAverage(String districtName,
+                              String districtShortName,
+                              String subDistrictName,
+                              String subDistrictShortName) {
+
+        this.districtName = districtName;
+        this.districtShortName = districtShortName;
         this.subDistrictName = subDistrictName;
         this.subDistrictShortName = subDistrictShortName;
-        this.clinicCode = clinicCode;
-        this.clinicShortName = clinicShortName;
     }
 
-    public ClinicAverage(String subDistrictName, String subDistrictShortName, String clinicCode, String clinicShortName,
-                         Double staffAttitudeAverage, Double cleanlinessAverage, Double waitingTimesAverage,
-                         Double drugAvailabilityAverage, Double infectionControlAverage,
-                         Double safeAndSecureCareAverage) {
+    public SubDistrictAverage(String districtName, String districtShortName, String subDistrictName,
+                              String subDistrictShortName, Double staffAttitudeAverage, Double cleanlinessAverage,
+                              Double waitingTimesAverage, Double drugAvailabilityAverage, Double infectionControlAverage,
+                              Double safeAndSecureCareAverage) {
 
+        this.districtName = districtName;
+        this.districtShortName = districtShortName;
         this.subDistrictName = subDistrictName;
         this.subDistrictShortName = subDistrictShortName;
-        this.clinicCode = clinicCode;
-        this.clinicShortName = clinicShortName;
         this.staffAttitudeAverage = staffAttitudeAverage;
         this.cleanlinessAverage = cleanlinessAverage;
         this.waitingTimesAverage = waitingTimesAverage;
@@ -56,12 +60,20 @@ public final class ClinicAverage implements Serializable {
         this.safeAndSecureCareAverage = safeAndSecureCareAverage;
     }
 
-    public void setSubDistrictShortName(String subDistrictShortName) {
-        this.subDistrictShortName = subDistrictShortName;
+    public String getDistrictName() {
+        return districtName;
     }
 
-    public String getSubDistrictShortName() {
-        return subDistrictShortName;
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
+
+    public String getDistrictShortName() {
+        return districtShortName;
+    }
+
+    public void setDistrictShortName(String districtShortName) {
+        this.districtShortName = districtShortName;
     }
 
     public String getSubDistrictName() {
@@ -72,20 +84,12 @@ public final class ClinicAverage implements Serializable {
         this.subDistrictName = subDistrictName;
     }
 
-    public String getClinicCode() {
-        return clinicCode;
+    public String getSubDistrictShortName() {
+        return subDistrictShortName;
     }
 
-    public void setClinicCode(String clinicCode) {
-        this.clinicCode = clinicCode;
-    }
-
-    public String getClinicShortName() {
-        return clinicShortName;
-    }
-
-    public void setClinicShortName(String clinicShortName) {
-        this.clinicShortName = clinicShortName;
+    public void setSubDistrictShortName(String subDistrictShortName) {
+        this.subDistrictShortName = subDistrictShortName;
     }
 
     public Double getStaffAttitudeAverage() {

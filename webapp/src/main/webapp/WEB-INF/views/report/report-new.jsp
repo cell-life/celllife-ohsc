@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,39 +68,25 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-					</tr>
-					<tr>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-					</tr>
-					<tr>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-					</tr>
+                    <c:forEach items="${averages}" var="average">
+                        <tr>
+                            <td>${average.provinceShortName}</td>
+                            <%--<td>${average.staffAttitudeAverage}</td>--%>
+                            <%--<td>${average.cleanlinessAverag}</td>--%>
+                            <%--<td>${average.waitingTimesAverage}</td>--%>
+                            <%--<td>${average.drugAvailabilityAverage}</td>--%>
+                            <%--<td>${average.infectionControlAverage}</td>--%>
+                            <%--<td>${average.safeAndSecureCareAverage}</td>--%>
+                            <td>blank</td>
+                            <td>blank</td>
+                            <td>blank</td>
+                            <td>blank</td>
+                            <td>blank</td>
+                            <td>blank</td>
+                            <td>blank</td>
+                            <td>blank</td>
+                        </tr>
+                    </c:forEach>
 				</tbody>
 			</table>
 

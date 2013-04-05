@@ -22,6 +22,40 @@
         <jetty.daemon>true</jetty.daemon>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>jetty</id>
+            <properties>
+                <jetty.daemon>false</jetty.daemon>
+            </properties>
+        </profile>
+        <profile>
+            <id>perf</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>performance-test</id>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <phase>integration-test</phase>
+                                <configuration>
+                                    <skipTests>${skipTests}</skipTests>
+                                    <includes>
+                                        <include>**/*PerformanceTest.java</include>
+                                    </includes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <testResources>
             <testResource>
@@ -82,6 +116,7 @@
                             <skipTests>${skipTests}</skipTests>
                             <excludes>
                                 <exclude>**/*AcceptanceTest.java</exclude>
+                                <exclude>**/*PerformanceTest.java</exclude>
                             </excludes>
                         </configuration>
                     </execution>

@@ -9,7 +9,7 @@ import java.util.Collection;
  * Date: 2013-04-04
  * Time: 08h58
  */
-public interface AveragesApplicationService {
+public interface ClinicAverageApplicationService {
 
     Collection<ClinicAverage> findClinicAveragesBySubDistrict(String subDistrictName);
 
