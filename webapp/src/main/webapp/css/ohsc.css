@@ -141,3 +141,48 @@ body {
 #breadcrumb a.active:hover span {
         color: #eeede8;
 }
+
+.arrow-heading {
+    background-color: #eeede8;
+    height: 56px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.arrow {
+    position: absolute;
+	width: 0px; 
+	height: 0px;
+    margin-left: 30px;
+    margin-top: 47px;
+	border-left: 123px solid transparent;
+	border-right: 123px solid transparent;
+	border-top: 30px solid #c4cfb8;
+    z-index: 1;
+}
+
+.arrow-box {
+    position: absolute;
+    padding-top: 5px;
+    margin-left: 33px;
+    height: 42px;
+	width: 240px; 
+    background-color: #c4cfb8;
+    z-index: 2;
+}
+
+.arrow-heading p {
+    position: relative;
+    font-family: Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 50px;
+    color: #5e5247;
+    padding-top: 5px;
+    margin-left: 33px;
+    height: 42px;
+    text-align: center;
+	width: 240px; 
+    background-color: transparent;
+    text-transform: none;
+    z-index: 3;
+}

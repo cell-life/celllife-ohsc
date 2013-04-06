@@ -93,10 +93,14 @@
 				experience at their specific health care facility.</small></p>
 		</div>
 
+		<div class="arrow-heading">
+			<div class="arrow-box"></div>
+			<div class="arrow"></div>
+			<p>Total Clinics Monitored</p>
+		</div>
 
 		<div class="row-fluid ohsc-border">
 			<center>
-				<h3>Total Clinics Monitored</h3>
 				<div class="row-fluid" id="donut"></div>
 				<script src="http://d3js.org/d3.v3.min.js"></script>
 				<script src="js/donut-graphs.js"></script>
