@@ -1,7 +1,7 @@
 package org.celllife.ohsc.application.averages;
 
 import org.celllife.ohsc.domain.datamart.DataMartRatingRepository;
-import org.celllife.ohsc.domain.datamart.SubDistrictAverage;
+import org.celllife.ohsc.domain.datamart.SubDistrictAverageDTO;
 import org.celllife.ohsc.domain.district.District;
 import org.celllife.ohsc.domain.district.DistrictRepository;
 import org.celllife.ohsc.domain.subdistrict.SubDistrict;
@@ -30,19 +30,19 @@ public class SubDistrictAverageApplicationServiceImpl implements SubDistrictAver
     @Autowired
     private DataMartRatingRepository dataMartRatingRepository;
 
-    public Collection<SubDistrictAverage> findSubDistrictAveragesByDistrict(String districtName) {
+    public Collection<SubDistrictAverageDTO> findSubDistrictAveragesByDistrict(String districtName) {
 
         District district = districtRepository.findOneByName(districtName);
 
         Iterable<SubDistrict> subDistricts = subDistrictRepository.findByDistrictName(districtName);
 
-        Iterable<SubDistrictAverage> subDistrictAverages =
+        Iterable<SubDistrictAverageDTO> subDistrictAverages =
                 dataMartRatingRepository.findSubDistrictAveragesByDistrictName(districtName);
 
-        Map<String, SubDistrictAverage> subDistrictAverageMap = new HashMap<>();
+        Map<String, SubDistrictAverageDTO> subDistrictAverageMap = new HashMap<>();
 
-        for (SubDistrictAverage subDistrictAverage : subDistrictAverages) {
-            subDistrictAverageMap.put(subDistrictAverage.getSubDistrictName(), subDistrictAverage);
+        for (SubDistrictAverageDTO subDistrictAverageDTO : subDistrictAverages) {
+            subDistrictAverageMap.put(subDistrictAverageDTO.getIdentifier(), subDistrictAverageDTO);
         }
 
         for (SubDistrict subDistrict : subDistricts) {
@@ -50,13 +50,13 @@ public class SubDistrictAverageApplicationServiceImpl implements SubDistrictAver
             String subDistrictName = subDistrict.getName();
             if (subDistrictAverageMap.get(subDistrictName) == null) {
 
-                SubDistrictAverage subDistrictAverage = new SubDistrictAverage(
+                SubDistrictAverageDTO subDistrictAverageDTO = new SubDistrictAverageDTO(
                         districtName,
                         district.getShortName(),
                         subDistrictName,
                         subDistrict.getShortName()
                 );
-                subDistrictAverageMap.put(subDistrictName, subDistrictAverage);
+                subDistrictAverageMap.put(subDistrictName, subDistrictAverageDTO);
             }
         }
         

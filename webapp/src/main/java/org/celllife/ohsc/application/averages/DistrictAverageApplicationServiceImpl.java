@@ -1,7 +1,7 @@
 package org.celllife.ohsc.application.averages;
 
 import org.celllife.ohsc.domain.datamart.DataMartRatingRepository;
-import org.celllife.ohsc.domain.datamart.DistrictAverage;
+import org.celllife.ohsc.domain.datamart.DistrictAverageDTO;
 import org.celllife.ohsc.domain.province.Province;
 import org.celllife.ohsc.domain.province.ProvinceRepository;
 import org.celllife.ohsc.domain.district.District;
@@ -30,19 +30,19 @@ public class DistrictAverageApplicationServiceImpl implements DistrictAverageApp
     @Autowired
     private DataMartRatingRepository dataMartRatingRepository;
 
-    public Collection<DistrictAverage> findDistrictAveragesByProvince(String provinceName) {
+    public Collection<DistrictAverageDTO> findDistrictAveragesByProvince(String provinceName) {
 
         Province province = provinceRepository.findOneByName(provinceName);
 
         Iterable<District> districts = districtRepository.findByProvinceName(provinceName);
 
-        Iterable<DistrictAverage> districtAverages =
+        Iterable<DistrictAverageDTO> districtAverages =
                 dataMartRatingRepository.findDistrictAveragesByProvinceName(provinceName);
 
-        Map<String, DistrictAverage> districtAverageMap = new HashMap<>();
+        Map<String, DistrictAverageDTO> districtAverageMap = new HashMap<>();
 
-        for (DistrictAverage districtAverage : districtAverages) {
-            districtAverageMap.put(districtAverage.getDistrictName(), districtAverage);
+        for (DistrictAverageDTO districtAverageDTO : districtAverages) {
+            districtAverageMap.put(districtAverageDTO.getIdentifier(), districtAverageDTO);
         }
 
         for (District district : districts) {
@@ -50,13 +50,13 @@ public class DistrictAverageApplicationServiceImpl implements DistrictAverageApp
             String districtName = district.getName();
             if (districtAverageMap.get(districtName) == null) {
 
-                DistrictAverage districtAverage = new DistrictAverage(
+                DistrictAverageDTO districtAverageDTO = new DistrictAverageDTO(
                         provinceName,
                         province.getShortName(),
                         districtName,
                         district.getShortName()
                 );
-                districtAverageMap.put(districtName, districtAverage);
+                districtAverageMap.put(districtName, districtAverageDTO);
             }
         }
         

@@ -191,6 +191,7 @@
                             <value>${project.basedir}/../etc/c3p0-config.xml</value>
                         </systemProperty>
                     </systemProperties>
+                    <jvmArgs>-Xmx1024m -Xms1024m -XX:MaxPermSize=512m</jvmArgs>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -447,18 +448,20 @@
 
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
 
         <dependency>
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
+        </dependency>
+
+        <!-- Tiles -->
+
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1.0.0.v20091030</version>
         </dependency>
 
         <!-- Tiles -->

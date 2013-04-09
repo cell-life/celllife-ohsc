@@ -45,7 +45,7 @@ class DataMartRatingRepositoryAcceptanceTest {
         assertNotNull clinicAverages
 
         def clinicAverage = clinicAverages.content.find { it.clinicCode == "5198" }
-        assertEquals(2.0, clinicAverage.staffAttitudeAverage)
+        assertEquals(2.0, clinicAverage.getStaffAttitudeRating)
     }
 
     @Test
@@ -56,6 +56,6 @@ class DataMartRatingRepositoryAcceptanceTest {
         assertNotNull subDistrictAverages
 
         def subDistrictAverage = subDistrictAverages.content.find { it.subDistrictName == "mp Govan Mbeki Local Municipality" }
-        assertEquals(2.0, subDistrictAverage.staffAttitudeAverage)
+        assertEquals(2.0, subDistrictAverage.getStaffAttitudeRating)
     }
 }

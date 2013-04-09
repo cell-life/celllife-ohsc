@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +18,7 @@
 				<img class="ohsc-logo" src="img/coat-of-arms.png"></img> OHSC
 			</h2>
 			<div class="btn-toolbar ohsc-nav-btn-toolbar">
-				<a class="btn btn-link ohsc-welcome-text">Welcome Dr Radebe</a> 
+				<a class="btn btn-link ohsc-welcome-text">Welcome Dr Radebe</a>
 				<a class="btn btn-primary">Log Out</a>
 			</div>
 		</div>
@@ -51,39 +52,19 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-					</tr>
-					<tr>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-					</tr>
-					<tr>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-						<td>blank</td>
-					</tr>
+                    <c:forEach items="${averages}" var="average">
+                    <tr>
+                        <td>blank</td>
+                        <td>blank</td>
+                        <td>blank</td>
+                        <td>blank</td>
+                        <td>blank</td>
+                        <td>blank</td>
+                        <td>blank</td>
+                        <td>blank</td>
+                        <td>blank</td>
+                    </tr>
+                    </c:forEach>
 				</tbody>
 			</table>
 
@@ -132,6 +113,6 @@
 				});
 			});
 	</script>
-	
+
 </body>
 </html>

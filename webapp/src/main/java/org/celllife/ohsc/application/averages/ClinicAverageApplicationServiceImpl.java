@@ -2,10 +2,8 @@ package org.celllife.ohsc.application.averages;
 
 import org.celllife.ohsc.domain.clinic.Clinic;
 import org.celllife.ohsc.domain.clinic.ClinicRepository;
-import org.celllife.ohsc.domain.datamart.ClinicAverage;
+import org.celllife.ohsc.domain.datamart.ClinicAverageDTO;
 import org.celllife.ohsc.domain.datamart.DataMartRatingRepository;
-import org.celllife.ohsc.domain.district.DistrictRepository;
-import org.celllife.ohsc.domain.province.ProvinceRepository;
 import org.celllife.ohsc.domain.subdistrict.SubDistrict;
 import org.celllife.ohsc.domain.subdistrict.SubDistrictRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,19 +30,19 @@ public class ClinicAverageApplicationServiceImpl implements ClinicAverageApplica
     @Autowired
     private DataMartRatingRepository dataMartRatingRepository;
 
-    public Collection<ClinicAverage> findClinicAveragesBySubDistrict(String subDistrictName) {
+    public Collection<ClinicAverageDTO> findClinicAveragesBySubDistrict(String subDistrictName) {
 
         SubDistrict subDistrict = subDistrictRepository.findOneByName(subDistrictName);
 
         Iterable<Clinic> clinics = clinicRepository.findBySubDistrictName(subDistrictName);
 
-        Iterable<ClinicAverage> clinicAverages =
+        Iterable<ClinicAverageDTO> clinicAverages =
                 dataMartRatingRepository.findClinicAveragesBySubDistrictName(subDistrictName);
 
-        Map<String, ClinicAverage> clinicAverageMap = new HashMap<>();
+        Map<String, ClinicAverageDTO> clinicAverageMap = new HashMap<>();
 
-        for (ClinicAverage clinicAverage : clinicAverages) {
-            clinicAverageMap.put(clinicAverage.getClinicCode(), clinicAverage);
+        for (ClinicAverageDTO clinicAverageDTO : clinicAverages) {
+            clinicAverageMap.put(clinicAverageDTO.getIdentifier(), clinicAverageDTO);
         }
 
         for (Clinic clinic : clinics) {
@@ -52,13 +50,12 @@ public class ClinicAverageApplicationServiceImpl implements ClinicAverageApplica
             String clinicCode = clinic.getCode();
             if (clinicAverageMap.get(clinicCode) == null) {
 
-                ClinicAverage clinicAverage = new ClinicAverage(
+                ClinicAverageDTO clinicAverageDTO = new ClinicAverageDTO(
+                        clinic.getShortName(), clinicCode,
                         subDistrictName,
-                        subDistrict.getShortName(),
-                        clinicCode,
-                        clinic.getShortName()
+                        subDistrict.getShortName()
                 );
-                clinicAverageMap.put(clinicCode, clinicAverage);
+                clinicAverageMap.put(clinicCode, clinicAverageDTO);
             }
         }
         

@@ -30,7 +30,7 @@ public class LdapSecurityIntegrationTest {
     @Test
     public void testName() throws Exception {
 
-        Authentication authentication = new UsernamePasswordAuthenticationToken("user@test.cell-life.org", "P@ssw0rd1");
+        Authentication authentication = new UsernamePasswordAuthenticationToken("internal", "password");
         authentication = authenticationManager.authenticate(authentication);
 
         Assert.assertNotNull(authentication);

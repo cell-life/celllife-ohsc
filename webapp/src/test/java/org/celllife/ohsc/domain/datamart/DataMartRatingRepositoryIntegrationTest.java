@@ -48,7 +48,7 @@ public class DataMartRatingRepositoryIntegrationTest {
     @Test
     public void testFindClinicAveragesBySubDistrictName() throws Exception {
 
-        Iterable<ClinicAverage> clinicAverages =
+        Iterable<ClinicAverageDTO> clinicAverages =
                 dataMartRatingRepository.findClinicAveragesBySubDistrictName("Test Sub-District");
 
         Assert.assertNotNull(clinicAverages);
@@ -58,7 +58,7 @@ public class DataMartRatingRepositoryIntegrationTest {
     @Test
     public void testFindSubDistrictAveragesByDistrictName() throws Exception {
 
-        Iterable<SubDistrictAverage> subDistrictAverages =
+        Iterable<SubDistrictAverageDTO> subDistrictAverages =
                 dataMartRatingRepository.findSubDistrictAveragesByDistrictName("Test District");
 
         Assert.assertNotNull(subDistrictAverages);

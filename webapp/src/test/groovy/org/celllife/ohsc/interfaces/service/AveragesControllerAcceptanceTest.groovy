@@ -33,8 +33,9 @@ class AveragesControllerAcceptanceTest {
 
         assertNotNull clinicAverages
 
-        def clinicAverage = clinicAverages.find { it.clinicCode == "5198" }
-        assertEquals(2.0, clinicAverage.staffAttitudeAverage)
+        def clinicAverage = clinicAverages.find { item -> item.identifier == "5198" }
+
+        assertEquals(2.0, clinicAverage.staffAttitudeRating)
 
     }
 
@@ -45,8 +46,8 @@ class AveragesControllerAcceptanceTest {
 
         assertNotNull subDistrictAverages
 
-        def subDistrictAverage = subDistrictAverages.find { it.subDistrictName == "mp Govan Mbeki Local Municipality" }
-        assertEquals(2.0, subDistrictAverage.staffAttitudeAverage)
+        def subDistrictAverage = subDistrictAverages.find { item -> item.identifier == "mp Govan Mbeki Local Municipality" }
+        assertEquals(2.0, subDistrictAverage.staffAttitudeRating)
     }
 
     @Test
@@ -56,8 +57,8 @@ class AveragesControllerAcceptanceTest {
 
         assertNotNull districtAverages
 
-        def districtAverage = districtAverages.find { it.districtName == "mp Gert Sibande District Municipality" }
-        assertEquals(2.0, districtAverage.staffAttitudeAverage)
+        def districtAverage = districtAverages.find { item -> item.identifier == "mp Gert Sibande District Municipality" }
+        assertEquals(2.0, districtAverage.staffAttitudeRating)
     }
 
     @Test
@@ -67,7 +68,7 @@ class AveragesControllerAcceptanceTest {
 
         assertNotNull provinceAverages
 
-        def provinceAverage = provinceAverages.find { it.provinceName == "mp Mpumalanga Province" }
-        assertEquals(2.0, provinceAverage.staffAttitudeAverage)
+        def provinceAverage = provinceAverages.find { item -> item.identifier == "mp Mpumalanga Province" }
+        assertEquals(2.0, provinceAverage.staffAttitudeRating)
     }
 }

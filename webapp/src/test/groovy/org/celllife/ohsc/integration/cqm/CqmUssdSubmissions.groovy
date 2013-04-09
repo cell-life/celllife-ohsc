@@ -25,5 +25,4 @@ class CqmUssdSubmissions {
     static testCqmUssdSubmission(String id = "0000") {
         JSON.readFromClasspath("${baseLocation}/${id}.json")
     }
-
 }

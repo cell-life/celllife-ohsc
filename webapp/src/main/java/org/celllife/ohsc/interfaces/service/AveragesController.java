@@ -4,10 +4,7 @@ import org.celllife.ohsc.application.averages.ClinicAverageApplicationService;
 import org.celllife.ohsc.application.averages.DistrictAverageApplicationService;
 import org.celllife.ohsc.application.averages.ProvinceAverageApplicationService;
 import org.celllife.ohsc.application.averages.SubDistrictAverageApplicationService;
-import org.celllife.ohsc.domain.datamart.ClinicAverage;
-import org.celllife.ohsc.domain.datamart.DistrictAverage;
-import org.celllife.ohsc.domain.datamart.ProvinceAverage;
-import org.celllife.ohsc.domain.datamart.SubDistrictAverage;
+import org.celllife.ohsc.domain.datamart.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -43,7 +40,7 @@ public class AveragesController {
             value = "/service/averages/findClinicAveragesBySubDistrict",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<ClinicAverage> findClinicAveragesBySubDistrict(@RequestParam("subDistrictName")
+    public Collection<ClinicAverageDTO> findClinicAveragesBySubDistrict(@RequestParam("subDistrictName")
                                                                          String subDistrictName) {
 
         return clinicAverageApplicationService.findClinicAveragesBySubDistrict(subDistrictName);
@@ -54,7 +51,7 @@ public class AveragesController {
             value = "/service/averages/findSubDistrictAveragesByDistrict",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<SubDistrictAverage> findSubDistrictAveragesBySubDistrict(@RequestParam("districtName")
+    public Collection<SubDistrictAverageDTO> findSubDistrictAveragesBySubDistrict(@RequestParam("districtName")
                                                                                    String districtName) {
 
         return subDistrictAverageApplicationService.findSubDistrictAveragesByDistrict(districtName);
@@ -65,7 +62,7 @@ public class AveragesController {
             value = "/service/averages/findDistrictAveragesByProvince",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<DistrictAverage> findDistrictAveragesByProvince(@RequestParam("provinceName")
+    public Collection<DistrictAverageDTO> findDistrictAveragesByProvince(@RequestParam("provinceName")
                                                                                    String provinceName) {
 
         return districtAverageApplicationService.findDistrictAveragesByProvince(provinceName);
@@ -76,7 +73,7 @@ public class AveragesController {
             value = "/service/averages/findProvinceAverages",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<ProvinceAverage> findProvinceAverages() {
+    public Collection<ProvinceAverageDTO> findProvinceAverages() {
 
         return provinceAverageApplicationService.findProvinceAverages();
     }

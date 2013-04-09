@@ -2,6 +2,7 @@ package org.celllife.ohsc.integration.cqm;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
+import org.apache.http.HttpResponse;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -15,11 +16,6 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 /**
  * User: Kevin W. Sewell
@@ -28,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class CqmUssdSubmissionMediatorPerformanceTest {
 
-    public static final String BASE_DIR = "/data/CqmUssdSubmissionRequest_load/";
+    public static final String BASE_DIR = "/data/CqmUssdSubmissionRequest/";
 
     @Test
     public void testHandleCqmUssdSubmissionLoad() throws Exception {
@@ -50,13 +46,14 @@ public class CqmUssdSubmissionMediatorPerformanceTest {
         HttpConnectionParams.setSoTimeout(params, 10000);
 
         method.setEntity(new StringEntity(json));
-        UsernamePasswordCredentials credentials = new UsernamePasswordCredentials("user@test.cell-life.org", "P@ssw0rd1");
+        UsernamePasswordCredentials credentials = new UsernamePasswordCredentials("internal", "password");
         Header authenticate = BasicScheme.authenticate(credentials, "US-ASCII", false);
         method.addHeader(authenticate);
         method.addHeader(new BasicHeader("Content-Type", "application/json"));
 
         DefaultHttpClient client = new DefaultHttpClient();
 
-        client.execute(method, (HttpContext) null);
+        HttpResponse httpResponse = client.execute(method, (HttpContext) null);
+        System.out.println();
     }
 }

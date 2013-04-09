@@ -1,6 +1,6 @@
 package org.celllife.ohsc.application.averages;
 
-import org.celllife.ohsc.domain.datamart.DistrictAverage;
+import org.celllife.ohsc.domain.datamart.DistrictAverageDTO;
 
 import java.util.Collection;
 
@@ -11,6 +11,6 @@ import java.util.Collection;
  */
 public interface DistrictAverageApplicationService {
 
-    Collection<DistrictAverage> findDistrictAveragesByProvince(String provinceName);
+    Collection<DistrictAverageDTO> findDistrictAveragesByProvince(String provinceName);
 
 }
