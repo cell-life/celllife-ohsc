@@ -83,7 +83,7 @@
 		<div class="row-fluid ohsc-border">
 			<center>
 				<div class="row-fluid" id="donut"></div>
-				<script src="http://d3js.org/d3.v3.min.js"></script>
+				<script src="js/d3.v3.min.js"></script>
 				<script src="js/donut-graphs.js"></script>
 			</center>
 		</div>
