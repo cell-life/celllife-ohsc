@@ -6,14 +6,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>OHSC</title>
 
-    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <style type="text/css">
         body {
             padding-top: 20px;
             padding-bottom: 40px;
         }
     </style>
-    <link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="resources/css/bootstrap-responsive.css" rel="stylesheet">
     
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
@@ -75,7 +75,7 @@
 
     <div class="masthead">
         <ul class="nav nav-pills pull-right">
-            <li class="active"><a href="${pageContext.request.contextPath}/report/nationalRatingPerDomain">Home</a></li>
+            <li class="active"><a href="resources/report/nationalRatingPerDomain">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
@@ -86,7 +86,7 @@
 
 	<h1>Reports</h1>
 	<ul>
-	  <li><a href="${pageContext.request.contextPath}/report/nationalRatingPerDomain">Aggregated national ratings report</a></li>
+	  <li><a href="resources/report/nationalRatingPerDomain">Aggregated national ratings report</a></li>
 	</ul>
 	
 	<p><div id="chart_div" style="width: 500px; height: 300px; margin-bottom:30px"></div></p>

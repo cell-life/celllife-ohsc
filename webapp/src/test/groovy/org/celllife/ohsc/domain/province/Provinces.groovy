@@ -9,7 +9,7 @@ import org.celllife.ohsc.framework.rest.REST
  */
 class Provinces {
 
-    static baseResourceUrl = "/api/provinces"
+    static baseResourceUrl = "${REST.contextPath}/api/provinces"
 
     static baseSearchUrl = "${baseResourceUrl}/search"
 

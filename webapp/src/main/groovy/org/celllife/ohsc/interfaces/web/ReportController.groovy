@@ -13,17 +13,28 @@ import static org.celllife.ohsc.framework.restclient.RESTClient.get
  * Time: 09h49
  */
 @Controller
-@RequestMapping("/reports")
 class ReportController {
 
-    @Value('${provinces.url}')
-    def String provincesUrl;
+    @Value('${averages.url}')
+    def String averagesUrl;
 
-    @RequestMapping(method = RequestMethod.GET)
-    def index(Model model) {
+    @RequestMapping(value="/reports/provinces", method = RequestMethod.GET)
+    def findProvinceAverages(Model model) {
 
-        model.putAt("provinces", get(provincesUrl))
+        def averages = get("${averagesUrl}/findProvinceAverages")
+
+        model.put("averages", averages)
 
         return "report/report";
+    }
+
+    @RequestMapping(value="/reports/districts", method = RequestMethod.GET)
+    def findDistrictAveragesByProvince(String province, Model model) {
+
+        def averages = get("${averagesUrl}/findDistrictAveragesByProvince", query: [ province:province ])
+
+        model.put("averages", averages)
+
+        return "report/report-new";
     }
 }

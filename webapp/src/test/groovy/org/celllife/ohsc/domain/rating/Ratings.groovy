@@ -1,5 +1,7 @@
 package org.celllife.ohsc.domain.rating
 
+import org.celllife.ohsc.framework.rest.REST
+
 import static org.celllife.ohsc.framework.rest.REST.delete
 import static org.celllife.ohsc.framework.rest.REST.get
 
@@ -10,7 +12,7 @@ import static org.celllife.ohsc.framework.rest.REST.get
  */
 class Ratings {
 
-    static String baseResourceUrl = "/api/ratings"
+    static String baseResourceUrl = "${REST.contextPath}/api/ratings"
 
     static findAll() {
         get(path: baseResourceUrl)

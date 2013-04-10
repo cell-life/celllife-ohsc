@@ -9,28 +9,30 @@ import org.celllife.ohsc.framework.rest.REST
  */
 class Averages {
 
-    static findClinicAveragesBySubDistrict(String subDistrictName) {
+    static baseAveragesUrl = "${REST.contextPath}/service/averages"
+
+    static findClinicAveragesBySubDistrict(String subDistrict) {
         REST.get(
-                path: "/service/averages/findClinicAveragesBySubDistrict",
-                query: [subDistrictName: subDistrictName]
+                path: "${baseAveragesUrl}/findClinicAveragesBySubDistrict",
+                query: [subDistrict: subDistrict]
         )
     }
 
-    static findSubDistrictAveragesByDistrict(String districtName) {
+    static findSubDistrictAveragesByDistrict(String district) {
         REST.get(
-                path: "/service/averages/findSubDistrictAveragesByDistrict",
-                query: [districtName: districtName]
+                path: "${baseAveragesUrl}/findSubDistrictAveragesByDistrict",
+                query: [district: district]
         )
     }
 
-    static findDistrictAveragesByProvince(String provinceName) {
+    static findDistrictAveragesByProvince(String province) {
         REST.get(
-                path: "/service/averages/findDistrictAveragesByProvince",
-                query: [provinceName: provinceName]
+                path: "${baseAveragesUrl}/findDistrictAveragesByProvince",
+                query: [province: province]
         )
     }
 
     static findProvinceAverages() {
-        REST.get(path: "/service/averages/findProvinceAverages")
+        REST.get(path: "${baseAveragesUrl}/findProvinceAverages")
     }
 }

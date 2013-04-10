@@ -2,6 +2,7 @@ package org.celllife.ohsc.integration.cqm
 
 import groovyx.net.http.ContentType
 import org.celllife.ohsc.framework.json.JSON
+import org.celllife.ohsc.framework.rest.REST
 
 import static org.celllife.ohsc.framework.rest.REST.post
 
@@ -16,7 +17,7 @@ class CqmUssdSubmissions {
 
     static submit(Object cqm) {
         post(
-                path: "/service/cqmUssdSubmission",
+                path: "${REST.contextPath}/service/cqmUssdSubmission",
                 body: cqm,
                 requestContentType: ContentType.JSON
         )

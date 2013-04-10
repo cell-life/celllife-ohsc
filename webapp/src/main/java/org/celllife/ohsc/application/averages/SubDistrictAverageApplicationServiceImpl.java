@@ -51,10 +51,10 @@ public class SubDistrictAverageApplicationServiceImpl implements SubDistrictAver
             if (subDistrictAverageMap.get(subDistrictName) == null) {
 
                 SubDistrictAverageDTO subDistrictAverageDTO = new SubDistrictAverageDTO(
-                        districtName,
-                        district.getShortName(),
                         subDistrictName,
-                        subDistrict.getShortName()
+                        subDistrict.getShortName(),
+                        districtName,
+                        district.getShortName()
                 );
                 subDistrictAverageMap.put(subDistrictName, subDistrictAverageDTO);
             }

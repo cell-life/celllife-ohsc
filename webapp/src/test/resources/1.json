@@ -1,0 +1,191 @@
+[
+    {
+        "regionType": {
+            "singular": "Province",
+            "plural": "Provinces"
+        },
+        "identifier": "KwaZulu-Natal",
+        "name": "kz KwaZulu-Natal Province",
+        "parentRegionType": {
+            "singular": "Country",
+            "plural": "Countries"
+        },
+        "parentIdentifier": "za South Africa",
+        "parentName": "South Africa",
+        "staffAttitudeRating": null,
+        "cleanlinessRating": null,
+        "waitingTimesRating": null,
+        "drugAvailabilityRating": null,
+        "infectionControlRating": null,
+        "safeAndSecureCareRating": null,
+        "totalResponses": null
+    },
+    {
+        "regionType": {
+            "singular": "Province",
+            "plural": "Provinces"
+        },
+        "identifier": "Limpopo",
+        "name": "lp Limpopo Province",
+        "parentRegionType": {
+            "singular": "Country",
+            "plural": "Countries"
+        },
+        "parentIdentifier": "za South Africa",
+        "parentName": "South Africa",
+        "staffAttitudeRating": null,
+        "cleanlinessRating": null,
+        "waitingTimesRating": null,
+        "drugAvailabilityRating": null,
+        "infectionControlRating": null,
+        "safeAndSecureCareRating": null,
+        "totalResponses": null
+    },
+    {
+        "regionType": {
+            "singular": "Province",
+            "plural": "Provinces"
+        },
+        "identifier": "Free State",
+        "name": "fs Free State Province",
+        "parentRegionType": {
+            "singular": "Country",
+            "plural": "Countries"
+        },
+        "parentIdentifier": "za South Africa",
+        "parentName": "South Africa",
+        "staffAttitudeRating": null,
+        "cleanlinessRating": null,
+        "waitingTimesRating": null,
+        "drugAvailabilityRating": null,
+        "infectionControlRating": null,
+        "safeAndSecureCareRating": null,
+        "totalResponses": null
+    },
+    {
+        "regionType": {
+            "singular": "Province",
+            "plural": "Provinces"
+        },
+        "identifier": "Western Cape",
+        "name": "wc Western Cape Province",
+        "parentRegionType": {
+            "singular": "Country",
+            "plural": "Countries"
+        },
+        "parentIdentifier": "za South Africa",
+        "parentName": "South Africa",
+        "staffAttitudeRating": null,
+        "cleanlinessRating": null,
+        "waitingTimesRating": null,
+        "drugAvailabilityRating": null,
+        "infectionControlRating": null,
+        "safeAndSecureCareRating": null,
+        "totalResponses": null
+    },
+    {
+        "regionType": {
+            "singular": "Province",
+            "plural": "Provinces"
+        },
+        "identifier": "Gauteng",
+        "name": "gp Gauteng Province",
+        "parentRegionType": {
+            "singular": "Country",
+            "plural": "Countries"
+        },
+        "parentIdentifier": "za South Africa",
+        "parentName": "South Africa",
+        "staffAttitudeRating": null,
+        "cleanlinessRating": null,
+        "waitingTimesRating": null,
+        "drugAvailabilityRating": null,
+        "infectionControlRating": null,
+        "safeAndSecureCareRating": null,
+        "totalResponses": null
+    },
+    {
+        "regionType": {
+            "singular": "Province",
+            "plural": "Provinces"
+        },
+        "identifier": "Mpumalanga",
+        "name": "mp Mpumalanga Province",
+        "parentRegionType": {
+            "singular": "Country",
+            "plural": "Countries"
+        },
+        "parentIdentifier": "za South Africa",
+        "parentName": "South Africa",
+        "staffAttitudeRating": null,
+        "cleanlinessRating": null,
+        "waitingTimesRating": null,
+        "drugAvailabilityRating": null,
+        "infectionControlRating": null,
+        "safeAndSecureCareRating": null,
+        "totalResponses": null
+    },
+    {
+        "regionType": {
+            "singular": "Province",
+            "plural": "Provinces"
+        },
+        "identifier": "Eastern Cape",
+        "name": "ec Eastern Cape Province",
+        "parentRegionType": {
+            "singular": "Country",
+            "plural": "Countries"
+        },
+        "parentIdentifier": "za South Africa",
+        "parentName": "South Africa",
+        "staffAttitudeRating": null,
+        "cleanlinessRating": null,
+        "waitingTimesRating": null,
+        "drugAvailabilityRating": null,
+        "infectionControlRating": null,
+        "safeAndSecureCareRating": null,
+        "totalResponses": null
+    },
+    {
+        "regionType": {
+            "singular": "Province",
+            "plural": "Provinces"
+        },
+        "identifier": "North West",
+        "name": "nw North West Province",
+        "parentRegionType": {
+            "singular": "Country",
+            "plural": "Countries"
+        },
+        "parentIdentifier": "za South Africa",
+        "parentName": "South Africa",
+        "staffAttitudeRating": null,
+        "cleanlinessRating": null,
+        "waitingTimesRating": null,
+        "drugAvailabilityRating": null,
+        "infectionControlRating": null,
+        "safeAndSecureCareRating": null,
+        "totalResponses": null
+    },
+    {
+        "regionType": {
+            "singular": "Province",
+            "plural": "Provinces"
+        },
+        "identifier": "Northern Cape",
+        "name": "nc Northern Cape Province",
+        "parentRegionType": {
+            "singular": "Country",
+            "plural": "Countries"
+        },
+        "parentIdentifier": "za South Africa",
+        "parentName": "South Africa",
+        "staffAttitudeRating": null,
+        "cleanlinessRating": null,
+        "waitingTimesRating": null,
+        "drugAvailabilityRating": null,
+        "infectionControlRating": null,
+        "safeAndSecureCareRating": null,
+        "totalResponses": null
+    }
+]

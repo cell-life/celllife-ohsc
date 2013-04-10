@@ -9,12 +9,14 @@ import groovyx.net.http.*
  */
 class REST {
 
+    static String contextPath = "/ohsc"
+
     static String baseUrl = "http://localhost:9000"
 
     static RESTClient client = new RESTClient(baseUrl)
 
     static {
-        client.auth.basic("user@test.cell-life.org", "P@ssw0rd1")
+        client.auth.basic("internal", "password")
     }
 
     static get(Map<String, ?> args) {

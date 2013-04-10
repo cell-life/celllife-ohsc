@@ -7,18 +7,19 @@
 
     <security:global-method-security pre-post-annotations="enabled"/>
 
-    <security:authentication-manager id="authenticationManager">
-        <!-- LDAP Authentication Provider - For Basic Authentication -->
-        <security:authentication-provider user-service-ref="ldapUserDetailsService">
-            <security:password-encoder hash="{ssha}"/>
-        </security:authentication-provider>
-        <!-- CAS Authentication Provider -->
-        <security:authentication-provider ref="casAuthenticationProvider"/>
+    <security:authentication-manager id="httpBasicAuthenticationManager">
         <security:authentication-provider>
             <security:user-service>
                 <security:user name="${internal.username}" authorities="SYSTEM" password="${internal.password}" />
             </security:user-service>
         </security:authentication-provider>
+        <security:authentication-provider user-service-ref="ldapUserDetailsService">
+            <security:password-encoder hash="{ssha}"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <security:authentication-manager id="casAuthenticationManager">
+        <security:authentication-provider ref="casAuthenticationProvider"/>
     </security:authentication-manager>
 
 </beans>

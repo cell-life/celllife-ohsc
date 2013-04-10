@@ -51,7 +51,8 @@ public class ClinicAverageApplicationServiceImpl implements ClinicAverageApplica
             if (clinicAverageMap.get(clinicCode) == null) {
 
                 ClinicAverageDTO clinicAverageDTO = new ClinicAverageDTO(
-                        clinic.getShortName(), clinicCode,
+                        clinicCode,
+                        clinic.getShortName(),
                         subDistrictName,
                         subDistrict.getShortName()
                 );

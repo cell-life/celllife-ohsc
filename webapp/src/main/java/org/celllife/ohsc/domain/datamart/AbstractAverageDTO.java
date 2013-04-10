@@ -188,4 +188,16 @@ public abstract class AbstractAverageDTO implements Serializable {
     public void setTotalResponses(Long totalResponses) {
         this.totalResponses = totalResponses;
     }
+
+    public Double getAverageRating() {
+
+        if (staffAttitudeRating == null || cleanlinessRating == null || waitingTimesRating == null ||
+                drugAvailabilityRating == null || infectionControlRating == null || safeAndSecureCareRating == null) {
+
+           return null;
+        }
+
+        return (staffAttitudeRating + cleanlinessRating + waitingTimesRating + drugAvailabilityRating +
+                infectionControlRating + safeAndSecureCareRating) / 6.0D;
+    }
 }

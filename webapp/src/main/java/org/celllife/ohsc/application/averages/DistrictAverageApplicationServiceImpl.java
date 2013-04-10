@@ -51,10 +51,10 @@ public class DistrictAverageApplicationServiceImpl implements DistrictAverageApp
             if (districtAverageMap.get(districtName) == null) {
 
                 DistrictAverageDTO districtAverageDTO = new DistrictAverageDTO(
-                        provinceName,
-                        province.getShortName(),
                         districtName,
-                        district.getShortName()
+                        district.getShortName(),
+                        provinceName,
+                        province.getShortName()
                 );
                 districtAverageMap.put(districtName, districtAverageDTO);
             }

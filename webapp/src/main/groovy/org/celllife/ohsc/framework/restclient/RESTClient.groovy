@@ -14,4 +14,16 @@ class RESTClient {
 
         return client.get([:]).data
     }
+
+    def static get(String uri, Map<String, Object> queryParams) {
+
+        def client = new groovyx.net.http.RESTClient(uri)
+        client.auth.basic("internal", "password")
+
+        def args = [:]
+        args.put("path", uri)
+        args.put("query", queryParams)
+
+        return client.get([:]).data
+    }
 }

@@ -40,10 +40,10 @@ public class AveragesController {
             value = "/service/averages/findClinicAveragesBySubDistrict",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<ClinicAverageDTO> findClinicAveragesBySubDistrict(@RequestParam("subDistrictName")
-                                                                         String subDistrictName) {
+    public Collection<ClinicAverageDTO> findClinicAveragesBySubDistrict(@RequestParam("subDistrict")
+                                                                            String subDistrict) {
 
-        return clinicAverageApplicationService.findClinicAveragesBySubDistrict(subDistrictName);
+        return clinicAverageApplicationService.findClinicAveragesBySubDistrict(subDistrict);
     }
 
     @ResponseBody
@@ -51,10 +51,10 @@ public class AveragesController {
             value = "/service/averages/findSubDistrictAveragesByDistrict",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<SubDistrictAverageDTO> findSubDistrictAveragesBySubDistrict(@RequestParam("districtName")
-                                                                                   String districtName) {
+    public Collection<SubDistrictAverageDTO> findSubDistrictAveragesBySubDistrict(@RequestParam("district")
+                                                                                   String district) {
 
-        return subDistrictAverageApplicationService.findSubDistrictAveragesByDistrict(districtName);
+        return subDistrictAverageApplicationService.findSubDistrictAveragesByDistrict(district);
     }
 
     @ResponseBody
@@ -62,10 +62,9 @@ public class AveragesController {
             value = "/service/averages/findDistrictAveragesByProvince",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<DistrictAverageDTO> findDistrictAveragesByProvince(@RequestParam("provinceName")
-                                                                                   String provinceName) {
+    public Collection<DistrictAverageDTO> findDistrictAveragesByProvince(@RequestParam("province") String province) {
 
-        return districtAverageApplicationService.findDistrictAveragesByProvince(provinceName);
+        return districtAverageApplicationService.findDistrictAveragesByProvince(province);
     }
 
     @ResponseBody

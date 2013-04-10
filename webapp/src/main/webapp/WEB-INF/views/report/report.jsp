@@ -1,141 +1,95 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>OHSC</title>
 
-    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <style type="text/css">
-        body {
-            padding-top: 20px;
-            padding-bottom: 40px;
-        }
-    </style>
-    <link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
+    <c:set var="url">${pageContext.request.requestURL}</c:set>
+    <base href="${fn:substring(url, 0, fn:length(url) - fn:length(pageContext.request.requestURI))}${pageContext.request.contextPath}/" />
+
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="resources/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="resources/css/datatables_bootstrap.css" rel="stylesheet">
+    <link href="resources/css/ohsc.css" rel="stylesheet">
+
 </head>
 <body>
-
-
-<div class="container">
-
+<div class="container-fluid">
     <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-            <li class="active"><a href="${pageContext.request.contextPath}/report/nationalRatingPerDomain">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <h3 class="muted">OHSC</h3>
+        <h2>
+            <img class="ohsc-logo" src="resources/img/coat-of-arms.png"> OHSC
+        </h2>
+        <div class="btn-toolbar ohsc-nav-btn-toolbar">
+            <a class="btn btn-link ohsc-welcome-text">Welcome Dr Radebe</a>
+            <a class="btn btn-primary">Log Out</a>
+        </div>
     </div>
 
-    <hr>
-
     <div class="row-fluid">
-        <div class="span12">
+        <p id="breadcrumb">
+            <a href="#" class="active">Country<span>South Africa</span></a>
+            <a href="#" class="active">Province<span>Western Cape</span></a>
+            <a href="#">Municipality</a>
+            <a href="#">Clinic</a>
+        </p>
+    </div>
 
-            <h2> Core Standards - ${parentRegion} Ratings</h2>
-            
-            	<p>Below are the ratings of the ${fn:toLowerCase(type)}s in each
-            	of the 6 core standards for quality care. These ratings are
-            	compiled only from responses to the mobile phone survey by patients
-            	who reported on their personal experience at their specific health
-            	care facility.</p>
-            	
-            	<p>The total number of responses contributing to the ratings are
-            	shown on the extreme right as are the average ratings across all 6.</p>
+    <div class="row-fluid ohsc-border">
 
-				<table class="table table-striped table-bordered" id="myTable">
-					<thead>
-						<tr>
-							<th>${type}</th>
-							<th>Staff Attitudes</th>
-							<th>Cleanliness</th>
-							<th>Waiting Times</th>
-							<th>Safe & Secure Care</th>
-							<th>Infection Control</th>
-							<th>Drug Availability</th>
-							<th>Average Rating</th>
-							<th>Total Responses</th>
-						</tr>
-					</thead>
-					<tbody>
+        <p>Below are the ratings of the ${averages[0].regionType.plural} in each of
+            the 6 core standards for quality care.</p>
+
+        <table class="table table-striped table-bordered" id="myTable">
+            <thead>
+            <tr>
+                <th>${averages[0].regionType.singular}</th>
+                <th>Staff Attitudes</th>
+                <th>Cleanliness</th>
+                <th>Waiting Times</th>
+                <th>Safe &amp; Secure Care</th>
+                <th>Infection Control</th>
+                <th>Drug Availability</th>
+                <th>Average Rating</th>
+                <th>Total Responses</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${averages}" var="average">
+                <tr>
+                    <td>${average.name}</td>
+                    <td>${average.staffAttitudeRating != null ? average.staffAttitudeRating : "N/A"}</td>
+                    <td>${average.cleanlinessRating != null ? average.cleanlinessRating : "N/A"}</td>
+                    <td>${average.waitingTimesRating != null ? average.waitingTimesRating : "N/A"}</td>
+                    <td>${average.drugAvailabilityRating != null ? average.drugAvailabilityRating : "N/A"}</td>
+                    <td>${average.infectionControlRating != null ? average.infectionControlRating : "N/A"}</td>
+                    <td>${average.safeAndSecureCareRating != null ? average.safeAndSecureCareRating : "N/A"}</td>
+                    <td>${average.averageRating != null ? average.averageRating : "N/A"}</td>
+                    <td>${average.totalResponses != null ? average.totalResponses : "0"}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
 
 
-                    <!-- For each item -->
-                    <c:forEach items="${items}" var="item">
-                        <tr>
-                            <c:if test="${childReportBaseUrl != null}">
-                                <td><a
-                                        href="${pageContext.request.contextPath}${childReportBaseUrl}${item.name}"><c:out
-                                        value="${item.name}"/></a></td>
+        <p><small>These ratings are compiled only from responses to
+            the mobile phone survey by patients who reported on their personal
+            experience at their specific health care facility.</small></p>
+    </div>
 
-                            </c:if>
-                            <c:if test="${childReportBaseUrl == null}">
-                                <td><c:out value="${item.name}"/></td>
-                            </c:if>
-							<!-- Not sure this is the best way for number formatting, please feel free to refactor. -->
-							<td><c:if test="${item.ratingDomain1 != 0}">
-									<fmt:formatNumber type="number" maxFractionDigits="2"
-										value="${ item.ratingDomain1}" />
-								</c:if> <c:if test="${item.ratingDomain1 == 0}">
-									N/A
-								</c:if></td>
-							<td><c:if test="${item.ratingDomain2 != 0}">
-									<fmt:formatNumber type="number" maxFractionDigits="2"
-										value="${ item.ratingDomain2}" />
-								</c:if> <c:if test="${item.ratingDomain2 == 0}">
-									N/A
-								</c:if></td>
-							<td><c:if test="${item.ratingDomain3 != 0}">
-									<fmt:formatNumber type="number" maxFractionDigits="2"
-										value="${ item.ratingDomain3}" />
-								</c:if> <c:if test="${item.ratingDomain3 == 0}">
-									N/A
-								</c:if></td>
-							<td><c:if test="${item.ratingDomain4 != 0}">
-									<fmt:formatNumber type="number" maxFractionDigits="2"
-										value="${ item.ratingDomain4}" />
-								</c:if>
-								<c:if test="${item.ratingDomain4 == 0}">
-									N/A
-								</c:if></td>
-							<td><c:if test="${item.ratingDomain5 != 0}">
-									<fmt:formatNumber type="number" maxFractionDigits="2"
-										value="${ item.ratingDomain5}" />
-								</c:if> <c:if test="${item.ratingDomain5 == 0}">
-									N/A
-								</c:if></td>
-							<td><c:if test="${item.ratingDomain6 != 0}">
-									<fmt:formatNumber type="number" maxFractionDigits="2"
-										value="${ item.ratingDomain6}" />
-								</c:if> <c:if test="${item.ratingDomain6 == 0}">
-									N/A
-								</c:if></td>
-							<td><c:if test="${item.ratingOverall != 0}">
-									<fmt:formatNumber type="number" maxFractionDigits="2"
-										value="${ item.ratingOverall}" />
-								</c:if> <c:if test="${item.ratingOverall == 0}">
-									N/A
-								</c:if></td>
-							<td><c:if test="${item.count != 0}">
-									<fmt:formatNumber type="number" maxFractionDigits="2"
-										value="${item.count}" />
-								</c:if> <c:if test="${item.count == 0}">
-									N/A
-								</c:if></td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+    <div class="arrow-heading">
+        <div class="arrow-box"></div>
+        <div class="arrow"></div>
+        <p>Total Clinics Monitored</p>
+    </div>
 
-            <p>
-
-            </p>
-        </div>
+    <div class="row-fluid ohsc-border">
+        <center>
+            <div class="row-fluid" id="donut"></div>
+            <script src="resources/js/d3.v3.min.js"></script>
+            <script src="resources/js/donut-graphs.js"></script>
+        </center>
     </div>
 
     <hr>
@@ -146,22 +100,23 @@
 
 </div>
 
-<script src="http://code.jquery.com/jquery.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script type="text/javascript" charset="utf-8" language="javascript" src="${pageContext.request.contextPath}/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="resources/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="resources/js/datatables_bootstrap.js"></script>
+<script>
+    /* Table initialisation */
+    $(document).ready(
+            function() {
+                $('#myTable').dataTable( {
+                    "sDom" : "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+                    "sPaginationType" : "bootstrap",
+                    "oLanguage" : {
+                        "sLengthMenu" : "_MENU_ records per page"
+                    }
+                });
+            });
+</script>
 
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#myTable').dataTable( {
-								"sDom" : "t",
-								"bPaginate": false
-							});
-							$.extend($.fn.dataTableExt.oStdClasses, {
-								"sWrapper" : "dataTables_wrapper form-inline"
-							});
-						});
-	</script>
 </body>
 </html>

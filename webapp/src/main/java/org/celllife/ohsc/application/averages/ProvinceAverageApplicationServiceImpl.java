@@ -44,7 +44,7 @@ public class ProvinceAverageApplicationServiceImpl implements ProvinceAverageApp
             if (provinceAverageMap.get(provinceName) == null) {
 
                 ProvinceAverageDTO provinceAverageDTO = new ProvinceAverageDTO(
-                        province.getShortName(), provinceName
+                        provinceName, province.getShortName()
                 );
                 provinceAverageMap.put(provinceName, provinceAverageDTO);
             }

@@ -1,7 +1,9 @@
 package org.celllife.ohsc.domain.datamart
 
-import static org.celllife.ohsc.framework.rest.REST.delete
+import org.celllife.ohsc.framework.rest.REST
+
 import static org.celllife.ohsc.framework.rest.REST.get
+import static org.celllife.ohsc.framework.rest.REST.delete
 
 /**
  * User: Kevin W. Sewell
@@ -10,7 +12,7 @@ import static org.celllife.ohsc.framework.rest.REST.get
  */
 class DataMartRatings {
 
-    static baseResourceUrl = "/api/datamartratings"
+    static baseResourceUrl = "${REST.contextPath}/api/datamartratings"
 
     static baseSearchUrl = "${baseResourceUrl}/search"
 
