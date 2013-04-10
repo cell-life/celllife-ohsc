@@ -44,8 +44,8 @@ class DataMartRatingRepositoryAcceptanceTest {
 
         assertNotNull clinicAverages
 
-        def clinicAverage = clinicAverages.content.find { it.clinicCode == "5198" }
-        assertEquals(2.0, clinicAverage.getStaffAttitudeRating)
+        def clinicAverage = clinicAverages.content.find { it.identifier == "5198" }
+        assertEquals(2.0, clinicAverage.staffAttitudeRating)
     }
 
     @Test
@@ -55,7 +55,29 @@ class DataMartRatingRepositoryAcceptanceTest {
 
         assertNotNull subDistrictAverages
 
-        def subDistrictAverage = subDistrictAverages.content.find { it.subDistrictName == "mp Govan Mbeki Local Municipality" }
-        assertEquals(2.0, subDistrictAverage.getStaffAttitudeRating)
+        def subDistrictAverage = subDistrictAverages.content.find { it.identifier == "mp Govan Mbeki Local Municipality" }
+        assertEquals(2.0, subDistrictAverage.staffAttitudeRating)
+    }
+
+    @Test
+    void shouldFindDistrictAveragesByProvinceName() throws Exception {
+
+        def districtAverages = findDistrictAveragesByProvinceName("mp Mpumalanga Province")
+
+        assertNotNull districtAverages
+
+        def districtAverage = districtAverages.content.find { it.identifier == "mp Gert Sibande District Municipality" }
+        assertEquals(2.0, districtAverage.staffAttitudeRating)
+    }
+
+    @Test
+    void shouldFindProvinceAverages() throws Exception {
+
+        def provinceAverages = findProvinceAverages()
+
+        assertNotNull provinceAverages
+
+        def provinceAverage = provinceAverages.content.find { it.identifier == "mp Mpumalanga Province" }
+        assertEquals(2.0, provinceAverage.staffAttitudeRating)
     }
 }

@@ -20,16 +20,16 @@ public interface DataMartRatingRepository extends PagingAndSortingRepository<Dat
             "group by subDistrictName, subDistrictShortName, clinicCode, clinicShortName")
     Iterable<ClinicAverageDTO> findClinicAveragesBySubDistrictName(@Param("subDistrictName") String subDistrictName);
 
-    @Query("select new org.celllife.ohsc.domain.datamart.SubDistrictAverageDTO(districtName, districtShortName, " +
-            "subDistrictName, subDistrictShortName, avg(staffAttitudeRating), avg(cleanlinessRating), " +
+    @Query("select new org.celllife.ohsc.domain.datamart.SubDistrictAverageDTO(subDistrictName, subDistrictShortName, " +
+            "districtName, districtShortName, avg(staffAttitudeRating), avg(cleanlinessRating), " +
             "avg(waitingTimesRating), avg(drugAvailabilityRating), avg(infectionControlRating), " +
             "avg(safeAndSecureCareRating), count(*)) from DataMartRating " +
             "where districtName = :districtName " +
             "group by districtName, districtShortName, subDistrictName, subDistrictShortName")
     Iterable<SubDistrictAverageDTO> findSubDistrictAveragesByDistrictName(@Param("districtName") String districtName);
 
-    @Query("select new org.celllife.ohsc.domain.datamart.DistrictAverageDTO(provinceName, provinceShortName, " +
-            "districtName, districtShortName, avg(staffAttitudeRating), avg(cleanlinessRating), " +
+    @Query("select new org.celllife.ohsc.domain.datamart.DistrictAverageDTO(districtName, districtShortName, " +
+            "provinceName, provinceShortName, avg(staffAttitudeRating), avg(cleanlinessRating), " +
             "avg(waitingTimesRating), avg(drugAvailabilityRating), avg(infectionControlRating), " +
             "avg(safeAndSecureCareRating), count(*)) from DataMartRating " +
             "where provinceName = :provinceName " +
