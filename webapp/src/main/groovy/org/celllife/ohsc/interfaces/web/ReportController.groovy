@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
+import org.springframework.web.bind.annotation.RequestParam
 
 import static org.celllife.ohsc.framework.restclient.RESTClient.get
 /**
@@ -15,26 +16,59 @@ import static org.celllife.ohsc.framework.restclient.RESTClient.get
 @Controller
 class ReportController {
 
-    @Value('${averages.url}')
-    def String averagesUrl;
+    @Value('${averages.service.url}')
+    def String averageServiceUrl;
+
+    @Value('${rating.service.url}')
+    def String ratingServiceUrl;
 
     @RequestMapping(value="/reports/provinces", method = RequestMethod.GET)
-    def findProvinceAverages(Model model) {
+    def findProvinceAverages(@RequestParam("country") String country, Model model) {
 
-        def averages = get("${averagesUrl}/findProvinceAverages")
+        def averages = get("${averageServiceUrl}/findProvinceAveragesByCountry", [country: country])
 
         model.put("averages", averages)
 
-        return "report/report";
+        return "reports/provinces";
     }
 
     @RequestMapping(value="/reports/districts", method = RequestMethod.GET)
-    def findDistrictAveragesByProvince(String province, Model model) {
+    def findDistrictAveragesByProvince(@RequestParam("province") String province, Model model) {
 
-        def averages = get("${averagesUrl}/findDistrictAveragesByProvince", query: [ province:province ])
+        def averages = get("${averageServiceUrl}/findDistrictAveragesByProvince", [province: province])
 
         model.put("averages", averages)
 
-        return "report/report-new";
+        return "reports/districts";
+    }
+
+    @RequestMapping(value="/reports/subDistricts", method = RequestMethod.GET)
+    def findSubDistrictAveragesByDistrict(@RequestParam("district") String districtName, Model model) {
+
+        def averages = get("${averageServiceUrl}/findSubDistrictAveragesByDistrict", [district: districtName])
+
+        model.put("averages", averages)
+
+        return "reports/subDistricts";
+    }
+
+    @RequestMapping(value="/reports/clinics", method = RequestMethod.GET)
+    def findClinicAveragesBySubDistrict(@RequestParam("subDistrict") String subDistrict, Model model) {
+
+        def averages = get("${averageServiceUrl}/findClinicAveragesBySubDistrict", [subDistrict: subDistrict])
+
+        model.put("averages", averages)
+
+        return "reports/clinics";
+    }
+
+    @RequestMapping(value="/reports/ratings", method = RequestMethod.GET)
+    def findRatingsByClinic(@RequestParam("clinic") String clinic, Model model) {
+
+        def averages = get("${ratingServiceUrl}/findClinicAveragesBySubDistrict", [clinic: clinic])
+
+        model.put("averages", averages)
+
+        return "reports/clinics";
     }
 }

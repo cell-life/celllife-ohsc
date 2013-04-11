@@ -14,8 +14,14 @@ class Ratings {
 
     static String baseResourceUrl = "${REST.contextPath}/api/ratings"
 
+    static String findByClinicCodeUrl = "${baseResourceUrl}/search/findByClinicCode"
+
     static findAll() {
         get(path: baseResourceUrl)
+    }
+
+    static findByClinicCode(String clinicCode) {
+        get(path: findByClinicCodeUrl, query: [clinicCode: clinicCode])
     }
 
     static clear() {

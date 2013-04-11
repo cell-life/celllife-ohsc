@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,22 +30,22 @@
 
     <div class="row-fluid">
         <p id="breadcrumb">
-            <a href="#" class="active">Country<span>South Africa</span></a>
-            <a href="#" class="active">Province<span>Western Cape</span></a>
-            <a href="#">Municipality</a>
-            <a href="#">Clinic</a>
+            <a href="reports/provinces?country=${averages[0].countryName}" class="active">Country<span>${averages[0].countryShortName}</span></a>
+            <a href="reports/districts?province=${averages[0].provinceName}" class="active">Province<span>${averages[0].provinceShortName}</span></a>
+            <a>District</a>
+            <a>Sub-District</a>
+            <a>Clinic</a>
         </p>
     </div>
 
     <div class="row-fluid ohsc-border">
 
-        <p>Below are the ratings of the ${averages[0].regionType.plural} in each of
-            the 6 core standards for quality care.</p>
+        <p>Below are the ratings of the Districts in each of the 6 core standards for quality care.</p>
 
         <table class="table table-striped table-bordered" id="myTable">
             <thead>
             <tr>
-                <th>${averages[0].regionType.singular}</th>
+                <th>District</th>
                 <th>Staff Attitudes</th>
                 <th>Cleanliness</th>
                 <th>Waiting Times</th>
@@ -58,14 +59,14 @@
             <tbody>
             <c:forEach items="${averages}" var="average">
                 <tr>
-                    <td>${average.name}</td>
-                    <td>${average.staffAttitudeRating != null ? average.staffAttitudeRating : "N/A"}</td>
-                    <td>${average.cleanlinessRating != null ? average.cleanlinessRating : "N/A"}</td>
-                    <td>${average.waitingTimesRating != null ? average.waitingTimesRating : "N/A"}</td>
-                    <td>${average.drugAvailabilityRating != null ? average.drugAvailabilityRating : "N/A"}</td>
-                    <td>${average.infectionControlRating != null ? average.infectionControlRating : "N/A"}</td>
-                    <td>${average.safeAndSecureCareRating != null ? average.safeAndSecureCareRating : "N/A"}</td>
-                    <td>${average.averageRating != null ? average.averageRating : "N/A"}</td>
+                    <td><a href="reports/subDistricts?district=${average.districtName}">${average.districtShortName}</a></td>
+                    <td><fmt:formatNumber value="${average.staffAttitudeRating}" type="number" minFractionDigits="2"/></td>
+                    <td><fmt:formatNumber value="${average.cleanlinessRating}" type="number" minFractionDigits="2"/></td>
+                    <td><fmt:formatNumber value="${average.waitingTimesRating}" type="number" minFractionDigits="2"/></td>
+                    <td><fmt:formatNumber value="${average.drugAvailabilityRating}" type="number" minFractionDigits="2"/></td>
+                    <td><fmt:formatNumber value="${average.infectionControlRating}" type="number" minFractionDigits="2"/></td>
+                    <td><fmt:formatNumber value="${average.safeAndSecureCareRating}" type="number" minFractionDigits="2"/></td>
+                    <td><fmt:formatNumber value="${average.averageRating}" type="number" minFractionDigits="2"/></td>
                     <td>${average.totalResponses != null ? average.totalResponses : "0"}</td>
                 </tr>
             </c:forEach>

@@ -32,6 +32,10 @@ public final class DataMartRating {
 
     private String provinceShortName;
 
+    private String countryName;
+
+    private String countryShortName;
+
     private Double staffAttitudeRating;
 
     private Double cleanlinessRating;
@@ -117,6 +121,22 @@ public final class DataMartRating {
 
     public void setProvinceShortName(String provinceShortName) {
         this.provinceShortName = provinceShortName;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
+    public String getCountryShortName() {
+        return countryShortName;
+    }
+
+    public void setCountryShortName(String countryShortName) {
+        this.countryShortName = countryShortName;
     }
 
     public Double getStaffAttitudeRating() {

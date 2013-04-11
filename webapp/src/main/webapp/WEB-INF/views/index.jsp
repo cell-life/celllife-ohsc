@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,7 +10,6 @@
 
     <c:set var="url">${pageContext.request.requestURL}</c:set>
     <base href="${fn:substring(url, 0, fn:length(url) - fn:length(pageContext.request.requestURI))}${pageContext.request.contextPath}/" />
-
 
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <style type="text/css">
@@ -35,7 +35,7 @@
 
     <div class="masthead">
         <ul class="nav nav-pills pull-right">
-            <li class="active"><a href="resources/report/nationalRatingPerDomain">Home</a></li>
+            <li class="active"><a href="reports/provinces?country=za South Africa (National Government)">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="j_spring_cas_security_logout">Logout</a>
@@ -49,7 +49,7 @@
 
     <p>
     <ul>
-        <li><a href="resources/report/nationalRatingPerDomain">Aggregated national ratings report</a></li>
+        <li><a href="reports/provinces?country=za South Africa (National Government)">Aggregated national ratings report</a></li>
         <li>Future Report Here</li>
         <li>Future Report Here</li>
     </ul>

@@ -33,7 +33,7 @@ class DataMartRatingRepositoryAcceptanceTest {
 
         assertNotNull dataMartRatings
 
-        def dataMartRating = dataMartRatings.content.find { it.subDistrictName == "mp Govan Mbeki Local Municipality" }
+        def dataMartRating = dataMartRatings.content.find { item -> item.subDistrictName == "mp Govan Mbeki Local Municipality" }
         assertEquals(2.0, dataMartRating.staffAttitudeRating)
     }
 
@@ -44,7 +44,7 @@ class DataMartRatingRepositoryAcceptanceTest {
 
         assertNotNull clinicAverages
 
-        def clinicAverage = clinicAverages.content.find { it.identifier == "5198" }
+        def clinicAverage = clinicAverages.content.find { item -> item.clinicCode == "5198" }
         assertEquals(2.0, clinicAverage.staffAttitudeRating)
     }
 
@@ -55,7 +55,7 @@ class DataMartRatingRepositoryAcceptanceTest {
 
         assertNotNull subDistrictAverages
 
-        def subDistrictAverage = subDistrictAverages.content.find { it.identifier == "mp Govan Mbeki Local Municipality" }
+        def subDistrictAverage = subDistrictAverages.content.find { item -> item.subDistrictName == "mp Govan Mbeki Local Municipality" }
         assertEquals(2.0, subDistrictAverage.staffAttitudeRating)
     }
 
@@ -66,18 +66,18 @@ class DataMartRatingRepositoryAcceptanceTest {
 
         assertNotNull districtAverages
 
-        def districtAverage = districtAverages.content.find { it.identifier == "mp Gert Sibande District Municipality" }
+        def districtAverage = districtAverages.content.find { item -> item.districtName == "mp Gert Sibande District Municipality" }
         assertEquals(2.0, districtAverage.staffAttitudeRating)
     }
 
     @Test
     void shouldFindProvinceAverages() throws Exception {
 
-        def provinceAverages = findProvinceAverages()
+        def provinceAverages = findProvinceAveragesByCountryName("za South Africa (National Government)")
 
         assertNotNull provinceAverages
 
-        def provinceAverage = provinceAverages.content.find { it.identifier == "mp Mpumalanga Province" }
+        def provinceAverage = provinceAverages.content.find { item -> item.provinceName == "mp Mpumalanga Province" }
         assertEquals(2.0, provinceAverage.staffAttitudeRating)
     }
 }

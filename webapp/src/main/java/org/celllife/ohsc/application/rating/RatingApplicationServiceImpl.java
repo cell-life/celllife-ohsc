@@ -2,18 +2,23 @@ package org.celllife.ohsc.application.rating;
 
 import org.celllife.ohsc.domain.clinic.Clinic;
 import org.celllife.ohsc.domain.clinic.ClinicRepository;
+import org.celllife.ohsc.domain.country.Country;
+import org.celllife.ohsc.domain.datamart.DataMartRating;
 import org.celllife.ohsc.domain.datamart.DataMartRatingBuilder;
 import org.celllife.ohsc.domain.datamart.DataMartRatingRepository;
 import org.celllife.ohsc.domain.district.District;
 import org.celllife.ohsc.domain.province.Province;
 import org.celllife.ohsc.domain.rating.Rating;
 import org.celllife.ohsc.domain.rating.RatingRepository;
-import org.celllife.ohsc.domain.datamart.DataMartRating;
 import org.celllife.ohsc.domain.subdistrict.SubDistrict;
 import org.celllife.ohsc.framework.logging.LogLevel;
 import org.celllife.ohsc.framework.logging.Loggable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import static org.celllife.ohsc.domain.rating.Domain.*;
 
@@ -55,6 +60,8 @@ public final class RatingApplicationServiceImpl implements RatingApplicationServ
 
         Province province = district.getProvince();
 
+        Country country = province.getCountry();
+
         DataMartRating dataMartRating = new DataMartRatingBuilder()
                 .setUssdSessionId(rating.getUssdSession().getId())
                 .setClinicCode(rating.getClinicCode())
@@ -65,6 +72,8 @@ public final class RatingApplicationServiceImpl implements RatingApplicationServ
                 .setDistrictShortName(district.getShortName())
                 .setProvinceName(province.getName())
                 .setProvinceShortName(province.getShortName())
+                .setCountryName(country.getName())
+                .setCountryShortName(country.getShortName())
                 .setStaffAttitudeRating(rating.getRatingForDomain(STAFF_ATTITUDE))
                 .setCleanlinessRating(rating.getRatingForDomain(CLEANLINESS))
                 .setWaitingTimesRating(rating.getRatingForDomain(WAITING_TIMES))

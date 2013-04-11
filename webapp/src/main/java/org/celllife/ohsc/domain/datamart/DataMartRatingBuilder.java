@@ -68,6 +68,18 @@ public final class DataMartRatingBuilder {
         return this;
     }
 
+    public DataMartRatingBuilder setCountryName(String countryName) {
+
+        dataMartRating.setCountryName(countryName);
+        return this;
+    }
+
+    public DataMartRatingBuilder setCountryShortName(String countryShortName) {
+
+        dataMartRating.setCountryShortName(countryShortName);
+        return this;
+    }
+
     public DataMartRatingBuilder setStaffAttitudeRating(Double staffAttitudeRating) {
 
         dataMartRating.setStaffAttitudeRating(staffAttitudeRating);

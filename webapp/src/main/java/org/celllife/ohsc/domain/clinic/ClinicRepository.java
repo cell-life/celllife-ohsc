@@ -30,5 +30,6 @@ public interface ClinicRepository extends PagingAndSortingRepository<Clinic, Lon
     @QueryHints({ @QueryHint(name = "org.hibernate.cacheable", value ="true") })
     Clinic findByExternalId(String externalId);
 
+    @QueryHints({ @QueryHint(name = "org.hibernate.cacheable", value ="true") })
     Iterable<Clinic> findBySubDistrictName(String subDistrictName);
 }

@@ -9,7 +9,7 @@ var pie = d3.layout.pie().sort(null).value(function(d) {
 });
 
 /* TODO: replace csv file with real data */
-d3.csv("js/data.csv", function(error, data) {
+d3.csv("resources/js/data.csv", function(error, data) {
 
 	color.domain(d3.keys(data[0]).filter(function(key) {
 		return key !== "Province";

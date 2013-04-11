@@ -2,8 +2,11 @@ package org.celllife.ohsc.application.averages;
 
 import org.celllife.ohsc.domain.clinic.Clinic;
 import org.celllife.ohsc.domain.clinic.ClinicRepository;
+import org.celllife.ohsc.domain.country.Country;
 import org.celllife.ohsc.domain.datamart.ClinicAverageDTO;
 import org.celllife.ohsc.domain.datamart.DataMartRatingRepository;
+import org.celllife.ohsc.domain.district.District;
+import org.celllife.ohsc.domain.province.Province;
 import org.celllife.ohsc.domain.subdistrict.SubDistrict;
 import org.celllife.ohsc.domain.subdistrict.SubDistrictRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +45,14 @@ public class ClinicAverageApplicationServiceImpl implements ClinicAverageApplica
         Map<String, ClinicAverageDTO> clinicAverageMap = new HashMap<>();
 
         for (ClinicAverageDTO clinicAverageDTO : clinicAverages) {
-            clinicAverageMap.put(clinicAverageDTO.getIdentifier(), clinicAverageDTO);
+            clinicAverageMap.put(clinicAverageDTO.getClinicCode(), clinicAverageDTO);
         }
+
+        District district = subDistrict.getDistrict();
+
+        Province province = district.getProvince();
+
+        Country country = province.getCountry();
 
         for (Clinic clinic : clinics) {
 
@@ -54,7 +63,13 @@ public class ClinicAverageApplicationServiceImpl implements ClinicAverageApplica
                         clinicCode,
                         clinic.getShortName(),
                         subDistrictName,
-                        subDistrict.getShortName()
+                        subDistrict.getShortName(),
+                        district.getName(),
+                        district.getShortName(),
+                        province.getName(),
+                        province.getShortName(),
+                        country.getName(),
+                        country.getShortName()
                 );
                 clinicAverageMap.put(clinicCode, clinicAverageDTO);
             }

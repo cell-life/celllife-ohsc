@@ -1,4 +1,4 @@
-package org.celllife.ohsc.interfaces.service;
+package org.celllife.ohsc.interfaces.service.average;
 
 import org.celllife.ohsc.application.averages.ClinicAverageApplicationService;
 import org.celllife.ohsc.application.averages.DistrictAverageApplicationService;
@@ -69,12 +69,12 @@ public class AveragesController {
 
     @ResponseBody
     @RequestMapping(
-            value = "/service/averages/findProvinceAverages",
+            value = "/service/averages/findProvinceAveragesByCountry",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<ProvinceAverageDTO> findProvinceAverages() {
+    public Collection<ProvinceAverageDTO> findProvinceAveragesByCountry(@RequestParam("country") String country) {
 
-        return provinceAverageApplicationService.findProvinceAverages();
+        return provinceAverageApplicationService.findProvinceAveragesByCountryName(country);
     }
 
 }

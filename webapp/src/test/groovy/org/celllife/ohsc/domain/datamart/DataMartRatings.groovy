@@ -22,7 +22,7 @@ class DataMartRatings {
 
     static findDistrictAveragesByProvinceNameUrl = "${baseSearchUrl}/findDistrictAveragesByProvinceName"
 
-    static findProvinceAveragesUrl = "${baseSearchUrl}/findProvinceAverages"
+    static findProvinceAveragesByCountryUrl = "${baseSearchUrl}/findProvinceAveragesByCountryName"
 
     static findClinicAveragesBySubDistrictName(String subDistrictName) {
         get(path: findClinicAveragesBySubDistrictNameUrl, query: [subDistrictName: subDistrictName])
@@ -36,8 +36,8 @@ class DataMartRatings {
         get(path: findDistrictAveragesByProvinceNameUrl, query: [provinceName: provinceName])
     }
 
-    static findProvinceAverages() {
-        get(path: findProvinceAveragesUrl)
+    static findProvinceAveragesByCountryName(String countryName) {
+        get(path: findProvinceAveragesByCountryUrl, query: [countryName: countryName])
     }
 
     static findAll() {

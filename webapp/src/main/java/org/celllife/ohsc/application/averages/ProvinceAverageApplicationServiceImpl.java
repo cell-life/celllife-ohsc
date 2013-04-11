@@ -1,5 +1,7 @@
 package org.celllife.ohsc.application.averages;
 
+import org.celllife.ohsc.domain.country.Country;
+import org.celllife.ohsc.domain.country.CountryRepository;
 import org.celllife.ohsc.domain.datamart.DataMartRatingRepository;
 import org.celllife.ohsc.domain.datamart.ProvinceAverageDTO;
 import org.celllife.ohsc.domain.province.Province;
@@ -20,22 +22,27 @@ import java.util.Map;
 public class ProvinceAverageApplicationServiceImpl implements ProvinceAverageApplicationService {
 
     @Autowired
+    private CountryRepository countryRepository;
+
+    @Autowired
     private ProvinceRepository provinceRepository;
 
     @Autowired
     private DataMartRatingRepository dataMartRatingRepository;
 
-    public Collection<ProvinceAverageDTO> findProvinceAverages() {
+    public Collection<ProvinceAverageDTO> findProvinceAveragesByCountryName(String countryName) {
 
-        Iterable<Province> provinces = provinceRepository.findAll();
+        Country country = countryRepository.findOneByName(countryName);
+
+        Iterable<Province> provinces = provinceRepository.findByCountryName(countryName);
 
         Iterable<ProvinceAverageDTO> provinceAverages =
-                dataMartRatingRepository.findProvinceAverages();
+                dataMartRatingRepository.findProvinceAveragesByCountryName(countryName);
 
         Map<String, ProvinceAverageDTO> provinceAverageMap = new HashMap<>();
 
         for (ProvinceAverageDTO provinceAverageDTO : provinceAverages) {
-            provinceAverageMap.put(provinceAverageDTO.getIdentifier(), provinceAverageDTO);
+            provinceAverageMap.put(provinceAverageDTO.getProvinceName(), provinceAverageDTO);
         }
 
         for (Province province : provinces) {
@@ -44,7 +51,10 @@ public class ProvinceAverageApplicationServiceImpl implements ProvinceAverageApp
             if (provinceAverageMap.get(provinceName) == null) {
 
                 ProvinceAverageDTO provinceAverageDTO = new ProvinceAverageDTO(
-                        provinceName, province.getShortName()
+                        provinceName,
+                        province.getShortName(),
+                        countryName,
+                        country.getShortName()
                 );
                 provinceAverageMap.put(provinceName, provinceAverageDTO);
             }

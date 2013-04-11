@@ -1,7 +1,5 @@
 package org.celllife.ohsc.domain.province;
 
-import java.util.List;
-
 import org.celllife.ohsc.framework.logging.LogLevel;
 import org.celllife.ohsc.framework.logging.Loggable;
 import org.springframework.data.jpa.repository.Query;
@@ -10,6 +8,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.repository.annotation.RestResource;
 
 import javax.persistence.QueryHint;
+import java.util.List;
 
 /**
  * User: Kevin W. Sewell
@@ -29,5 +28,8 @@ public interface ProvinceRepository extends PagingAndSortingRepository<Province,
 
     @QueryHints({ @QueryHint(name = "org.hibernate.cacheable", value ="true") })
     Province findOneByName(String provinceName);
+
+    @QueryHints({ @QueryHint(name = "org.hibernate.cacheable", value ="true") })
+    Iterable<Province> findByCountryName(String countryName);
 }
 

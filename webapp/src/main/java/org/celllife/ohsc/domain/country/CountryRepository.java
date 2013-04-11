@@ -20,4 +20,6 @@ public interface CountryRepository extends PagingAndSortingRepository<Country, L
     @QueryHints({ @QueryHint(name = "org.hibernate.cacheable", value ="true") })
     Country findByExternalId(String externalId);
 
+    @QueryHints({ @QueryHint(name = "org.hibernate.cacheable", value ="true") })
+    Country findOneByName(String countryName);
 }

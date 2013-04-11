@@ -1,4 +1,4 @@
-package org.celllife.ohsc.interfaces.service
+package org.celllife.ohsc.interfaces.service.average
 
 import org.celllife.ohsc.framework.rest.REST
 
@@ -7,7 +7,7 @@ import org.celllife.ohsc.framework.rest.REST
  * Date: 2013-04-04
  * Time: 19h36
  */
-class Averages {
+class AverageService {
 
     static baseAveragesUrl = "${REST.contextPath}/service/averages"
 
@@ -32,7 +32,10 @@ class Averages {
         )
     }
 
-    static findProvinceAverages() {
-        REST.get(path: "${baseAveragesUrl}/findProvinceAverages")
+    static findProvinceAveragesByCountry(String country) {
+        REST.get(
+                path: "${baseAveragesUrl}/findProvinceAveragesByCountry",
+                query: [country: country]
+        )
     }
 }

@@ -40,7 +40,7 @@ public class CqmUssdSubmissionMediatorPerformanceTest {
 
     private static void post(String json) throws Exception {
 
-        HttpPost method = new HttpPost("http://localhost:9000/service/cqmUssdSubmission");
+        HttpPost method = new HttpPost("http://localhost:9000/ohsc/service/cqmUssdSubmission");
         HttpParams params = method.getParams();
         HttpConnectionParams.setConnectionTimeout(params, 10000);
         HttpConnectionParams.setSoTimeout(params, 10000);

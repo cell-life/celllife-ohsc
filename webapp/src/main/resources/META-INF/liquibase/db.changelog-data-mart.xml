@@ -16,6 +16,8 @@
             <column name="district_short_name" type="VARCHAR(255)"/>
             <column name="province_name" type="VARCHAR(255)"/>
             <column name="province_short_name" type="VARCHAR(255)"/>
+            <column name="country_name" type="VARCHAR(255)"/>
+            <column name="country_short_name" type="VARCHAR(255)"/>
             <column name="staff_attitude_rating" type="DOUBLE"/>
             <column name="cleanliness_rating" type="DOUBLE"/>
             <column name="waiting_times_rating" type="DOUBLE"/>

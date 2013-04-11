@@ -14,33 +14,38 @@ import org.springframework.data.rest.repository.annotation.RestResource;
 public interface DataMartRatingRepository extends PagingAndSortingRepository<DataMartRating, String> {
 
     @Query("select new org.celllife.ohsc.domain.datamart.ClinicAverageDTO(clinicCode, clinicShortName, subDistrictName, " +
-            "subDistrictShortName, avg(staffAttitudeRating), avg(cleanlinessRating), avg(waitingTimesRating), " +
-            "avg(drugAvailabilityRating), avg(infectionControlRating), avg(safeAndSecureCareRating), count(*)) " +
-            "from DataMartRating where subDistrictName = :subDistrictName " +
+            "subDistrictShortName, districtName, districtShortName, provinceName, provinceShortName, countryName, " +
+            "countryShortName,  avg(staffAttitudeRating), avg(cleanlinessRating), avg(waitingTimesRating), " +
+            "avg(drugAvailabilityRating),  avg(infectionControlRating), avg(safeAndSecureCareRating), count(*)) " +
+            "from DataMartRating " +
+            "where subDistrictName = :subDistrictName " +
             "group by subDistrictName, subDistrictShortName, clinicCode, clinicShortName")
     Iterable<ClinicAverageDTO> findClinicAveragesBySubDistrictName(@Param("subDistrictName") String subDistrictName);
 
-    @Query("select new org.celllife.ohsc.domain.datamart.SubDistrictAverageDTO(subDistrictName, subDistrictShortName, " +
-            "districtName, districtShortName, avg(staffAttitudeRating), avg(cleanlinessRating), " +
-            "avg(waitingTimesRating), avg(drugAvailabilityRating), avg(infectionControlRating), " +
-            "avg(safeAndSecureCareRating), count(*)) from DataMartRating " +
+    @Query("select new org.celllife.ohsc.domain.datamart.SubDistrictAverageDTO(subDistrictName, " +
+            "subDistrictShortName, districtName, districtShortName, provinceName, provinceShortName, countryName,  " +
+            "countryShortName, avg(staffAttitudeRating), avg(cleanlinessRating), avg(waitingTimesRating), " +
+            "avg(drugAvailabilityRating), avg(infectionControlRating), avg(safeAndSecureCareRating), count(*)) " +
+            "from DataMartRating " +
             "where districtName = :districtName " +
             "group by districtName, districtShortName, subDistrictName, subDistrictShortName")
     Iterable<SubDistrictAverageDTO> findSubDistrictAveragesByDistrictName(@Param("districtName") String districtName);
 
     @Query("select new org.celllife.ohsc.domain.datamart.DistrictAverageDTO(districtName, districtShortName, " +
-            "provinceName, provinceShortName, avg(staffAttitudeRating), avg(cleanlinessRating), " +
-            "avg(waitingTimesRating), avg(drugAvailabilityRating), avg(infectionControlRating), " +
-            "avg(safeAndSecureCareRating), count(*)) from DataMartRating " +
+            "provinceName, provinceShortName, countryName, countryShortName,  avg(staffAttitudeRating), " +
+            "avg(cleanlinessRating), avg(waitingTimesRating), avg(drugAvailabilityRating), " +
+            "avg(infectionControlRating),  avg(safeAndSecureCareRating), count(*)) from DataMartRating " +
             "where provinceName = :provinceName " +
             "group by provinceName, provinceShortName, districtName, districtShortName")
     Iterable<DistrictAverageDTO> findDistrictAveragesByProvinceName(@Param("provinceName") String provinceName);
 
     @Query("select new org.celllife.ohsc.domain.datamart.ProvinceAverageDTO(provinceName, provinceShortName, " +
-            "avg(staffAttitudeRating), avg(cleanlinessRating), avg(waitingTimesRating), avg(drugAvailabilityRating), " +
-            "avg(infectionControlRating), avg(safeAndSecureCareRating), count(*)) " +
+            "countryName, countryShortName, avg(staffAttitudeRating), avg(cleanlinessRating), " +
+            "avg(waitingTimesRating), avg(drugAvailabilityRating), avg(infectionControlRating), " +
+            "avg(safeAndSecureCareRating), count(*)) " +
             "from DataMartRating " +
+            "where countryName = :countryName " +
             "group by provinceName, provinceShortName")
-    Iterable<ProvinceAverageDTO> findProvinceAverages();
+    Iterable<ProvinceAverageDTO> findProvinceAveragesByCountryName(@Param("countryName") String countryName);
 
 }

@@ -11,6 +11,6 @@ import java.util.Collection;
  */
 public interface ProvinceAverageApplicationService {
 
-    Collection<ProvinceAverageDTO> findProvinceAverages();
+    Collection<ProvinceAverageDTO> findProvinceAveragesByCountryName(String countryName);
 
 }

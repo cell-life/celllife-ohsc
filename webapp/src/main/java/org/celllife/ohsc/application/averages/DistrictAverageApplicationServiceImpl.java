@@ -1,5 +1,6 @@
 package org.celllife.ohsc.application.averages;
 
+import org.celllife.ohsc.domain.country.Country;
 import org.celllife.ohsc.domain.datamart.DataMartRatingRepository;
 import org.celllife.ohsc.domain.datamart.DistrictAverageDTO;
 import org.celllife.ohsc.domain.province.Province;
@@ -42,8 +43,10 @@ public class DistrictAverageApplicationServiceImpl implements DistrictAverageApp
         Map<String, DistrictAverageDTO> districtAverageMap = new HashMap<>();
 
         for (DistrictAverageDTO districtAverageDTO : districtAverages) {
-            districtAverageMap.put(districtAverageDTO.getIdentifier(), districtAverageDTO);
+            districtAverageMap.put(districtAverageDTO.getDistrictName(), districtAverageDTO);
         }
+
+        Country country = province.getCountry();
 
         for (District district : districts) {
 
@@ -54,7 +57,9 @@ public class DistrictAverageApplicationServiceImpl implements DistrictAverageApp
                         districtName,
                         district.getShortName(),
                         provinceName,
-                        province.getShortName()
+                        province.getShortName(),
+                        country.getName(),
+                        country.getShortName()
                 );
                 districtAverageMap.put(districtName, districtAverageDTO);
             }
