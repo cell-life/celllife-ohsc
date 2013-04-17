@@ -10,7 +10,7 @@ var pie = d3.layout.pie().sort(null).value(function(d) {
 
 color.domain(["totalClinicsMonitored","totalClinics"]);
 
-d3.json("http://localhost:8080/ohsc/service/totals/findClinicsMonitoredByProvince?country=za%20South%20Africa%20(National%20Government)", function(data) {
+d3.json("service/totals/findClinicsMonitoredByProvince?country=za%20South%20Africa%20(National%20Government)", function(data) {
 
 		data.forEach(function(d) {
 			d.clinics = color.domain().map(function(name) {
