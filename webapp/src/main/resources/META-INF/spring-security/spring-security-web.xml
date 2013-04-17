@@ -11,6 +11,7 @@
                    pattern="/api/**">
         <security:intercept-url pattern="/api/**" access="isAuthenticated()"/>
         <security:http-basic />
+        <security:custom-filter position="CAS_FILTER" ref="casFilter"/>
     </security:http>
 
     <security:http authentication-manager-ref="httpBasicAuthenticationManager"
@@ -19,6 +20,7 @@
                    pattern="/service/**">
         <security:intercept-url pattern="/service/**" access="isAuthenticated()"/>
         <security:http-basic />
+        <security:custom-filter position="CAS_FILTER" ref="casFilter"/>
     </security:http>
 
     <security:http authentication-manager-ref="casAuthenticationManager"

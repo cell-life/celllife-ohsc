@@ -8,43 +8,38 @@ var pie = d3.layout.pie().sort(null).value(function(d) {
 	return d.progress;
 });
 
-/* TODO: replace csv file with real data */
-d3.csv("resources/js/data.csv", function(error, data) {
+color.domain(["totalClinicsMonitored","totalClinics"]);
 
-	color.domain(d3.keys(data[0]).filter(function(key) {
-		return key !== "Province";
-	}));
+d3.json("http://localhost:8080/ohsc/service/totals/findClinicsMonitoredByProvince?country=za%20South%20Africa%20(National%20Government)", function(data) {
 
-	data.forEach(function(d) {
-		d.clinics = color.domain().map(function(name) {
-			return {
-				name : name,
-				progress : +d[name]
-			};
+		data.forEach(function(d) {
+			d.clinics = color.domain().map(function(name) {
+				return {
+					name : name,
+					progress : d[name]
+				}
+			});
 		});
-	});
+		
+		var svg = d3.select("#donut").selectAll(".pie").data(data).enter().append(
+				"svg").attr("class", "pie").attr("width", radius * 2).attr(
+				"height", radius * 2).append("g").attr("transform",
+				"translate(" + radius + "," + radius + ")");
 
-	var svg = d3.select("#donut").selectAll(".pie").data(data).enter().append(
-			"svg").attr("class", "pie").attr("width", radius * 2).attr(
-			"height", radius * 2).append("g").attr("transform",
-			"translate(" + radius + "," + radius + ")");
+		svg.selectAll(".arc").data(function(d) {
+			return pie(d.clinics);
+		}).enter().append("path").attr("class", "arc").attr("d", arc).style("fill",
+				function(d) {
+					return color(d.data.name);
+				});
 
-	svg.selectAll(".arc").data(function(d) {
-		return pie(d.clinics);
-	}).enter().append("path").attr("class", "arc").attr("d", arc).style("fill",
-			function(d) {
-				return color(d.data.name);
-			});
+		svg.append("text").attr("dy", ".35em").style("text-anchor", "middle").text(
+				function(d) {
+                    return d.provinceShortName;
+				});
 
-	svg.append("text").attr("dy", ".35em").style("text-anchor", "middle").text(
-			function(d) {
-				return d.Province;
-			});
-
-	svg.append("text").attr("dy", "1.5em").style("text-anchor", "middle").text(
-			function(d) {
-				var total = +[ d.Incomplete ] + +[ d.Complete ];
-				return d.Complete + "/" + (total);
-			});
-
+		svg.append("text").attr("dy", "1.5em").style("text-anchor", "middle").text(
+				function(d) {
+					return [d.totalClinicsMonitored] + "/" + ([d.totalClinics]);
+				});
 });

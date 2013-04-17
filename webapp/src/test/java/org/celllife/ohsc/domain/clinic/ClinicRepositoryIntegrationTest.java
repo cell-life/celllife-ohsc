@@ -1,6 +1,7 @@
 package org.celllife.ohsc.domain.clinic;
 
-import org.celllife.ohsc.integration.aat.AatClinicService;
+import junit.framework.Assert;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,14 @@ public class ClinicRepositoryIntegrationTest {
     @Autowired
     private ClinicRepository clinicRepository;
 
-    @Autowired
-    private AatClinicService aatClinicService;
-
     @Test
     public void testFindOneByCode() throws Exception {
 
+    }
+    
+    @Test
+    public void findTotalClinicsByProvinceName() throws Exception {
+    	Long total = clinicRepository.findTotalClinicsByProvinceName("kz KwaZulu-Natal Province");
+    	Assert.assertTrue(1140l == total);
     }
 }

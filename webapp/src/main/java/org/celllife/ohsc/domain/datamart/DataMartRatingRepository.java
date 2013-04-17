@@ -48,4 +48,11 @@ public interface DataMartRatingRepository extends PagingAndSortingRepository<Dat
             "group by provinceName, provinceShortName")
     Iterable<ProvinceAverageDTO> findProvinceAveragesByCountryName(@Param("countryName") String countryName);
 
+    @Query("select new org.celllife.ohsc.domain.datamart.TotalClinicsMonitoredDTO(provinceName, provinceShortName, " +
+            "countryName, countryShortName, count(*))" +
+            "from DataMartRating " +
+            "where countryName = :countryName " +
+            "group by provinceName, provinceShortName")
+    Iterable<TotalClinicsMonitoredDTO> findTotalClinicsMonitoredByProvince(@Param("countryName") String countryName);
+
 }
