@@ -14,9 +14,16 @@ d3.json("service/totals/findClinicsMonitoredByProvince?country=za%20South%20Afri
 
 		data.forEach(function(d) {
 			d.clinics = color.domain().map(function(name) {
-				return {
-					name : name,
-					progress : d[name]
+				if (name == "totalClinics") {
+					return {
+						name : "incomplete",
+						progress : d[name] - d.totalClinicsMonitored
+					}
+				} else {
+					return {
+						name : "complete",
+						progress : d[name]
+					}
 				}
 			});
 		});
