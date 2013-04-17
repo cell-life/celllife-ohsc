@@ -38,7 +38,7 @@
         </p>
     </div>
 
-    <div class="row-fluid ohsc-border">
+    <div class="row ohsc-border">
 
         <p>Below are the ratings of the Sub-Districts in each of the 6 core standards for quality care.</p>
 
@@ -85,7 +85,7 @@
         <p>Total Clinics Monitored</p>
     </div>
 
-    <div class="row-fluid ohsc-border">
+    <div class="row ohsc-border">
         <center>
             <div class="row-fluid" id="donut"></div>
             <script src="resources/js/d3.v3.min.js"></script>

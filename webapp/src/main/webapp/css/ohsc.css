@@ -17,13 +17,14 @@
 	border: 1px solid #ddd;
 	padding: 30px 20px 30px;
 	margin: 20px 5px 20px;
-	width: 97%;
 	border-radius: 10px 10px 10px 10px;
 	-moz-border-radius: 10px 10px 10px 10px;
 	-webkit-border-radius: 10px 10px 10px 10px;
 	-webkit-box-shadow: 0px 0px 12px 1px rgba(122, 104, 88, 1);
 	-moz-box-shadow: 0px 0px 12px 1px rgba(122, 104, 88, 1);
 	box-shadow: 0px 0px 12px 1px rgba(122, 104, 88, 1);
+	min-width: 97%;
+	display: inline-block;
 }
 
 .masthead {
