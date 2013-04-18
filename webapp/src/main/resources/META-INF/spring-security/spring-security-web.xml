@@ -29,6 +29,7 @@
                    use-expressions="true">
 
         <security:intercept-url pattern="/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/**" access="hasRole('ROLE_OHSC')" />
 
         <security:custom-filter position="CAS_FILTER" ref="casFilter"/>
 
