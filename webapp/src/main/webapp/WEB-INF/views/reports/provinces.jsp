@@ -13,7 +13,13 @@
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="resources/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="resources/css/datatables_bootstrap.css" rel="stylesheet">
+    <link href="resources/css/jquery-ui.css" rel="stylesheet">
+    <link href="resources/css/jquery-ui-timepicker.css" rel="stylesheet">
     <link href="resources/css/ohsc.css" rel="stylesheet">
+    
+    <script type="text/javascript" src="resources/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="resources/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -41,6 +47,22 @@
     <div class="row ohsc-border">
 
         <p>Below are the ratings of the Provinces in each of the 6 core standards for quality care.</p>
+        
+        <label>Datetime:</label>
+        <script type="text/javascript" src="resources/js/jquery-ui-timepicker-addon.js"></script>
+		<input id="date1" name="date1" size="20" type="text" value="" />
+		<script>
+		   $(function() {
+			$('#date1').datetimepicker({
+				dateFormat: 'dd M yy',
+				timeFormat: 'hh:mm'
+			});
+		  });
+		</script>
+  
+        <form>
+        	
+        </form>
 
         <table class="table table-striped table-bordered" id="myTable">
             <thead>
@@ -101,8 +123,6 @@
 
 </div>
 
-<script type="text/javascript" src="resources/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="resources/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/datatables_bootstrap.js"></script>
 <script>
