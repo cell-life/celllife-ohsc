@@ -3,6 +3,7 @@ package org.celllife.ohsc.application.averages;
 import org.celllife.ohsc.domain.datamart.SubDistrictAverageDTO;
 
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * User: Kevin W. Sewell
@@ -11,6 +12,6 @@ import java.util.Collection;
  */
 public interface SubDistrictAverageApplicationService {
 
-    Collection<SubDistrictAverageDTO> findSubDistrictAveragesByDistrict(String districtName);
+    Collection<SubDistrictAverageDTO> findSubDistrictAveragesByDistrict(String districtName, Date startDate, Date endDate);
 
 }

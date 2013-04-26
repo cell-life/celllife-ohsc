@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
 
+import java.text.SimpleDateFormat
+
 import static org.celllife.ohsc.framework.restclient.RESTClient.get
 /**
  * User: Kevin W. Sewell
@@ -23,9 +25,24 @@ class ReportController {
     def String ratingServiceUrl;
 
     @RequestMapping(value="/reports/provinces", method = RequestMethod.GET)
-    def findProvinceAverages(@RequestParam("country") String country, Model model) {
+    def findProvinceAverages(@RequestParam("country") String country, @RequestParam(value = "startDate", required = false) String startDate, @RequestParam(value = "endDate", required = false) String endDate, Model model) {
 
-        def averages = get("${averageServiceUrl}/findProvinceAveragesByCountry", [country: country])
+        Date sd
+
+        if (startDate.equals(null)) {
+            sd = new Date(946684800) //This is Unix time for 01 Jan 2000
+        } else {
+            sd = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(startDate)
+        }
+
+        Date ed
+
+        if (endDate.equals(null))
+            ed = new Date()
+        else
+            ed = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(endDate)
+
+        def averages = get("${averageServiceUrl}/findProvinceAveragesByCountry", [country: country, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
 
         model.put("averages", averages)
 
@@ -33,9 +50,24 @@ class ReportController {
     }
 
     @RequestMapping(value="/reports/districts", method = RequestMethod.GET)
-    def findDistrictAveragesByProvince(@RequestParam("province") String province, Model model) {
+    def findDistrictAveragesByProvince(@RequestParam("province") String province, @RequestParam(value = "startDate", required = false) String startDate, @RequestParam(value = "endDate", required = false) String endDate, Model model) {
 
-        def averages = get("${averageServiceUrl}/findDistrictAveragesByProvince", [province: province])
+        Date sd
+
+        if (startDate.equals(null)) {
+            sd = new Date(946684800) //This is Unix time for 01 Jan 2000
+        } else {
+            sd = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(startDate)
+        }
+
+        Date ed
+
+        if (endDate.equals(null))
+            ed = new Date()
+        else
+            ed = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(endDate)
+
+        def averages = get("${averageServiceUrl}/findDistrictAveragesByProvince", [province: province, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
 
         model.put("averages", averages)
 
@@ -43,9 +75,22 @@ class ReportController {
     }
 
     @RequestMapping(value="/reports/subDistricts", method = RequestMethod.GET)
-    def findSubDistrictAveragesByDistrict(@RequestParam("district") String districtName, Model model) {
+    def findSubDistrictAveragesByDistrict(@RequestParam("district") String districtName, @RequestParam(value="startDate", required=false) String startDate, @RequestParam(value="endDate", required=false) String endDate, Model model) {
 
-        def averages = get("${averageServiceUrl}/findSubDistrictAveragesByDistrict", [district: districtName])
+        Date sd
+        if (startDate.equals(null)) {
+            sd = new Date(946684800) //This is Unix time for 01 Jan 2000
+        } else {
+            sd = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(startDate)
+        }
+
+        Date ed
+        if (endDate.equals(null))
+            ed = new Date()
+        else
+            ed = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(endDate)
+
+        def averages = get("${averageServiceUrl}/findSubDistrictAveragesByDistrict", [district: districtName, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
 
         model.put("averages", averages)
 
@@ -53,9 +98,22 @@ class ReportController {
     }
 
     @RequestMapping(value="/reports/clinics", method = RequestMethod.GET)
-    def findClinicAveragesBySubDistrict(@RequestParam("subDistrict") String subDistrict, Model model) {
+    def findClinicAveragesBySubDistrict(@RequestParam("subDistrict") String subDistrict, @RequestParam(value="startDate", required=false) Date startDate, @RequestParam(value="endDate", required=false) Date endDate, Model model) {
 
-        def averages = get("${averageServiceUrl}/findClinicAveragesBySubDistrict", [subDistrict: subDistrict])
+        Date sd
+        if (startDate.equals(null)) {
+            sd = new Date(946684800) //This is Unix time for 01 Jan 2000
+        } else {
+            sd = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(startDate)
+        }
+
+        Date ed
+        if (endDate.equals(null))
+            ed = new Date()
+        else
+            ed = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(endDate)
+
+        def averages = get("${averageServiceUrl}/findClinicAveragesBySubDistrict", [subDistrict: subDistrict, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
 
         model.put("averages", averages)
 
@@ -63,9 +121,22 @@ class ReportController {
     }
 
     @RequestMapping(value="/reports/ratings", method = RequestMethod.GET)
-    def findRatingsByClinic(@RequestParam("clinic") String clinic, Model model) {
+    def findRatingsByClinic(@RequestParam("clinic") String clinic, @RequestParam(value="startDate", required=false) Date startDate, @RequestParam(value="endDate", required=false) Date endDate, Model model) {
 
-        def averages = get("${ratingServiceUrl}/findClinicAveragesBySubDistrict", [clinic: clinic])
+        Date sd
+        if (startDate.equals(null)) {
+            sd = new Date(946684800) //This is Unix time for 01 Jan 2000
+        } else {
+            sd = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(startDate)
+        }
+
+        Date ed
+        if (endDate.equals(null))
+            ed = new Date()
+        else
+            ed = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(endDate)
+
+        def averages = get("${ratingServiceUrl}/findClinicAveragesBySubDistrict", [clinic: clinic, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
 
         model.put("averages", averages)
 

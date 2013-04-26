@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,14 +32,14 @@ public class DistrictAverageApplicationServiceImpl implements DistrictAverageApp
     @Autowired
     private DataMartRatingRepository dataMartRatingRepository;
 
-    public Collection<DistrictAverageDTO> findDistrictAveragesByProvince(String provinceName) {
+    public Collection<DistrictAverageDTO> findDistrictAveragesByProvince(String provinceName, Date endDate, Date startDate) {
 
         Province province = provinceRepository.findOneByName(provinceName);
 
         Iterable<District> districts = districtRepository.findByProvinceName(provinceName);
 
         Iterable<DistrictAverageDTO> districtAverages =
-                dataMartRatingRepository.findDistrictAveragesByProvinceName(provinceName);
+                dataMartRatingRepository.findDistrictAveragesByProvinceName(provinceName, startDate, endDate);
 
         Map<String, DistrictAverageDTO> districtAverageMap = new HashMap<>();
 

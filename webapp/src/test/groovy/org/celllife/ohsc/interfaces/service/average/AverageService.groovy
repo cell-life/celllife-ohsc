@@ -1,6 +1,7 @@
 package org.celllife.ohsc.interfaces.service.average
 
 import org.celllife.ohsc.framework.rest.REST
+import org.springframework.web.bind.annotation.RequestParam
 
 /**
  * User: Kevin W. Sewell
@@ -11,31 +12,31 @@ class AverageService {
 
     static baseAveragesUrl = "${REST.contextPath}/service/averages"
 
-    static findClinicAveragesBySubDistrict(String subDistrict) {
+    static findClinicAveragesBySubDistrict(String subDistrict, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
         REST.get(
                 path: "${baseAveragesUrl}/findClinicAveragesBySubDistrict",
-                query: [subDistrict: subDistrict]
+                query: [subDistrict: subDistrict, startDate: startDate.format("MM/dd/yy hh:mm aa"), endDate: endDate.format("MM/dd/yy hh:mm aa")]
         )
     }
 
-    static findSubDistrictAveragesByDistrict(String district) {
+    static findSubDistrictAveragesByDistrict(String district, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
         REST.get(
                 path: "${baseAveragesUrl}/findSubDistrictAveragesByDistrict",
-                query: [district: district]
+                query: [district: district, startDate: startDate.format("MM/dd/yy hh:mm aa"), endDate: endDate.format("MM/dd/yy hh:mm aa")]
         )
     }
 
-    static findDistrictAveragesByProvince(String province) {
+    static findDistrictAveragesByProvince(String province, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
         REST.get(
                 path: "${baseAveragesUrl}/findDistrictAveragesByProvince",
-                query: [province: province]
+                query: [province: province, startDate: startDate.format("MM/dd/yy hh:mm aa"), endDate: endDate.format("MM/dd/yy hh:mm aa")]
         )
     }
 
-    static findProvinceAveragesByCountry(String country) {
+    static findProvinceAveragesByCountry(String country, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
         REST.get(
                 path: "${baseAveragesUrl}/findProvinceAveragesByCountry",
-                query: [country: country]
+                query: [country: country, startDate: startDate.format("MM/dd/yy hh:mm aa"), endDate: endDate.format("MM/dd/yy hh:mm aa")]
         )
     }
 }

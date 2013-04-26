@@ -1,8 +1,7 @@
 package org.celllife.ohsc.domain.datamart;
 
-import javax.persistence.Cacheable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * User: Kevin W. Sewell
@@ -47,6 +46,9 @@ public final class DataMartRating {
     private Double infectionControlRating;
 
     private Double safeAndSecureCareRating;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date submissionDate;
 
     public DataMartRating() {
     }
@@ -185,5 +187,13 @@ public final class DataMartRating {
 
     public void setSafeAndSecureCareRating(Double safeAndSecureCareRating) {
         this.safeAndSecureCareRating = safeAndSecureCareRating;
+    }
+
+    public Date getSubmissionDate() {
+        return submissionDate;
+    }
+
+    public void setSubmissionDate(Date submissionDate) {
+        this.submissionDate = submissionDate;
     }
 }

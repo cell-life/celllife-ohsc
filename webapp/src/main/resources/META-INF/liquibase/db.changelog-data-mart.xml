@@ -26,5 +26,9 @@
             <column name="safe_and_secure_care_rating" type="DOUBLE"/>
         </createTable>
     </changeSet>
-
+    <changeSet author="dine.bennett" id="data-mart-2">
+        <addColumn tableName="data_mart_rating">
+            <column name="submission_date" type="DATETIME" />
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

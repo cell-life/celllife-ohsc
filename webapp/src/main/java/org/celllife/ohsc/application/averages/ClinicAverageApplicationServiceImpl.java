@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,14 +34,14 @@ public class ClinicAverageApplicationServiceImpl implements ClinicAverageApplica
     @Autowired
     private DataMartRatingRepository dataMartRatingRepository;
 
-    public Collection<ClinicAverageDTO> findClinicAveragesBySubDistrict(String subDistrictName) {
+    public Collection<ClinicAverageDTO> findClinicAveragesBySubDistrict(String subDistrictName, Date startDate, Date endDate) {
 
         SubDistrict subDistrict = subDistrictRepository.findOneByName(subDistrictName);
 
         Iterable<Clinic> clinics = clinicRepository.findBySubDistrictName(subDistrictName);
 
         Iterable<ClinicAverageDTO> clinicAverages =
-                dataMartRatingRepository.findClinicAveragesBySubDistrictName(subDistrictName);
+                dataMartRatingRepository.findClinicAveragesBySubDistrictName(subDistrictName, startDate, endDate);
 
         Map<String, ClinicAverageDTO> clinicAverageMap = new HashMap<>();
 

@@ -1,8 +1,13 @@
 package org.celllife.ohsc.domain.datamart
 
 import org.celllife.ohsc.domain.rating.Ratings
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormatter
 import org.junit.Before
 import org.junit.Test
+
+import java.text.SimpleDateFormat
 
 import static junit.framework.Assert.assertEquals
 import static junit.framework.Assert.assertNotNull
@@ -40,7 +45,10 @@ class DataMartRatingRepositoryAcceptanceTest {
     @Test
     void shouldFindClinicAveragesBySubDistrictName() throws Exception {
 
-        def clinicAverages = findClinicAveragesBySubDistrictName("mp Govan Mbeki Local Municipality")
+        Date start = new SimpleDateFormat("yyyyMMdd").parse("20120101");
+        Date today = new Date()
+
+        def clinicAverages = findClinicAveragesBySubDistrictName("mp Govan Mbeki Local Municipality", start, today)
 
         assertNotNull clinicAverages
 
@@ -51,7 +59,10 @@ class DataMartRatingRepositoryAcceptanceTest {
     @Test
     void shouldFindSubDistrictAveragesByDistrictName() throws Exception {
 
-        def subDistrictAverages = findSubDistrictAveragesByDistrictName("mp Gert Sibande District Municipality")
+        Date start = new SimpleDateFormat("yyyyMMdd").parse("20120101");
+        Date today = new Date()
+
+        def subDistrictAverages = findSubDistrictAveragesByDistrictName("mp Gert Sibande District Municipality", start, today)
 
         assertNotNull subDistrictAverages
 
@@ -62,7 +73,10 @@ class DataMartRatingRepositoryAcceptanceTest {
     @Test
     void shouldFindDistrictAveragesByProvinceName() throws Exception {
 
-        def districtAverages = findDistrictAveragesByProvinceName("mp Mpumalanga Province")
+        Date start = new SimpleDateFormat("yyyyMMdd").parse("20120101");
+        Date today = new Date()
+
+        def districtAverages = findDistrictAveragesByProvinceName("mp Mpumalanga Province", start, today)
 
         assertNotNull districtAverages
 
@@ -73,7 +87,10 @@ class DataMartRatingRepositoryAcceptanceTest {
     @Test
     void shouldFindProvinceAverages() throws Exception {
 
-        def provinceAverages = findProvinceAveragesByCountryName("za South Africa (National Government)")
+        Date start = new SimpleDateFormat("yyyyMMdd").parse("20120101");
+        Date today = new Date()
+
+        def provinceAverages = findProvinceAveragesByCountryName("za South Africa (National Government)", start, today)
 
         assertNotNull provinceAverages
 

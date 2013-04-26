@@ -80,6 +80,7 @@ public final class RatingApplicationServiceImpl implements RatingApplicationServ
                 .setDrugAvailabilityRating(rating.getRatingForDomain(DRUG_AVAILABILITY))
                 .setInfectionControlRating(rating.getRatingForDomain(INFECTION_CONTROL))
                 .setSafeAndSecureCareRating(rating.getRatingForDomain(SAFE_AND_SECURE_CARE))
+                .setSubmissionDate(rating.getUssdSession().getEndDateTime())
                 .getDataMartRating();
 
         ratingDataMartRepository.save(dataMartRating);

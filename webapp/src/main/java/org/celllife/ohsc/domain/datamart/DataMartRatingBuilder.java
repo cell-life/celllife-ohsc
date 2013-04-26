@@ -1,5 +1,7 @@
 package org.celllife.ohsc.domain.datamart;
 
+import java.util.Date;
+
 /**
  * User: Kevin W. Sewell
  * Date: 2013-04-02
@@ -115,6 +117,12 @@ public final class DataMartRatingBuilder {
         dataMartRating.setSafeAndSecureCareRating(safeAndSecureCareRating);
         return this;
     }
+
+    public DataMartRatingBuilder setSubmissionDate(Date submissionDate) {
+        dataMartRating.setSubmissionDate(submissionDate);
+        return this;
+    }
+
 
     public DataMartRating getDataMartRating() {
 

@@ -5,6 +5,7 @@ import org.celllife.ohsc.application.averages.DistrictAverageApplicationService;
 import org.celllife.ohsc.application.averages.ProvinceAverageApplicationService;
 import org.celllife.ohsc.application.averages.SubDistrictAverageApplicationService;
 import org.celllife.ohsc.domain.datamart.*;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * User: Kevin W. Sewell
@@ -41,9 +46,9 @@ public class AveragesController {
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
     public Collection<ClinicAverageDTO> findClinicAveragesBySubDistrict(@RequestParam("subDistrict")
-                                                                            String subDistrict) {
+                                                                        String subDistrict, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
 
-        return clinicAverageApplicationService.findClinicAveragesBySubDistrict(subDistrict);
+        return clinicAverageApplicationService.findClinicAveragesBySubDistrict(subDistrict, startDate, endDate);
     }
 
     @ResponseBody
@@ -52,9 +57,9 @@ public class AveragesController {
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
     public Collection<SubDistrictAverageDTO> findSubDistrictAveragesBySubDistrict(@RequestParam("district")
-                                                                                   String district) {
+                                                                                  String district, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
 
-        return subDistrictAverageApplicationService.findSubDistrictAveragesByDistrict(district);
+        return subDistrictAverageApplicationService.findSubDistrictAveragesByDistrict(district, startDate, endDate);
     }
 
     @ResponseBody
@@ -62,9 +67,9 @@ public class AveragesController {
             value = "/service/averages/findDistrictAveragesByProvince",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<DistrictAverageDTO> findDistrictAveragesByProvince(@RequestParam("province") String province) {
+    public Collection<DistrictAverageDTO> findDistrictAveragesByProvince(@RequestParam("province") String province, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
 
-        return districtAverageApplicationService.findDistrictAveragesByProvince(province);
+        return districtAverageApplicationService.findDistrictAveragesByProvince(province, startDate, endDate);
     }
 
     @ResponseBody
@@ -72,9 +77,9 @@ public class AveragesController {
             value = "/service/averages/findProvinceAveragesByCountry",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<ProvinceAverageDTO> findProvinceAveragesByCountry(@RequestParam("country") String country) {
+    public Collection<ProvinceAverageDTO> findProvinceAveragesByCountry(@RequestParam("country") String country, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
 
-        return provinceAverageApplicationService.findProvinceAveragesByCountryName(country);
+        return provinceAverageApplicationService.findProvinceAveragesByCountryName(country, startDate, endDate);
     }
 
 }

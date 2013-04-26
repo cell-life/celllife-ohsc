@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * User: Kevin W. Sewell
  * Date: 2013-04-04
@@ -32,6 +35,9 @@ public class DataMartRatingRepositoryIntegrationTest {
     @Before
     public void setUp() throws Exception {
 
+        Date yesterday = new SimpleDateFormat("yyyyMMdd").parse(
+                ""+(Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(new Date()))-1));
+
         dataMartRatingRepository.deleteAll();
 
         DataMartRating dataMartRating = new DataMartRating();
@@ -40,6 +46,8 @@ public class DataMartRatingRepositoryIntegrationTest {
         dataMartRating.setSubDistrictName("Test Sub-District");
         dataMartRating.setDistrictName("Test District");
         dataMartRating.setProvinceName("Test Province");
+        dataMartRating.setCountryName("Test Country");
+        dataMartRating.setSubmissionDate(new Date());
 
         dataMartRatingRepository.save(dataMartRating);
 
@@ -48,8 +56,11 @@ public class DataMartRatingRepositoryIntegrationTest {
     @Test
     public void testFindClinicAveragesBySubDistrictName() throws Exception {
 
+        Date yesterday = new SimpleDateFormat("yyyyMMdd").parse(
+                ""+(Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(new Date()))-1));
+
         Iterable<ClinicAverageDTO> clinicAverages =
-                dataMartRatingRepository.findClinicAveragesBySubDistrictName("Test Sub-District");
+                dataMartRatingRepository.findClinicAveragesBySubDistrictName("Test Sub-District",yesterday,new Date());
 
         Assert.assertNotNull(clinicAverages);
         Assert.assertTrue(clinicAverages.iterator().hasNext());
@@ -58,10 +69,25 @@ public class DataMartRatingRepositoryIntegrationTest {
     @Test
     public void testFindSubDistrictAveragesByDistrictName() throws Exception {
 
+        Date yesterday = new SimpleDateFormat("yyyyMMdd").parse(
+                ""+(Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(new Date()))-1));
+
         Iterable<SubDistrictAverageDTO> subDistrictAverages =
-                dataMartRatingRepository.findSubDistrictAveragesByDistrictName("Test District");
+                dataMartRatingRepository.findSubDistrictAveragesByDistrictName("Test District",yesterday,new Date());
 
         Assert.assertNotNull(subDistrictAverages);
         Assert.assertTrue(subDistrictAverages.iterator().hasNext());
+    }
+
+    @Test
+    public void testFindProvinceAveragesByCountryName() throws Exception {
+
+        Date yesterday = new SimpleDateFormat("yyyyMMdd").parse(
+                ""+(Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(new Date()))-1));
+
+        Iterable<ProvinceAverageDTO> provinceAverages = dataMartRatingRepository.findProvinceAveragesByCountryName("Test Country",yesterday,new Date());
+
+        Assert.assertNotNull(provinceAverages);
+        Assert.assertTrue(provinceAverages.iterator().hasNext());
     }
 }

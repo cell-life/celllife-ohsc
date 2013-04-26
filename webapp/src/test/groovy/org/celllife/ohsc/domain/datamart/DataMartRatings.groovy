@@ -1,6 +1,7 @@
 package org.celllife.ohsc.domain.datamart
 
 import org.celllife.ohsc.framework.rest.REST
+import org.joda.time.DateTime
 
 import static org.celllife.ohsc.framework.rest.REST.get
 import static org.celllife.ohsc.framework.rest.REST.delete
@@ -24,20 +25,20 @@ class DataMartRatings {
 
     static findProvinceAveragesByCountryUrl = "${baseSearchUrl}/findProvinceAveragesByCountryName"
 
-    static findClinicAveragesBySubDistrictName(String subDistrictName) {
-        get(path: findClinicAveragesBySubDistrictNameUrl, query: [subDistrictName: subDistrictName])
+    static findClinicAveragesBySubDistrictName(String subDistrictName, Date startDate, Date endDate) {
+        get(path: findClinicAveragesBySubDistrictNameUrl, query: [subDistrictName: subDistrictName, startDate: startDate.format("MM/dd/yy hh:mm aa"), endDate: endDate.format("MM/dd/yy hh:mm aa")])
     }
 
-    static findSubDistrictAveragesByDistrictName(String districtName) {
-        get(path: findSubDistrictAveragesByDistrictNameUrl, query: [districtName: districtName])
+    static findSubDistrictAveragesByDistrictName(String districtName, Date startDate, Date endDate) {
+        get(path: findSubDistrictAveragesByDistrictNameUrl, query: [districtName: districtName, startDate: startDate.format("MM/dd/yy hh:mm aa"), endDate: endDate.format("MM/dd/yy hh:mm aa")])
     }
 
-    static findDistrictAveragesByProvinceName(String provinceName) {
-        get(path: findDistrictAveragesByProvinceNameUrl, query: [provinceName: provinceName])
+    static findDistrictAveragesByProvinceName(String provinceName, Date startDate, Date endDate) {
+        get(path: findDistrictAveragesByProvinceNameUrl, query: [provinceName: provinceName, startDate: startDate.format("MM/dd/yy hh:mm aa"), endDate: endDate.format("MM/dd/yy hh:mm aa")])
     }
 
-    static findProvinceAveragesByCountryName(String countryName) {
-        get(path: findProvinceAveragesByCountryUrl, query: [countryName: countryName])
+    static findProvinceAveragesByCountryName(String countryName, Date startDate, Date endDate) {
+        get(path: findProvinceAveragesByCountryUrl, query: [countryName: countryName, startDate: startDate.format("MM/dd/yy hh:mm aa"), endDate: endDate.format("MM/dd/yy hh:mm aa")])
     }
 
     static findAll() {
