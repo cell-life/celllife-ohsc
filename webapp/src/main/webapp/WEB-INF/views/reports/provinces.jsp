@@ -16,10 +16,11 @@
     <link href="resources/css/jquery-ui.css" rel="stylesheet">
     <link href="resources/css/jquery-ui-timepicker.css" rel="stylesheet">
     <link href="resources/css/ohsc.css" rel="stylesheet">
-    
+
     <script type="text/javascript" src="resources/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="resources/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="resources/js/jquery-ui-timepicker-addon.js"></script>
 
 </head>
 <body>
@@ -47,22 +48,34 @@
     <div class="row ohsc-border">
 
         <p>Below are the ratings of the Provinces in each of the 6 core standards for quality care.</p>
-        
-        <label>Datetime:</label>
-        <script type="text/javascript" src="resources/js/jquery-ui-timepicker-addon.js"></script>
-		<input id="date1" name="date1" size="20" type="text" value="" />
-		<script>
-		   $(function() {
-			$('#date1').datetimepicker({
-				dateFormat: 'dd M yy',
-				timeFormat: 'hh:mm'
-			});
-		  });
-		</script>
-  
-        <form>
-        	
-        </form>
+            <div class="row-fluid">
+            <form class="form-inline pull-right">
+                <fieldset>
+                    <label>From:</label>
+                    <input id="date1" name="date1" onchange="fromDateSelected()"/>
+                    <script>
+                        $(function () {
+                            $('#date1').datetimepicker({
+                                dateFormat: 'dd/mm/yy',
+                                timeFormat: 'hh:mm TT'
+                            });
+                        });
+                    </script>
+                    <label>To:</label>
+                    <input id="date2" name="date2" onchange="toDateSelected()" disabled="true"/>
+                    <script>
+                        $(function () {
+                            $('#date2').datetimepicker({
+                                minDate: $('#date1').datetimepicker('getDate'),
+                                dateFormat: 'dd/mm/yy',
+                                timeFormat: 'hh:mm TT'
+                            });
+                        });
+                    </script>
+                    <button id="filter" type="button" class="btn" onclick="filterButtonClicked()">Filter</button>
+                </fieldset>
+            </form>
+            </div>
 
         <table class="table table-striped table-bordered" id="myTable">
             <thead>
@@ -137,6 +150,19 @@
                     }
                 });
             });
+</script>
+<script>
+    function fromDateSelected(){
+        $('#date2').prop('disabled', false);
+        $('#date2').datetimepicker( "option", "minDate", $('#date1').datetimepicker('getDate') );
+        console.log($('#date1').datetimepicker('getDate'));
+    }
+    function toDateSelected(){
+        //window.location = 'reports/provinces?country=za South Africa (National Government)&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
+    }
+    function filterButtonClicked() {
+        window.location = 'reports/provinces?country=za South Africa (National Government)&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
+    }
 </script>
 
 </body>
