@@ -82,6 +82,12 @@
 <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="resources/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/datatables_bootstrap.js"></script>
+<script>
+	/* Table initialisation */
+	$(document).ready(function() {
+		$('#myTable').dataTable();
+	});
+</script>
 
 </body>
 </html>
