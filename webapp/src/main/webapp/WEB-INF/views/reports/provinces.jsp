@@ -25,15 +25,8 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="masthead">
-        <h2>
-            <img class="ohsc-logo" src="resources/img/coat-of-arms.png"> OHSC
-        </h2>
-        <div class="btn-toolbar ohsc-nav-btn-toolbar">
-            <a class="btn btn-link ohsc-welcome-text">Welcome Dr Radebe</a>
-            <a href="j_spring_cas_security_logout" class="btn btn-primary">Log Out</a>
-        </div>
-    </div>
+
+	<jsp:include page="../includes/header.jsp"/>
 
     <div class="row-fluid">
         <p id="breadcrumb">
@@ -114,43 +107,15 @@
             experience at their specific health care facility.</small></p>
     </div>
 
-    <div class="arrow-heading">
-        <div class="arrow-box"></div>
-        <div class="arrow"></div>
-        <p>Total Clinics Monitored</p>
-    </div>
+	<jsp:include page="../includes/totalClinics.jsp"/>
 
-    <div class="row ohsc-border">
-        <center>
-            <div class="row-fluid" id="donut"></div>
-            <script src="resources/js/d3.v3.min.js"></script>
-            <script src="resources/js/donut-graphs.js"></script>
-        </center>
-    </div>
-
-    <hr>
-
-    <div class="footer">
-        <p>&copy; Cell-Life (NPO) - 2013</p>
-    </div>
+   	<jsp:include page="../includes/footer.jsp"/>
 
 </div>
 
 <script type="text/javascript" src="resources/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/datatables_bootstrap.js"></script>
-<script>
-    /* Table initialisation */
-    $(document).ready(
-            function() {
-                $('#myTable').dataTable( {
-                    "sDom" : "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-                    "sPaginationType" : "bootstrap",
-                    "oLanguage" : {
-                        "sLengthMenu" : "_MENU_ records per page"
-                    }
-                });
-            });
-</script>
+
 <script>
     function fromDateSelected(){
         $('#date2').prop('disabled', false);
