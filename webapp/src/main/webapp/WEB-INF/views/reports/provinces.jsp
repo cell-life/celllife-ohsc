@@ -31,7 +31,7 @@
         </h2>
         <div class="btn-toolbar ohsc-nav-btn-toolbar">
             <a class="btn btn-link ohsc-welcome-text">Welcome Dr Radebe</a>
-            <a class="btn btn-primary">Log Out</a>
+            <a href="j_spring_cas_security_logout" class="btn btn-primary">Log Out</a>
         </div>
     </div>
 
