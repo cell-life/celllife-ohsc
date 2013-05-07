@@ -24,6 +24,11 @@ class ReportController {
     @Value('${rating.service.url}')
     def String ratingServiceUrl;
 
+    @RequestMapping("/")
+    def index(Model model) {
+    	findProvinceAverages("za South Africa (National Government)", null, null, model)
+    }
+
     @RequestMapping(value="/reports/provinces", method = RequestMethod.GET)
     def findProvinceAverages(@RequestParam("country") String country, @RequestParam(value = "startDate", required = false) String startDate, @RequestParam(value = "endDate", required = false) String endDate, Model model) {
 
