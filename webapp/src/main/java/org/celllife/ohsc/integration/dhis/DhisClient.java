@@ -1,6 +1,8 @@
 package org.celllife.ohsc.integration.dhis;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.Map;
+
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -9,11 +11,12 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.util.Map;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * User: Kevin W. Sewell
@@ -22,6 +25,8 @@ import java.util.Map;
  */
 @Component
 public final class DhisClient {
+	
+	private static Logger log = LoggerFactory.getLogger(DhisClient.class); 
 
     @Autowired
     private HttpClient dhisHttpClient;
@@ -38,6 +43,10 @@ public final class DhisClient {
 
     public Map<String, ?> getMap(String url) {
         String json = getString(url);
+        
+        if (json == null) {
+        	return null;
+        }
 
         return toJsonMap(json);
     }
@@ -58,6 +67,10 @@ public final class DhisClient {
         HttpResponse response = execute(method);
         if (response == null) {
             return null;
+        }
+        if (response.getStatusLine().getStatusCode() != 200) {
+        	log.warn("Got a bad response '"+response+"' from url "+url+". Ignoring error.");
+        	return null;
         }
 
         HttpEntity responseEntity = response.getEntity();
