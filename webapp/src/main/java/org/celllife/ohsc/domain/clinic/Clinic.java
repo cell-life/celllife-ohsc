@@ -1,13 +1,20 @@
 package org.celllife.ohsc.domain.clinic;
 
-import org.celllife.ohsc.domain.subdistrict.SubDistrict;
-
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+
+import javax.persistence.Cacheable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+
+import org.celllife.ohsc.domain.subdistrict.SubDistrict;
 
 /**
  * User: Kevin W. Sewell
