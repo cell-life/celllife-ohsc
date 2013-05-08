@@ -35,7 +35,7 @@ public final class ResourceServiceImpl implements ResourceService {
 
         for (Map<String, ?> resource : resources) {
             if (resource.get("name").equals(name)) {
-                return (String) resource.get("link");
+                return (String) resource.get("href");
             }
         }
 

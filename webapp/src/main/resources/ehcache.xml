@@ -286,6 +286,8 @@
     </defaultCache>
     
     <cache name="findTotalClinicsByProvinceName" maxElementsInMemory="10000" eternal="true" overflowToDisk="false" />
+    
+    <cache name="resourceLinkByName" maxElementsInMemory="10000" eternal="true" overflowToDisk="false" />
 
     <!--
     <defaultCache
