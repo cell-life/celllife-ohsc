@@ -18,7 +18,9 @@ import java.util.Set;
 @Cacheable
 public final class Clinic implements Serializable {
 
-    @Id
+	private static final long serialVersionUID = -5814051904749589348L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
@@ -116,23 +118,31 @@ public final class Clinic implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		return result;
+	}
 
-        Clinic clinic = (Clinic) o;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Clinic other = (Clinic) obj;
+		if (code == null) {
+			if (other.code != null)
+				return false;
+		} else if (!code.equals(other.code))
+			return false;
+		return true;
+	}
 
-        if (!code.equals(clinic.code)) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return code.hashCode();
-    }
-
-    @Override
+	@Override
     public String toString() {
         return "Clinic{" +
                 "id=" + id +
