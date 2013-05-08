@@ -3,6 +3,7 @@ package org.celllife.ohsc.application.dhis;
 import org.celllife.ohsc.domain.clinic.Clinic;
 import org.celllife.ohsc.domain.clinic.ClinicRepository;
 import org.celllife.ohsc.test.TestConfigurationNoAsync;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,5 +36,12 @@ public class DhisClinicApplicationServiceIntegrationTest {
         for (Clinic clinic : clinicRepository.findAll()) {
             System.out.println(clinic);
         }
+    }
+    
+    @Test
+    public void testSynchroniseDemoClinic() throws Exception {
+
+        dhisClinicApplicationService.synchroniseClinic("0001");
+        Assert.assertNotNull(clinicRepository.findOneByCode("0001"));
     }
 }
