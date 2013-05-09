@@ -37,6 +37,6 @@ public class ClinicRepositoryIntegrationTest {
     @Test
     public void findTotalClinicsByProvinceName() throws Exception {
     	Long total = clinicRepository.findTotalClinicsByProvinceName("kz KwaZulu-Natal Province");
-    	Assert.assertTrue(1140l == total);
+    	Assert.assertTrue(1142l == total);
     }
 }
