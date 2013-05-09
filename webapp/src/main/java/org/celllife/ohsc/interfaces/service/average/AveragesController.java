@@ -1,11 +1,16 @@
 package org.celllife.ohsc.interfaces.service.average;
 
+import java.util.Collection;
+import java.util.Date;
+
 import org.celllife.ohsc.application.averages.ClinicAverageApplicationService;
 import org.celllife.ohsc.application.averages.DistrictAverageApplicationService;
 import org.celllife.ohsc.application.averages.ProvinceAverageApplicationService;
 import org.celllife.ohsc.application.averages.SubDistrictAverageApplicationService;
-import org.celllife.ohsc.domain.datamart.*;
-import org.joda.time.format.DateTimeFormatter;
+import org.celllife.ohsc.domain.datamart.ClinicAverageDTO;
+import org.celllife.ohsc.domain.datamart.DistrictAverageDTO;
+import org.celllife.ohsc.domain.datamart.ProvinceAverageDTO;
+import org.celllife.ohsc.domain.datamart.SubDistrictAverageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -13,12 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
 
 /**
  * User: Kevin W. Sewell

@@ -31,4 +31,9 @@
             <column name="submission_date" type="DATETIME" />
         </addColumn>
     </changeSet>
+    <changeSet author="dagmar" id="data-mart-3">
+        <addColumn tableName="data_mart_rating">
+            <column name="msisdn" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

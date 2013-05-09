@@ -23,11 +23,11 @@
 
     <div class="row-fluid">
         <p id="breadcrumb">
-            <a href="reports/provinces?country=${averages[0].countryName}" class="active">Country<span>${averages[0].countryShortName}</span></a>
-            <a href="reports/districts?province=${averages[0].provinceName}" class="active">Province<span>${averages[0].provinceShortName}</span></a>
-            <a href="reports/subDistricts?district=${averages[0].districtName}" class="active">District<span>${averages[0].districtShortName}</span></a>
-            <a href="reports/clinics?subDistrict=${averages[0].subDistrictName}" class="active">Sub-District<span>${averages[0].subDistrictShortName}</span></a>
-            <a>Clinic</a>
+            <a href="reports/provinces?country=${ratings[0].countryName}" class="active">Country<span>${ratings[0].countryShortName}</span></a>
+            <a href="reports/districts?province=${ratings[0].provinceName}" class="active">Province<span>${ratings[0].provinceShortName}</span></a>
+            <a href="reports/subDistricts?district=${ratings[0].districtName}" class="active">District<span>${ratings[0].districtShortName}</span></a>
+            <a href="reports/clinics?subDistrict=${ratings[0].subDistrictName}" class="active">Sub-District<span>${ratings[0].subDistrictShortName}</span></a>
+            <a href="reports/ratings?clinic=${ratings[0].clinicCode}" class="active">Clinic<span>${ratings[0].clinicShortName}</span></a>
         </p>
     </div>
 
@@ -38,29 +38,31 @@
         <table class="table table-striped table-bordered" id="myTable">
             <thead>
             <tr>
-                <th>Clinic</th>
+                <th>Msisdn</th>
+                <th>Submission date</th>
                 <th>Staff Attitudes</th>
                 <th>Cleanliness</th>
                 <th>Waiting Times</th>
                 <th>Safe &amp; Secure Care</th>
                 <th>Infection Control</th>
                 <th>Drug Availability</th>
-                <th>Average Rating</th>
-                <th>Total Responses</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${averages}" var="average">
+            <c:forEach items="${ratings}" var="rating">
                 <tr>
-                    <td><a href="reports/ratings?clinic=${average.clinicCode}">${average.clinicShortName}</a></td>
-                    <td><fmt:formatNumber value="${average.staffAttitudeRating}" type="number" minFractionDigits="2"/></td>
-                    <td><fmt:formatNumber value="${average.cleanlinessRating}" type="number" minFractionDigits="2"/></td>
-                    <td><fmt:formatNumber value="${average.waitingTimesRating}" type="number" minFractionDigits="2"/></td>
-                    <td><fmt:formatNumber value="${average.drugAvailabilityRating}" type="number" minFractionDigits="2"/></td>
-                    <td><fmt:formatNumber value="${average.infectionControlRating}" type="number" minFractionDigits="2"/></td>
-                    <td><fmt:formatNumber value="${average.safeAndSecureCareRating}" type="number" minFractionDigits="2"/></td>
-                    <td><fmt:formatNumber value="${average.averageRating}" type="number" minFractionDigits="2"/></td>
-                    <td>${average.totalResponses != null ? average.totalResponses : "0"}</td>
+                    <td>${rating.msisdn}</td>
+                    
+					<jsp:useBean id="dateValue" class="java.util.Date" />
+					<jsp:setProperty name="dateValue" property="time" value="${rating.submissionDate}" />
+                    <td><fmt:formatDate value="${dateValue}" type="both" dateStyle="medium" timeStyle="medium"/></td>
+
+                    <td><fmt:formatNumber value="${rating.staffAttitudeRating}" type="number" minFractionDigits="2"/></td>
+                    <td><fmt:formatNumber value="${rating.cleanlinessRating}" type="number" minFractionDigits="2"/></td>
+                    <td><fmt:formatNumber value="${rating.waitingTimesRating}" type="number" minFractionDigits="2"/></td>
+                    <td><fmt:formatNumber value="${rating.drugAvailabilityRating}" type="number" minFractionDigits="2"/></td>
+                    <td><fmt:formatNumber value="${rating.infectionControlRating}" type="number" minFractionDigits="2"/></td>
+                    <td><fmt:formatNumber value="${rating.safeAndSecureCareRating}" type="number" minFractionDigits="2"/></td>
                 </tr>
             </c:forEach>
             </tbody>

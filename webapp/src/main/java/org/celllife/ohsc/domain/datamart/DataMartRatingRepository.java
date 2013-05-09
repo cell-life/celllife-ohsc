@@ -61,4 +61,15 @@ public interface DataMartRatingRepository extends PagingAndSortingRepository<Dat
             "group by provinceName, provinceShortName")
     Iterable<TotalClinicsMonitoredDTO> findTotalClinicsMonitoredByProvince(@Param("countryName") String countryName);
 
+    @Query("select new org.celllife.ohsc.domain.datamart.ClinicIndividualRatingDTO(clinicCode, clinicShortName, " +
+    		"subDistrictName, subDistrictShortName, districtName, districtShortName," +
+    		"provinceName, provinceShortName, countryName, countryShortName," +
+    		"msisdn, submissionDate," +
+    		"staffAttitudeRating, cleanlinessRating, waitingTimesRating," +
+    		"drugAvailabilityRating, infectionControlRating, safeAndSecureCareRating) " +
+            "from DataMartRating " +
+            "where (submissionDate between :startDate and :endDate)" +
+            "and clinicCode = :clinicCode " +
+            "group by clinicCode, clinicShortName, msisdn")    
+    Iterable<ClinicIndividualRatingDTO> findIndividualRatingsByClinic(@Param("clinicCode") String clinicCode, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 }

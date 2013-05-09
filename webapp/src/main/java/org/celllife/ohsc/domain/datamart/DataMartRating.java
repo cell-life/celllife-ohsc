@@ -34,6 +34,8 @@ public final class DataMartRating {
     private String countryName;
 
     private String countryShortName;
+    
+    private String msisdn;
 
     private Double staffAttitudeRating;
 
@@ -141,7 +143,15 @@ public final class DataMartRating {
         this.countryShortName = countryShortName;
     }
 
-    public Double getStaffAttitudeRating() {
+    public String getMsisdn() {
+		return msisdn;
+	}
+
+	public void setMsisdn(String msisdn) {
+		this.msisdn = msisdn;
+	}
+
+	public Double getStaffAttitudeRating() {
         return staffAttitudeRating;
     }
 

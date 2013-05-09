@@ -141,10 +141,10 @@ class ReportController {
         else
             ed = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(endDate)
 
-        def averages = get("${ratingServiceUrl}/findClinicAveragesBySubDistrict", [clinic: clinic, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
+        def ratings = get("${ratingServiceUrl}/findIndividualRatingsByClinic", [clinicCode: clinic, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
 
-        model.put("averages", averages)
+        model.put("ratings", ratings)
 
-        return "reports/clinics";
+        return "reports/ratings";
     }
 }
