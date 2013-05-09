@@ -32,7 +32,7 @@ public class DistrictAverageApplicationServiceImpl implements DistrictAverageApp
     @Autowired
     private DataMartRatingRepository dataMartRatingRepository;
 
-    public Collection<DistrictAverageDTO> findDistrictAveragesByProvince(String provinceName, Date endDate, Date startDate) {
+    public Collection<DistrictAverageDTO> findDistrictAveragesByProvince(String provinceName, Date startDate, Date endDate) {
 
         Province province = provinceRepository.findOneByName(provinceName);
 
