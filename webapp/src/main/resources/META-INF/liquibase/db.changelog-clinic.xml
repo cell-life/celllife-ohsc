@@ -35,5 +35,9 @@
         </insert>
 
     </changeSet>
+    
+    <changeSet author="dagmar" id="clinic-2">
+        <sqlFile path="demo-clinic.sql" relativeToChangelogFile="true"/>
+    </changeSet>
 
 </databaseChangeLog>

@@ -1,5 +1,3 @@
-INSERT INTO clinic VALUES (7140,'0000','0000',NULL,'Demo Clinic 1','Demo Clinic 1',76);
-INSERT INTO clinic VALUES (7141,'0001','0001',NULL,'Demo Clinic 2','Demo Clinic 2',76);
 INSERT INTO clinic VALUES (1,'0019','ZA8Yy6fxqvC','[26.7103,-30.6893]','ec Aliwal Mobile 1','Aliwal Mobile 1',176);
 INSERT INTO clinic VALUES (2,'0010','dL1CktTi1C9','[26.2963,-32.7081]','ec Adelaide Mobile 2','Adelaide Mobile 2',215);
 INSERT INTO clinic VALUES (3,'0015','Sa8nJB0CnVA','[26.4107,-33.6533]','ec Alexandria Mobile 1','Alexandria Mobile 1',224);
