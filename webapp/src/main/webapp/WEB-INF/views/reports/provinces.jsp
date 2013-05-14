@@ -65,7 +65,7 @@
                             });
                         });
                     </script>
-                    <button id="filter" type="button" class="btn" onclick="filterButtonClicked()">Filter</button>
+                    <button id="filter" type="button" class="btn" onclick="filterButtonClicked()">Apply</button>
                 </fieldset>
             </form>
             </div>
