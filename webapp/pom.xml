@@ -172,11 +172,11 @@
                     <systemProperties>
                         <systemProperty>
                             <key>liquibase.databaseChangeLogTableName</key>
-                            <value>database_changelog</value>
+                            <value>DATABASECHANGELOG</value>
                         </systemProperty>
                         <systemProperty>
                             <key>liquibase.databaseChangeLogLockTableName</key>
-                            <value>database_changelog_lock</value>
+                            <value>DATABASECHANGELOGLOCK</value>
                         </systemProperty>
                         <systemProperty>
                             <key>logback.configurationFile</key>

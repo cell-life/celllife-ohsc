@@ -37,7 +37,7 @@ class ReportController {
         if (startDate.equals(null)) {
             sd = new Date(946684800) //This is Unix time for 01 Jan 2000
         } else {
-            sd = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(startDate)
+            sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
         }
 
         Date ed
@@ -45,7 +45,7 @@ class ReportController {
         if (endDate.equals(null))
             ed = new Date()
         else
-            ed = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(endDate)
+            ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
 
         def averages = get("${averageServiceUrl}/findProvinceAveragesByCountry", [country: country, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
 
@@ -62,7 +62,7 @@ class ReportController {
         if (startDate.equals(null)) {
             sd = new Date(946684800) //This is Unix time for 01 Jan 2000
         } else {
-            sd = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(startDate)
+            sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
         }
 
         Date ed
@@ -70,7 +70,7 @@ class ReportController {
         if (endDate.equals(null))
             ed = new Date()
         else
-            ed = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(endDate)
+            ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
 
         def averages = get("${averageServiceUrl}/findDistrictAveragesByProvince", [province: province, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
 
@@ -86,14 +86,14 @@ class ReportController {
         if (startDate.equals(null)) {
             sd = new Date(946684800) //This is Unix time for 01 Jan 2000
         } else {
-            sd = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(startDate)
+            sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
         }
 
         Date ed
         if (endDate.equals(null))
             ed = new Date()
         else
-            ed = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(endDate)
+            ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
 
         def averages = get("${averageServiceUrl}/findSubDistrictAveragesByDistrict", [district: districtName, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
 
@@ -103,20 +103,20 @@ class ReportController {
     }
 
     @RequestMapping(value="/reports/clinics", method = RequestMethod.GET)
-    def findClinicAveragesBySubDistrict(@RequestParam("subDistrict") String subDistrict, @RequestParam(value="startDate", required=false) Date startDate, @RequestParam(value="endDate", required=false) Date endDate, Model model) {
+    def findClinicAveragesBySubDistrict(@RequestParam("subDistrict") String subDistrict, @RequestParam(value="startDate", required=false) String startDate, @RequestParam(value="endDate", required=false) String endDate, Model model) {
 
         Date sd
         if (startDate.equals(null)) {
             sd = new Date(946684800) //This is Unix time for 01 Jan 2000
         } else {
-            sd = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(startDate)
+            sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
         }
 
         Date ed
         if (endDate.equals(null))
             ed = new Date()
         else
-            ed = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(endDate)
+            ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
 
         def averages = get("${averageServiceUrl}/findClinicAveragesBySubDistrict", [subDistrict: subDistrict, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
 
@@ -126,20 +126,20 @@ class ReportController {
     }
 
     @RequestMapping(value="/reports/ratings", method = RequestMethod.GET)
-    def findRatingsByClinic(@RequestParam("clinic") String clinic, @RequestParam(value="startDate", required=false) Date startDate, @RequestParam(value="endDate", required=false) Date endDate, Model model) {
+    def findRatingsByClinic(@RequestParam("clinic") String clinic, @RequestParam(value="startDate", required=false) String startDate, @RequestParam(value="endDate", required=false) String endDate, Model model) {
 
         Date sd
         if (startDate.equals(null)) {
             sd = new Date(946684800) //This is Unix time for 01 Jan 2000
         } else {
-            sd = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(startDate)
+            sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
         }
 
         Date ed
         if (endDate.equals(null))
             ed = new Date()
         else
-            ed = new SimpleDateFormat("MM/dd/yy hh:mm aa").parse(endDate)
+            ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
 
         def ratings = get("${ratingServiceUrl}/findIndividualRatingsByClinic", [clinicCode: clinic, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
 

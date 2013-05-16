@@ -21,6 +21,8 @@
     <script type="text/javascript" src="resources/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="resources/js/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="resources/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="resources/js/datatables_bootstrap.js"></script>
 
 </head>
 <body>
@@ -30,7 +32,8 @@
 
     <div class="row-fluid">
         <p id="breadcrumb">
-            <a href="reports/provinces?country=${averages[0].countryName}" class="active">Country<span>${averages[0].countryShortName}</span></a>
+            <a href="reports/provinces?country=${averages[0].countryName}"
+               class="active">Country<span>${averages[0].countryShortName}</span></a>
             <a>Province</a>
             <a>District</a>
             <a>Sub-District</a>
@@ -38,14 +41,32 @@
         </p>
     </div>
 
+    <div class="row-fluid">
+        <div id="dateError" class="alert alert-block alert-error" style="display:none;margin:20px;">
+            <p>Error: The "From" date must be earlier than the "To" date.</p>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div id="dateTooShortError" class="alert alert-block alert-error" style="display:none;margin:20px;">
+            <p>One or both of the dates are invalid. Format must be "dd/MM/yyyy hh:mm aa".</p>
+        </div>
+    </div>
+
     <div class="row ohsc-border">
 
         <p>Below are the ratings of the Provinces in each of the 6 core standards for quality care.</p>
-            <div class="row-fluid">
+
+        <div class="row-fluid">
             <form class="form-inline pull-right">
                 <fieldset>
                     <label>From:</label>
-                    <input id="date1" name="date1" onchange="fromDateSelected()"/>
+
+                    <c:if test="${not empty param.startDate}">
+                        <input id="date1" name="date1" value="${param.startDate}" onchange="fromDateSelected()"/>
+                    </c:if>
+                    <c:if test="${empty param.startDate}">
+                        <input id="date1" name="date1" onchange="fromDateSelected()"/>
+                    </c:if>
                     <script>
                         $(function () {
                             $('#date1').datetimepicker({
@@ -55,7 +76,13 @@
                         });
                     </script>
                     <label>To:</label>
-                    <input id="date2" name="date2" onchange="toDateSelected()" disabled="true"/>
+                    <c:if test="${not empty param.endDate}">
+                        <input id="date2" name="date2" value="${param.endDate}"
+                               disabled="true"/>
+                    </c:if>
+                    <c:if test="${empty param.endDate}">
+                        <input id="date2" name="date2" disabled="true"/>
+                    </c:if>
                     <script>
                         $(function () {
                             $('#date2').datetimepicker({
@@ -68,7 +95,7 @@
                     <button id="filter" type="button" class="btn" onclick="filterButtonClicked()">Apply</button>
                 </fieldset>
             </form>
-            </div>
+        </div>
 
         <table class="table table-striped table-bordered" id="myTable">
             <thead>
@@ -107,14 +134,12 @@
             experience at their specific health care facility.</small></p>
     </div>
 
-	<jsp:include page="../includes/totalClinics.jsp"/>
+    <jsp:include page="../includes/totalClinics.jsp"/>
 
-   	<jsp:include page="../includes/footer.jsp"/>
+	<jsp:include page="../includes/footer.jsp"/>
 
 </div>
 
-<script type="text/javascript" src="resources/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="resources/js/datatables_bootstrap.js"></script>
 <script>
 	/* Table initialisation */
 	$(document).ready(function() {
@@ -123,16 +148,21 @@
 </script>
 
 <script>
-    function fromDateSelected(){
+    function fromDateSelected() {
         $('#date2').prop('disabled', false);
-        $('#date2').datetimepicker( "option", "minDate", $('#date1').datetimepicker('getDate') );
-        console.log($('#date1').datetimepicker('getDate'));
-    }
-    function toDateSelected(){
-        //window.location = 'reports/provinces?country=za South Africa (National Government)&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
+        $('#date2').datetimepicker("option", "minDate", $('#date1').datetimepicker('getDate'));
     }
     function filterButtonClicked() {
-        window.location = 'reports/provinces?country=za South Africa (National Government)&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
+
+        if (($("#date1").val().length != 19) || ($("#date2").val().length != 19)) {
+            $("#dateTooShortError").show();
+        } else if ($("#date1").val() > $("#date2").val()) {
+            $("#dateError").show();
+            $('#date2').prop('disabled', false);
+        }
+        else {
+            window.location = 'reports/provinces?country=za South Africa (National Government)&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
+        }
     }
 </script>
 

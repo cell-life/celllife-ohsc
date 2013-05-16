@@ -13,7 +13,16 @@
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="resources/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="resources/css/datatables_bootstrap.css" rel="stylesheet">
+    <link href="resources/css/jquery-ui.css" rel="stylesheet">
+    <link href="resources/css/jquery-ui-timepicker.css" rel="stylesheet">
     <link href="resources/css/ohsc.css" rel="stylesheet">
+
+    <script type="text/javascript" src="resources/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="resources/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="resources/js/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="resources/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="resources/js/datatables_bootstrap.js"></script>
 
 </head>
 <body>
@@ -31,9 +40,56 @@
         </p>
     </div>
 
+    <div class="row-fluid">
+        <div id="dateError" class="alert alert-block alert-error" style="display:none;margin:20px;">
+            <p>Error: The "From" date must be earlier than the "To" date.</p>
+        </div>
+    </div>
+
     <div class="row ohsc-border">
 
         <p>Below are the ratings of the Districts in each of the 6 core standards for quality care.</p>
+
+            <div class="row-fluid">
+            <form class="form-inline pull-right">
+                <fieldset>
+                    <label>From:</label>
+
+                    <c:if test="${not empty param.startDate}">
+                        <input id="date1" name="date1" value="${param.startDate}" onchange="fromDateSelected()"/>
+                    </c:if>
+                    <c:if test="${empty param.startDate}">
+                        <input id="date1" name="date1" onchange="fromDateSelected()"/>
+                    </c:if>
+                    <script>
+                        $(function () {
+                            $('#date1').datetimepicker({
+                                dateFormat: 'dd/mm/yy',
+                                timeFormat: 'hh:mm TT'
+                            });
+                        });
+                    </script>
+                    <label>To:</label>
+                    <c:if test="${not empty param.endDate}">
+                        <input id="date2" name="date2" value="${param.endDate}"
+                               disabled="true"/>
+                    </c:if>
+                    <c:if test="${empty param.endDate}">
+                        <input id="date2" name="date2" disabled="true"/>
+                    </c:if>
+                    <script>
+                        $(function () {
+                            $('#date2').datetimepicker({
+                                minDate: $('#date1').datetimepicker('getDate'),
+                                dateFormat: 'dd/mm/yy',
+                                timeFormat: 'hh:mm TT'
+                            });
+                        });
+                    </script>
+                    <button id="filter" type="button" class="btn" onclick="filterButtonClicked()">Apply</button>
+                </fieldset>
+            </form>
+            </div>
 
         <table class="table table-striped table-bordered" id="myTable">
             <thead>
@@ -78,15 +134,26 @@
 
 </div>
 
-<script type="text/javascript" src="resources/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="resources/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="resources/js/datatables_bootstrap.js"></script>
 <script>
 	/* Table initialisation */
 	$(document).ready(function() {
 		$('#myTable').dataTable();
 	});
+</script>
+
+<script>
+    function fromDateSelected() {
+        $('#date2').prop('disabled', false);
+        $('#date2').datetimepicker("option", "minDate", $('#date1').datetimepicker('getDate'));
+    }
+    function filterButtonClicked() {
+        if ($("#date1").val() > $("#date2").val()) {
+            $("#dateError").show();
+            $('#date2').prop('disabled', false);
+        } else {
+            window.location = 'reports/districts?province=' +'${averages[0].provinceName}' + '&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
+        }
+    }
 </script>
 
 </body>

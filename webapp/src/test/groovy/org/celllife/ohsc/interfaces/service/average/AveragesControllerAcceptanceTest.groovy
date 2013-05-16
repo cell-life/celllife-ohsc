@@ -57,11 +57,10 @@ class AveragesControllerAcceptanceTest {
         assertEquals(2.0, subDistrictAverage.staffAttitudeRating)
     }
 
-    @Ignore //TODO: Can't figure out how I broke this
     @Test
     void shouldFindDistrictAveragesByProvince() throws Exception {
 
-        Date start = new SimpleDateFormat("yyyyMMdd").parse("20100101");
+        Date start = new SimpleDateFormat("yyyyMMdd").parse("20120101");
         Date today = new Date()
 
         def districtAverages = findDistrictAveragesByProvince("mp Mpumalanga Province", start, today)
