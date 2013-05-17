@@ -55,47 +55,6 @@
 
         <p>Below are the ratings of the Sub-Districts in each of the 6 core standards for quality care.</p>
 
-        <div class="row-fluid">
-            <form class="form-inline pull-right">
-                <fieldset>
-                    <label>From:</label>
-
-                    <c:if test="${not empty param.startDate}">
-                        <input id="date1" name="date1" value="${param.startDate}" onchange="fromDateSelected()"/>
-                    </c:if>
-                    <c:if test="${empty param.startDate}">
-                        <input id="date1" name="date1" onchange="fromDateSelected()"/>
-                    </c:if>
-                    <script>
-                        $(function () {
-                            $('#date1').datetimepicker({
-                                dateFormat: 'dd/mm/yy',
-                                timeFormat: 'hh:mm TT'
-                            });
-                        });
-                    </script>
-                    <label>To:</label>
-                    <c:if test="${not empty param.endDate}">
-                        <input id="date2" name="date2" value="${param.endDate}"
-                               disabled="true"/>
-                    </c:if>
-                    <c:if test="${empty param.endDate}">
-                        <input id="date2" name="date2" disabled="true"/>
-                    </c:if>
-                    <script>
-                        $(function () {
-                            $('#date2').datetimepicker({
-                                minDate: $('#date1').datetimepicker('getDate'),
-                                dateFormat: 'dd/mm/yy',
-                                timeFormat: 'hh:mm TT'
-                            });
-                        });
-                    </script>
-                    <button id="filter" type="button" class="btn" onclick="filterButtonClicked()">Apply</button>
-                </fieldset>
-            </form>
-        </div>
-
         <table class="table table-striped table-bordered" id="myTable">
             <thead>
             <tr>
@@ -140,13 +99,29 @@
 </div>
 
 <script>
-	/* Table initialisation */
-	$(document).ready(function() {
-		$('#myTable').dataTable();
-	});
-</script>
+    /* Table initialisation */
+    $(document).ready(function () {
+        $('#myTable').dataTable({
+            "sDom": 'lfr<"toolbar">tip'
+        });
+        $("div.toolbar").html('<form class="form-inline"><fieldset><label>From:</label><input id="date1" name="date1" value="${param.startDate}" onchange="fromDateSelected()"/><label>To:</label><input id="date2" name="date2" value="${param.endDate}"disabled="true"/><button id="filter" type="button" class="btn" onclick="filterButtonClicked()">Apply</button></fieldset></form>');
+    });
 
-<script>
+    $(function () {
+        $('#date1').datetimepicker({
+            dateFormat: 'dd/mm/yy',
+            timeFormat: 'hh:mm TT'
+        });
+    });
+
+    $(function () {
+        $('#date2').datetimepicker({
+            minDate: $('#date1').datetimepicker('getDate'),
+            dateFormat: 'dd/mm/yy',
+            timeFormat: 'hh:mm TT'
+        });
+    });
+
     function fromDateSelected() {
         $('#date2').prop('disabled', false);
         $('#date2').datetimepicker("option", "minDate", $('#date1').datetimepicker('getDate'));
@@ -157,8 +132,9 @@
         } else if ($("#date1").val() > $("#date2").val()) {
             $("#dateError").show();
             $('#date2').prop('disabled', false);
-        } else {
-            window.location = 'reports/subDistricts?district=' +'${averages[0].districtName}' + '&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
+        }
+        else {
+            window.location = 'reports/provinces?country=za South Africa (National Government)&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
         }
     }
 </script>

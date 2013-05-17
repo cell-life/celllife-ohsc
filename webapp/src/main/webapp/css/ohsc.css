@@ -187,3 +187,8 @@ body {
     text-transform: none;
     z-index: 3;
 }
+
+.hasDatepicker {
+    margin-right: 15px;
+    margin-left: 5px;
+}
