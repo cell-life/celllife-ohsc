@@ -89,7 +89,7 @@ public final class RatingApplicationServiceImpl implements RatingApplicationServ
 				sort.and(createClinicIndividualRatingSort(iSortCol_7, sSortDir_7));
 			}
 		}
-    	Pageable pageable = new PageRequest(iDisplayStart,iDisplayLength, sort);
+    	Pageable pageable = new PageRequest((iDisplayStart/iDisplayLength),iDisplayLength, sort);
     	
     	// get the data
     	log.debug("about to query for individual ratings. page="+pageable.getPageNumber()+" page size="+pageable.getPageSize()+" sort="+((PageRequest)pageable).getSort());
