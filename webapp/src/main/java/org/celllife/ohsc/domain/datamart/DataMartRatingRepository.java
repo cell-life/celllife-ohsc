@@ -1,11 +1,13 @@
 package org.celllife.ohsc.domain.datamart;
 
+import java.util.Date;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.repository.annotation.RestResource;
-
-import java.util.Date;
 
 /**
  * User: Kevin W. Sewell
@@ -72,4 +74,16 @@ public interface DataMartRatingRepository extends PagingAndSortingRepository<Dat
             "and clinicCode = :clinicCode " +
             "group by clinicCode, clinicShortName, msisdn")    
     Iterable<ClinicIndividualRatingDTO> findIndividualRatingsByClinic(@Param("clinicCode") String clinicCode, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+    @Query("select new org.celllife.ohsc.domain.datamart.ClinicIndividualRatingDTO(clinicCode, clinicShortName, " +
+    		"subDistrictName, subDistrictShortName, districtName, districtShortName," +
+    		"provinceName, provinceShortName, countryName, countryShortName," +
+    		"msisdn, submissionDate," +
+    		"staffAttitudeRating, cleanlinessRating, waitingTimesRating," +
+    		"drugAvailabilityRating, infectionControlRating, safeAndSecureCareRating) " +
+            "from DataMartRating dmt " +
+            "where (dmt.submissionDate between :startDate and :endDate) " +
+            "and dmt.clinicCode = :clinicCode " +
+            "group by dmt.clinicCode, dmt.clinicShortName, dmt.msisdn")    
+    Page<ClinicIndividualRatingDTO> findIndividualRatingsByClinic(@Param("clinicCode") String clinicCode, @Param("startDate") Date startDate, @Param("endDate") Date endDate, Pageable p);
 }

@@ -1,15 +1,21 @@
 package org.celllife.ohsc.domain.datamart;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * User: Kevin W. Sewell
@@ -91,9 +97,18 @@ public class DataMartRatingRepositoryIntegrationTest {
         Assert.assertTrue(provinceAverages.iterator().hasNext());
     }
     
+    /*@Test
+    public void testFindClinicIndividualRatingsOld() throws Exception {
+    	Iterable<ClinicIndividualRatingDTO> individualRatings = dataMartRatingRepository.findIndividualRatingsByClinic("0000", yesterday, new Date());
+    	Assert.assertNotNull(individualRatings);
+        Assert.assertTrue(individualRatings.iterator().hasNext());
+    }*/
+    
     @Test
     public void testFindClinicIndividualRatings() throws Exception {
-    	Iterable<ClinicIndividualRatingDTO> individualRatings = dataMartRatingRepository.findIndividualRatingsByClinic("0000", yesterday, new Date());
+    	Sort sort = new Sort(Direction.ASC, "msisdn");
+    	Pageable pageable = new PageRequest(0,10, sort);
+    	Page<ClinicIndividualRatingDTO> individualRatings = dataMartRatingRepository.findIndividualRatingsByClinic("0000", yesterday, new Date(), pageable);
     	Assert.assertNotNull(individualRatings);
         Assert.assertTrue(individualRatings.iterator().hasNext());
     }

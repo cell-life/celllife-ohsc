@@ -69,7 +69,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${ratings}" var="rating">
+            <!--<c:forEach items="${ratings}" var="rating">
                 <tr>
                     <td>${rating.msisdn}</td>
                     
@@ -84,7 +84,7 @@
                     <td><fmt:formatNumber value="${rating.infectionControlRating}" type="number" minFractionDigits="2"/></td>
                     <td><fmt:formatNumber value="${rating.safeAndSecureCareRating}" type="number" minFractionDigits="2"/></td>
                 </tr>
-            </c:forEach>
+            </c:forEach>-->
             </tbody>
         </table>
 
@@ -101,13 +101,32 @@
 </div>
 
 <script>
-    /* Table initialisation */
-    $(document).ready(function () {
-        $('#myTable').dataTable({
-            "sDom": 'lfr<"toolbar">tip'
-        });
-        $("div.toolbar").html('<form class="form-inline"><fieldset><label>From:</label><input id="date1" name="date1" value="${param.startDate}" onchange="fromDateSelected()"/><label>To:</label><input id="date2" name="date2" value="${param.endDate}"disabled="true"/><button id="filter" type="button" class="btn" onclick="filterButtonClicked()">Apply</button></fieldset></form>');
-    });
+		function formatDateMMDDYYHHSSAMPM(date) {
+			var hours = date.getHours();
+			var minutes = date.getMinutes();
+			var ampm = hours >= 12 ? "PM" : "AM";
+			hours = hours % 12;
+			hours = hours ? hours : 12; // the hour '0' should be '12'
+			minutes = minutes < 10 ? '0' + minutes : minutes;
+			var strTime = date.getMonth() + "/" + date.getDate() + "/" +  (date.getFullYear()%2000) + " " + hours + ":" + minutes + " " + ampm;
+			return strTime;
+		}
+
+	/* Table initialisation */    
+   	$(document).ready(function() {
+   		$('#myTable').dataTable( {
+   			"sDom": 'lfr<"toolbar">tip',
+   			"bProcessing": true,
+   			"bServerSide": true,
+   			"sAjaxSource": "service/ratings/findIndividualRatingsByClinicPaged",
+   			"fnServerParams": function ( aoData ) {
+   			      aoData.push( { "name": "clinicCode", "value": "${ratings[0].clinicCode}" } );
+   			      aoData.push( { "name": "startDate", "value": "01/01/2000 12:00 AM" } );
+   			      aoData.push( { "name": "endDate", "value": formatDateMMDDYYHHSSAMPM(new Date()) } );
+   			    }
+   		} );
+   		$("div.toolbar").html('<form class="form-inline"><fieldset><label>From:</label><input id="date1" name="date1" value="${param.startDate}" onchange="fromDateSelected()"/><label>To:</label><input id="date2" name="date2" value="${param.endDate}"disabled="true"/><button id="filter" type="button" class="btn" onclick="filterButtonClicked()">Apply</button></fieldset></form>');
+   	});
 
     $(function () {
         $('#date1').datetimepicker({
