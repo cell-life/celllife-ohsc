@@ -134,7 +134,7 @@
             $('#date2').prop('disabled', false);
         }
         else {
-            window.location = 'reports/provinces?country=za South Africa (National Government)&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
+        	window.location = 'reports/subDistricts?district=' +'${averages[0].districtName}' + '&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
         }
     }
 </script>

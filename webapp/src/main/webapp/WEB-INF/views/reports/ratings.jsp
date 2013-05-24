@@ -139,7 +139,7 @@
             $('#date2').prop('disabled', false);
         }
         else {
-            window.location = 'reports/provinces?country=za South Africa (National Government)&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
+        	window.location = 'reports/ratings?clinic=' +'${param.clinic}' + '&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
         }
     }
 </script>
