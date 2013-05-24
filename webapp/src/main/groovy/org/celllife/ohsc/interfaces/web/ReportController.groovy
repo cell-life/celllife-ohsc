@@ -145,7 +145,11 @@ class ReportController {
         if (sd > ed) {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
         } else {
-            def ratings = get("${ratingServiceUrl}/findIndividualRatingsByClinic", [clinicCode: clinic, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
+            def ratings = get("${ratingServiceUrl}/findIndividualRatingsByClinic", [
+            	clinicCode: clinic, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa"),
+            	iDisplayStart: 0, iDisplayLength: 1, 
+            	iSortingCols: 1, iSortCol_0: 0, sSortDir_0: "asc"
+            ])
             model.put("ratings", ratings)
             return "reports/ratings";
         }

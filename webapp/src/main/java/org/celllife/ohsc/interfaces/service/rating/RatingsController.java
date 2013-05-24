@@ -4,7 +4,6 @@ package org.celllife.ohsc.interfaces.service.rating;
 import java.util.Date;
 
 import org.celllife.ohsc.application.rating.RatingApplicationService;
-import org.celllife.ohsc.domain.datamart.ClinicIndividualRatingDTO;
 import org.celllife.ohsc.domain.datamart.ClinicIndividualRatingPageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -25,15 +24,7 @@ public class RatingsController {
 
 	@ResponseBody
 	@RequestMapping(value = "/service/ratings/findIndividualRatingsByClinic", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Iterable<ClinicIndividualRatingDTO> findIndividualRatingsByClinic(
-			@RequestParam("clinicCode") String clinicCode, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
-
-		return ratingApplicationService.findIndividualRatingsByClinic(clinicCode, startDate, endDate);
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/service/ratings/findIndividualRatingsByClinicPaged", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ClinicIndividualRatingPageDTO findIndividualRatingsByClinicPaged(
+	public ClinicIndividualRatingPageDTO findIndividualRatingsByClinic(
 			@RequestParam("clinicCode") String clinicCode, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate,
 			@RequestParam("iDisplayStart") Integer iDisplayStart,
 			@RequestParam("iDisplayLength") Integer iDisplayLength,
@@ -57,7 +48,7 @@ public class RatingsController {
 			@RequestParam(value="sSortDir_7",required=false) String sSortDir_7,
 			@RequestParam(value="sEcho",required=false) String sEcho) {
 
-		return ratingApplicationService.findIndividualRatingsByClinicPaged(clinicCode, startDate, endDate,
+		return ratingApplicationService.findIndividualRatingsByClinic(clinicCode, startDate, endDate,
 				iDisplayStart, iDisplayLength, sSearch,
 				iSortingCols,iSortCol_0,iSortCol_1,iSortCol_2,iSortCol_3,iSortCol_4,iSortCol_5,iSortCol_6,iSortCol_7,
 				sSortDir_0,sSortDir_1,sSortDir_2,sSortDir_3,sSortDir_4,sSortDir_5,sSortDir_6,sSortDir_7,

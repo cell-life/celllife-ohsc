@@ -2,7 +2,6 @@ package org.celllife.ohsc.application.rating;
 
 import java.util.Date;
 
-import org.celllife.ohsc.domain.datamart.ClinicIndividualRatingDTO;
 import org.celllife.ohsc.domain.datamart.ClinicIndividualRatingPageDTO;
 import org.celllife.ohsc.domain.rating.Rating;
 
@@ -14,13 +13,6 @@ import org.celllife.ohsc.domain.rating.Rating;
 public interface RatingApplicationService {
 
     void save(Rating rating);
-    
-    /**
-     * Retrieves a list of the individual ratings for a clinic
-     * @param clinicCode String unique clinic code
-     * @return
-     */
-    Iterable<ClinicIndividualRatingDTO> findIndividualRatingsByClinic(String clinicCode, Date startDate, Date endDate);
     
     /**
      * Retrieves one page of individual ratings for a clinic
@@ -51,7 +43,7 @@ public interface RatingApplicationService {
      * @param sEcho String dataTables specific data which needs to be sent back with the request
      * @return
      */
-    ClinicIndividualRatingPageDTO findIndividualRatingsByClinicPaged(
+    ClinicIndividualRatingPageDTO findIndividualRatingsByClinic(
     		String clinicCode, Date startDate, Date endDate,
     		Integer iDisplayStart, Integer iDisplayLength, String sSearch,	Integer iSortingCols,
 			Integer iSortCol_0,	Integer iSortCol_1,	Integer iSortCol_2,	Integer iSortCol_3,	Integer iSortCol_4,	Integer iSortCol_5,	Integer iSortCol_6,	Integer iSortCol_7,

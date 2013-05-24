@@ -66,16 +66,9 @@ public final class RatingApplicationServiceImpl implements RatingApplicationServ
         }
     }
     
-    @Override
-	@Loggable(value = LogLevel.DEBUG, exception = LogLevel.ERROR)
-	public Iterable<ClinicIndividualRatingDTO> findIndividualRatingsByClinic(String clinicCode, Date startDate, Date endDate) {
-    	return ratingDataMartRepository.findIndividualRatingsByClinic(clinicCode, startDate, endDate);
-    	
-    }
-    
 	@Override
 	@Loggable(value = LogLevel.DEBUG, exception = LogLevel.ERROR)
-	public ClinicIndividualRatingPageDTO findIndividualRatingsByClinicPaged(
+	public ClinicIndividualRatingPageDTO findIndividualRatingsByClinic(
 			String clinicCode, Date startDate, Date endDate,
 			Integer iDisplayStart, Integer iDisplayLength, String sSearch, Integer iSortingCols,
 			Integer iSortCol_0, Integer iSortCol_1,	Integer iSortCol_2,	Integer iSortCol_3,	Integer iSortCol_4,	Integer iSortCol_5,	Integer iSortCol_6,	Integer iSortCol_7,
@@ -104,14 +97,26 @@ public final class RatingApplicationServiceImpl implements RatingApplicationServ
 		
 		// translate to the correct format for the UI
 		ClinicIndividualRatingPageDTO pageDTO = new ClinicIndividualRatingPageDTO();
+		pageDTO.setClinicCode(clinicCode);
 		pageDTO.setsEcho(sEcho);
-		pageDTO.setiTotalDisplayRecords(page.getNumberOfElements());
+		pageDTO.setiTotalDisplayRecords((int)page.getTotalElements()); // FIXME: haven't implemented filtering on search field
 		pageDTO.setiTotalRecords((int)page.getTotalElements());
-		Object[][] aaData = new Object[pageDTO.getiTotalDisplayRecords()][];
+		Object[][] aaData = new Object[page.getNumberOfElements()][];
 		Iterator<ClinicIndividualRatingDTO> it = page.iterator();
 		int row = 0;
 		while (it.hasNext()) {
 			ClinicIndividualRatingDTO dto = it.next();
+			if (row == 0) {
+				pageDTO.setClinicShortName(dto.getClinicShortName());
+				pageDTO.setCountryName(dto.getCountryName());
+				pageDTO.setCountryShortName(dto.getCountryShortName());
+				pageDTO.setDistrictName(dto.getDistrictName());
+				pageDTO.setDistrictShortName(dto.getDistrictShortName());
+				pageDTO.setProvinceName(dto.getProvinceName());
+				pageDTO.setProvinceShortName(dto.getProvinceShortName());
+				pageDTO.setSubDistrictName(dto.getSubDistrictName());
+				pageDTO.setSubDistrictShortName(dto.getSubDistrictShortName());
+			}
 			aaData[row] = new Object[] { dto.getMsisdn(), 
 					new SimpleDateFormat("dd MMM yyyy HH:mm:ss").format(dto.getSubmissionDate()), 
 					dto.getStaffAttitudeRating(), dto.getCleanlinessRating(), dto.getWaitingTimesRating(), 
@@ -125,14 +130,10 @@ public final class RatingApplicationServiceImpl implements RatingApplicationServ
 	
 	private Sort createClinicIndividualRatingSort(Integer col, String dir) {
 		String[] columns = new String[] { "msisdn", "msisdn", "staffAttitudeRating", "cleanlinessRating", "waitingTimesRating", "safeAndSecureCareRating", "infectionControlRating", "drugAvailabilityRating"};
-		//Sort defaultSort = new Sort((dir.equals("asc") ? Direction.ASC : Direction.DESC), "msisdn");
 		Sort sort = null;
 		if (col != null && col >= 0) {
 			sort = new Sort((dir.equals("asc") ? Direction.ASC : Direction.DESC), columns[col]);
 		}
-		/*if (sort == null) {
-			sort = defaultSort;
-		}*/
 		return sort;
 	}
 

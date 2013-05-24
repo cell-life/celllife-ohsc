@@ -17,6 +17,26 @@ public class ClinicIndividualRatingPageDTO implements Serializable {
 	private Integer iTotalRecords;
 	
 	private Integer iTotalDisplayRecords;
+
+	private String clinicCode;
+
+    private String clinicShortName;
+
+    private String subDistrictName;
+
+    private String subDistrictShortName;
+
+    private String districtName;
+
+    private String districtShortName;
+
+    private String provinceName;
+
+    private String provinceShortName;
+
+    private String countryName;
+
+    private String countryShortName;
 	
 	private Object[][] aaData;
 
@@ -60,5 +80,85 @@ public class ClinicIndividualRatingPageDTO implements Serializable {
 
 	public void setAaData(Object[][] aaData) {
 		this.aaData = aaData;
+	}
+
+	public String getClinicCode() {
+		return clinicCode;
+	}
+
+	public void setClinicCode(String clinicCode) {
+		this.clinicCode = clinicCode;
+	}
+
+	public String getClinicShortName() {
+		return clinicShortName;
+	}
+
+	public void setClinicShortName(String clinicShortName) {
+		this.clinicShortName = clinicShortName;
+	}
+
+	public String getSubDistrictName() {
+		return subDistrictName;
+	}
+
+	public void setSubDistrictName(String subDistrictName) {
+		this.subDistrictName = subDistrictName;
+	}
+
+	public String getSubDistrictShortName() {
+		return subDistrictShortName;
+	}
+
+	public void setSubDistrictShortName(String subDistrictShortName) {
+		this.subDistrictShortName = subDistrictShortName;
+	}
+
+	public String getDistrictName() {
+		return districtName;
+	}
+
+	public void setDistrictName(String districtName) {
+		this.districtName = districtName;
+	}
+
+	public String getDistrictShortName() {
+		return districtShortName;
+	}
+
+	public void setDistrictShortName(String districtShortName) {
+		this.districtShortName = districtShortName;
+	}
+
+	public String getProvinceName() {
+		return provinceName;
+	}
+
+	public void setProvinceName(String provinceName) {
+		this.provinceName = provinceName;
+	}
+
+	public String getProvinceShortName() {
+		return provinceShortName;
+	}
+
+	public void setProvinceShortName(String provinceShortName) {
+		this.provinceShortName = provinceShortName;
+	}
+
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+
+	public String getCountryShortName() {
+		return countryShortName;
+	}
+
+	public void setCountryShortName(String countryShortName) {
+		this.countryShortName = countryShortName;
 	}
 }

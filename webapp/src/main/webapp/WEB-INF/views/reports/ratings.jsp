@@ -32,11 +32,11 @@
 
     <div class="row-fluid">
         <p id="breadcrumb">
-            <a href="reports/provinces?country=${ratings[0].countryName}" class="active">Country<span>${ratings[0].countryShortName}</span></a>
-            <a href="reports/districts?province=${ratings[0].provinceName}" class="active">Province<span>${ratings[0].provinceShortName}</span></a>
-            <a href="reports/subDistricts?district=${ratings[0].districtName}" class="active">District<span>${ratings[0].districtShortName}</span></a>
-            <a href="reports/clinics?subDistrict=${ratings[0].subDistrictName}" class="active">Sub-District<span>${ratings[0].subDistrictShortName}</span></a>
-            <a href="reports/ratings?clinic=${param.clinic}" class="active">Clinic<span>${ratings[0].clinicShortName}</span></a>
+            <a href="reports/provinces?country=${ratings.countryName}" class="active">Country<span>${ratings.countryShortName}</span></a>
+            <a href="reports/districts?province=${ratings.provinceName}" class="active">Province<span>${ratings.provinceShortName}</span></a>
+            <a href="reports/subDistricts?district=${ratings.districtName}" class="active">District<span>${ratings.districtShortName}</span></a>
+            <a href="reports/clinics?subDistrict=${ratings.subDistrictName}" class="active">Sub-District<span>${ratings.subDistrictShortName}</span></a>
+            <a href="reports/ratings?clinic=${param.clinic}" class="active">Clinic<span>${ratings.clinicShortName}</span></a>
         </p>
     </div>
 
@@ -69,22 +69,6 @@
             </tr>
             </thead>
             <tbody>
-            <!--<c:forEach items="${ratings}" var="rating">
-                <tr>
-                    <td>${rating.msisdn}</td>
-                    
-					<jsp:useBean id="dateValue" class="java.util.Date" />
-					<jsp:setProperty name="dateValue" property="time" value="${rating.submissionDate}" />
-                    <td><fmt:formatDate value="${dateValue}" type="both" dateStyle="medium" timeStyle="medium"/></td>
-
-                    <td><fmt:formatNumber value="${rating.staffAttitudeRating}" type="number" minFractionDigits="2"/></td>
-                    <td><fmt:formatNumber value="${rating.cleanlinessRating}" type="number" minFractionDigits="2"/></td>
-                    <td><fmt:formatNumber value="${rating.waitingTimesRating}" type="number" minFractionDigits="2"/></td>
-                    <td><fmt:formatNumber value="${rating.drugAvailabilityRating}" type="number" minFractionDigits="2"/></td>
-                    <td><fmt:formatNumber value="${rating.infectionControlRating}" type="number" minFractionDigits="2"/></td>
-                    <td><fmt:formatNumber value="${rating.safeAndSecureCareRating}" type="number" minFractionDigits="2"/></td>
-                </tr>
-            </c:forEach>-->
             </tbody>
         </table>
 
@@ -118,9 +102,9 @@
    			"sDom": 'lfr<"toolbar">tip',
    			"bProcessing": true,
    			"bServerSide": true,
-   			"sAjaxSource": "service/ratings/findIndividualRatingsByClinicPaged",
+   			"sAjaxSource": "service/ratings/findIndividualRatingsByClinic",
    			"fnServerParams": function ( aoData ) {
-   			      aoData.push( { "name": "clinicCode", "value": "${ratings[0].clinicCode}" } );
+   			      aoData.push( { "name": "clinicCode", "value": "${param.clinic}" } );
    			      aoData.push( { "name": "startDate", "value": "01/01/2000 12:00 AM" } );
    			      aoData.push( { "name": "endDate", "value": formatDateMMDDYYHHSSAMPM(new Date()) } );
    			    }

@@ -97,13 +97,6 @@ public class DataMartRatingRepositoryIntegrationTest {
         Assert.assertTrue(provinceAverages.iterator().hasNext());
     }
     
-    /*@Test
-    public void testFindClinicIndividualRatingsOld() throws Exception {
-    	Iterable<ClinicIndividualRatingDTO> individualRatings = dataMartRatingRepository.findIndividualRatingsByClinic("0000", yesterday, new Date());
-    	Assert.assertNotNull(individualRatings);
-        Assert.assertTrue(individualRatings.iterator().hasNext());
-    }*/
-    
     @Test
     public void testFindClinicIndividualRatings() throws Exception {
     	Sort sort = new Sort(Direction.ASC, "msisdn");
