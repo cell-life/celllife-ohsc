@@ -85,19 +85,28 @@
 </div>
 
 <script>
-		function formatDateMMDDYYHHSSAMPM(date) {
-			var hours = date.getHours();
-			var minutes = date.getMinutes();
-			var ampm = hours >= 12 ? "PM" : "AM";
-			hours = hours % 12;
-			hours = hours ? hours : 12; // the hour '0' should be '12'
-			minutes = minutes < 10 ? '0' + minutes : minutes;
-			var strTime = date.getMonth() + "/" + date.getDate() + "/" +  (date.getFullYear()%2000) + " " + hours + ":" + minutes + " " + ampm;
-			return strTime;
+	function convertParamDateToMMDDYYHHSSAMPM(param) {
+		if (param == null || param == '') {
+			return null;
+		} else {
+			var date = $.datepicker.parseDate("dd/mm/yy", param);
+			var time = param.slice(11,19);
+			var strTime = date.getMonth() + "/" + date.getDate() + "/" +  (date.getFullYear()%2000) + " " + time;
+			return strTime; 
 		}
+	}
 
 	/* Table initialisation */    
    	$(document).ready(function() {
+   		var startDate = convertParamDateToMMDDYYHHSSAMPM('${param.startDate}');
+   		if (startDate == null) {
+   			startDate = "01/01/2000 12:00 AM";
+   		}
+   		var endDate = convertParamDateToMMDDYYHHSSAMPM('${param.endDate}');
+   		if (endDate == null) {
+   			var today = new Date();
+   			endDate = today.getMonth() + "/" + today.getDate() + "/" +  (today.getFullYear()%2000) + " 12:00 AM";
+   		}
    		$('#myTable').dataTable( {
    			"sDom": 'lfr<"toolbar">tip',
    			"bProcessing": true,
@@ -105,8 +114,8 @@
    			"sAjaxSource": "service/ratings/findIndividualRatingsByClinic",
    			"fnServerParams": function ( aoData ) {
    			      aoData.push( { "name": "clinicCode", "value": "${param.clinic}" } );
-   			      aoData.push( { "name": "startDate", "value": "01/01/2000 12:00 AM" } );
-   			      aoData.push( { "name": "endDate", "value": formatDateMMDDYYHHSSAMPM(new Date()) } );
+   			      aoData.push( { "name": "startDate", "value": startDate } );
+   			      aoData.push( { "name": "endDate", "value": endDate } );
    			    }
    		} );
    		$("div.toolbar").html('<form class="form-inline"><fieldset><label>From:</label><input id="date1" name="date1" value="${param.startDate}" onchange="fromDateSelected()"/><label>To:</label><input id="date2" name="date2" value="${param.endDate}"disabled="true"/><button id="filter" type="button" class="btn" onclick="filterButtonClicked()">Apply</button></fieldset></form>');
