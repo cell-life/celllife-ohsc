@@ -84,68 +84,15 @@
 
 </div>
 
+<jsp:include page="../includes/datepicker.jsp"/>
+
 <script>
-	function convertParamDateToMMDDYYHHSSAMPM(param) {
-		if (param == null || param == '') {
-			return null;
-		} else {
-			var date = $.datepicker.parseDate("dd/mm/yy", param);
-			var time = param.slice(11,19);
-			var strTime = date.getMonth() + "/" + date.getDate() + "/" +  (date.getFullYear()%2000) + " " + time;
-			return strTime; 
-		}
-	}
 
-	/* Table initialisation */    
-   	$(document).ready(function() {
-   		var startDate = convertParamDateToMMDDYYHHSSAMPM('${param.startDate}');
-   		if (startDate == null) {
-   			startDate = "01/01/2000 12:00 AM";
-   		}
-   		var endDate = convertParamDateToMMDDYYHHSSAMPM('${param.endDate}');
-   		if (endDate == null) {
-   			var today = new Date();
-   			endDate = today.getMonth() + "/" + today.getDate() + "/" +  (today.getFullYear()%2000) + " 12:00 AM";
-   		}
-   		$('#myTable').dataTable( {
-   			"sDom": 'lfr<"toolbar">tip',
-   			"bProcessing": true,
-   			"bServerSide": true,
-   			"sAjaxSource": "service/ratings/findIndividualRatingsByClinic",
-   			"fnServerParams": function ( aoData ) {
-   			      aoData.push( { "name": "clinicCode", "value": "${param.clinic}" } );
-   			      aoData.push( { "name": "startDate", "value": startDate } );
-   			      aoData.push( { "name": "endDate", "value": endDate } );
-   			    }
-   		} );
-   		$("div.toolbar").html('<form class="form-inline"><fieldset><label>From:</label><input id="date1" name="date1" value="${param.startDate}" onchange="fromDateSelected()"/><label>To:</label><input id="date2" name="date2" value="${param.endDate}"disabled="true"/><button id="filter" type="button" class="btn" onclick="filterButtonClicked()">Apply</button></fieldset></form>');
-   	});
-
-    $(function () {
-        $('#date1').datetimepicker({
-            dateFormat: 'dd/mm/yy',
-            timeFormat: 'hh:mm TT'
-        });
-    });
-
-    $(function () {
-        $('#date2').datetimepicker({
-            minDate: $('#date1').datetimepicker('getDate'),
-            dateFormat: 'dd/mm/yy',
-            timeFormat: 'hh:mm TT'
-        });
-    });
-
-    function fromDateSelected() {
-        $('#date2').prop('disabled', false);
-        $('#date2').datetimepicker("option", "minDate", $('#date1').datetimepicker('getDate'));
-    }
     function filterButtonClicked() {
         if (($("#date1").val().length != 19) || ($("#date2").val().length != 19)) {
             $("#dateTooShortError").show();
         } else if ($("#date1").val() > $("#date2").val()) {
             $("#dateError").show();
-            $('#date2').prop('disabled', false);
         }
         else {
         	window.location = 'reports/ratings?clinic=' +'${param.clinic}' + '&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();

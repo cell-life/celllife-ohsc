@@ -98,40 +98,15 @@
 
 </div>
 
+<jsp:include page="../includes/datepicker.jsp"/>
+
 <script>
-    /* Table initialisation */
-    $(document).ready(function () {
-        $('#myTable').dataTable({
-            "sDom": 'lfr<"toolbar">tip'
-        });
-        $("div.toolbar").html('<form class="form-inline"><fieldset><label>From:</label><input id="date1" name="date1" value="${param.startDate}" onchange="fromDateSelected()"/><label>To:</label><input id="date2" name="date2" value="${param.endDate}"disabled="true"/><button id="filter" type="button" class="btn" onclick="filterButtonClicked()">Apply</button></fieldset></form>');
-    });
 
-    $(function () {
-        $('#date1').datetimepicker({
-            dateFormat: 'dd/mm/yy',
-            timeFormat: 'hh:mm TT'
-        });
-    });
-
-    $(function () {
-        $('#date2').datetimepicker({
-            minDate: $('#date1').datetimepicker('getDate'),
-            dateFormat: 'dd/mm/yy',
-            timeFormat: 'hh:mm TT'
-        });
-    });
-
-    function fromDateSelected() {
-        $('#date2').prop('disabled', false);
-        $('#date2').datetimepicker("option", "minDate", $('#date1').datetimepicker('getDate'));
-    }
     function filterButtonClicked() {
         if (($("#date1").val().length != 19) || ($("#date2").val().length != 19)) {
             $("#dateTooShortError").show();
         } else if ($("#date1").val() > $("#date2").val()) {
             $("#dateError").show();
-            $('#date2').prop('disabled', false);
         }
         else {
         	window.location = 'reports/clinics?subDistrict=' +'${averages[0].subDistrictName}' + '&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
