@@ -65,7 +65,10 @@
             <tbody>
             <c:forEach items="${averages}" var="average">
                 <tr>
-                    <td><a href="reports/ratings?clinic=${average.clinicCode}">${average.clinicShortName}</a></td>
+                    <td><c:choose>
+                    	<c:when test="${average.totalResponses == null}">${average.clinicShortName}</c:when>
+                    	<c:otherwise><a href="reports/ratings?clinic=${average.clinicCode}">${average.clinicShortName}</a></c:otherwise>
+                    	</c:choose></td>
                     <td><fmt:formatNumber value="${average.staffAttitudeRating}" type="number" minFractionDigits="2"/></td>
                     <td><fmt:formatNumber value="${average.cleanlinessRating}" type="number" minFractionDigits="2"/></td>
                     <td><fmt:formatNumber value="${average.waitingTimesRating}" type="number" minFractionDigits="2"/></td>
