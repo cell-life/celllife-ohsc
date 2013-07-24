@@ -40,14 +40,9 @@
         </p>
     </div>
 
-	<jsp:include page="../includes/datepicker.jsp"/>
-	<script>
-    function filterButtonClicked() {
-        if datesAreValid() {
-        	window.location = 'reports/ratings?clinic=' +'${param.clinic}' + '&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
-        }
-    }
-	</script>
+	<jsp:include page="../includes/datepicker.jsp">
+		<jsp:param name="windowLocation" value="reports/ratings?clinic=${param.clinic}" />
+	</jsp:include>
 
     <div class="row ohsc-border">
 
