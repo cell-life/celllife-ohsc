@@ -40,16 +40,9 @@
         </p>
     </div>
 
-    <div class="row-fluid">
-        <div id="dateError" class="alert alert-block alert-error" style="display:none;margin:20px;">
-            <p>Error: The "From" date must be earlier than the "To" date.</p>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div id="dateTooShortError" class="alert alert-block alert-error" style="display:none;margin:20px;">
-            <p>One or both of the dates are invalid. Format must be "dd/MM/yyyy hh:mm aa".</p>
-        </div>
-    </div>
+	<jsp:include page="../includes/datepicker.jsp">
+		<jsp:param name="windowLocation" value="reports/districts?province=${averages[0].provinceName}" />
+	</jsp:include>
 
     <div class="row ohsc-border">
 
@@ -97,22 +90,6 @@
     <jsp:include page="../includes/footer.jsp"/>
 
 </div>
-
-<jsp:include page="../includes/datepicker.jsp"/>
-
-<script>
-
-    function filterButtonClicked() {
-        if (($("#date1").val().length != 19) || ($("#date2").val().length != 19)) {
-            $("#dateTooShortError").show();
-        } else if ($("#date1").val() > $("#date2").val()) {
-            $("#dateError").show();
-        }
-        else {
-        	window.location = 'reports/districts?province=' +'${averages[0].provinceName}' + '&startDate=' + $("#date1").val() + '&endDate=' + $("#date2").val();
-        }
-    }
-</script>
 
 </body>
 </html>

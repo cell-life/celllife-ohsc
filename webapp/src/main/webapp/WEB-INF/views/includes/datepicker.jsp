@@ -62,5 +62,30 @@
         $('#date2').datetimepicker("option", "minDate", $('#date1').datetimepicker('getDate'));
         $('#date2').datetimepicker("setTime", time); // there is a bug where setting minDate removes the time
     }
+    
+    function filterButtonClicked() {
+        if (($("#date1").val().length != 19) || ($("#date2").val().length != 19)) {
+            $("#dateTooShortError").show();
+            return false;
+        } else if ($("#date1").datepicker('getDate') > $("#date2").datepicker('getDate')) {
+            $("#dateError").show();
+            return false;
+        } else {
+	        $("#dateTooShortError").hide();
+	        $("#dateError").hide();
+        	window.location = "<%= request.getParameter("windowLocation") %>" + "&startDate=" + $('#date1').val() + "&endDate=" + $('#date2').val();
+        }
+    }
 
 </script>
+
+    <div class="row-fluid">
+        <div id="dateError" class="alert alert-block alert-error" style="display:none;margin:20px;">
+            <p>Error: The "From" date must be earlier than the "To" date.</p>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div id="dateTooShortError" class="alert alert-block alert-error" style="display:none;margin:20px;">
+            <p>One or both of the dates are invalid. Format must be "dd/MM/yyyy hh:mm aa".</p>
+        </div>
+    </div>
