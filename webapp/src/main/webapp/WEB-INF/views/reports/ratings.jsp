@@ -40,7 +40,7 @@
         </p>
     </div>
 
-	<jsp:include page="../includes/datepicker.jsp">
+	<jsp:include page="../includes/datepickerWithAjax.jsp">
 		<jsp:param name="windowLocation" value="reports/ratings?clinic=${param.clinic}" />
 	</jsp:include>
 
