@@ -1,18 +1,22 @@
 package org.celllife.ohsc.application.averages;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.celllife.ohsc.domain.country.Country;
 import org.celllife.ohsc.domain.country.CountryRepository;
 import org.celllife.ohsc.domain.datamart.DataMartRatingRepository;
 import org.celllife.ohsc.domain.datamart.ProvinceAverageDTO;
 import org.celllife.ohsc.domain.province.Province;
 import org.celllife.ohsc.domain.province.ProvinceRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * User: Kevin W. Sewell
@@ -21,6 +25,8 @@ import java.util.Map;
  */
 @Service
 public class ProvinceAverageApplicationServiceImpl implements ProvinceAverageApplicationService {
+	
+	private static Logger log = LoggerFactory.getLogger(ProvinceAverageApplicationServiceImpl.class);
 
     @Autowired
     private CountryRepository countryRepository;
@@ -62,6 +68,31 @@ public class ProvinceAverageApplicationServiceImpl implements ProvinceAverageApp
         }
         
         return provinceAverageMap.values();
+    }
+
+    public Collection<ProvinceAverageDTO> findOneProvinceAverageByCountryName(String countryName, String provinceName, Date startDate, Date endDate) {
+    	List<ProvinceAverageDTO> provinces = new ArrayList<ProvinceAverageDTO>();
+    	
+        Province province = provinceRepository.findOneByName(provinceName);
+        System.out.println("Loading stats for province: "+provinceName+", retrieved province:"+province);
+        
+        if (province != null) {
+        	System.out.println("Loading stats for province: "+province.getName());
+        	ProvinceAverageDTO provinceAverage =
+	                dataMartRatingRepository.findOneProvinceAverageByCountryNameAndProvinceName(countryName, province.getName(), startDate, endDate);
+        	System.out.println("Found average: "+provinceAverage);
+	        if (provinceAverage == null) {
+	        	provinceAverage = new ProvinceAverageDTO(
+                        provinceName,
+                        province.getShortName(),
+                        province.getCountry().getName(),
+                        province.getCountry().getShortName()
+                );
+	        }
+	        provinces.add(provinceAverage);
+        }
+        
+        return provinces;
     }
 
 }

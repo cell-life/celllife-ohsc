@@ -80,5 +80,15 @@ public class AveragesController {
 
         return provinceAverageApplicationService.findProvinceAveragesByCountryName(country, startDate, endDate);
     }
+    
+    @ResponseBody
+    @RequestMapping(
+            value = "/service/averages/findOneProvinceAverageByCountry",
+            method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public Collection<ProvinceAverageDTO> findOneProvinceAverageByCountry(@RequestParam("country") String country, @RequestParam("province") String province, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
+
+        return provinceAverageApplicationService.findOneProvinceAverageByCountryName(country, province, startDate, endDate);
+    }
 
 }

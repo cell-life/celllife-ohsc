@@ -13,5 +13,7 @@ import java.util.Date;
 public interface ProvinceAverageApplicationService {
 
     Collection<ProvinceAverageDTO> findProvinceAveragesByCountryName(String countryName, Date startDate, Date endDate);
+    
+    Collection<ProvinceAverageDTO> findOneProvinceAverageByCountryName(String countryName, String provinceName, Date startDate, Date endDate);
 
 }

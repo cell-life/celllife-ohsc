@@ -56,6 +56,17 @@ public interface DataMartRatingRepository extends PagingAndSortingRepository<Dat
             "group by provinceName, provinceShortName")
     Iterable<ProvinceAverageDTO> findProvinceAveragesByCountryName(@Param("countryName") String countryName, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
+    @Query("select new org.celllife.ohsc.domain.datamart.ProvinceAverageDTO(dmr.provinceName, dmr.provinceShortName, " +
+            "dmr.countryName, dmr.countryShortName, avg(dmr.staffAttitudeRating), avg(dmr.cleanlinessRating), " +
+            "avg(dmr.waitingTimesRating), avg(dmr.drugAvailabilityRating), avg(dmr.infectionControlRating), " +
+            "avg(dmr.safeAndSecureCareRating), count(*)) " +
+            "from DataMartRating dmr " +
+            "where (dmr.submissionDate between :startDate and :endDate) " +
+            "and dmr.countryName = :countryName " +
+            "and dmr.provinceName = :provinceName " +
+            "group by dmr.provinceName, dmr.provinceShortName")
+    ProvinceAverageDTO findOneProvinceAverageByCountryNameAndProvinceName(@Param("countryName") String countryName, @Param("provinceName") String provinceName, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
     @Query("select distinct new org.celllife.ohsc.domain.datamart.TotalClinicsMonitoredDTO(provinceName, provinceShortName, " +
             "countryName, countryShortName, count(distinct clinicCode))" +
             "from DataMartRating " +
