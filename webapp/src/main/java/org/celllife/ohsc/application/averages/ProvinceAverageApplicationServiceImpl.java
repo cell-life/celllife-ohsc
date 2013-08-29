@@ -74,13 +74,10 @@ public class ProvinceAverageApplicationServiceImpl implements ProvinceAverageApp
     	List<ProvinceAverageDTO> provinces = new ArrayList<ProvinceAverageDTO>();
     	
         Province province = provinceRepository.findOneByName(provinceName);
-        System.out.println("Loading stats for province: "+provinceName+", retrieved province:"+province);
         
         if (province != null) {
-        	System.out.println("Loading stats for province: "+province.getName());
         	ProvinceAverageDTO provinceAverage =
 	                dataMartRatingRepository.findOneProvinceAverageByCountryNameAndProvinceName(countryName, province.getName(), startDate, endDate);
-        	System.out.println("Found average: "+provinceAverage);
 	        if (provinceAverage == null) {
 	        	provinceAverage = new ProvinceAverageDTO(
                         provinceName,

@@ -65,9 +65,9 @@ public class OhscSecurityServiceImpl implements OhscSecurityService {
 	public boolean isDoh() {
 		LdapUserDetails userDetails = getAuthenticatedLdapUserDetails();
 		if (userDetails != null) {
-			return !userDetails.getDn().contains(OU_DOH);
+			return userDetails.getDn().contains(OU_DOH);
 		}
-		return true;	
+		return false;	
 	}
 
 	@Override
