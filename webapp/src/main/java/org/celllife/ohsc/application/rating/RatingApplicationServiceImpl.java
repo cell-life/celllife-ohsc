@@ -91,9 +91,15 @@ public final class RatingApplicationServiceImpl implements RatingApplicationServ
 		}
     	Pageable pageable = new PageRequest((iDisplayStart/iDisplayLength),iDisplayLength, sort);
     	
-    	// get the data
-    	log.debug("about to query for individual ratings. page="+pageable.getPageNumber()+" page size="+pageable.getPageSize()+" sort="+((PageRequest)pageable).getSort());
-		Page<ClinicIndividualRatingDTO> page = ratingDataMartRepository.findIndividualRatingsByClinic(clinicCode, startDate, endDate, pageable);
+    	Page<ClinicIndividualRatingDTO> page = null;
+    	if (sSearch != null && !sSearch.trim().equals("")) {
+    		// do a search (only on msisdn)
+    		page = ratingDataMartRepository.findIndividualRatingsByClinicAndMsisdnLike(clinicCode, sSearch, startDate, endDate, pageable);
+    	} else {
+    		// just get the data
+        	log.debug("about to query for individual ratings. page="+pageable.getPageNumber()+" page size="+pageable.getPageSize()+" sort="+((PageRequest)pageable).getSort());
+    		page = ratingDataMartRepository.findIndividualRatingsByClinic(clinicCode, startDate, endDate, pageable);
+    	}
 		
 		// translate to the correct format for the UI
 		ClinicIndividualRatingPageDTO pageDTO = new ClinicIndividualRatingPageDTO();
