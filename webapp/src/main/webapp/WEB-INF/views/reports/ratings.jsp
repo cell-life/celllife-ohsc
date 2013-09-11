@@ -40,9 +40,41 @@
         </p>
     </div>
 
-	<jsp:include page="../includes/datepickerWithAjax.jsp">
-		<jsp:param name="windowLocation" value="reports/ratings?clinic=${param.clinic}" />
-	</jsp:include>
+
+	<script>
+	
+	    /* Table initialisation */
+	    $(document).ready(function() {
+	        var startDate = convertParamDateToMMDDYYHHSSAMPM('${param.startDate}');
+	        if (startDate == null) {
+	            startDate = "01/01/2000 12:00 AM";
+	        }
+	        var endDate = convertParamDateToMMDDYYHHSSAMPM('${param.endDate}');
+	        if (endDate == null) {
+	            var today = new Date();
+	            endDate = today.getMonth() + "/" + today.getDate() + "/" +  (today.getFullYear()%2000) + " 12:00 AM";
+	        }
+	        $('#myTable').dataTable( {
+	            "sDom": 'lfr<"toolbar">tip',
+	            "bProcessing": true,
+	            "bServerSide": true,
+	            "sAjaxSource": "service/ratings/findIndividualRatingsByClinic",
+	            "fnServerParams": function ( aoData ) {
+	                aoData.push( { "name": "clinicCode", "value": "${param.clinic}" } );
+	                aoData.push( { "name": "startDate", "value": startDate } );
+	                aoData.push( { "name": "endDate", "value": endDate } );
+	            }
+	        } );
+	        $("div.toolbar").html('<form class="form-inline"><fieldset><label>From:</label>'
+	        		+'<input id="date1" name="date1" value="${param.startDate}" onchange="fromDateSelected()" type="text"/>'
+	        		+'<label>To:</label><input id="date2" name="date2" value="${param.endDate}" type="text"/>'
+	        		+'<button id="filter" type="button" class="btn" onclick="filterButtonClicked(\'reports/ratings?clinic=${param.clinic}\')">Apply</button>'
+	        		+'</fieldset></form>');
+	    });
+	
+	</script>
+	<script type="text/javascript" src="resources/js/datepicker.js"></script>
+	<jsp:include page="../includes/datepickerErrors.jsp"/>
 
     <div class="row ohsc-border">
 
