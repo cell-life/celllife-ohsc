@@ -57,19 +57,19 @@ class ReportController {
         else
             ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
 
+		def averages;
         if (sd > ed) {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
         } else if (securityService.isProvincial()) {
             String province = securityService.getProvince()
-            System.out.println("PROVINCE!!!:"+province)
-            def averages = get("${averageServiceUrl}/findOneProvinceAverageByCountry", [country: country, province: province, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
-            model.put("averages", averages)
-            return "reports/provinces";        
+            averages = get("${averageServiceUrl}/findOneProvinceAverageByCountry", [country: country, province: province, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])       
         } else {
-            def averages = get("${averageServiceUrl}/findProvinceAveragesByCountry", [country: country, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
-            model.put("averages", averages)
-            return "reports/provinces";
+            averages = get("${averageServiceUrl}/findProvinceAveragesByCountry", [country: country, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
         }
+        model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
+        model.put("endDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(ed))
+        model.put("averages", averages)
+        return "reports/provinces"; 
     }
 
     @RequestMapping(value="/reports/districts", method = RequestMethod.GET)
@@ -90,11 +90,13 @@ class ReportController {
 
         if (sd > ed) {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
-        } else {
-            def averages = get("${averageServiceUrl}/findDistrictAveragesByProvince", [province: province, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
-            model.put("averages", averages)
-            return "reports/districts";
         }
+
+        def averages = get("${averageServiceUrl}/findDistrictAveragesByProvince", [province: province, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
+        model.put("averages", averages)
+        model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
+        model.put("endDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(ed))
+        return "reports/districts";
     }
 
     @RequestMapping(value="/reports/subDistricts", method = RequestMethod.GET)
@@ -114,11 +116,12 @@ class ReportController {
 
         if (sd > ed) {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
-        } else {
-            def averages = get("${averageServiceUrl}/findSubDistrictAveragesByDistrict", [district: districtName, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
-            model.put("averages", averages)
-            return "reports/subDistricts";
         }
+        def averages = get("${averageServiceUrl}/findSubDistrictAveragesByDistrict", [district: districtName, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
+        model.put("averages", averages)
+        model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
+        model.put("endDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(ed))
+        return "reports/subDistricts";
     }
 
     @RequestMapping(value="/reports/clinics", method = RequestMethod.GET)
@@ -138,11 +141,12 @@ class ReportController {
 
         if (sd > ed) {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
-        } else {
-            def averages = get("${averageServiceUrl}/findClinicAveragesBySubDistrict", [subDistrict: subDistrict, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
-            model.put("averages", averages)
-            return "reports/clinics";
         }
+        def averages = get("${averageServiceUrl}/findClinicAveragesBySubDistrict", [subDistrict: subDistrict, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
+        model.put("averages", averages)
+        model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
+        model.put("endDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(ed))
+        return "reports/clinics";
     }
 
     @RequestMapping(value="/reports/ratings", method = RequestMethod.GET)
@@ -162,14 +166,16 @@ class ReportController {
 
         if (sd > ed) {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
-        } else {
-            def ratings = get("${ratingServiceUrl}/findIndividualRatingsByClinic", [
-            	clinicCode: clinic, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa"),
-            	iDisplayStart: 0, iDisplayLength: 1, 
-            	iSortingCols: 1, iSortCol_0: 0, sSortDir_0: "asc"
-            ])
-            model.put("ratings", ratings)
-            return "reports/ratings";
         }
+        
+        def ratings = get("${ratingServiceUrl}/findIndividualRatingsByClinic", [
+        	clinicCode: clinic, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa"),
+        	iDisplayStart: 0, iDisplayLength: 1, 
+        	iSortingCols: 1, iSortCol_0: 0, sSortDir_0: "asc"
+        ])
+        model.put("ratings", ratings)
+        model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
+    	model.put("endDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(ed))
+        return "reports/ratings";
     }
 }

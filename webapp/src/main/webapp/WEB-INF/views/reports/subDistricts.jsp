@@ -65,7 +65,7 @@
             <tbody>
             <c:forEach items="${averages}" var="average">
                 <tr>
-                    <td><a href="reports/clinics?subDistrict=${average.subDistrictName}">${average.subDistrictShortName}</a></td>
+                    <td><a href="reports/clinics?subDistrict=${average.subDistrictName}&startDate=${param.startDate}&endDate=${param.endDate}"">${average.subDistrictShortName}</a></td>
                     <td><fmt:formatNumber value="${average.staffAttitudeRating}" type="number" minFractionDigits="2"/></td>
                     <td><fmt:formatNumber value="${average.cleanlinessRating}" type="number" minFractionDigits="2"/></td>
                     <td><fmt:formatNumber value="${average.waitingTimesRating}" type="number" minFractionDigits="2"/></td>
