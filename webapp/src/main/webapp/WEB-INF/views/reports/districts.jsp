@@ -32,8 +32,8 @@
 
     <div class="row-fluid">
         <p id="breadcrumb">
-            <a href="reports/provinces?country=${averages[0].countryName}" class="active">Country<span>${averages[0].countryShortName}</span></a>
-            <a href="reports/districts?province=${averages[0].provinceName}" class="active">Province<span>${averages[0].provinceShortName}</span></a>
+            <a href="reports/provinces?country=${averages[0].countryName}&startDate=${startDate}&endDate=${endDate}" class="active">Country<span>${averages[0].countryShortName}</span></a>
+            <a href="reports/districts?province=${averages[0].provinceName}&startDate=${startDate}&endDate=${endDate}" class="active">Province<span>${averages[0].provinceShortName}</span></a>
             <a>District</a>
             <a>Sub-District</a>
             <a>Clinic</a>
@@ -65,7 +65,7 @@
             <tbody>
             <c:forEach items="${averages}" var="average">
                 <tr>
-                    <td><a href="reports/subDistricts?district=${average.districtName}&startDate=${param.startDate}&endDate=${param.endDate}"">${average.districtShortName}</a></td>
+                    <td><a href="reports/subDistricts?district=${average.districtName}&startDate=${startDate}&endDate=${endDate}">${average.districtShortName}</a></td>
                     <td><fmt:formatNumber value="${average.staffAttitudeRating}" type="number" minFractionDigits="2"/></td>
                     <td><fmt:formatNumber value="${average.cleanlinessRating}" type="number" minFractionDigits="2"/></td>
                     <td><fmt:formatNumber value="${average.waitingTimesRating}" type="number" minFractionDigits="2"/></td>

@@ -32,10 +32,10 @@
 
     <div class="row-fluid">
         <p id="breadcrumb">
-            <a href="reports/provinces?country=${averages[0].countryName}" class="active">Country<span>${averages[0].countryShortName}</span></a>
-            <a href="reports/districts?province=${averages[0].provinceName}" class="active">Province<span>${averages[0].provinceShortName}</span></a>
-            <a href="reports/subDistricts?district=${averages[0].districtName}" class="active">District<span>${averages[0].districtShortName}</span></a>
-            <a href="reports/clinics?subDistrict=${averages[0].subDistrictName}" class="active">Sub-District<span>${averages[0].subDistrictShortName}</span></a>
+            <a href="reports/provinces?country=${averages[0].countryName}&startDate=${startDate}&endDate=${endDate}" class="active">Country<span>${averages[0].countryShortName}</span></a>
+            <a href="reports/districts?province=${averages[0].provinceName}&startDate=${startDate}&endDate=${endDate}" class="active">Province<span>${averages[0].provinceShortName}</span></a>
+            <a href="reports/subDistricts?district=${averages[0].districtName}&startDate=${startDate}&endDate=${endDate}" class="active">District<span>${averages[0].districtShortName}</span></a>
+            <a href="reports/clinics?subDistrict=${averages[0].subDistrictName}&startDate=${startDate}&endDate=${endDate}" class="active">Sub-District<span>${averages[0].subDistrictShortName}</span></a>
             <a>Clinic</a>
         </p>
     </div>
@@ -67,7 +67,7 @@
                 <tr>
                     <td><c:choose>
                     	<c:when test="${average.totalResponses == null}">${average.clinicShortName}</c:when>
-                    	<c:otherwise><a href="reports/ratings?clinic=${average.clinicCode}&startDate=${param.startDate}&endDate=${param.endDate}"">${average.clinicShortName}</a></c:otherwise>
+                    	<c:otherwise><a href="reports/ratings?clinic=${average.clinicCode}&startDate=${startDate}&endDate=${endDate}">${average.clinicShortName}</a></c:otherwise>
                     	</c:choose></td>
                     <td><fmt:formatNumber value="${average.staffAttitudeRating}" type="number" minFractionDigits="2"/></td>
                     <td><fmt:formatNumber value="${average.cleanlinessRating}" type="number" minFractionDigits="2"/></td>

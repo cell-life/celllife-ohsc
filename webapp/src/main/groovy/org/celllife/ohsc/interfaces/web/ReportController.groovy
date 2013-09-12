@@ -45,14 +45,14 @@ class ReportController {
     def findProvinceAverages(@RequestParam("country") String country, @RequestParam(value = "startDate", required = false) String startDate, @RequestParam(value = "endDate", required = false) String endDate, Model model) {
 
         Date sd
-        if (startDate.equals(null))
+        if (startDate.equals(null) || startDate.trim().equals(""))
             sd = new Date(946684800) //This is Unix time for 01 Jan 2000
         else
             sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
 
         Date ed
 
-        if (endDate.equals(null))
+        if (endDate.equals(null) || endDate.trim().equals(""))
             ed = new Date()
         else
             ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
@@ -76,14 +76,14 @@ class ReportController {
     def findDistrictAveragesByProvince(@RequestParam("province") String province, @RequestParam(value = "startDate", required = false) String startDate, @RequestParam(value = "endDate", required = false) String endDate, Model model) {
 
         Date sd
-        if (startDate.equals(null))
+        if (startDate.equals(null) || startDate.trim().equals(""))
             sd = new Date(946684800) //This is Unix time for 01 Jan 2000
         else
             sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
 
         Date ed
 
-        if (endDate.equals(null))
+        if (endDate.equals(null) || endDate.trim().equals(""))
             ed = new Date()
         else
             ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
@@ -103,13 +103,13 @@ class ReportController {
     def findSubDistrictAveragesByDistrict(@RequestParam("district") String districtName, @RequestParam(value="startDate", required=false) String startDate, @RequestParam(value="endDate", required=false) String endDate, Model model) {
 
         Date sd
-        if (startDate.equals(null))
+        if (startDate.equals(null) || startDate.trim().equals(""))
             sd = new Date(946684800) //This is Unix time for 01 Jan 2000
         else
             sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
 
         Date ed
-        if (endDate.equals(null))
+        if (endDate.equals(null) || endDate.trim().equals(""))
             ed = new Date()
         else
             ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
@@ -128,13 +128,13 @@ class ReportController {
     def findClinicAveragesBySubDistrict(@RequestParam("subDistrict") String subDistrict, @RequestParam(value="startDate", required=false) String startDate, @RequestParam(value="endDate", required=false) String endDate, Model model) {
 
         Date sd
-        if (startDate.equals(null))
+        if (startDate.equals(null) || startDate.trim().equals(""))
             sd = new Date(946684800) //This is Unix time for 01 Jan 2000
         else
             sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
 
         Date ed
-        if (endDate.equals(null))
+        if (endDate.equals(null) || endDate.trim().equals(""))
             ed = new Date()
         else
             ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
@@ -153,13 +153,13 @@ class ReportController {
     def findRatingsByClinic(@RequestParam("clinic") String clinic, @RequestParam(value="startDate", required=false) String startDate, @RequestParam(value="endDate", required=false) String endDate, Model model) {
 
         Date sd
-        if (startDate.equals(null))
+        if (startDate.equals(null) || startDate.trim().equals(""))
             sd = new Date(946684800) //This is Unix time for 01 Jan 2000
         else
             sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
 
         Date ed
-        if (endDate.equals(null))
+        if (endDate.equals(null) || endDate.trim().equals(""))
             ed = new Date()
         else
             ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)

@@ -32,11 +32,11 @@
 
     <div class="row-fluid">
         <p id="breadcrumb">
-            <a href="reports/provinces?country=${ratings.countryName}" class="active">Country<span>${ratings.countryShortName}</span></a>
-            <a href="reports/districts?province=${ratings.provinceName}" class="active">Province<span>${ratings.provinceShortName}</span></a>
-            <a href="reports/subDistricts?district=${ratings.districtName}" class="active">District<span>${ratings.districtShortName}</span></a>
-            <a href="reports/clinics?subDistrict=${ratings.subDistrictName}" class="active">Sub-District<span>${ratings.subDistrictShortName}</span></a>
-            <a href="reports/ratings?clinic=${param.clinic}" class="active">Clinic<span>${ratings.clinicShortName}</span></a>
+            <a href="reports/provinces?country=${ratings.countryName}&startDate=${startDate}&endDate=${endDate}" class="active">Country<span>${ratings.countryShortName}</span></a>
+            <a href="reports/districts?province=${ratings.provinceName}&startDate=${startDate}&endDate=${endDate}" class="active">Province<span>${ratings.provinceShortName}</span></a>
+            <a href="reports/subDistricts?district=${ratings.districtName}&startDate=${startDate}&endDate=${endDate}" class="active">District<span>${ratings.districtShortName}</span></a>
+            <a href="reports/clinics?subDistrict=${ratings.subDistrictName}&startDate=${startDate}&endDate=${endDate}" class="active">Sub-District<span>${ratings.subDistrictShortName}</span></a>
+            <a href="reports/ratings?clinic=${param.clinic}&startDate=${startDate}&endDate=${endDate}" class="active">Clinic<span>${ratings.clinicShortName}</span></a>
         </p>
     </div>
 

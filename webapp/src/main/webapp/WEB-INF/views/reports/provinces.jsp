@@ -32,7 +32,7 @@
 
     <div class="row-fluid">
         <p id="breadcrumb">
-            <a href="reports/provinces?country=${averages[0].countryName}"
+            <a href="reports/provinces?country=${averages[0].countryName}&startDate=${startDate}&endDate=${endDate}"
                class="active">Country<span>${averages[0].countryShortName}</span></a>
             <a>Province</a>
             <a>District</a>
@@ -66,7 +66,7 @@
             <tbody>
             <c:forEach items="${averages}" var="average">
                 <tr>
-                    <td><a href="reports/districts?province=${average.provinceName}&startDate=${param.startDate}&endDate=${param.endDate}">${average.provinceShortName}</a></td>
+                    <td><a href="reports/districts?province=${average.provinceName}&startDate=${startDate}&endDate=${endDate}">${average.provinceShortName}</a></td>
                     <td><fmt:formatNumber value="${average.staffAttitudeRating}" type="number" minFractionDigits="2"/></td>
                     <td><fmt:formatNumber value="${average.cleanlinessRating}" type="number" minFractionDigits="2"/></td>
                     <td><fmt:formatNumber value="${average.waitingTimesRating}" type="number" minFractionDigits="2"/></td>
