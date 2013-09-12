@@ -73,7 +73,7 @@
         } else {
             var date = $.datepicker.parseDate("dd/mm/yy", param);
             var time = param.slice(11,19);
-            var strTime = date.getMonth() + "/" + date.getDate() + "/" +  (date.getFullYear()%2000) + " " + time;
+            var strTime = (date.getMonth()+1) + "/" + date.getDate() + "/" +  (date.getFullYear()%2000) + " " + time;
             return strTime;
         }
     }

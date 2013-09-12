@@ -52,7 +52,7 @@
 	        var endDate = convertParamDateToMMDDYYHHSSAMPM('${param.endDate}');
 	        if (endDate == null) {
 	            var today = new Date();
-	            endDate = today.getMonth() + "/" + today.getDate() + "/" +  (today.getFullYear()%2000) + " 12:00 AM";
+	            endDate = (today.getMonth()+1) + "/" + today.getDate() + "/" +  (today.getFullYear()%2000) + " 12:00 AM";
 	        }
 	        $('#myTable').dataTable( {
 	            "sDom": 'lfr<"toolbar">tip',
