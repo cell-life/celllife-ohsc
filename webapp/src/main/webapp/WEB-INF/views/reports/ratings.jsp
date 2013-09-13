@@ -45,14 +45,14 @@
 	
 	    /* Table initialisation */
 	    $(document).ready(function() {
+	    	var today = new Date();
 	        var startDate = convertParamDateToMMDDYYHHSSAMPM('${param.startDate}');
 	        if (startDate == null) {
-	            startDate = "01/01/2000 12:00 AM";
+	        	endDate = (today.getMonth()+1) + "/1/" +  today.getFullYear() + " 12:00 AM";
 	        }
 	        var endDate = convertParamDateToMMDDYYHHSSAMPM('${param.endDate}');
 	        if (endDate == null) {
-	            var today = new Date();
-	            endDate = (today.getMonth()+1) + "/" + today.getDate() + "/" +  (today.getFullYear()%2000) + " 12:00 AM";
+	            endDate = (today.getMonth()+1) + "/" + today.getDate() + "/" +  today.getFullYear() + " 12:00 AM";
 	        }
 	        $('#myTable').dataTable( {
 	            "sDom": 'lfr<"toolbar">tip',
