@@ -44,23 +44,14 @@ class ReportController {
     @RequestMapping(value="/reports/provinces", method = RequestMethod.GET)
     def findProvinceAverages(@RequestParam("country") String country, @RequestParam(value = "startDate", required = false) String startDate, @RequestParam(value = "endDate", required = false) String endDate, Model model) {
 
-        Date sd
-        if (startDate.equals(null) || startDate.trim().equals(""))
-            sd = new Date(946684800) //This is Unix time for 01 Jan 2000
-        else
-            sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
-
-        Date ed
-
-        if (endDate.equals(null) || endDate.trim().equals(""))
-            ed = new Date()
-        else
-            ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
-
-		def averages;
+        Date sd = getStartDate(startDate)
+        Date ed = getEndDate(endDate)
         if (sd > ed) {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
-        } else if (securityService.isProvincial()) {
+        }
+        
+		def averages;
+        if (securityService.isProvincial()) {
             String province = securityService.getProvince()
             averages = get("${averageServiceUrl}/findOneProvinceAverageByCountry", [country: country, province: province, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])       
         } else {
@@ -75,19 +66,8 @@ class ReportController {
     @RequestMapping(value="/reports/districts", method = RequestMethod.GET)
     def findDistrictAveragesByProvince(@RequestParam("province") String province, @RequestParam(value = "startDate", required = false) String startDate, @RequestParam(value = "endDate", required = false) String endDate, Model model) {
 
-        Date sd
-        if (startDate.equals(null) || startDate.trim().equals(""))
-            sd = new Date(946684800) //This is Unix time for 01 Jan 2000
-        else
-            sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
-
-        Date ed
-
-        if (endDate.equals(null) || endDate.trim().equals(""))
-            ed = new Date()
-        else
-            ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
-
+        Date sd = getStartDate(startDate)
+        Date ed = getEndDate(endDate)
         if (sd > ed) {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
         }
@@ -102,21 +82,12 @@ class ReportController {
     @RequestMapping(value="/reports/subDistricts", method = RequestMethod.GET)
     def findSubDistrictAveragesByDistrict(@RequestParam("district") String districtName, @RequestParam(value="startDate", required=false) String startDate, @RequestParam(value="endDate", required=false) String endDate, Model model) {
 
-        Date sd
-        if (startDate.equals(null) || startDate.trim().equals(""))
-            sd = new Date(946684800) //This is Unix time for 01 Jan 2000
-        else
-            sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
-
-        Date ed
-        if (endDate.equals(null) || endDate.trim().equals(""))
-            ed = new Date()
-        else
-            ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
-
+        Date sd = getStartDate(startDate)
+        Date ed = getEndDate(endDate)
         if (sd > ed) {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
         }
+
         def averages = get("${averageServiceUrl}/findSubDistrictAveragesByDistrict", [district: districtName, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
         model.put("averages", averages)
         model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
@@ -127,21 +98,12 @@ class ReportController {
     @RequestMapping(value="/reports/clinics", method = RequestMethod.GET)
     def findClinicAveragesBySubDistrict(@RequestParam("subDistrict") String subDistrict, @RequestParam(value="startDate", required=false) String startDate, @RequestParam(value="endDate", required=false) String endDate, Model model) {
 
-        Date sd
-        if (startDate.equals(null) || startDate.trim().equals(""))
-            sd = new Date(946684800) //This is Unix time for 01 Jan 2000
-        else
-            sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
-
-        Date ed
-        if (endDate.equals(null) || endDate.trim().equals(""))
-            ed = new Date()
-        else
-            ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
-
+        Date sd = getStartDate(startDate)
+        Date ed = getEndDate(endDate)
         if (sd > ed) {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
         }
+
         def averages = get("${averageServiceUrl}/findClinicAveragesBySubDistrict", [subDistrict: subDistrict, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
         model.put("averages", averages)
         model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
@@ -152,18 +114,8 @@ class ReportController {
     @RequestMapping(value="/reports/ratings", method = RequestMethod.GET)
     def findRatingsByClinic(@RequestParam("clinic") String clinic, @RequestParam(value="startDate", required=false) String startDate, @RequestParam(value="endDate", required=false) String endDate, Model model) {
 
-        Date sd
-        if (startDate.equals(null) || startDate.trim().equals(""))
-            sd = new Date(946684800) //This is Unix time for 01 Jan 2000
-        else
-            sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
-
-        Date ed
-        if (endDate.equals(null) || endDate.trim().equals(""))
-            ed = new Date()
-        else
-            ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
-
+        Date sd = getStartDate(startDate)
+        Date ed = getEndDate(endDate)
         if (sd > ed) {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
         }
@@ -177,5 +129,37 @@ class ReportController {
         model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
     	model.put("endDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(ed))
         return "reports/ratings";
+    }
+    
+    private Date getStartDate(String startDate) {
+    	Date sd
+    	if (startDate.equals(null) || startDate.trim().equals("")) {
+    	    Calendar c = Calendar.getInstance()   // this takes current date
+        	c.set(Calendar.DAY_OF_MONTH, 1)
+        	c.set(Calendar.HOUR, 0)
+        	c.set(Calendar.MINUTE, 0)
+        	c.set(Calendar.SECOND, 0)
+        	c.set(Calendar.MILLISECOND, 0)
+        	sd = c.getTime()
+        } else {
+        	sd = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(startDate)
+        }
+        return sd;
+    }
+    
+    private Date getEndDate(String endDate) {
+    	Date ed
+        if (endDate.equals(null) || endDate.trim().equals("")) {
+            ed = new Date()
+        } else {
+            ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
+            // set the time to midnight
+            Calendar c = Calendar.getInstance()
+            c.setTime(ed)
+            c.set(Calendar.HOUR_OF_DAY,24)
+            c.set(Calendar.MINUTE,00)
+            ed = c.getTime() 
+        }
+        return ed;
     }
 }
