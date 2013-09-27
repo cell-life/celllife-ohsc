@@ -6,6 +6,7 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.access.AccessDeniedException
 import org.springframework.security.access.prepost.PreAuthorize
@@ -42,7 +43,10 @@ class ReportController {
     }
 
     @RequestMapping(value="/reports/provinces", method = RequestMethod.GET)
-    def findProvinceAverages(@RequestParam("country") String country, @RequestParam(value = "startDate", required = false) String startDate, @RequestParam(value = "endDate", required = false) String endDate, Model model) {
+    def findProvinceAverages(@RequestParam("country") String country, 
+    	@RequestParam(value = "startDate", required = false) @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") String startDate, 
+    	@RequestParam(value = "endDate", required = false) @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") String endDate, 
+    	Model model) {
 
         Date sd = getStartDate(startDate)
         Date ed = getEndDate(endDate)
@@ -53,9 +57,9 @@ class ReportController {
 		def averages;
         if (securityService.isProvincial()) {
             String province = securityService.getProvince()
-            averages = get("${averageServiceUrl}/findOneProvinceAverageByCountry", [country: country, province: province, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])       
+            averages = get("${averageServiceUrl}/findOneProvinceAverageByCountry", [country: country, province: province, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])       
         } else {
-            averages = get("${averageServiceUrl}/findProvinceAveragesByCountry", [country: country, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
+            averages = get("${averageServiceUrl}/findProvinceAveragesByCountry", [country: country, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])
         }
         model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
         model.put("endDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(ed))
@@ -64,7 +68,10 @@ class ReportController {
     }
 
     @RequestMapping(value="/reports/districts", method = RequestMethod.GET)
-    def findDistrictAveragesByProvince(@RequestParam("province") String province, @RequestParam(value = "startDate", required = false) String startDate, @RequestParam(value = "endDate", required = false) String endDate, Model model) {
+    def findDistrictAveragesByProvince(@RequestParam("province") String province, 
+    	@RequestParam(value = "startDate", required = false) @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") String startDate, 
+    	@RequestParam(value = "endDate", required = false) @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") String endDate, 
+    	Model model) {
 
         Date sd = getStartDate(startDate)
         Date ed = getEndDate(endDate)
@@ -72,7 +79,7 @@ class ReportController {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
         }
 
-        def averages = get("${averageServiceUrl}/findDistrictAveragesByProvince", [province: province, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
+        def averages = get("${averageServiceUrl}/findDistrictAveragesByProvince", [province: province, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])
         model.put("averages", averages)
         model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
         model.put("endDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(ed))
@@ -80,7 +87,10 @@ class ReportController {
     }
 
     @RequestMapping(value="/reports/subDistricts", method = RequestMethod.GET)
-    def findSubDistrictAveragesByDistrict(@RequestParam("district") String districtName, @RequestParam(value="startDate", required=false) String startDate, @RequestParam(value="endDate", required=false) String endDate, Model model) {
+    def findSubDistrictAveragesByDistrict(@RequestParam("district") String districtName, 
+    	@RequestParam(value="startDate", required=false) @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") String startDate, 
+    	@RequestParam(value="endDate", required=false) @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") String endDate, 
+    	Model model) {
 
         Date sd = getStartDate(startDate)
         Date ed = getEndDate(endDate)
@@ -88,7 +98,7 @@ class ReportController {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
         }
 
-        def averages = get("${averageServiceUrl}/findSubDistrictAveragesByDistrict", [district: districtName, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
+        def averages = get("${averageServiceUrl}/findSubDistrictAveragesByDistrict", [district: districtName, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])
         model.put("averages", averages)
         model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
         model.put("endDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(ed))
@@ -96,7 +106,10 @@ class ReportController {
     }
 
     @RequestMapping(value="/reports/clinics", method = RequestMethod.GET)
-    def findClinicAveragesBySubDistrict(@RequestParam("subDistrict") String subDistrict, @RequestParam(value="startDate", required=false) String startDate, @RequestParam(value="endDate", required=false) String endDate, Model model) {
+    def findClinicAveragesBySubDistrict(@RequestParam("subDistrict") String subDistrict, 
+    	@RequestParam(value="startDate", required=false) @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") String startDate, 
+    	@RequestParam(value="endDate", required=false) @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") String endDate, 
+    	Model model) {
 
         Date sd = getStartDate(startDate)
         Date ed = getEndDate(endDate)
@@ -104,7 +117,7 @@ class ReportController {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
         }
 
-        def averages = get("${averageServiceUrl}/findClinicAveragesBySubDistrict", [subDistrict: subDistrict, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa")])
+        def averages = get("${averageServiceUrl}/findClinicAveragesBySubDistrict", [subDistrict: subDistrict, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])
         model.put("averages", averages)
         model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
         model.put("endDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(ed))
@@ -112,7 +125,10 @@ class ReportController {
     }
 
     @RequestMapping(value="/reports/ratings", method = RequestMethod.GET)
-    def findRatingsByClinic(@RequestParam("clinic") String clinic, @RequestParam(value="startDate", required=false) String startDate, @RequestParam(value="endDate", required=false) String endDate, Model model) {
+    def findRatingsByClinic(@RequestParam("clinic") String clinic, 
+    	@RequestParam(value="startDate", required=false) @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") String startDate, 
+    	@RequestParam(value="endDate", required=false) @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") String endDate, 
+    	Model model) {
 
         Date sd = getStartDate(startDate)
         Date ed = getEndDate(endDate)
@@ -121,7 +137,7 @@ class ReportController {
         }
         
         def ratings = get("${ratingServiceUrl}/findIndividualRatingsByClinic", [
-        	clinicCode: clinic, startDate: sd.format("MM/dd/yy hh:mm aa"), endDate: ed.format("MM/dd/yy hh:mm aa"),
+        	clinicCode: clinic, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa"),
         	iDisplayStart: 0, iDisplayLength: 1, 
         	iSortingCols: 1, iSortCol_0: 0, sSortDir_0: "asc"
         ])
@@ -134,7 +150,8 @@ class ReportController {
     private Date getStartDate(String startDate) {
     	Date sd
     	if (startDate.equals(null) || startDate.trim().equals("")) {
-    	    Calendar c = Calendar.getInstance()   // this takes current date
+    		// set the time to the first of the month
+    	    Calendar c = Calendar.getInstance()
         	c.set(Calendar.DAY_OF_MONTH, 1)
         	c.set(Calendar.HOUR, 0)
         	c.set(Calendar.MINUTE, 0)
@@ -150,15 +167,13 @@ class ReportController {
     private Date getEndDate(String endDate) {
     	Date ed
         if (endDate.equals(null) || endDate.trim().equals("")) {
-            ed = new Date()
-        } else {
-            ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
-            // set the time to midnight
+            // set the time to midnight today
             Calendar c = Calendar.getInstance()
-            c.setTime(ed)
             c.set(Calendar.HOUR_OF_DAY,24)
             c.set(Calendar.MINUTE,00)
             ed = c.getTime() 
+        } else {
+            ed = new SimpleDateFormat("dd/MM/yyyy hh:mm aa").parse(endDate)
         }
         return ed;
     }

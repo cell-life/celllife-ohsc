@@ -15,28 +15,28 @@ class AverageService {
     static findClinicAveragesBySubDistrict(String subDistrict, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
         REST.get(
                 path: "${baseAveragesUrl}/findClinicAveragesBySubDistrict",
-                query: [subDistrict: subDistrict, startDate: startDate.format("MM/dd/yy hh:mm aa"), endDate: endDate.format("MM/dd/yy hh:mm aa")]
+                query: [subDistrict: subDistrict, startDate: startDate.format("dd/MM/yyyy hh:mm aa"), endDate: endDate.format("dd/MM/yyyy hh:mm aa")]
         )
     }
 
     static findSubDistrictAveragesByDistrict(String district, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
         REST.get(
                 path: "${baseAveragesUrl}/findSubDistrictAveragesByDistrict",
-                query: [district: district, startDate: startDate.format("MM/dd/yy hh:mm aa"), endDate: endDate.format("MM/dd/yy hh:mm aa")]
+                query: [district: district, startDate: startDate.format("dd/MM/yyyy hh:mm aa"), endDate: endDate.format("dd/MM/yyyy hh:mm aa")]
         )
     }
 
     static findDistrictAveragesByProvince(String province, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
         REST.get(
                 path: "${baseAveragesUrl}/findDistrictAveragesByProvince",
-                query: [province: province, startDate: startDate.format("MM/dd/yy hh:mm aa"), endDate: endDate.format("MM/dd/yy hh:mm aa")]
+                query: [province: province, startDate: startDate.format("dd/MM/yyyy hh:mm aa"), endDate: endDate.format("dd/MM/yyyy hh:mm aa")]
         )
     }
 
     static findProvinceAveragesByCountry(String country, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
         REST.get(
                 path: "${baseAveragesUrl}/findProvinceAveragesByCountry",
-                query: [country: country, startDate: startDate.format("MM/dd/yy hh:mm aa"), endDate: endDate.format("MM/dd/yy hh:mm aa")]
+                query: [country: country, startDate: startDate.format("dd/MM/yyyy hh:mm aa"), endDate: endDate.format("dd/MM/yyyy hh:mm aa")]
         )
     }
 }

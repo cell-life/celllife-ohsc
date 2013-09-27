@@ -46,13 +46,13 @@
 	    /* Table initialisation */
 	    $(document).ready(function() {
 	    	var today = new Date();
-	        var startDate = convertParamDateToMMDDYYHHSSAMPM('${param.startDate}');
+	        var startDate = convertParamDate('${startDate}');
 	        if (startDate == null) {
-	        	endDate = (today.getMonth()+1) + "/1/" +  today.getFullYear() + " 12:00 AM";
+	        	endDate = "1/" + (today.getMonth()+1) + "/" +  today.getFullYear() + " 12:00 AM";
 	        }
-	        var endDate = convertParamDateToMMDDYYHHSSAMPM('${param.endDate}');
+	        var endDate = convertParamDate('${endDate}');
 	        if (endDate == null) {
-	            endDate = (today.getMonth()+1) + "/" + today.getDate() + "/" +  today.getFullYear() + " 12:00 AM";
+	            endDate = today.getDate() + "/" + (today.getMonth()+1) + "/" + today.getFullYear() + " 12:00 AM";
 	        }
 	        $('#myTable').dataTable( {
 	            "sDom": 'lfr<"toolbar">tip',

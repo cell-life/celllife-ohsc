@@ -6,6 +6,7 @@ import java.util.Date;
 import org.celllife.ohsc.application.rating.RatingApplicationService;
 import org.celllife.ohsc.domain.datamart.ClinicIndividualRatingPageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,9 @@ public class RatingsController {
 	@ResponseBody
 	@RequestMapping(value = "/service/ratings/findIndividualRatingsByClinic", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ClinicIndividualRatingPageDTO findIndividualRatingsByClinic(
-			@RequestParam("clinicCode") String clinicCode, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate,
+			@RequestParam("clinicCode") String clinicCode, 
+			@RequestParam("startDate") @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") Date startDate, 
+			@RequestParam("endDate") @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") Date endDate,
 			@RequestParam("iDisplayStart") Integer iDisplayStart,
 			@RequestParam("iDisplayLength") Integer iDisplayLength,
 			@RequestParam(value="sSearch",required=false) String sSearch,

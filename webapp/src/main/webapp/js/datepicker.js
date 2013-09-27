@@ -67,13 +67,13 @@
         }
     }
 
-    function convertParamDateToMMDDYYHHSSAMPM(param) {
+    function convertParamDate(param) {
         if (param == null || param == '') {
             return null;
         } else {
             var date = $.datepicker.parseDate("dd/mm/yy", param);
             var time = param.slice(11,19);
-            var strTime = (date.getMonth()+1) + "/" + date.getDate() + "/" +  date.getFullYear() + " " + time;
+            var strTime = date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear() + " " + time;
             return strTime;
         }
     }

@@ -12,6 +12,7 @@ import org.celllife.ohsc.domain.datamart.DistrictAverageDTO;
 import org.celllife.ohsc.domain.datamart.ProvinceAverageDTO;
 import org.celllife.ohsc.domain.datamart.SubDistrictAverageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,8 +45,9 @@ public class AveragesController {
             value = "/service/averages/findClinicAveragesBySubDistrict",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<ClinicAverageDTO> findClinicAveragesBySubDistrict(@RequestParam("subDistrict")
-                                                                        String subDistrict, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
+    public Collection<ClinicAverageDTO> findClinicAveragesBySubDistrict(@RequestParam("subDistrict") String subDistrict, 
+    		@RequestParam("startDate") @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") Date startDate, 
+            @RequestParam("endDate") @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") Date endDate) {
 
         return clinicAverageApplicationService.findClinicAveragesBySubDistrict(subDistrict, startDate, endDate);
     }
@@ -55,8 +57,9 @@ public class AveragesController {
             value = "/service/averages/findSubDistrictAveragesByDistrict",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<SubDistrictAverageDTO> findSubDistrictAveragesBySubDistrict(@RequestParam("district")
-                                                                                  String district, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
+    public Collection<SubDistrictAverageDTO> findSubDistrictAveragesBySubDistrict(@RequestParam("district") String district, 
+    		@RequestParam("startDate") @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") Date startDate, 
+    		@RequestParam("endDate") @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") Date endDate) {
 
         return subDistrictAverageApplicationService.findSubDistrictAveragesByDistrict(district, startDate, endDate);
     }
@@ -66,7 +69,9 @@ public class AveragesController {
             value = "/service/averages/findDistrictAveragesByProvince",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<DistrictAverageDTO> findDistrictAveragesByProvince(@RequestParam("province") String province, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
+    public Collection<DistrictAverageDTO> findDistrictAveragesByProvince(@RequestParam("province") String province, 
+    		@RequestParam("startDate") @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") Date startDate, 
+    		@RequestParam("endDate") @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") Date endDate) {
 
         return districtAverageApplicationService.findDistrictAveragesByProvince(province, startDate, endDate);
     }
@@ -76,7 +81,9 @@ public class AveragesController {
             value = "/service/averages/findProvinceAveragesByCountry",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<ProvinceAverageDTO> findProvinceAveragesByCountry(@RequestParam("country") String country, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
+    public Collection<ProvinceAverageDTO> findProvinceAveragesByCountry(@RequestParam("country") String country, 
+    		@RequestParam("startDate") @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") Date startDate, 
+    		@RequestParam("endDate") @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") Date endDate) {
 
         return provinceAverageApplicationService.findProvinceAveragesByCountryName(country, startDate, endDate);
     }
@@ -86,7 +93,10 @@ public class AveragesController {
             value = "/service/averages/findOneProvinceAverageByCountry",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Collection<ProvinceAverageDTO> findOneProvinceAverageByCountry(@RequestParam("country") String country, @RequestParam("province") String province, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
+    public Collection<ProvinceAverageDTO> findOneProvinceAverageByCountry(@RequestParam("country") String country, 
+    		@RequestParam("province") String province, 
+    		@RequestParam("startDate") @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") Date startDate, 
+    		@RequestParam("endDate") @DateTimeFormat(pattern="dd/MM/yyyy hh:mm aa") Date endDate) {
 
         return provinceAverageApplicationService.findOneProvinceAverageByCountryName(country, province, startDate, endDate);
     }
