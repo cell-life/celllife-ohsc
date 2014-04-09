@@ -1,5 +1,8 @@
 package org.celllife.ohsc.integration.cqm;
 
+import java.io.File;
+import java.io.FileInputStream;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
@@ -12,10 +15,8 @@ import org.apache.http.message.BasicHeader;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HttpContext;
+import org.junit.Ignore;
 import org.junit.Test;
-
-import java.io.File;
-import java.io.FileInputStream;
 
 /**
  * User: Kevin W. Sewell
@@ -27,6 +28,7 @@ public class CqmUssdSubmissionMediatorPerformanceTest {
     public static final String BASE_DIR = "/data/CqmUssdSubmissionRequest/";
 
     @Test
+    @Ignore("Integration test")
     public void testHandleCqmUssdSubmissionLoad() throws Exception {
 
         String path = getClass().getResource(BASE_DIR).getPath();
