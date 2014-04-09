@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacilityFullReport" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b6ac19b7-e7f8-46b0-b2dc-b06094312abd">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OHSCCell"/>
+	<parameter name="DIST_SHORT_NAME" class="java.lang.String"/>
+	<parameter name="FirstOfThisMonth" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[(
+    $P{cal}.set($P{END_DATE}.getYear()+1900, $P{END_DATE}.getMonth(), $P{END_DATE}.getDate()) ||
+    $P{cal}.add(Calendar.MONTH, -0) ||
+    $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
+)
+? null : $P{cal}.getTime()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="END_DATE" class="java.util.Date"/>
+	<parameter name="Month_Name" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{END_DATE}.getMonth() == 0 ?    "January" : 
+$P{END_DATE}.getMonth() == 1 ?    "February" :
+$P{END_DATE}.getMonth() == 2 ?    "March" : 
+$P{END_DATE}.getMonth() == 3 ?    "April" : 
+$P{END_DATE}.getMonth() == 4 ?    "May" : 
+$P{END_DATE}.getMonth() == 5 ?    "June" : 
+$P{END_DATE}.getMonth() == 6 ?    "July" : 
+$P{END_DATE}.getMonth() == 7 ?    "August" : 
+$P{END_DATE}.getMonth() == 8 ?    "September" : 
+$P{END_DATE}.getMonth() == 9 ?    "October"  : 
+$P{END_DATE}.getMonth() == 10 ?    "November"  :
+$P{END_DATE}.getMonth() == 11 ?    "December" :
+"Unknown"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cal" class="java.util.Calendar" isForPrompting="false">
+		<defaultValueExpression><![CDATA[Calendar.getInstance()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Province_Short_Name" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="134" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="121" uuid="0d53595f-5a5a-4e4a-97ae-779d29b5d977"/>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="130" y="40" width="90" height="60" uuid="71d1d9c4-1a02-4404-b8da-d09055a7f1b4"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rate My
+Clinic]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="220" y="20" width="140" height="50" uuid="6bb5ef15-0f8d-4eb7-9328-69e7d6794f08"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Province_Short_Name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="360" y="20" width="20" height="25" uuid="524a0962-2244-4400-9e31-2a1dc9e6a103"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="370" y="20" width="184" height="50" uuid="dd59144d-272f-4a4c-9e13-0669835fcd48"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DIST_SHORT_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="220" y="80" width="193" height="20" uuid="08d3aa4e-e437-48a6-9e70-452f1ddf69f6"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Facility level statistics : ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="35" width="110" height="65" uuid="8f4d69bb-841b-4c69-a226-352f0b4f4216"/>
+				<imageExpression><![CDATA["/home/ferox/workspace/RemoteSystemsTempFiles/cell-life.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="420" y="80" width="120" height="30" uuid="0dbcbf10-51a2-4a3d-ba4b-f83ac47b2c45"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Month_Name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="60" uuid="559cb886-6d14-4962-b631-7e13ae6f02ce"/>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="60" uuid="1a15caeb-716c-493a-a7b7-663fd302983d"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[District Overall Performance (last 3 Months)]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="80" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+		<band height="125">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+		<band height="125">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+	<noData>
+		<band height="50"/>
+	</noData>
+</jasperReport>

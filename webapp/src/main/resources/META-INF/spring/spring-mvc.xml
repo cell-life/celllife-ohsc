@@ -11,6 +11,7 @@
     <!--Tell the servlet where to look for annotated methods-->
     <context:component-scan base-package="org.celllife.ohsc.interfaces.web"/>
     <context:component-scan base-package="org.celllife.ohsc.interfaces.service"/>
+    <context:component-scan base-package="org.celllife.reporting.framework.interfaces.web"/>
 
     <mvc:view-controller path="/" view-name="index"/>
 
