@@ -11,9 +11,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.celllife.ohsc</groupId>
     <artifactId>celllife-ohsc-webapp</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>celllife-ohsc-webapp</name>
@@ -179,8 +177,12 @@
                             <value>DATABASECHANGELOGLOCK</value>
                         </systemProperty>
                         <systemProperty>
+                            <key>catalina.base</key>
+                            <value>target</value>
+                        </systemProperty>
+                        <systemProperty>
                             <key>logback.configurationFile</key>
-                            <value>${project.basedir}/../etc/logback.xml</value>
+                            <value>classpath:logback.xml</value>
                         </systemProperty>
                         <systemProperty>
                             <key>application.properties</key>
