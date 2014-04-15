@@ -10,6 +10,7 @@ import org.celllife.ohsc.integration.dhis.DhisDistrictService;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * User: Kevin W. Sewell
@@ -32,6 +33,7 @@ public class DhisDistrictApplicationServiceImpl implements DhisDistrictApplicati
     private Mapper mapper;
 
     @Loggable(value = LogLevel.INFO, exception = LogLevel.ERROR)
+    @Transactional()
     public void synchroniseDistrict(String externalId) {
         District dhisDistrict;
         dhisDistrict = dhisDistrictService.findOne(externalId);

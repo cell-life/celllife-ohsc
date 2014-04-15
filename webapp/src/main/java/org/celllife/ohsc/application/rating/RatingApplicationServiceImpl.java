@@ -35,6 +35,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * User: Kevin W. Sewell
@@ -57,6 +58,7 @@ public final class RatingApplicationServiceImpl implements RatingApplicationServ
 
     @Override
     @Loggable(value = LogLevel.DEBUG, exception = LogLevel.ERROR)
+    @Transactional()
     public void save(Rating rating) {
 
         rating = ratingRepository.save(rating);
@@ -68,6 +70,7 @@ public final class RatingApplicationServiceImpl implements RatingApplicationServ
     
 	@Override
 	@Loggable(value = LogLevel.DEBUG, exception = LogLevel.ERROR)
+	@Transactional(readOnly = true)
 	public ClinicIndividualRatingPageDTO findIndividualRatingsByClinic(
 			String clinicCode, Date startDate, Date endDate,
 			Integer iDisplayStart, Integer iDisplayLength, String sSearch, Integer iSortingCols,

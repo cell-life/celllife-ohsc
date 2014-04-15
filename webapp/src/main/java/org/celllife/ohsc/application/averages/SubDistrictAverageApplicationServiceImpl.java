@@ -10,6 +10,7 @@ import org.celllife.ohsc.domain.subdistrict.SubDistrict;
 import org.celllife.ohsc.domain.subdistrict.SubDistrictRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.Date;
@@ -33,6 +34,7 @@ public class SubDistrictAverageApplicationServiceImpl implements SubDistrictAver
     @Autowired
     private DataMartRatingRepository dataMartRatingRepository;
 
+    @Transactional(readOnly = true)
     public Collection<SubDistrictAverageDTO> findSubDistrictAveragesByDistrict(String districtName, Date startDate, Date endDate) {
 
         District district = districtRepository.findOneByName(districtName);

@@ -1,5 +1,10 @@
 package org.celllife.ohsc.application.averages;
 
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.celllife.ohsc.domain.clinic.Clinic;
 import org.celllife.ohsc.domain.clinic.ClinicRepository;
 import org.celllife.ohsc.domain.country.Country;
@@ -11,11 +16,7 @@ import org.celllife.ohsc.domain.subdistrict.SubDistrict;
 import org.celllife.ohsc.domain.subdistrict.SubDistrictRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * User: Kevin W. Sewell
@@ -34,6 +35,7 @@ public class ClinicAverageApplicationServiceImpl implements ClinicAverageApplica
     @Autowired
     private DataMartRatingRepository dataMartRatingRepository;
 
+    @Transactional(readOnly = true)
     public Collection<ClinicAverageDTO> findClinicAveragesBySubDistrict(String subDistrictName, Date startDate, Date endDate) {
 
         SubDistrict subDistrict = subDistrictRepository.findOneByName(subDistrictName);

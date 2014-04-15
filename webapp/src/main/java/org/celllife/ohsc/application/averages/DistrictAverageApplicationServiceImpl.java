@@ -9,6 +9,7 @@ import org.celllife.ohsc.domain.district.District;
 import org.celllife.ohsc.domain.district.DistrictRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.Date;
@@ -32,6 +33,7 @@ public class DistrictAverageApplicationServiceImpl implements DistrictAverageApp
     @Autowired
     private DataMartRatingRepository dataMartRatingRepository;
 
+    @Transactional(readOnly = true)
     public Collection<DistrictAverageDTO> findDistrictAveragesByProvince(String provinceName, Date startDate, Date endDate) {
 
         Province province = provinceRepository.findOneByName(provinceName);

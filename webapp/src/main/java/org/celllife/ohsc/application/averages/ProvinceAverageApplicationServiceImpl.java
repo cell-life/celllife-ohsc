@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * User: Kevin W. Sewell
@@ -37,6 +38,7 @@ public class ProvinceAverageApplicationServiceImpl implements ProvinceAverageApp
     @Autowired
     private DataMartRatingRepository dataMartRatingRepository;
 
+    @Transactional(readOnly = true)
     public Collection<ProvinceAverageDTO> findProvinceAveragesByCountryName(String countryName, Date startDate, Date endDate) {
 
         Country country = countryRepository.findOneByName(countryName);
@@ -70,6 +72,7 @@ public class ProvinceAverageApplicationServiceImpl implements ProvinceAverageApp
         return provinceAverageMap.values();
     }
 
+    @Transactional(readOnly = true)
     public Collection<ProvinceAverageDTO> findOneProvinceAverageByCountryName(String countryName, String provinceName, Date startDate, Date endDate) {
     	List<ProvinceAverageDTO> provinces = new ArrayList<ProvinceAverageDTO>();
     	

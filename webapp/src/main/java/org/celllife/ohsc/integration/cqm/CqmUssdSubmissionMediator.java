@@ -2,7 +2,6 @@ package org.celllife.ohsc.integration.cqm;
 
 import org.celllife.ohsc.application.rating.RatingApplicationService;
 import org.celllife.ohsc.domain.rating.Rating;
-import org.celllife.ohsc.domain.rating.RatingRepository;
 import org.milyn.Smooks;
 import org.milyn.payload.JavaResult;
 import org.milyn.payload.StringSource;

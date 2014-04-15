@@ -12,6 +12,7 @@ import org.celllife.ohsc.domain.province.Province;
 import org.celllife.ohsc.domain.province.ProvinceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TotalClinicsMonitoredApplicationServiceImpl implements
@@ -27,6 +28,7 @@ public class TotalClinicsMonitoredApplicationServiceImpl implements
 	private DataMartRatingRepository dataMartRatingRepository;
 
 	@Override
+	@Transactional(readOnly = true)
 	public Collection<TotalClinicsMonitoredDTO> findClinicsMonitoredByProvince(
 			String countryName) {
 
