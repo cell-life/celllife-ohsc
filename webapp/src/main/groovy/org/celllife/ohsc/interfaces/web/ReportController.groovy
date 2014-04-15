@@ -14,8 +14,8 @@ import org.springframework.security.access.prepost.PreAuthorize
 import java.text.SimpleDateFormat
 
 import org.celllife.ohsc.security.OhscSecurityService
+import org.celllife.ohsc.framework.restclient.RESTClient
 
-import static org.celllife.ohsc.framework.restclient.RESTClient.get
 /**
  * User: Kevin W. Sewell
  * Date: 2013-03-28
@@ -29,6 +29,9 @@ class ReportController {
 
     @Value('${rating.service.url}')
     def String ratingServiceUrl;
+    
+    @Autowired
+    RESTClient client;
     
     @Autowired
     OhscSecurityService securityService;
@@ -57,9 +60,9 @@ class ReportController {
 		def averages;
         if (securityService.isProvincial()) {
             String province = securityService.getProvince()
-            averages = get("${averageServiceUrl}/findOneProvinceAverageByCountry", [country: country, province: province, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])       
+            averages = client.get("${averageServiceUrl}/findOneProvinceAverageByCountry", [country: country, province: province, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])       
         } else {
-            averages = get("${averageServiceUrl}/findProvinceAveragesByCountry", [country: country, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])
+            averages = client.get("${averageServiceUrl}/findProvinceAveragesByCountry", [country: country, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])
         }
         model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
         model.put("endDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(ed))
@@ -79,7 +82,7 @@ class ReportController {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
         }
 
-        def averages = get("${averageServiceUrl}/findDistrictAveragesByProvince", [province: province, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])
+        def averages = client.get("${averageServiceUrl}/findDistrictAveragesByProvince", [province: province, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])
         model.put("averages", averages)
         model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
         model.put("endDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(ed))
@@ -98,7 +101,7 @@ class ReportController {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
         }
 
-        def averages = get("${averageServiceUrl}/findSubDistrictAveragesByDistrict", [district: districtName, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])
+        def averages = client.get("${averageServiceUrl}/findSubDistrictAveragesByDistrict", [district: districtName, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])
         model.put("averages", averages)
         model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
         model.put("endDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(ed))
@@ -117,7 +120,7 @@ class ReportController {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
         }
 
-        def averages = get("${averageServiceUrl}/findClinicAveragesBySubDistrict", [subDistrict: subDistrict, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])
+        def averages = client.get("${averageServiceUrl}/findClinicAveragesBySubDistrict", [subDistrict: subDistrict, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa")])
         model.put("averages", averages)
         model.put("startDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(sd))
         model.put("endDate",new SimpleDateFormat("dd/MM/yyyy hh:mm aa").format(ed))
@@ -136,7 +139,7 @@ class ReportController {
             throw new Exception("Error: The \"From\" date must be earlier than the \"To\" date.")
         }
         
-        def ratings = get("${ratingServiceUrl}/findIndividualRatingsByClinic", [
+        def ratings = client.get("${ratingServiceUrl}/findIndividualRatingsByClinic", [
         	clinicCode: clinic, startDate: sd.format("dd/MM/yyyy hh:mm aa"), endDate: ed.format("dd/MM/yyyy hh:mm aa"),
         	iDisplayStart: 0, iDisplayLength: 1, 
         	iSortingCols: 1, iSortCol_0: 0, sSortDir_0: "asc"
