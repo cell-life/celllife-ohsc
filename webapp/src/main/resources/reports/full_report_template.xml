@@ -2,9 +2,9 @@
 <pconfig xmlns="http://www.cell-life.org/schemas/pconfig"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.cell-life.org/schemas/pconfig http://www.cell-life.org/schemas/pconfig/pconfig-1.0.xsd">
-    <id>fullreporttemplate</id>
-    <label>full_report_template</label>
-    <resource>full_report_template</resource>
+    <id>full_report_template</id>
+    <label>Report template</label>
+    <resource>full_report_template.jasper</resource>
     <parameters>
         <!-- dates -->
         <date name="end date" label="END_DATE" allowFuture="false" optional="true"/>
