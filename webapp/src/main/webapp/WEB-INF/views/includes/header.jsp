@@ -6,6 +6,7 @@
             <img class="ohsc-logo" src="resources/img/coat-of-arms.png"> OHSC
         </h2>
         <div class="btn-toolbar ohsc-nav-btn-toolbar">
+        	 <a href="" class="btn btn-primary">Home</a>
              <a href="reports/pdfReports" class="btn btn-primary">Report</a>
             <a href="j_spring_cas_security_logout" class="btn btn-primary">Log Out</a>
         </div>
