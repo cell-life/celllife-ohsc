@@ -2,14 +2,14 @@
 <pconfig xmlns="http://www.cell-life.org/schemas/pconfig"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.cell-life.org/schemas/pconfig http://www.cell-life.org/schemas/pconfig/pconfig-1.0.xsd">
-    <id>fullReportTemplate</id>
-    <label>FullReportTemplate</label>
-    <resource>fullReportTemplate.jasper</resource>
+    <id>fullreporttemplate</id>
+    <label>full_report_template</label>
+    <resource>full_report_template</resource>
     <parameters>
         <!-- dates -->
         <date name="end date" label="END_DATE" allowFuture="false" optional="true"/>
-        <date name="end_date" label="End date" allowFuture="false" optional="true"/>
-        <label label="district name" value="DIST_SHORT_NAME" />
-        <label label="province name" value="PROVINCE_SHORT_NAME" />
+        <date name="start_date" label="Start date" allowFuture="false" optional="true"/>
+        <text name ="district name" label="District Name"  optional="true"/>
+         <text name ="province name" label="Province Name"  optional="true"/>
     </parameters>
 </pconfig>

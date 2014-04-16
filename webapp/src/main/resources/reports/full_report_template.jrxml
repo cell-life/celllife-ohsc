@@ -83,7 +83,7 @@ Clinic]]></text>
 			</staticText>
 			<image>
 				<reportElement x="10" y="35" width="110" height="65" uuid="8f4d69bb-841b-4c69-a226-352f0b4f4216"/>
-				<imageExpression><![CDATA["/home/ferox/workspace/RemoteSystemsTempFiles/cell-life.png"]]></imageExpression>
+				<imageExpression><![CDATA["rateMyClinic-logo-clearback.png"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="420" y="80" width="120" height="30" uuid="0dbcbf10-51a2-4a3d-ba4b-f83ac47b2c45"/>
