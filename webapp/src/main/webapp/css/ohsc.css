@@ -192,3 +192,14 @@ body {
     margin-right: 15px;
     margin-left: 5px;
 }
+
+.reports {
+	float: left;
+	margin-right: 35px;
+}
+
+.form {
+	float: left;
+}
+}
+}

@@ -29,22 +29,27 @@
 <div class="container-fluid">
 
 	<jsp:include page="../includes/header.jsp"/>
+	
+    <div class="arrow-heading">
+        <div class="arrow-box"></div>
+        <div class="arrow"></div>
+        <p>Select a Report</p>
+    </div>
 
     <div class="row ohsc-border">
 
-        <h3>Select a Report</h3>
-
-
-        <div class="col-md-4">
-
+        <h3></h3>
+        
+        <div class="col-md-4 reports">
             <c:forEach items="${reports}" var="report">
                 <a href="#${report.id}" class="active reportLink">
                     <h4>${report.label}</h4>
                 </a>
             </c:forEach>
-
         </div>
-        <div class="form"> </div>
+
+        <div class="col-md-8 form"></div>
+
     </div>
 
 	<jsp:include page="../includes/footer.jsp"/>
@@ -57,17 +62,14 @@
 
             var reportId = $(this).attr('href') + '';
             reportId = reportId.replace('#', '');
-            alert('reportId = ' + reportId);
 
             $.get(
                     "service/getHtml",
                     {reportId: reportId},
                     function (data) {
                         $(".form").html(data);
-                        alert('data = ' + data);
                         $(".form").on('submit', function (e) {
                             e.preventDefault();
-                            alert('reportId = ' + reportId);
                             window.location = "service/pdfReport" + "?reportId=" + reportId + "&" + $("form").serialize();
                         });
 
