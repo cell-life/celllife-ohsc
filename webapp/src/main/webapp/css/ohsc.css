@@ -201,5 +201,12 @@ body {
 .form {
 	float: left;
 }
+
+.form-group {
+	font-size: 12px;
+}
+
+.form-group label {
+	padding-top: 10px;
 }
 }
