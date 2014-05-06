@@ -23,7 +23,7 @@ import org.celllife.ohsc.domain.subdistrict.SubDistrict;
  */
 @Entity
 @Cacheable
-public final class Clinic implements Serializable {
+public class Clinic implements Serializable {
 
 	private static final long serialVersionUID = -5814051904749589348L;
 

@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 @Entity
 @Cacheable
-public final class Language implements Serializable {
+public class Language implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)

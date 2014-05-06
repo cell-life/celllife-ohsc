@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 @Entity
 @Cacheable
-public final class MobileNetworkOperator implements Serializable {
+public class MobileNetworkOperator implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)

@@ -12,7 +12,7 @@ import java.util.Date;
  * Time: 12h46
  */
 @Embeddable
-public final class UssdSession implements Serializable {
+public class UssdSession implements Serializable {
 
     private String id;
 

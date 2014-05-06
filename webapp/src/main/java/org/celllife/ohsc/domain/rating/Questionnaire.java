@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Time: 13h46
  */
 @Embeddable
-public final class Questionnaire implements Serializable {
+public class Questionnaire implements Serializable {
 
     @Basic
     private String version;

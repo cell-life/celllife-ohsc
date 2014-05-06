@@ -10,7 +10,7 @@ import java.util.Date;
  */
 @Entity
 @Cacheable
-public final class DataMartRating {
+public class DataMartRating {
 
     @Id
     private String ussdSessionId;

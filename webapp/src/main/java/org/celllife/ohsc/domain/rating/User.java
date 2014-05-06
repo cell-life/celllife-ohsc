@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Time: 13h44
  */
 @Embeddable
-public final class User implements Serializable {
+public class User implements Serializable {
 
     @Basic
     private String msisdn;

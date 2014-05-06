@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Entity
 @Cacheable
-public final class Rating implements Serializable {
+public class Rating implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
