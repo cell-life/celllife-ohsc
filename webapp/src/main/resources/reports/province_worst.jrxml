@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProvinceTopProvinceBarChart" language="groovy" pageWidth="550" pageHeight="892" whenNoDataType="AllSectionsNoDetail" columnWidth="510" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="010693da-d5b4-4253-8455-2660d24f47cb">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OHSCCell"/>
-	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/"/>
-	<property name="ireport.jasperserver.report.resource" value="/celllife/DistrictBarChartSubreport_Final_files/main_jrxml"/>
-	<property name="ireport.jasperserver.reportUnit" value="/celllife/DistrictBarChartSubreport_Final"/>
-	<property name="com.jaspersoft.studio.unit." value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProvinceBottomBarChart" language="groovy" pageWidth="550" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="510" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" isIgnorePagination="true">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+	<style name="Subreport_H2" fontSize="16" isBold="true"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#FFFFFF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -25,7 +13,7 @@
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+	<style name="Table_CH" mode="Opaque" backcolor="#FFFFFF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -43,62 +31,7 @@
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-			<topPen lineWidth="0.5" lineColor="#000000"/>
-			<leftPen lineWidth="0.5" lineColor="#000000"/>
-			<bottomPen lineWidth="0.5" lineColor="#000000"/>
-			<rightPen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="Table 1_CH" mode="Opaque" backcolor="#FFFFFF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-			<topPen lineWidth="0.5" lineColor="#000000"/>
-			<leftPen lineWidth="0.5" lineColor="#000000"/>
-			<bottomPen lineWidth="0.5" lineColor="#000000"/>
-			<rightPen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-			<topPen lineWidth="0.5" lineColor="#000000"/>
-			<leftPen lineWidth="0.5" lineColor="#000000"/>
-			<bottomPen lineWidth="0.5" lineColor="#000000"/>
-			<rightPen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="Table 2_TH" mode="Opaque" backcolor="#F0F8FF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-			<topPen lineWidth="0.5" lineColor="#000000"/>
-			<leftPen lineWidth="0.5" lineColor="#000000"/>
-			<bottomPen lineWidth="0.5" lineColor="#000000"/>
-			<rightPen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="Table 2_CH" mode="Opaque" backcolor="#FFFFFF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-			<topPen lineWidth="0.5" lineColor="#000000"/>
-			<leftPen lineWidth="0.5" lineColor="#000000"/>
-			<bottomPen lineWidth="0.5" lineColor="#000000"/>
-			<rightPen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="Table 2_TD" mode="Opaque" backcolor="#FFFFFF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-			<topPen lineWidth="0.5" lineColor="#000000"/>
-			<leftPen lineWidth="0.5" lineColor="#000000"/>
-			<bottomPen lineWidth="0.5" lineColor="#000000"/>
-			<rightPen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<subDataset name="WorstProvincesTable" uuid="b3598e31-2fcc-4c66-a5ed-85d6f99aa898">
-		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OHSCCell"/>
+	<subDataset name="WorstProvincesTable">
 		<parameter name="cal" class="java.util.Calendar" isForPrompting="false">
 			<defaultValueExpression><![CDATA[Calendar.getInstance()]]></defaultValueExpression>
 		</parameter>
@@ -109,22 +42,6 @@
 			<defaultValueExpression><![CDATA[(
     $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
     $P{cal}.add(Calendar.MONTH, -3) ||
-    $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
-)
-? null : $P{cal}.getTime()]]></defaultValueExpression>
-		</parameter>
-		<parameter name="first_first_month" class="java.util.Date" isForPrompting="false">
-			<defaultValueExpression><![CDATA[(
-    $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
-    $P{cal}.add(Calendar.MONTH, -1) ||
-    $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
-)
-? null : $P{cal}.getTime()]]></defaultValueExpression>
-		</parameter>
-		<parameter name="first_second_month" class="java.util.Date" isForPrompting="false">
-			<defaultValueExpression><![CDATA[(
-    $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
-    $P{cal}.add(Calendar.MONTH, -2) ||
     $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
 )
 ? null : $P{cal}.getTime()]]></defaultValueExpression>
@@ -146,31 +63,17 @@ drug_availability_rating +
 infection_control_rating +
 safe_and_secure_care_rating)/6,2) as Average
  FROM `data_mart_rating`
- Group By `province_short_name`
-Order By Average ASC
+ group by `Province_short_name`
+order by Average ASC
  limit 3;]]>
 		</queryString>
-		<field name="Province_Short_Name" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="staff_attitude_rating" class="java.lang.Double">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="cleanliness_rating" class="java.lang.Double">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="waiting_times_rating" class="java.lang.Double">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="drug_availability_rating" class="java.lang.Double">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="infection_control_rating" class="java.lang.Double">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="safe_and_secure_care_rating" class="java.lang.Double">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
+		<field name="Province_Short_Name" class="java.lang.String"/>
+		<field name="staff_attitude_rating" class="java.lang.Double"/>
+		<field name="cleanliness_rating" class="java.lang.Double"/>
+		<field name="waiting_times_rating" class="java.lang.Double"/>
+		<field name="drug_availability_rating" class="java.lang.Double"/>
+		<field name="infection_control_rating" class="java.lang.Double"/>
+		<field name="safe_and_secure_care_rating" class="java.lang.Double"/>
 		<field name="Average" class="java.lang.Double"/>
 	</subDataset>
 	<parameter name="cal" class="java.util.Calendar" isForPrompting="false">
@@ -178,22 +81,6 @@ Order By Average ASC
 	</parameter>
 	<parameter name="end_date" class="java.util.Date">
 		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
-	</parameter>
-	<parameter name="first_first_month" class="java.util.Date" isForPrompting="false">
-		<defaultValueExpression><![CDATA[(
-    $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
-    $P{cal}.add(Calendar.MONTH, -1) ||
-    $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
-)
-? null : $P{cal}.getTime()]]></defaultValueExpression>
-	</parameter>
-	<parameter name="first_second_month" class="java.util.Date" isForPrompting="false">
-		<defaultValueExpression><![CDATA[(
-    $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
-    $P{cal}.add(Calendar.MONTH, -2) ||
-    $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
-)
-? null : $P{cal}.getTime()]]></defaultValueExpression>
 	</parameter>
 	<parameter name="first_three_month" class="java.util.Date" isForPrompting="false">
 		<defaultValueExpression><![CDATA[(
@@ -220,60 +107,36 @@ drug_availability_rating +
 infection_control_rating +
 safe_and_secure_care_rating)/6,2) as Average
  FROM `data_mart_rating`
- Group By `province_short_name`
+ group by `Province_short_name`
 order by Average ASC
  limit 3;]]>
 	</queryString>
-	<field name="Province_Short_Name" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="staff_attitude_rating" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="cleanliness_rating" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="waiting_times_rating" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="drug_availability_rating" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="infection_control_rating" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="safe_and_secure_care_rating" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="Province_Short_Name" class="java.lang.String"/>
+	<field name="staff_attitude_rating" class="java.lang.Double"/>
+	<field name="cleanliness_rating" class="java.lang.Double"/>
+	<field name="waiting_times_rating" class="java.lang.Double"/>
+	<field name="drug_availability_rating" class="java.lang.Double"/>
+	<field name="infection_control_rating" class="java.lang.Double"/>
+	<field name="safe_and_secure_care_rating" class="java.lang.Double"/>
 	<field name="Average" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<columnHeader>
-		<band height="33">
+		<band height="205">
 			<staticText>
-				<reportElement x="0" y="0" width="509" height="30" uuid="a3d2ee90-7585-4242-8078-05cf1f854b47"/>
-				<textElement>
-					<font size="22" isBold="true"/>
-				</textElement>
+				<reportElement style="Subreport_H2" x="0" y="-20" width="509" height="20"/>
+				<textElement/>
 				<text><![CDATA[Worst Perfoming Provinces This Month]]></text>
 			</staticText>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="257" splitType="Stretch">
 			<barChart>
 				<chart evaluationTime="Report">
-					<reportElement x="0" y="0" width="509" height="150" uuid="9a0ef6b1-7b92-4492-8109-9c18dfa1ea49">
-						<property name="local_mesure_unitwidth" value="pixel"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<property name="local_mesure_unitheight" value="pixel"/>
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<printWhenExpression><![CDATA[$V{REPORT_COUNT} == 1]]></printWhenExpression>
-					</reportElement>
+					<reportElement x="0" y="0" width="509" height="100"/>
 					<chartTitle/>
 					<chartSubtitle/>
-					<chartLegend position="Top"/>
+					<chartLegend position="Top">
+                        <font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+                    </chartLegend>
 				</chart>
 				<categoryDataset>
 					<categorySeries>
@@ -298,7 +161,7 @@ order by Average ASC
 						<seriesExpression><![CDATA["Safe And Secure Care"]]></seriesExpression>
 						<categoryExpression><![CDATA[$F{Province_Short_Name}]]></categoryExpression>
 						<valueExpression><![CDATA[$F{safe_and_secure_care_rating}]]></valueExpression>
-						<labelExpression><![CDATA["Safe And secure Care"]]></labelExpression>
+						<labelExpression><![CDATA["Safe And Secure Care"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Cleanliness"]]></seriesExpression>
@@ -316,298 +179,172 @@ order by Average ASC
 				<barPlot>
 					<plot/>
 					<itemLabel/>
-					<categoryAxisFormat>
-						<axisFormat/>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat/>
-					</valueAxisFormat>
 				</barPlot>
 			</barChart>
 			<componentElement>
-				<reportElement isPrintRepeatedValues="false" x="0" y="152" width="490" height="105" isRemoveLineWhenBlank="true" uuid="147e9351-7cd2-4d98-8ffe-f53ce5cb373f">
-					<printWhenExpression><![CDATA[$V{REPORT_COUNT}==1]]></printWhenExpression>
-				</reportElement>
+				<reportElement isPrintRepeatedValues="false" x="0" y="100" width="509" height="105" isRemoveLineWhenBlank="true"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="WorstProvincesTable" uuid="571b76c8-c6f8-4f40-8278-8d81a2dcd785">
+					<datasetRun subDataset="WorstProvincesTable">
+						<datasetParameter name="end_date">
+							<datasetParameterExpression><![CDATA[$P{end_date}]]></datasetParameterExpression>
+						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="290" uuid="1a3946c3-cfc6-4cb9-b1d4-65b545bbf7b8">
-						<property name="local_mesure_unitwidth" value="pixel"/>
-						<property name="local_mesure_unitheight" value="pixel"/>
-						<jr:columnHeader style="Table 2_CH" height="90">
+					<jr:column width="290">
+						<jr:columnHeader style="Table_CH" height="75" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="290" height="90" uuid="43a4f66a-ffb8-47ad-8a91-3c93382f2bec">
-									<property name="local_mesure_unitwidth" value="pixel"/>
-									<property name="com.jaspersoft.studio.unit.width" value="px"/>
-									<property name="local_mesure_unitheight" value="pixel"/>
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<box topPadding="2" leftPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="290" height="75"/>
+								<box leftPadding="2"/>
 								<textElement>
 									<font isBold="true"/>
 								</textElement>
 								<text><![CDATA[Province name]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table 2_TD" height="15">
+						<jr:detailCell style="Table_TD" height="15" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="290" height="15" uuid="38553e5d-4392-4246-8400-835f9a41b4b7">
-									<property name="local_mesure_unitheight" value="pixel"/>
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-									<property name="local_mesure_unitwidth" value="pixel"/>
-									<property name="com.jaspersoft.studio.unit.width" value="px"/>
-								</reportElement>
-								<box leftPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="290" height="15"/>
+								<box leftPadding="2"/>
+								<textElement/>
 								<textFieldExpression><![CDATA[$F{Province_Short_Name}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="25" uuid="a255c1a4-6d73-4ed6-82fc-29ab9f9ea9c4">
-						<property name="local_mesure_unitheight" value="pixel"/>
-						<jr:columnHeader style="Table 2_CH" height="90">
+					<jr:column width="28">
+						<jr:columnHeader style="Table_CH" height="75" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="90" uuid="4feb5973-1266-4bef-988f-b06fa1e0db40">
-									<property name="local_mesure_unitheight" value="pixel"/>
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<box topPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="28" height="75"/>
+								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
 								</textElement>
 								<text><![CDATA[Staff attitude]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table 2_TD" height="15">
+						<jr:detailCell style="Table_TD" height="15" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="15" uuid="76c2f1ac-c0b7-492c-aabe-57dc96cb6945">
-									<property name="local_mesure_unitheight" value="pixel"/>
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<box leftPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="28" height="15"/>
+								<box leftPadding="2"/>
+								<textElement/>
 								<textFieldExpression><![CDATA[$F{staff_attitude_rating}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="25" uuid="20dca305-02ba-4c05-9ca1-e5fc1c48466f">
-						<jr:columnHeader style="Table 2_CH" height="90">
+					<jr:column width="28">
+						<jr:columnHeader style="Table_CH" height="75" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="90" uuid="673cd440-e196-4fd9-89c9-2632ad0c7787">
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<box topPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="28" height="75"/>
+								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
 								</textElement>
 								<text><![CDATA[Cleanliness]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table 2_TD" height="15">
+						<jr:detailCell style="Table_TD" height="15" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="15" uuid="8c6e93e4-6c1e-46ae-acc8-cd5d67911b44">
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<box leftPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="28" height="15"/>
+								<box leftPadding="2"/>
+								<textElement/>
 								<textFieldExpression><![CDATA[$F{cleanliness_rating}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="25" uuid="a56c5591-1307-47d0-a113-d891d37d36fc">
-						<jr:columnHeader style="Table 2_CH" height="90">
+					<jr:column width="28">
+						<jr:columnHeader style="Table_CH" height="75" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="90" uuid="c6f569ff-a46e-4cf4-b6b6-0dbb6ae58a78">
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<box topPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="28" height="75"/>
+								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
 								</textElement>
 								<text><![CDATA[Waiting times]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table 2_TD" height="15">
+						<jr:detailCell style="Table_TD" height="15" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="15" uuid="8f4f0dc6-8ede-4bc4-b446-4b4a53287ba7">
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<box leftPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="28" height="15"/>
+								<box leftPadding="2"/>
+								<textElement/>
 								<textFieldExpression><![CDATA[$F{waiting_times_rating}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="25" uuid="893b3948-ec84-40aa-aba1-e80b809ec777">
-						<jr:columnHeader style="Table 2_CH" height="90">
+					<jr:column width="28">
+						<jr:columnHeader style="Table_CH" height="75" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="90" uuid="2537ea1f-e627-4a06-bd75-36016f70d78f">
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<box topPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="28" height="75"/>
+								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
 								</textElement>
 								<text><![CDATA[Drug availability]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table 2_TD" height="15">
+						<jr:detailCell style="Table_TD" height="15" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="15" uuid="9545d19c-e5ea-4542-b3f9-7e30197a5cfc">
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<box leftPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="28" height="15"/>
+								<box leftPadding="2"/>
+								<textElement/>
 								<textFieldExpression><![CDATA[$F{drug_availability_rating}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="25" uuid="f7ef30c4-67d1-4a02-a25c-a4186e352f1f">
-						<jr:columnHeader style="Table 2_CH" height="90">
+					<jr:column width="28">
+						<jr:columnHeader style="Table_CH" height="75" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="90" uuid="a9dacc12-98b5-422e-aed9-1f22b39c25ab">
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<box topPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="28" height="75"/>
+								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
 								</textElement>
 								<text><![CDATA[Infection control]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table 2_TD" height="15">
+						<jr:detailCell style="Table_TD" height="15" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="15" uuid="f4aec1a7-54a4-4fde-9c08-ee2f4408def3">
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<box leftPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="28" height="15"/>
+								<box leftPadding="2"/>
+								<textElement/>
 								<textFieldExpression><![CDATA[$F{infection_control_rating}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="25" uuid="690d2d07-21b0-423e-8256-f290e6316945">
-						<jr:columnHeader style="Table 2_CH" height="90">
+					<jr:column width="28">
+						<jr:columnHeader style="Table_CH" height="75" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="90" uuid="dc6c6448-2169-49da-b9f8-6556ee8a7782">
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<box topPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="28" height="75"/>
+								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
 								</textElement>
 								<text><![CDATA[Safe and secure care]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table 2_TD" height="15">
+						<jr:detailCell style="Table_TD" height="15" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="15" uuid="f0872635-8a8d-4b99-b687-08c73b9c614b">
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<box leftPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="28" height="15"/>
+								<box leftPadding="2"/>
+								<textElement/>
 								<textFieldExpression><![CDATA[$F{safe_and_secure_care_rating}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="49" uuid="71c5aaae-5760-4808-ae28-8e5739934aed">
-						<property name="local_mesure_unitwidth" value="pixel"/>
-						<jr:columnHeader style="Table 2_CH" height="90">
+					<jr:column width="48">
+						<jr:columnHeader style="Table_CH" height="75" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="49" height="90" uuid="496d8df0-b463-4c8e-8eec-a92b4365cdb9">
-									<property name="local_mesure_unitwidth" value="pixel"/>
-									<property name="com.jaspersoft.studio.unit.width" value="px"/>
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-								</reportElement>
-								<box topPadding="2" leftPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
-								<textElement>
+								<reportElement x="0" y="0" width="48" height="75"/>
+								<box topPadding="2" leftPadding="2"/>
+								<textElement rotation="Right">
 									<font isBold="true"/>
 								</textElement>
 								<text><![CDATA[Average]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table 2_TD" height="15">
+						<jr:detailCell style="Table_TD" height="15" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="49" height="15" uuid="56a25831-68ec-4beb-b7ba-56dcacc0bacc">
-									<property name="com.jaspersoft.studio.unit.height" value="px"/>
-									<property name="local_mesure_unitwidth" value="pixel"/>
-									<property name="com.jaspersoft.studio.unit.width" value="px"/>
-								</reportElement>
-								<box leftPadding="2">
-									<topPen lineWidth="1.0"/>
-									<leftPen lineWidth="1.0"/>
-									<bottomPen lineWidth="1.0"/>
-									<rightPen lineWidth="1.0"/>
-								</box>
+								<reportElement x="0" y="0" width="48" height="15"/>
+								<box leftPadding="2"/>
 								<textElement>
 									<font isBold="true"/>
 								</textElement>
@@ -618,5 +355,8 @@ order by Average ASC
 				</jr:table>
 			</componentElement>
 		</band>
+	</columnHeader>
+	<detail>
+		<band/>
 	</detail>
 </jasperReport>

@@ -2,16 +2,12 @@
 <pconfig xmlns="http://www.cell-life.org/schemas/pconfig"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.cell-life.org/schemas/pconfig http://www.cell-life.org/schemas/pconfig/pconfig-1.0.xsd">
-    <id>facility_report</id>
-    <label>Facility Report</label>
-    <resource>facility_full_report.jasper</resource>
+    <id>provinces_report</id>
+    <label>Province Report</label>
+    <resource>provinces_full_report.jasper</resource>
     <parameters>
       <!-- dates -->
 		<date name="end_date" label="End date" allowFuture="false" optional="true"/>
 		<label value="If not set the end date will default to the current date." /> 
-		<text name="dist_short_name" label="District name"  optional="true"/>
-		<label value="Use % to show all districts" />
-		<text name="province_short_name" label="Province name" optional="true"/>
-		<label value="Use % to show all provinces" />
     </parameters>
 </pconfig>

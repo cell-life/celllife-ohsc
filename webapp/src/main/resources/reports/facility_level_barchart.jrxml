@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacilityLevelBarChart" language="groovy" pageWidth="550" pageHeight="892" whenNoDataType="AllSectionsNoDetail" columnWidth="510" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="010693da-d5b4-4253-8455-2660d24f47cb">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OHSCCell"/>
-	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/"/>
-	<property name="ireport.jasperserver.report.resource" value="/celllife/DistrictBarChartSubreport_Final_files/main_jrxml"/>
-	<property name="ireport.jasperserver.reportUnit" value="/celllife/DistrictBarChartSubreport_Final"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacilityLevelBarChart" language="groovy" pageWidth="550" pageHeight="892" whenNoDataType="AllSectionsNoDetail" columnWidth="510" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -88,8 +84,8 @@ round(AVG( case when submission_date BETWEEN $P{first_three_months} AND $P{end_d
 round(AVG( case when submission_date BETWEEN $P{first_three_months} AND $P{end_date}  then `safe_and_secure_care_rating` else 0 end), 2) as safe_and_secure_care_rating_threem
  FROM `data_mart_rating`
 
-WHERE `province_short_name`  =  $P{province_short_name}
-AND `district_short_name` = $P{dist_short_name}]]>
+WHERE `province_short_name` like  $P{province_short_name}
+AND `district_short_name` like $P{dist_short_name}]]>
 	</queryString>
 	<field name="clinic_code" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -133,7 +129,7 @@ AND `district_short_name` = $P{dist_short_name}]]>
 	<columnHeader>
 		<band height="26">
 			<staticText>
-				<reportElement x="0" y="0" width="510" height="25" uuid="3053844b-c4e7-415a-9a3e-9df1edbce59e"/>
+				<reportElement x="0" y="0" width="510" height="25"/>
 				<textElement>
 					<font size="16" isBold="true"/>
 				</textElement>
@@ -145,7 +141,7 @@ AND `district_short_name` = $P{dist_short_name}]]>
 		<band height="323" splitType="Stretch">
 			<barChart>
 				<chart evaluationTime="Report">
-					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="510" height="323" uuid="1aaecb51-a613-45e8-8d83-ec4b36e8f7ae"/>
+					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="510" height="323"/>
 					<box>
 						<topPen lineWidth="0.0"/>
 						<leftPen lineWidth="0.0"/>
@@ -154,7 +150,9 @@ AND `district_short_name` = $P{dist_short_name}]]>
 					</box>
 					<chartTitle/>
 					<chartSubtitle/>
-					<chartLegend position="Top"/>
+					<chartLegend position="Top">
+                        <font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+                    </chartLegend>
 				</chart>
 				<categoryDataset>
 					<categorySeries>
