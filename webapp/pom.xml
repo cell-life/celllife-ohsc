@@ -64,7 +64,6 @@
             </testResource>
         </testResources>
         
-        <pluginManagement>
 
 	        <plugins>
 	
@@ -259,7 +258,6 @@
 	            </plugin>
 	
 	        </plugins>
-		</pluginManagement>
     </build>
 
     <dependencies>
