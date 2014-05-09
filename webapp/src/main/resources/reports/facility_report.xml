@@ -9,9 +9,9 @@
       <!-- dates -->
 		<date name="end_date" label="End date" allowFuture="false" optional="true"/>
 		<label value="If not set the end date will default to the current date." /> 
-		<text name="dist_short_name" label="District name"  optional="true"/>
+		<text name="dist_short_name" label="District name" defaultValue="%"/>
 		<label value="Use % to show all districts" />
-		<text name="province_short_name" label="Province name" optional="true"/>
+		<text name="province_short_name" label="Province name" defaultValue="%"/>
 		<label value="Use % to show all provinces" />
     </parameters>
 </pconfig>
