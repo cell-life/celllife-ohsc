@@ -143,12 +143,14 @@ order by Average Desc
 			</staticText>
 			<barChart>
 				<chart evaluationTime="Report">
-					<reportElement x="0" y="0" width="509" height="100"/>
+					<reportElement x="0" y="0" width="509" height="100">
+						<property name="net.sf.jasperreports.chart.range.axis.tick.interval" value="1"/>
+					</reportElement>
 					<chartTitle position="Top"/>
 					<chartSubtitle/>
 					<chartLegend position="Top">
-                        <font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
-                    </chartLegend>
+						<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					</chartLegend>
 				</chart>
 				<categoryDataset>
 					<categorySeries>
@@ -191,12 +193,8 @@ order by Average Desc
 				<barPlot>
 					<plot/>
 					<itemLabel/>
-					<categoryAxisFormat>
-						<axisFormat/>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat/>
-					</valueAxisFormat>
+					<rangeAxisMinValueExpression><![CDATA[0]]></rangeAxisMinValueExpression>
+					<rangeAxisMaxValueExpression><![CDATA[4]]></rangeAxisMaxValueExpression>
 				</barPlot>
 			</barChart>
 			<componentElement>
@@ -226,6 +224,7 @@ order by Average Desc
 							<textField>
 								<reportElement x="0" y="0" width="290" height="15"/>
 								<box leftPadding="2"/>
+								<textElement/>
 								<textFieldExpression><![CDATA[$F{district_short_name}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -245,6 +244,7 @@ order by Average Desc
 							<textField>
 								<reportElement x="0" y="0" width="28" height="15"/>
 								<box leftPadding="2"/>
+								<textElement/>
 								<textFieldExpression><![CDATA[$F{staff_attitude}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -264,6 +264,7 @@ order by Average Desc
 							<textField>
 								<reportElement x="0" y="0" width="28" height="15"/>
 								<box leftPadding="2"/>
+								<textElement/>
 								<textFieldExpression><![CDATA[$F{cleanliness}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -283,6 +284,7 @@ order by Average Desc
 							<textField>
 								<reportElement x="0" y="0" width="28" height="15"/>
 								<box leftPadding="2"/>
+								<textElement/>
 								<textFieldExpression><![CDATA[$F{waiting_times}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -303,6 +305,7 @@ order by Average Desc
 							<textField>
 								<reportElement x="0" y="0" width="28" height="15"/>
 								<box leftPadding="2"/>
+								<textElement/>
 								<textFieldExpression><![CDATA[$F{drug_availability}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -322,6 +325,7 @@ order by Average Desc
 							<textField>
 								<reportElement x="0" y="0" width="28" height="15"/>
 								<box leftPadding="2"/>
+								<textElement/>
 								<textFieldExpression><![CDATA[$F{infection_control}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -341,6 +345,7 @@ order by Average Desc
 							<textField>
 								<reportElement x="0" y="0" width="28" height="15"/>
 								<box leftPadding="2"/>
+								<textElement/>
 								<textFieldExpression><![CDATA[$F{safe_and_secure_care}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>

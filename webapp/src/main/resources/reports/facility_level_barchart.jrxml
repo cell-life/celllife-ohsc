@@ -141,7 +141,9 @@ AND `district_short_name` like $P{dist_short_name}]]>
 		<band height="323" splitType="Stretch">
 			<barChart>
 				<chart evaluationTime="Report">
-					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="510" height="323"/>
+					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="510" height="323">
+						<property name="net.sf.jasperreports.chart.range.axis.tick.interval" value="1"/>
+					</reportElement>
 					<box>
 						<topPen lineWidth="0.0"/>
 						<leftPen lineWidth="0.0"/>
@@ -281,6 +283,8 @@ AND `district_short_name` like $P{dist_short_name}]]>
 							</labelFont>
 						</axisFormat>
 					</valueAxisFormat>
+					<rangeAxisMinValueExpression>0</rangeAxisMinValueExpression>
+                    <rangeAxisMaxValueExpression>4</rangeAxisMaxValueExpression>
 				</barPlot>
 			</barChart>
 		</band>

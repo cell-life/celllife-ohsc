@@ -134,7 +134,9 @@ order by Average Desc
 			</staticText>
 			<barChart>
 				<chart evaluationTime="Report">
-					<reportElement x="0" y="0" width="509" height="100"/>
+					<reportElement x="0" y="0" width="509" height="100">
+						<property name="net.sf.jasperreports.chart.range.axis.tick.interval" value="1"/>
+					</reportElement>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend position="Top">
@@ -182,6 +184,8 @@ order by Average Desc
 				<barPlot>
 					<plot/>
 					<itemLabel/>
+					<rangeAxisMinValueExpression>0</rangeAxisMinValueExpression>
+                    <rangeAxisMaxValueExpression>4</rangeAxisMaxValueExpression>
 				</barPlot>
 			</barChart>
 			<componentElement>

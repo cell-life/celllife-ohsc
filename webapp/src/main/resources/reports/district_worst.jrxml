@@ -145,7 +145,9 @@ order by Average ASC
 			</staticText>
 			<barChart>
 				<chart evaluationTime="Report">
-					<reportElement x="0" y="0" width="509" height="100"/>
+					<reportElement x="0" y="0" width="509" height="100">
+						<property name="net.sf.jasperreports.chart.range.axis.tick.interval" value="1"/>
+					</reportElement>
 					<chartTitle position="Top"/>
 					<chartSubtitle/>
 					<chartLegend position="Top">
@@ -193,12 +195,8 @@ order by Average ASC
 				<barPlot>
 					<plot/>
 					<itemLabel/>
-					<categoryAxisFormat>
-						<axisFormat/>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat/>
-					</valueAxisFormat>
+					<rangeAxisMinValueExpression>0</rangeAxisMinValueExpression>
+                    <rangeAxisMaxValueExpression>4</rangeAxisMaxValueExpression>
 				</barPlot>
 			</barChart>
 			<componentElement>

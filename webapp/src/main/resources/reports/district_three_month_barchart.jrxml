@@ -152,12 +152,14 @@ round(AVG( case when submission_date BETWEEN $P{first_three_month} AND $P{end_da
 		<band height="151" splitType="Stretch">
 			<barChart>
 				<chart evaluationTime="Report">
-					<reportElement x="0" y="0" width="516" height="150"/>
+					<reportElement x="0" y="0" width="516" height="150">
+						<property name="net.sf.jasperreports.chart.range.axis.tick.interval" value="1"/>
+					</reportElement>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend position="Top">
-                        <font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
-                    </chartLegend>
+						<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					</chartLegend>
 				</chart>
 				<categoryDataset>
 					<categorySeries>
@@ -271,7 +273,8 @@ round(AVG( case when submission_date BETWEEN $P{first_three_month} AND $P{end_da
 				</categoryDataset>
 				<barPlot>
 					<plot/>
-					<itemLabel/>
+                    <rangeAxisMinValueExpression>0</rangeAxisMinValueExpression>
+                    <rangeAxisMaxValueExpression>4</rangeAxisMaxValueExpression>
 				</barPlot>
 			</barChart>
 		</band>

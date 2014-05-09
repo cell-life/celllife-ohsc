@@ -160,7 +160,9 @@ round(AVG( case when submission_date BETWEEN $P{first_three_month} AND $P{end_da
 		<band height="151" splitType="Stretch">
 			<barChart>
 				<chart evaluationTime="Report">
-					<reportElement x="-1" y="0" width="516" height="150"/>
+					<reportElement x="-1" y="0" width="516" height="150">
+						<property name="net.sf.jasperreports.chart.range.axis.tick.interval" value="1"/>
+					</reportElement>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend position="Top">
@@ -276,11 +278,12 @@ round(AVG( case when submission_date BETWEEN $P{first_three_month} AND $P{end_da
 						<valueExpression><![CDATA[$F{drug_availability_rating_onem}]]></valueExpression>
 						<labelExpression><![CDATA["Drug Avaiability"]]></labelExpression>
 					</categorySeries>
-
 				</categoryDataset>
 				<barPlot>
 					<plot/>
 					<itemLabel/>
+					<rangeAxisMinValueExpression>0</rangeAxisMinValueExpression>
+                    <rangeAxisMaxValueExpression>4</rangeAxisMaxValueExpression>
 				</barPlot>
 			</barChart>
 		</band>
