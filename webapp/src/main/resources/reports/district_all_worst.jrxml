@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DistrictSingleTopFacilitiesBarChart" language="groovy" pageWidth="550" pageHeight="892" whenNoDataType="AllSectionsNoDetail" columnWidth="510" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="010693da-d5b4-4253-8455-2660d24f47cb">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OHSCCell"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.report.resource" value="/celllife/DistrictBarChartSubreport_Final_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/celllife/DistrictBarChartSubreport_Final"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="76"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="DistrictAllWorstTop3" uuid="5942ef08-a639-4f87-af24-52f00b494918">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OHSCCell"/>
+		<parameter name="cal" class="java.util.Calendar" isForPrompting="false">
+			<defaultValueExpression><![CDATA[Calendar.getInstance()]]></defaultValueExpression>
+		</parameter>
+		<parameter name="end_date" class="java.util.Date">
+			<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
+		</parameter>
+		<parameter name="first_three_month" class="java.util.Date" isForPrompting="false">
+			<defaultValueExpression><![CDATA[(
+    $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
+    $P{cal}.add(Calendar.MONTH, -3) ||
+    $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
+)
+? null : $P{cal}.getTime()]]></defaultValueExpression>
+		</parameter>
+		<parameter name="province_short_name" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="month_name" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[$P{end_date}.getMonth() == 0 ?    "January" :
+$P{end_date}.getMonth() == 1 ?    "February" :
+$P{end_date}.getMonth() == 2 ?    "March" :
+$P{end_date}.getMonth() == 3 ?    "April" :
+$P{end_date}.getMonth() == 4 ?    "May" :
+$P{end_date}.getMonth() == 5 ?    "June" :
+$P{end_date}.getMonth() == 6 ?    "July" :
+$P{end_date}.getMonth() == 7 ?    "August" :
+$P{end_date}.getMonth() == 8 ?    "September" :
+$P{end_date}.getMonth() == 9 ?    "October"  :
+$P{end_date}.getMonth() == 10 ?    "November"  :
+$P{end_date}.getMonth() == 11 ?    "December" :
+"Unknown"]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+`district_short_name`,
+ `Province_Short_Name`,
+round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `staff_attitude_rating` else 0 end), 2) as staff_attitude_rating,
+round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `cleanliness_rating` else 0 end), 2) as cleanliness_rating,
+round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `waiting_times_rating` else 0 end), 2) as waiting_times_rating,
+round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `drug_availability_rating` else 0 end), 2) as drug_availability_rating,
+round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `infection_control_rating` else 0 end), 2) as infection_control_rating,
+round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `safe_and_secure_care_rating` else 0 end), 2) as safe_and_secure_care_rating,
+round((
+    staff_attitude_rating +
+cleanliness_rating +
+waiting_times_rating +
+drug_availability_rating +
+infection_control_rating +
+safe_and_secure_care_rating)/6,2) as Average
+
+ FROM `data_mart_rating`
+ WHERE `Province_Short_Name` = $P{province_short_name}
+ Group By `district_short_name`
+order by Average ASC
+ limit 3;]]>
+		</queryString>
+		<field name="district_short_name" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="Province_Short_Name" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="staff_attitude_rating" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="cleanliness_rating" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="waiting_times_rating" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="drug_availability_rating" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="infection_control_rating" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="safe_and_secure_care_rating" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="Average" class="java.lang.Double"/>
+	</subDataset>
+	<parameter name="cal" class="java.util.Calendar" isForPrompting="false">
+		<defaultValueExpression><![CDATA[Calendar.getInstance()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="end_date" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="province_short_name" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="first_three_month" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[(
+    $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
+    $P{cal}.add(Calendar.MONTH, -3) ||
+    $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
+)
+? null : $P{cal}.getTime()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="month_name" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{end_date}.getMonth() == 0 ?    "January" :
+$P{end_date}.getMonth() == 1 ?    "February" :
+$P{end_date}.getMonth() == 2 ?    "March" :
+$P{end_date}.getMonth() == 3 ?    "April" :
+$P{end_date}.getMonth() == 4 ?    "May" :
+$P{end_date}.getMonth() == 5 ?    "June" :
+$P{end_date}.getMonth() == 6 ?    "July" :
+$P{end_date}.getMonth() == 7 ?    "August" :
+$P{end_date}.getMonth() == 8 ?    "September" :
+$P{end_date}.getMonth() == 9 ?    "October"  :
+$P{end_date}.getMonth() == 10 ?    "November"  :
+$P{end_date}.getMonth() == 11 ?    "December" :
+"Unknown"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+`district_short_name`,
+ `Province_Short_Name`,
+round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `staff_attitude_rating` else 0 end), 2) as staff_attitude_rating,
+round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `cleanliness_rating` else 0 end), 2) as cleanliness_rating,
+round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `waiting_times_rating` else 0 end), 2) as waiting_times_rating,
+round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `drug_availability_rating` else 0 end), 2) as drug_availability_rating,
+round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `infection_control_rating` else 0 end), 2) as infection_control_rating,
+round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `safe_and_secure_care_rating` else 0 end), 2) as safe_and_secure_care_rating,
+round((
+    staff_attitude_rating +
+cleanliness_rating +
+waiting_times_rating +
+drug_availability_rating +
+infection_control_rating +
+safe_and_secure_care_rating)/6,2) as Average
+
+ FROM `data_mart_rating`
+ WHERE `Province_Short_Name` = $P{province_short_name}
+ Group By `district_short_name`
+order by Average ASC
+ limit 3;]]>
+	</queryString>
+	<field name="district_short_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Province_Short_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="staff_attitude_rating" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cleanliness_rating" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="waiting_times_rating" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="drug_availability_rating" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="infection_control_rating" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="safe_and_secure_care_rating" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Average" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="30">
+			<staticText>
+				<reportElement x="1" y="0" width="508" height="30" isRemoveLineWhenBlank="true" uuid="f91f3853-f019-4583-8d6f-fbc55fb9a5f7"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Worst Performing Districts This Month]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="267" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{REPORT_COUNT}==1]]></printWhenExpression>
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="0" width="509" height="150" uuid="582dbd30-3dfa-488c-9aa9-645581cb903e">
+						<property name="local_mesure_unitheight" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<printWhenExpression><![CDATA[$V{REPORT_COUNT} == 1]]></printWhenExpression>
+					</reportElement>
+					<chartTitle position="Top"/>
+					<chartSubtitle/>
+					<chartLegend position="Top"/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Staff Attitude"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{district_short_name}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{staff_attitude_rating}]]></valueExpression>
+						<labelExpression><![CDATA["staff Attitude"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Infection Control"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{district_short_name}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{infection_control_rating}]]></valueExpression>
+						<labelExpression><![CDATA["Infection Control"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Waiting Times"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{district_short_name}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{waiting_times_rating}]]></valueExpression>
+						<labelExpression><![CDATA["Waiting Times"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Safe And Secure Care"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{district_short_name}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{safe_and_secure_care_rating}]]></valueExpression>
+						<labelExpression><![CDATA["Safe And secure Care"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Cleanliness"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{district_short_name}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{cleanliness_rating}]]></valueExpression>
+						<labelExpression><![CDATA["Cleanliness"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Drug Availability"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{district_short_name}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{drug_availability_rating}]]></valueExpression>
+						<labelExpression><![CDATA["Drug Avaiability"]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<componentElement>
+				<reportElement isPrintRepeatedValues="false" x="1" y="150" width="508" height="115" isRemoveLineWhenBlank="true" uuid="78caeee3-ee8c-42b9-8de8-4ed967c06aab">
+					<printWhenExpression><![CDATA[$V{REPORT_COUNT}==1]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
+					<datasetRun subDataset="DistrictAllWorstTop3" uuid="a2415751-21f4-42b5-a10e-487c7bf2d0f0">
+						<datasetParameter name="first_three_month">
+							<datasetParameterExpression><![CDATA[$P{first_three_month}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="province_short_name">
+							<datasetParameterExpression><![CDATA[$P{province_short_name}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="cal">
+							<datasetParameterExpression><![CDATA[$P{cal}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="end_date">
+							<datasetParameterExpression><![CDATA[$P{end_date}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="290" uuid="f5eb5314-ebb2-4bf4-9f1c-7ee0bf06aef7">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<property name="local_mesure_unitheight" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="90">
+							<staticText>
+								<reportElement x="0" y="0" width="290" height="90" uuid="56b91e5a-adf8-4763-b98f-035b090dbd3e">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box leftPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[District name]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="290" height="15" uuid="c44b977f-ce97-46d0-8b6f-b2792ab6c463">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box leftPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textFieldExpression><![CDATA[$F{district_short_name}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="25" uuid="8ff2b06c-a6dd-4336-8884-0e77d491344f">
+						<property name="local_mesure_unitheight" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="90">
+							<staticText>
+								<reportElement x="0" y="0" width="25" height="90" uuid="08b70e32-fe3e-4827-ac5f-e5226aff45b4">
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box topPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement rotation="Right">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Staff attitude]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="25" height="15" uuid="e7737631-03df-4f8b-b7a7-645cb3c19901">
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box leftPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textFieldExpression><![CDATA[$F{staff_attitude_rating}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="25" uuid="755c0c6e-8e59-4265-9e98-37a48a867651">
+						<jr:columnHeader style="Table 1_CH" height="90">
+							<staticText>
+								<reportElement x="0" y="0" width="25" height="90" uuid="140a27e6-34fd-4965-a244-c681d25bdea8">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box topPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement rotation="Right">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cleanliness]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="25" height="15" uuid="457adbdc-de84-49df-9d86-c836aa23eb35">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box leftPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textFieldExpression><![CDATA[$F{cleanliness_rating}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="25" uuid="db6548bc-7776-495d-a9ba-b8a6b9c3a885">
+						<jr:columnHeader style="Table 1_CH" height="90">
+							<staticText>
+								<reportElement x="0" y="0" width="25" height="90" uuid="14565375-a9c6-4f57-9808-454784f9face">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box topPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement rotation="Right">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Waiting times]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="25" height="15" uuid="7c81dd5e-2492-444d-acc1-188123d99cc8">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box leftPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textFieldExpression><![CDATA[$F{waiting_times_rating}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="25" uuid="89feb4a0-501a-404f-af84-36153ef0dd55">
+						<jr:columnHeader style="Table 1_CH" height="90">
+							<staticText>
+								<reportElement x="0" y="0" width="25" height="90" uuid="b5c04d62-8a4d-4817-b680-dfb9f4e3782f">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box topPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement rotation="Right">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Drug availability]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="25" height="15" uuid="4e6d3c65-7321-4f3b-9d3e-8aa2b772a376">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box leftPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textFieldExpression><![CDATA[$F{drug_availability_rating}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="25" uuid="ae5b5e05-8c95-434b-bb5c-f428dafc48ce">
+						<jr:columnHeader style="Table 1_CH" height="90">
+							<staticText>
+								<reportElement x="0" y="0" width="25" height="90" uuid="93244c09-0ec7-4368-9c2b-ca9d3bfff747">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box topPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement rotation="Right">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Infection control]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="25" height="15" uuid="1f6f7990-bbf3-41fe-a577-1313bc5242db">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box leftPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textFieldExpression><![CDATA[$F{infection_control_rating}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="25" uuid="cd60782c-5cb1-40b6-9f09-e475518a672c">
+						<jr:columnHeader style="Table 1_CH" height="90">
+							<staticText>
+								<reportElement x="0" y="0" width="25" height="90" uuid="2405701a-c421-42c7-8a54-d12e856c39f2">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box topPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement rotation="Right">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Safe and secure care]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="25" height="15" uuid="9a12d966-a6a7-4f5c-b0e8-539410b7bd2a">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box leftPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textFieldExpression><![CDATA[$F{safe_and_secure_care_rating}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="67eabb5d-516b-4944-8cbf-c8a535964455">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="90">
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="90" uuid="1cc63fad-7cac-4555-9318-0c4e7f7aac92">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box leftPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Average]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="15">
+							<textField>
+								<reportElement x="0" y="0" width="50" height="15" uuid="f32352cb-1651-4a8b-8608-9616d112223d">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<box leftPadding="2">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Average}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

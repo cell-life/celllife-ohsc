@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="district_full_report" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="96e8243e-b913-4a0c-bc14-c87c093950bb">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OHSCCell"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cal" class="java.util.Calendar" isForPrompting="false">
+		<defaultValueExpression><![CDATA[Calendar.getInstance()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="end_date" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="first_first_month" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[(
+    $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
+    $P{cal}.add(Calendar.MONTH, -1) ||
+    $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
+)
+? null : $P{cal}.getTime()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="first_second_month" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[(
+    $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
+    $P{cal}.add(Calendar.MONTH, -2) ||
+    $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
+)
+? null : $P{cal}.getTime()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="province_short_name" class="java.lang.String"/>
+	<parameter name="first_three_month" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[(
+    $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
+    $P{cal}.add(Calendar.MONTH, -3) ||
+    $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
+)
+? null : $P{cal}.getTime()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="month_name" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{end_date}.getMonth() == 0 ?    "January" :
+$P{end_date}.getMonth() == 1 ?    "February" :
+$P{end_date}.getMonth() == 2 ?    "March" :
+$P{end_date}.getMonth() == 3 ?    "April" :
+$P{end_date}.getMonth() == 4 ?    "May" :
+$P{end_date}.getMonth() == 5 ?    "June" :
+$P{end_date}.getMonth() == 6 ?    "July" :
+$P{end_date}.getMonth() == 7 ?    "August" :
+$P{end_date}.getMonth() == 8 ?    "September" :
+$P{end_date}.getMonth() == 9 ?    "October"  :
+$P{end_date}.getMonth() == 10 ?    "November"  :
+$P{end_date}.getMonth() == 11 ?    "December" :
+"Unknown"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select now()]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="61" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="60" uuid="82ae2052-d398-4a5f-866b-fe68e96b78c1"/>
+				<subreportParameter name="end_date">
+					<subreportParameterExpression><![CDATA[$P{end_date}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FirstFirstMonth">
+					<subreportParameterExpression><![CDATA[$P{first_first_month}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="province_short_name">
+					<subreportParameterExpression><![CDATA[$P{province_short_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FirstSecondMonth">
+					<subreportParameterExpression><![CDATA[$P{first_second_month}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="month_name">
+					<subreportParameterExpression><![CDATA[$P{month_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cal">
+					<subreportParameterExpression><![CDATA[$P{cal}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FirstThreeMonth">
+					<subreportParameterExpression><![CDATA[$P{first_three_month}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["district_report1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="200" splitType="Prevent">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="200" uuid="7c32f06e-72ec-40d3-9bc0-fdcf584a3d6f"/>
+				<subreportParameter name="end_date">
+					<subreportParameterExpression><![CDATA[$P{end_date}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FirstFirstMonth">
+					<subreportParameterExpression><![CDATA[$P{first_first_month}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="Province_Short_Name">
+					<subreportParameterExpression><![CDATA[$P{province_short_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FirstSecondMonth">
+					<subreportParameterExpression><![CDATA[$P{first_second_month}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="month_name">
+					<subreportParameterExpression><![CDATA[$P{month_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cal">
+					<subreportParameterExpression><![CDATA[$P{cal}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FirstThreeMonth">
+					<subreportParameterExpression><![CDATA[$P{first_three_month}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["district_all_three_month_barchart.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="259" splitType="Prevent">
+			<subreport runToBottom="false">
+				<reportElement x="0" y="0" width="555" height="259" uuid="3f0ce3f3-b6ad-4dd9-8595-905a2147869b"/>
+				<subreportParameter name="end_date">
+					<subreportParameterExpression><![CDATA[$P{end_date}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FirstFirstMonth">
+					<subreportParameterExpression><![CDATA[$P{first_first_month}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="Province_Short_Name">
+					<subreportParameterExpression><![CDATA[$P{province_short_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FirstSecondMonth">
+					<subreportParameterExpression><![CDATA[$P{first_second_month}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="month_name">
+					<subreportParameterExpression><![CDATA[$P{month_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cal">
+					<subreportParameterExpression><![CDATA[$P{cal}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FirstThreeMonth">
+					<subreportParameterExpression><![CDATA[$P{first_three_month}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["district_all_top.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="267" splitType="Prevent">
+			<subreport>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="554" height="267" uuid="37806ebc-ace2-4c4b-8c33-5eb699d7624d"/>
+				<subreportParameter name="end_date">
+					<subreportParameterExpression><![CDATA[$P{end_date}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FirstFirstMonth">
+					<subreportParameterExpression><![CDATA[$P{first_first_month}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="Province_Short_Name">
+					<subreportParameterExpression><![CDATA[$P{province_short_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FirstSecondMonth">
+					<subreportParameterExpression><![CDATA[$P{first_second_month}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="month_name">
+					<subreportParameterExpression><![CDATA[$P{month_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cal">
+					<subreportParameterExpression><![CDATA[$P{cal}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FirstThreeMonth">
+					<subreportParameterExpression><![CDATA[$P{first_three_month}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["district_all_worst.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

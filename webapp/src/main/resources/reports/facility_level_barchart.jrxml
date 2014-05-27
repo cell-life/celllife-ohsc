@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacilityLevelBarChart" language="groovy" pageWidth="550" pageHeight="892" whenNoDataType="AllSectionsNoDetail" columnWidth="510" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="010693da-d5b4-4253-8455-2660d24f47cb">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OHSCCell"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.report.resource" value="/celllife/DistrictBarChartSubreport_Final_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/celllife/DistrictBarChartSubreport_Final"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dist_short_name" class="java.lang.String"/>
+	<parameter name="cal" class="java.util.Calendar" isForPrompting="false">
+		<defaultValueExpression><![CDATA[Calendar.getInstance()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="end_date" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="first_three_months" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[(
+    $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
+    $P{cal}.add(Calendar.MONTH, -2) ||
+    $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
+)
+? null : $P{cal}.getTime()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="first_of_this_month" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[(
+    $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
+    $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
+)
+? null : $P{cal}.getTime()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="last_sunday" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[(
+    $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
+    $P{cal}.add(Calendar.DAY_OF_MONTH, $P{cal}.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ? -7 : Calendar.SUNDAY - $P{cal}.get(Calendar.DAY_OF_WEEK))
+)
+? null : $P{cal}.getTime()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="province_short_name" class="java.lang.String"/>
+	<parameter name="month_name" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{end_date}.getMonth() == 0 ?    "January" :
+$P{end_date}.getMonth() == 1 ?    "February" :
+$P{end_date}.getMonth() == 2 ?    "March" :
+$P{end_date}.getMonth() == 3 ?    "April" :
+$P{end_date}.getMonth() == 4 ?    "May" :
+$P{end_date}.getMonth() == 5 ?    "June" :
+$P{end_date}.getMonth() == 6 ?    "July" :
+$P{end_date}.getMonth() == 7 ?    "August" :
+$P{end_date}.getMonth() == 8 ?    "September" :
+$P{end_date}.getMonth() == 9 ?    "October"  :
+$P{end_date}.getMonth() == 10 ?    "November"  :
+$P{end_date}.getMonth() == 11 ?    "December" :
+"Unknown"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+`clinic_code`,
+`clinic_short_name`,
+`sub_district_name`,
+`sub_district_short_name`,
+`district_name`,
+`district_short_name`,
+round(AVG( case when submission_date BETWEEN $P{last_sunday} AND $P{end_date}  then `staff_attitude_rating` else 0 end), 2) as staff_attitude_rating_week,
+round(AVG( case when submission_date BETWEEN $P{last_sunday} AND $P{end_date}  then `cleanliness_rating` else 0 end), 2) as cleanliness_rating_week,
+round(AVG( case when submission_date BETWEEN $P{last_sunday} AND $P{end_date}  then `waiting_times_rating` else 0 end), 2) as waiting_times_rating_week,
+round(AVG( case when submission_date BETWEEN $P{last_sunday} AND $P{end_date}  then `drug_availability_rating` else 0 end), 2) as drug_availability_rating_week,
+round(AVG( case when submission_date BETWEEN $P{last_sunday} AND $P{end_date}  then `infection_control_rating` else 0 end), 2) as infection_control_rating_week,
+round(AVG( case when submission_date BETWEEN $P{last_sunday} AND $P{end_date}  then `safe_and_secure_care_rating` else 0 end), 2) as safe_and_secure_care_rating_week,
+
+round(AVG( case when submission_date BETWEEN $P{first_of_this_month} AND $P{end_date}  then `staff_attitude_rating` else 0 end), 2) as staff_attitude_rating_month,
+round(AVG( case when submission_date BETWEEN $P{first_of_this_month} AND $P{end_date}  then `cleanliness_rating` else 0 end), 2) as cleanliness_rating_month,
+round(AVG( case when submission_date BETWEEN $P{first_of_this_month} AND $P{end_date}  then `waiting_times_rating` else 0 end), 2) as waiting_times_rating_month,
+round(AVG( case when submission_date BETWEEN $P{first_of_this_month} AND $P{end_date}  then `drug_availability_rating` else 0 end), 2) as drug_availability_rating_month,
+round(AVG( case when submission_date BETWEEN $P{first_of_this_month} AND $P{end_date}  then `infection_control_rating` else 0 end), 2) as infection_control_rating_month,
+round(AVG( case when submission_date BETWEEN $P{first_of_this_month} AND $P{end_date}  then `safe_and_secure_care_rating` else 0 end), 2) as safe_and_secure_care_rating_month,
+
+round(AVG( case when submission_date BETWEEN $P{first_three_months} AND $P{end_date}  then `staff_attitude_rating` else 0 end), 2) as staff_attitude_rating_threem,
+round(AVG( case when submission_date BETWEEN $P{first_three_months} AND $P{end_date}  then `staff_attitude_rating` else 0 end), 2) as staff_attitude_rating_threem,
+round(AVG( case when submission_date BETWEEN $P{first_three_months} AND $P{end_date}  then `staff_attitude_rating` else 0 end), 2) as staff_attitude_rating_threem,
+round(AVG( case when submission_date BETWEEN $P{first_three_months} AND $P{end_date}  then `staff_attitude_rating` else 0 end), 2) as staff_attitude_rating_threem,
+round(AVG( case when submission_date BETWEEN $P{first_three_months} AND $P{end_date}  then `staff_attitude_rating` else 0 end), 2) as staff_attitude_rating_threem,
+round(AVG( case when submission_date BETWEEN $P{first_three_months} AND $P{end_date}  then `staff_attitude_rating` else 0 end), 2) as staff_attitude_rating_threem,
+round(AVG( case when submission_date BETWEEN $P{first_three_months} AND $P{end_date}  then `staff_attitude_rating` else 0 end), 2) as staff_attitude_rating_threem,
+round(AVG( case when submission_date BETWEEN $P{first_three_months} AND $P{end_date}  then `cleanliness_rating` else 0 end), 2) as cleanliness_rating_threem,
+round(AVG( case when submission_date BETWEEN $P{first_three_months} AND $P{end_date}  then `waiting_times_rating` else 0 end), 2) as waiting_times_rating_threem,
+round(AVG( case when submission_date BETWEEN $P{first_three_months} AND $P{end_date}  then `drug_availability_rating` else 0 end), 2) as drug_availability_rating_threem,
+round(AVG( case when submission_date BETWEEN $P{first_three_months} AND $P{end_date}  then `infection_control_rating` else 0 end), 2) as infection_control_rating_threem,
+round(AVG( case when submission_date BETWEEN $P{first_three_months} AND $P{end_date}  then `safe_and_secure_care_rating` else 0 end), 2) as safe_and_secure_care_rating_threem
+ FROM `data_mart_rating`
+
+WHERE `province_short_name`  =  $P{province_short_name}
+AND `district_short_name` = $P{dist_short_name}]]>
+	</queryString>
+	<field name="clinic_code" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="clinic_short_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sub_district_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sub_district_short_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="district_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="district_short_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="staff_attitude_rating_week" class="java.lang.Double"/>
+	<field name="cleanliness_rating_week" class="java.lang.Double"/>
+	<field name="waiting_times_rating_week" class="java.lang.Double"/>
+	<field name="drug_availability_rating_week" class="java.lang.Double"/>
+	<field name="infection_control_rating_week" class="java.lang.Double"/>
+	<field name="safe_and_secure_care_rating_week" class="java.lang.Double"/>
+	<field name="staff_attitude_rating_month" class="java.lang.Double"/>
+	<field name="cleanliness_rating_month" class="java.lang.Double"/>
+	<field name="waiting_times_rating_month" class="java.lang.Double"/>
+	<field name="drug_availability_rating_month" class="java.lang.Double"/>
+	<field name="infection_control_rating_month" class="java.lang.Double"/>
+	<field name="safe_and_secure_care_rating_month" class="java.lang.Double"/>
+	<field name="staff_attitude_rating_threem" class="java.lang.Double"/>
+	<field name="cleanliness_rating_threem" class="java.lang.Double"/>
+	<field name="waiting_times_rating_threem" class="java.lang.Double"/>
+	<field name="drug_availability_rating_threem" class="java.lang.Double"/>
+	<field name="infection_control_rating_threem" class="java.lang.Double"/>
+	<field name="safe_and_secure_care_rating_threem" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="26">
+			<staticText>
+				<reportElement x="0" y="0" width="510" height="25" uuid="3053844b-c4e7-415a-9a3e-9df1edbce59e"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[District Overall Performance (last 3 months)]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="323" splitType="Stretch">
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="510" height="323" uuid="1aaecb51-a613-45e8-8d83-ec4b36e8f7ae"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend position="Top"/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Staff Attitude"]]></seriesExpression>
+						<categoryExpression><![CDATA["This Week"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{staff_attitude_rating_week}]]></valueExpression>
+						<labelExpression><![CDATA["staff Attitude"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Infection Control"]]></seriesExpression>
+						<categoryExpression><![CDATA["This Week"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{infection_control_rating_week}]]></valueExpression>
+						<labelExpression><![CDATA["Infection Control"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Waiting Times"]]></seriesExpression>
+						<categoryExpression><![CDATA["This Week"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{waiting_times_rating_week}]]></valueExpression>
+						<labelExpression><![CDATA["Waiting Times"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Safe And Secure Care"]]></seriesExpression>
+						<categoryExpression><![CDATA["This Week"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{safe_and_secure_care_rating_week}]]></valueExpression>
+						<labelExpression><![CDATA["Safe And secure Care"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Cleanliness"]]></seriesExpression>
+						<categoryExpression><![CDATA["This Week"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{cleanliness_rating_week}]]></valueExpression>
+						<labelExpression><![CDATA["Cleanliness"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Drug Availability"]]></seriesExpression>
+						<categoryExpression><![CDATA["This Week"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{drug_availability_rating_week}]]></valueExpression>
+						<labelExpression><![CDATA["Drug Avaiability"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Staff Attitude"]]></seriesExpression>
+						<categoryExpression><![CDATA["This Month"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{staff_attitude_rating_month}]]></valueExpression>
+						<labelExpression><![CDATA["staff Attitude"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Infection Control"]]></seriesExpression>
+						<categoryExpression><![CDATA["This Month"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{infection_control_rating_month}]]></valueExpression>
+						<labelExpression><![CDATA["Infection Control"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Waiting Times"]]></seriesExpression>
+						<categoryExpression><![CDATA["This Month"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{waiting_times_rating_month}]]></valueExpression>
+						<labelExpression><![CDATA["Waiting Times"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Safe And Secure Care"]]></seriesExpression>
+						<categoryExpression><![CDATA["This Month"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{safe_and_secure_care_rating_month}]]></valueExpression>
+						<labelExpression><![CDATA["Safe And secure Care"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Cleanliness"]]></seriesExpression>
+						<categoryExpression><![CDATA["This Month"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{cleanliness_rating_month}]]></valueExpression>
+						<labelExpression><![CDATA["Cleanliness"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Drug Availability"]]></seriesExpression>
+						<categoryExpression><![CDATA["This Month"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{drug_availability_rating_month}]]></valueExpression>
+						<labelExpression><![CDATA["Drug Avaiability"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Staff Attitude"]]></seriesExpression>
+						<categoryExpression><![CDATA["Three Months"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{staff_attitude_rating_threem}]]></valueExpression>
+						<labelExpression><![CDATA["staff Attitude"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Infection Control"]]></seriesExpression>
+						<categoryExpression><![CDATA["Three Months"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{infection_control_rating_threem}]]></valueExpression>
+						<labelExpression><![CDATA["Infection Control"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Waiting Times"]]></seriesExpression>
+						<categoryExpression><![CDATA["Three Months"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{waiting_times_rating_threem}]]></valueExpression>
+						<labelExpression><![CDATA["Waiting Times"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Safe And Secure Care"]]></seriesExpression>
+						<categoryExpression><![CDATA["Three Months"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{safe_and_secure_care_rating_threem}]]></valueExpression>
+						<labelExpression><![CDATA["Safe And secure Care"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Cleanliness"]]></seriesExpression>
+						<categoryExpression><![CDATA["Three Months"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{cleanliness_rating_threem}]]></valueExpression>
+						<labelExpression><![CDATA["Cleanliness"]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Drug Availability"]]></seriesExpression>
+						<categoryExpression><![CDATA["Three Months"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{drug_availability_rating_threem}]]></valueExpression>
+						<labelExpression><![CDATA["Drug Avaiability"]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font isBold="true"/>
+							</labelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font isBold="true"/>
+							</labelFont>
+						</axisFormat>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</detail>
+</jasperReport>

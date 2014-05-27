@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<pconfig xmlns="http://www.cell-life.org/schemas/pconfig"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.cell-life.org/schemas/pconfig http://www.cell-life.org/schemas/pconfig/pconfig-1.0.xsd">
+    <id>facility_full_report</id>
+    <label>Facility Report</label>
+    <resource>facility_full_report.jasper</resource>
+    <parameters>
+      <!-- dates -->
+		<date name="first_of_this_month" label="First Of Month" allowFuture="false" optional="true"/>
+		<date name="end_date" label="End date" allowFuture="false" optional="true"/> 
+		<text name="dist_short_name"  label="District name"  allowFuture="false"  optional="false"/>
+		<text name="province_short_name"  label="Province name"  allowFuture="false"  optional="false"/>
+    </parameters>
+</pconfig>

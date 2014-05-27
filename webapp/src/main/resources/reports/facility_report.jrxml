@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facility_report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="027c457b-ac07-405e-8ec9-c63522c91a36">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OHSCCell"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="first_of_this_month" class="java.util.Date">
+		<defaultValueExpression><![CDATA[(
+    $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
+    $P{cal}.add(Calendar.MONTH, -0) ||
+    $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
+)
+? null : $P{cal}.getTime()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="end_date" class="java.util.Date"/>
+	<parameter name="dist_short_name" class="java.lang.String"/>
+	<parameter name="province_short_name" class="java.lang.String"/>
+	<parameter name="month_name" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{end_date}.getMonth() == 0 ?    "January" :
+$P{end_date}.getMonth() == 1 ?    "February" :
+$P{end_date}.getMonth() == 2 ?    "March" :
+$P{end_date}.getMonth() == 3 ?    "April" :
+$P{end_date}.getMonth() == 4 ?    "May" :
+$P{end_date}.getMonth() == 5 ?    "June" :
+$P{end_date}.getMonth() == 6 ?    "July" :
+$P{end_date}.getMonth() == 7 ?    "August" :
+$P{end_date}.getMonth() == 8 ?    "September" :
+$P{end_date}.getMonth() == 9 ?    "October"  :
+$P{end_date}.getMonth() == 10 ?    "November"  :
+$P{end_date}.getMonth() == 11 ?    "December" :
+"Unknown"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cal" class="java.util.Calendar" isForPrompting="false">
+		<defaultValueExpression><![CDATA[Calendar.getInstance()]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[Select now()]]>
+	</queryString>
+	<field name="now()" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="1" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="78" splitType="Stretch">
+			<image>
+				<reportElement x="-1" y="10" width="181" height="50" uuid="38d54d78-ff10-4e6e-9e7a-993f9c138122"/>
+				<imageExpression><![CDATA["/home/chantell/eclipseprojects/celllife-ohsc/webapp/target/celllife-ohsc-webapp-1.0-SNAPSHOT/WEB-INF/classes/reports/rateMyClinic-logo-clearback.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="185" y="20" width="151" height="25" uuid="f50e0a3a-36ad-4dcb-95cf-2cc51bb5cb0a"/>
+				<textElement textAlignment="Left">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{province_short_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="20" width="235" height="25" uuid="70755c42-edf9-4b6f-858e-d47b61dc64a7"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dist_short_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="338" y="20" width="12" height="25" uuid="bf36f58c-2570-472a-9e4a-709378d12f5c"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="40" width="250" height="27" uuid="dd9e36c9-d4b2-4540-a183-34f64fb08814"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Facility level statistics :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="430" y="40" width="60" height="26" uuid="1714d54f-6e80-4172-826b-5278de5f4423"/>
+				<textElement textAlignment="Left">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{month_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
