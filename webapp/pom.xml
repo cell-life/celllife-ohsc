@@ -189,10 +189,6 @@
 	                            <key>application.properties</key>
 	                            <value>file://${project.basedir}/../etc/application.properties</value>
 	                        </systemProperty>
-	                        <systemProperty>
-	                            <key>com.mchange.v2.c3p0.cfg.xml</key>
-	                            <value>${project.basedir}/../etc/c3p0-config.xml</value>
-	                        </systemProperty>
 	                    </systemProperties>
 	                    <jvmArgs>-Xmx1024m -Xms1024m -XX:MaxPermSize=512m</jvmArgs>
 	                </configuration>
