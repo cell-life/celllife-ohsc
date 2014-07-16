@@ -312,8 +312,8 @@ round(AVG( case when submission_date BETWEEN $P{first_third_month} AND $P{end_th
 					<valueAxisFormat>
 						<axisFormat/>
 					</valueAxisFormat>
-					<rangeAxisMinValueExpression><![CDATA[0]]></rangeAxisMinValueExpression>
-					<rangeAxisMaxValueExpression><![CDATA[4]]></rangeAxisMaxValueExpression>
+					<rangeAxisMinValueExpression>0</rangeAxisMinValueExpression>
+					<rangeAxisMaxValueExpression>4</rangeAxisMaxValueExpression>
 				</barPlot>
 			</barChart>
 		</band>
