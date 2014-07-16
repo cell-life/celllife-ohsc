@@ -283,8 +283,8 @@ AND `district_short_name` like $P{dist_short_name}]]>
 							</labelFont>
 						</axisFormat>
 					</valueAxisFormat>
-					<rangeAxisMinValueExpression><![CDATA[0]]></rangeAxisMinValueExpression>
-					<rangeAxisMaxValueExpression><![CDATA[4]]></rangeAxisMaxValueExpression>
+					<rangeAxisMinValueExpression>0</rangeAxisMinValueExpression>
+					<rangeAxisMaxValueExpression>4</rangeAxisMaxValueExpression>
 				</barPlot>
 			</barChart>
 		</band>
