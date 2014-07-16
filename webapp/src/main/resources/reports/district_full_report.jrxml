@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="district_full_report" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="district_full_report" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="a58a67bc-03a8-4a8f-94c0-084a01a1895f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OHSCCell"/>
 	<template><![CDATA[$P{SUBREPORT_DIR} + "report_style_template.jrtx"]]></template>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
@@ -40,25 +42,25 @@ $P{end_date}.getMonth() == 11 ?    "December" :
 	<pageHeader>
 		<band height="58" splitType="Stretch">
 			<image>
-				<reportElement x="17" y="0" width="211" height="50"/>
+				<reportElement x="17" y="0" width="211" height="50" uuid="0a1a5f03-297f-439a-b1bb-f5dc66a9e50a"/>
 				<imageExpression><![CDATA[$P{SUBREPORT_DIR} + "rateMyClinic-logo-clearback.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="241" y="7" width="280" height="31"/>
+				<reportElement x="241" y="7" width="280" height="31" uuid="76f9fa22-dd4a-454e-b7f8-16fd58adea34"/>
 				<textElement>
 					<font size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[District level statistics]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="241" y="27" width="280" height="23"/>
+				<reportElement x="241" y="27" width="280" height="23" uuid="2a0411b7-17ea-4bfa-b006-7d5028df2611"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{month_name} + " " +  $P{year}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="241" y="46" width="280" height="12"/>
+				<reportElement x="241" y="46" width="280" height="12" uuid="b199e91c-1421-4aeb-83d2-3b86887d6436"/>
 				<textElement textAlignment="Left">
 					<font size="10" isBold="true"/>
 				</textElement>
@@ -69,7 +71,7 @@ $P{end_date}.getMonth() == 11 ?    "December" :
 	<detail>
 		<band height="155" splitType="Prevent">
 			<subreport runToBottom="false">
-				<reportElement x="0" y="0" width="555" height="155"/>
+				<reportElement x="0" y="0" width="555" height="155" uuid="e33af6b2-e442-401b-b154-965929788fe8"/>
 				<subreportParameter name="end_date">
 					<subreportParameterExpression><![CDATA[$P{end_date}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -82,7 +84,7 @@ $P{end_date}.getMonth() == 11 ?    "December" :
 		</band>
 		<band height="205" splitType="Prevent">
 			<subreport runToBottom="false">
-				<reportElement x="0" y="0" width="555" height="205"/>
+				<reportElement x="0" y="0" width="555" height="205" uuid="32225de6-cace-454e-822b-d4143f2e6388"/>
 				<subreportParameter name="end_date">
 					<subreportParameterExpression><![CDATA[$P{end_date}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -95,7 +97,7 @@ $P{end_date}.getMonth() == 11 ?    "December" :
 		</band>
 		<band height="205" splitType="Prevent">
 			<subreport>
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="554" height="205"/>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="554" height="205" uuid="9d83a28d-807f-429a-bb23-8b47c99657f4"/>
 				<subreportParameter name="end_date">
 					<subreportParameterExpression><![CDATA[$P{end_date}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -110,17 +112,16 @@ $P{end_date}.getMonth() == 11 ?    "December" :
 	<pageFooter>
 		<band height="40" splitType="Stretch">
 			<image>
-				<reportElement x="17" y="0" width="100" height="40"/>
+				<reportElement x="17" y="0" width="100" height="40" uuid="ccb50c5d-389a-4091-96e0-fdacb4f7a045"/>
 				<imageExpression><![CDATA[$P{SUBREPORT_DIR} + "NDoH logo.jpg"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="459" y="24" width="50" height="12"/>
+				<reportElement x="459" y="24" width="50" height="12" uuid="e1f19ff0-9f5e-471d-9597-02cdda70656d"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page " + String.valueOf($V{PAGE_NUMBER}) + " of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="509" y="24" width="46" height="12"/>
-				<textElement/>
+				<reportElement x="509" y="24" width="46" height="12" uuid="e492b6e6-8231-4a27-8fc4-6f13902f78da"/>
 				<textFieldExpression><![CDATA[" " + String.valueOf($V{PAGE_NUMBER})]]></textFieldExpression>
 			</textField>
 		</band>

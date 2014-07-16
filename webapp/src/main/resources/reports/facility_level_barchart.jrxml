@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacilityLevelBarChart" language="groovy" pageWidth="550" pageHeight="892" whenNoDataType="AllSectionsNoDetail" columnWidth="510" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacilityLevelBarChart" language="groovy" pageWidth="550" pageHeight="892" whenNoDataType="AllSectionsNoDetail" columnWidth="510" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="c105bd43-c6ef-4af2-a2a8-9c0211496358">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -48,7 +48,7 @@ $P{end_date}.getMonth() == 10 ?    "November"  :
 $P{end_date}.getMonth() == 11 ?    "December" :
 "Unknown"]]></defaultValueExpression>
 	</parameter>
-	<queryString language="SQL">
+	<queryString>
 		<![CDATA[SELECT
 `clinic_code`,
 `clinic_short_name`,
@@ -129,7 +129,7 @@ AND `district_short_name` like $P{dist_short_name}]]>
 	<columnHeader>
 		<band height="26">
 			<staticText>
-				<reportElement x="0" y="0" width="510" height="25"/>
+				<reportElement x="0" y="0" width="510" height="25" uuid="ec9e2800-240b-42b2-a4c0-1ca1b68cf7cc"/>
 				<textElement>
 					<font size="16" isBold="true"/>
 				</textElement>
@@ -141,7 +141,7 @@ AND `district_short_name` like $P{dist_short_name}]]>
 		<band height="323" splitType="Stretch">
 			<barChart>
 				<chart evaluationTime="Report">
-					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="510" height="323">
+					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="510" height="323" uuid="4a4b0157-c4ac-4643-88f9-2daba2f7568a">
 						<property name="net.sf.jasperreports.chart.range.axis.tick.interval" value="1"/>
 					</reportElement>
 					<box>
@@ -153,115 +153,115 @@ AND `district_short_name` like $P{dist_short_name}]]>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend position="Top">
-                        <font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
-                    </chartLegend>
+						<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					</chartLegend>
 				</chart>
 				<categoryDataset>
 					<categorySeries>
 						<seriesExpression><![CDATA["Staff Attitude"]]></seriesExpression>
-						<categoryExpression><![CDATA["This Week"]]></categoryExpression>
+						<categoryExpression><![CDATA["This week"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{staff_attitude_rating_week}]]></valueExpression>
 						<labelExpression><![CDATA["staff Attitude"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Infection Control"]]></seriesExpression>
-						<categoryExpression><![CDATA["This Week"]]></categoryExpression>
+						<categoryExpression><![CDATA["This week"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{infection_control_rating_week}]]></valueExpression>
 						<labelExpression><![CDATA["Infection Control"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Waiting Times"]]></seriesExpression>
-						<categoryExpression><![CDATA["This Week"]]></categoryExpression>
+						<categoryExpression><![CDATA["This week"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{waiting_times_rating_week}]]></valueExpression>
 						<labelExpression><![CDATA["Waiting Times"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Safe And Secure Care"]]></seriesExpression>
-						<categoryExpression><![CDATA["This Week"]]></categoryExpression>
+						<categoryExpression><![CDATA["This week"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{safe_and_secure_care_rating_week}]]></valueExpression>
 						<labelExpression><![CDATA["Safe And secure Care"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Cleanliness"]]></seriesExpression>
-						<categoryExpression><![CDATA["This Week"]]></categoryExpression>
+						<categoryExpression><![CDATA["This week"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{cleanliness_rating_week}]]></valueExpression>
 						<labelExpression><![CDATA["Cleanliness"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Drug Availability"]]></seriesExpression>
-						<categoryExpression><![CDATA["This Week"]]></categoryExpression>
+						<categoryExpression><![CDATA["This week"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{drug_availability_rating_week}]]></valueExpression>
 						<labelExpression><![CDATA["Drug Avaiability"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Staff Attitude"]]></seriesExpression>
-						<categoryExpression><![CDATA["This Month"]]></categoryExpression>
+						<categoryExpression><![CDATA["This month"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{staff_attitude_rating_month}]]></valueExpression>
 						<labelExpression><![CDATA["staff Attitude"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Infection Control"]]></seriesExpression>
-						<categoryExpression><![CDATA["This Month"]]></categoryExpression>
+						<categoryExpression><![CDATA["This month"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{infection_control_rating_month}]]></valueExpression>
 						<labelExpression><![CDATA["Infection Control"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Waiting Times"]]></seriesExpression>
-						<categoryExpression><![CDATA["This Month"]]></categoryExpression>
+						<categoryExpression><![CDATA["This month"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{waiting_times_rating_month}]]></valueExpression>
 						<labelExpression><![CDATA["Waiting Times"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Safe And Secure Care"]]></seriesExpression>
-						<categoryExpression><![CDATA["This Month"]]></categoryExpression>
+						<categoryExpression><![CDATA["This month"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{safe_and_secure_care_rating_month}]]></valueExpression>
 						<labelExpression><![CDATA["Safe And secure Care"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Cleanliness"]]></seriesExpression>
-						<categoryExpression><![CDATA["This Month"]]></categoryExpression>
+						<categoryExpression><![CDATA["This month"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{cleanliness_rating_month}]]></valueExpression>
 						<labelExpression><![CDATA["Cleanliness"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Drug Availability"]]></seriesExpression>
-						<categoryExpression><![CDATA["This Month"]]></categoryExpression>
+						<categoryExpression><![CDATA["This month"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{drug_availability_rating_month}]]></valueExpression>
 						<labelExpression><![CDATA["Drug Avaiability"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Staff Attitude"]]></seriesExpression>
-						<categoryExpression><![CDATA["Three Months"]]></categoryExpression>
+						<categoryExpression><![CDATA["To date"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{staff_attitude_rating_threem}]]></valueExpression>
 						<labelExpression><![CDATA["staff Attitude"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Infection Control"]]></seriesExpression>
-						<categoryExpression><![CDATA["Three Months"]]></categoryExpression>
+						<categoryExpression><![CDATA["To date"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{infection_control_rating_threem}]]></valueExpression>
 						<labelExpression><![CDATA["Infection Control"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Waiting Times"]]></seriesExpression>
-						<categoryExpression><![CDATA["Three Months"]]></categoryExpression>
+						<categoryExpression><![CDATA["To date"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{waiting_times_rating_threem}]]></valueExpression>
 						<labelExpression><![CDATA["Waiting Times"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Safe And Secure Care"]]></seriesExpression>
-						<categoryExpression><![CDATA["Three Months"]]></categoryExpression>
+						<categoryExpression><![CDATA["To date"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{safe_and_secure_care_rating_threem}]]></valueExpression>
 						<labelExpression><![CDATA["Safe And secure Care"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Cleanliness"]]></seriesExpression>
-						<categoryExpression><![CDATA["Three Months"]]></categoryExpression>
+						<categoryExpression><![CDATA["To date"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{cleanliness_rating_threem}]]></valueExpression>
 						<labelExpression><![CDATA["Cleanliness"]]></labelExpression>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA["Drug Availability"]]></seriesExpression>
-						<categoryExpression><![CDATA["Three Months"]]></categoryExpression>
+						<categoryExpression><![CDATA["To date"]]></categoryExpression>
 						<valueExpression><![CDATA[$F{drug_availability_rating_threem}]]></valueExpression>
 						<labelExpression><![CDATA["Drug Avaiability"]]></labelExpression>
 					</categorySeries>
@@ -283,8 +283,8 @@ AND `district_short_name` like $P{dist_short_name}]]>
 							</labelFont>
 						</axisFormat>
 					</valueAxisFormat>
-					<rangeAxisMinValueExpression>0</rangeAxisMinValueExpression>
-                    <rangeAxisMaxValueExpression>4</rangeAxisMaxValueExpression>
+					<rangeAxisMinValueExpression><![CDATA[0]]></rangeAxisMinValueExpression>
+					<rangeAxisMaxValueExpression><![CDATA[4]]></rangeAxisMaxValueExpression>
 				</barPlot>
 			</barChart>
 		</band>

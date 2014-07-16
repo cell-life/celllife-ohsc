@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DistrictWorstBarChart" language="groovy" pageWidth="550" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="510" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" isIgnorePagination="true">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DistrictWorstBarChart" language="groovy" pageWidth="550" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="510" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="9311eb64-3fa3-4349-95fe-55e91a28e5c8">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -31,7 +31,7 @@
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<subDataset name="DistrictAllWorstTop3">
+	<subDataset name="DistrictAllWorstTop3" uuid="e194f96e-2aba-400e-85a6-6b42313a30ae">
 		<parameter name="cal" class="java.util.Calendar" isForPrompting="false">
 			<defaultValueExpression><![CDATA[Calendar.getInstance()]]></defaultValueExpression>
 		</parameter>
@@ -41,37 +41,48 @@
 		<parameter name="province_short_name" class="java.lang.String">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
-		<parameter name="first_three_month" class="java.util.Date" isForPrompting="false">
+		<parameter name="this_month" class="java.util.Date" isForPrompting="false">
 			<defaultValueExpression><![CDATA[(
     $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
-    $P{cal}.add(Calendar.MONTH, -3) ||
     $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
 )
 ? null : $P{cal}.getTime()]]></defaultValueExpression>
 		</parameter>
 		<queryString>
 			<![CDATA[SELECT
-`district_short_name`,
- `Province_Short_Name`,
-round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `staff_attitude_rating` else 0 end), 2) as staff_attitude_rating,
-round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `cleanliness_rating` else 0 end), 2) as cleanliness_rating,
-round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `waiting_times_rating` else 0 end), 2) as waiting_times_rating,
-round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `drug_availability_rating` else 0 end), 2) as drug_availability_rating,
-round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `infection_control_rating` else 0 end), 2) as infection_control_rating,
-round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `safe_and_secure_care_rating` else 0 end), 2) as safe_and_secure_care_rating,
-round((
+`district_short_name`
+`province_short_name`,
+`staff_attitude_rating`,
+`cleanliness_rating`,
+`waiting_times_rating`,
+`drug_availability_rating`,
+`infection_control_rating`,
+`safe_and_secure_care_rating`,
+round(((
     staff_attitude_rating +
 cleanliness_rating +
 waiting_times_rating +
 drug_availability_rating +
 infection_control_rating +
-safe_and_secure_care_rating)/6,2) as Average
-
- FROM `data_mart_rating`
- WHERE `Province_Short_Name` like $P{province_short_name}
- group by `district_short_name`
-order by Average ASC
- limit 3;]]>
+safe_and_secure_care_rating)/6),2) as Average
+FROM
+	(SELECT
+     `district_short_name`,
+      `province_short_name`,
+	  round(AVG(case when`staff_attitude_rating`= null then 0 else `staff_attitude_rating` end), 2) as staff_attitude_rating,
+round(AVG( case when `cleanliness_rating`= null then 0 else `cleanliness_rating` end), 2) as cleanliness_rating,
+round(AVG( case when`waiting_times_rating`= null then 0 else `waiting_times_rating` end), 2) as waiting_times_rating,
+round(AVG( case when `drug_availability_rating`= null then 0 else `drug_availability_rating` end), 2) as drug_availability_rating,
+round(AVG( case when`infection_control_rating` = null then 0 else `infection_control_rating` end), 2) as infection_control_rating,
+round(AVG( case when `safe_and_secure_care_rating`= null then 0 else `safe_and_secure_care_rating` end), 2) as safe_and_secure_care_rating
+FROM `data_mart_rating`
+WHERE `Province_Short_Name` like $P{province_short_name} AND
+submission_date BETWEEN $P{this_month} AND $P{end_date}
+GROUP BY `district_short_name`
+)
+AS Data
+ORDER BY Average ASC
+limit 3;]]>
 		</queryString>
 		<field name="district_short_name" class="java.lang.String"/>
 		<field name="Province_Short_Name" class="java.lang.String"/>
@@ -92,37 +103,48 @@ order by Average ASC
 	<parameter name="province_short_name" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="first_three_month" class="java.util.Date" isForPrompting="false">
+	<parameter name="this_month" class="java.util.Date" isForPrompting="false">
 		<defaultValueExpression><![CDATA[(
     $P{cal}.set($P{end_date}.getYear()+1900, $P{end_date}.getMonth(), $P{end_date}.getDate()) ||
-    $P{cal}.add(Calendar.MONTH, -3) ||
     $P{cal}.set(Calendar.DAY_OF_MONTH, 1)
 )
 ? null : $P{cal}.getTime()]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-`district_short_name`,
- `Province_Short_Name`,
-round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `staff_attitude_rating` else 0 end), 2) as staff_attitude_rating,
-round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `cleanliness_rating` else 0 end), 2) as cleanliness_rating,
-round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `waiting_times_rating` else 0 end), 2) as waiting_times_rating,
-round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `drug_availability_rating` else 0 end), 2) as drug_availability_rating,
-round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `infection_control_rating` else 0 end), 2) as infection_control_rating,
-round(AVG( case when submission_date BETWEEN $P{first_three_month}  AND $P{end_date}  then `safe_and_secure_care_rating` else 0 end), 2) as safe_and_secure_care_rating,
-round((
+`district_short_name`
+`province_short_name`,
+`staff_attitude_rating`,
+`cleanliness_rating`,
+`waiting_times_rating`,
+`drug_availability_rating`,
+`infection_control_rating`,
+`safe_and_secure_care_rating`,
+round(((
     staff_attitude_rating +
 cleanliness_rating +
 waiting_times_rating +
 drug_availability_rating +
 infection_control_rating +
-safe_and_secure_care_rating)/6,2) as Average
-
- FROM `data_mart_rating`
- WHERE `Province_Short_Name` like $P{province_short_name}
- group by `district_short_name`
-order by Average ASC
- limit 3;]]>
+safe_and_secure_care_rating)/6),2) as Average
+FROM
+	(SELECT
+     `district_short_name`,
+      `province_short_name`,
+	  round(AVG(case when`staff_attitude_rating`= null then 0 else `staff_attitude_rating` end), 2) as staff_attitude_rating,
+round(AVG( case when `cleanliness_rating`= null then 0 else `cleanliness_rating` end), 2) as cleanliness_rating,
+round(AVG( case when`waiting_times_rating`= null then 0 else `waiting_times_rating` end), 2) as waiting_times_rating,
+round(AVG( case when `drug_availability_rating`= null then 0 else `drug_availability_rating` end), 2) as drug_availability_rating,
+round(AVG( case when`infection_control_rating` = null then 0 else `infection_control_rating` end), 2) as infection_control_rating,
+round(AVG( case when `safe_and_secure_care_rating`= null then 0 else `safe_and_secure_care_rating` end), 2) as safe_and_secure_care_rating
+FROM `data_mart_rating`
+WHERE `Province_Short_Name` like $P{province_short_name} AND
+submission_date BETWEEN $P{this_month} AND $P{end_date}
+GROUP BY `district_short_name`
+)
+AS Data
+ORDER BY Average ASC
+limit 3;]]>
 	</queryString>
 	<field name="district_short_name" class="java.lang.String"/>
 	<field name="Province_Short_Name" class="java.lang.String"/>
@@ -139,20 +161,19 @@ order by Average ASC
 	<columnHeader>
 		<band height="205">
 			<staticText>
-				<reportElement style="Subreport_H2" x="0" y="-20" width="509" height="20"/>
-				<textElement/>
+				<reportElement style="Subreport_H2" x="0" y="-20" width="509" height="20" uuid="24ff463d-010d-493e-88d1-4b91c961268d"/>
 				<text><![CDATA[Worst Performing Districts This Month]]></text>
 			</staticText>
 			<barChart>
 				<chart evaluationTime="Report">
-					<reportElement x="0" y="0" width="509" height="100">
+					<reportElement x="0" y="0" width="509" height="100" uuid="c9a8eb3b-57e1-4f67-8da5-324d9afff271">
 						<property name="net.sf.jasperreports.chart.range.axis.tick.interval" value="1"/>
 					</reportElement>
 					<chartTitle position="Top"/>
 					<chartSubtitle/>
 					<chartLegend position="Top">
-                        <font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
-                    </chartLegend>
+						<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					</chartLegend>
 				</chart>
 				<categoryDataset>
 					<categorySeries>
@@ -195,14 +216,20 @@ order by Average ASC
 				<barPlot>
 					<plot/>
 					<itemLabel/>
-					<rangeAxisMinValueExpression>0</rangeAxisMinValueExpression>
-                    <rangeAxisMaxValueExpression>4</rangeAxisMaxValueExpression>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+					<rangeAxisMinValueExpression><![CDATA[0]]></rangeAxisMinValueExpression>
+					<rangeAxisMaxValueExpression><![CDATA[4]]></rangeAxisMaxValueExpression>
 				</barPlot>
 			</barChart>
 			<componentElement>
-				<reportElement isPrintRepeatedValues="false" x="0" y="100" width="509" height="105" isRemoveLineWhenBlank="true"/>
+				<reportElement isPrintRepeatedValues="false" x="0" y="100" width="509" height="105" isRemoveLineWhenBlank="true" uuid="b2dae827-5259-4059-81d1-69c0a5bd53d0"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
-					<datasetRun subDataset="DistrictAllWorstTop3">
+					<datasetRun subDataset="DistrictAllWorstTop3" uuid="5eb104ac-2d27-4390-83d0-86b765efc90c">
 						<datasetParameter name="end_date">
 							<datasetParameterExpression><![CDATA[$P{end_date}]]></datasetParameterExpression>
 						</datasetParameter>
@@ -211,10 +238,10 @@ order by Average ASC
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="290">
+					<jr:column width="290" uuid="6da165b8-ec94-46c3-a604-9557d57143cb">
 						<jr:columnHeader style="Table_CH" height="75">
 							<staticText>
-								<reportElement x="0" y="0" width="290" height="75"/>
+								<reportElement x="0" y="0" width="290" height="75" uuid="c448de3d-d9a7-44b8-bcc8-6d6c1f561e48"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font isBold="true"/>
@@ -224,16 +251,16 @@ order by Average ASC
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="290" height="15"/>
+								<reportElement x="0" y="0" width="290" height="15" uuid="a0d1ebb2-b482-4d97-a46a-a51aca3f9e46"/>
 								<box leftPadding="2"/>
 								<textFieldExpression><![CDATA[$F{district_short_name}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="28">
+					<jr:column width="28" uuid="20a0876f-f5c4-4ea6-bc99-57c1876ace1b">
 						<jr:columnHeader style="Table_CH" height="75">
 							<staticText>
-								<reportElement x="0" y="0" width="28" height="75"/>
+								<reportElement x="0" y="0" width="28" height="75" uuid="8c511d32-95be-4302-a6e8-163745f5e4fb"/>
 								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -243,16 +270,16 @@ order by Average ASC
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="28" height="15"/>
+								<reportElement x="0" y="0" width="28" height="15" uuid="68cf54f5-f4d4-496a-88e6-6a337034af54"/>
 								<box leftPadding="2"/>
 								<textFieldExpression><![CDATA[$F{staff_attitude_rating}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="28">
+					<jr:column width="28" uuid="76cc01de-3edd-44a0-aee1-323858d94fd2">
 						<jr:columnHeader style="Table_CH" height="75">
 							<staticText>
-								<reportElement x="0" y="0" width="28" height="75"/>
+								<reportElement x="0" y="0" width="28" height="75" uuid="10a5f31c-76a9-4564-821c-e346465bffce"/>
 								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -262,16 +289,16 @@ order by Average ASC
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="28" height="15"/>
+								<reportElement x="0" y="0" width="28" height="15" uuid="c5c39d88-004d-42b9-9b0c-b3e8073268e7"/>
 								<box leftPadding="2"/>
 								<textFieldExpression><![CDATA[$F{cleanliness_rating}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="28">
+					<jr:column width="28" uuid="dd221881-1756-458b-9c84-766c754b39b4">
 						<jr:columnHeader style="Table_CH" height="75">
 							<staticText>
-								<reportElement x="0" y="0" width="28" height="75"/>
+								<reportElement x="0" y="0" width="28" height="75" uuid="db696dcb-218d-4b45-8182-b8f92d11e838"/>
 								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -281,16 +308,16 @@ order by Average ASC
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="28" height="15"/>
+								<reportElement x="0" y="0" width="28" height="15" uuid="597610c5-3ce5-4a4e-a05d-bb8b82b771b2"/>
 								<box leftPadding="2"/>
 								<textFieldExpression><![CDATA[$F{waiting_times_rating}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="28">
+					<jr:column width="28" uuid="680840c7-2fb8-4431-9c2c-255f81a26e7b">
 						<jr:columnHeader style="Table_CH" height="75">
 							<staticText>
-								<reportElement x="0" y="0" width="28" height="75"/>
+								<reportElement x="0" y="0" width="28" height="75" uuid="4b3ed652-39df-4d91-b82b-5dae1677fa18"/>
 								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -300,16 +327,16 @@ order by Average ASC
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="28" height="15"/>
+								<reportElement x="0" y="0" width="28" height="15" uuid="f4200267-eb32-4068-a78d-f47c52d5deaf"/>
 								<box leftPadding="2"/>
 								<textFieldExpression><![CDATA[$F{drug_availability_rating}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="28">
+					<jr:column width="28" uuid="074be8a6-ace6-436c-8d99-55defe52a5f1">
 						<jr:columnHeader style="Table_CH" height="75">
 							<staticText>
-								<reportElement x="0" y="0" width="28" height="75"/>
+								<reportElement x="0" y="0" width="28" height="75" uuid="8afe7f2a-5665-42bb-86f5-bab72892bc79"/>
 								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -319,16 +346,16 @@ order by Average ASC
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="28" height="15"/>
+								<reportElement x="0" y="0" width="28" height="15" uuid="68cb6f1b-77f5-4fc6-8e51-f02b0a4fc2fe"/>
 								<box leftPadding="2"/>
 								<textFieldExpression><![CDATA[$F{infection_control_rating}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="28">
+					<jr:column width="28" uuid="90267e4f-6201-4c64-af7c-35567f91410c">
 						<jr:columnHeader style="Table_CH" height="75">
 							<staticText>
-								<reportElement x="0" y="0" width="28" height="75"/>
+								<reportElement x="0" y="0" width="28" height="75" uuid="b297c316-e640-4d2a-b256-5506e521114e"/>
 								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -338,16 +365,16 @@ order by Average ASC
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="28" height="15"/>
+								<reportElement x="0" y="0" width="28" height="15" uuid="46aedba1-1e85-44e9-b029-84b972b5ec80"/>
 								<box leftPadding="2"/>
 								<textFieldExpression><![CDATA[$F{safe_and_secure_care_rating}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="50">
+					<jr:column width="50" uuid="f2d17293-1c0c-4e5d-9934-7aa6d2baa5d5">
 						<jr:columnHeader style="Table_CH" height="75">
 							<staticText>
-								<reportElement x="0" y="0" width="50" height="75"/>
+								<reportElement x="0" y="0" width="50" height="75" uuid="cccd951e-1dbc-4910-86c4-8fd4bfd53598"/>
 								<box leftPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -357,7 +384,7 @@ order by Average ASC
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="50" height="15"/>
+								<reportElement x="0" y="0" width="50" height="15" uuid="9249f462-4a5f-4c2c-84f3-ca4322cbf69a"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font isBold="true"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DistrictWorstTenMonthlyTable" language="groovy" pageWidth="550" pageHeight="892" whenNoDataType="AllSectionsNoDetail" columnWidth="510" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" isIgnorePagination="true">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DistrictWorstTenMonthlyTable" language="groovy" pageWidth="550" pageHeight="892" whenNoDataType="AllSectionsNoDetail" columnWidth="510" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="5cc53d04-f731-4505-89c8-da07dc057323">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -30,45 +30,74 @@
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<subDataset name="DistrictWorstTenMonthlyDS" whenResourceMissingType="Empty">
-		<parameter name="first_of_this_month" class="java.util.Date"/>
+	<subDataset name="DistrictWorstTenMonthlyDS" whenResourceMissingType="Empty" uuid="54d97867-d9e6-4bba-b09a-8b6ab18b874a">
+		<parameter name="cal" class="java.util.Calendar" isForPrompting="false">
+			<defaultValueExpression><![CDATA[Calendar.getInstance()]]></defaultValueExpression>
+		</parameter>
 		<parameter name="end_date" class="java.util.Date"/>
+		<parameter name="first_of_this_month" class="java.util.Date"/>
 		<parameter name="dist_short_name" class="java.lang.String"/>
 		<parameter name="province_short_name" class="java.lang.String"/>
 		<queryString>
 			<![CDATA[SELECT
 `clinic_short_name` ,
 count( `clinic_short_name` ) as number_of_responses,
-round( AVG( `staff_attitude_rating` ) , 2 ) AS staff_attitude_rating,
-round( AVG( `cleanliness_rating` ) , 2 ) AS cleanliness_rating,
-round( AVG( `waiting_times_rating` ) , 2 ) AS waiting_times_rating,
-round( AVG( `drug_availability_rating` ) , 2 ) AS drug_availability_rating,
-round( AVG( `infection_control_rating` ) , 2 ) AS infection_control_rating,
-round( AVG( `safe_and_secure_care_rating` ) , 2 ) AS safe_and_secure_care_rating,
-round((
-staff_attitude_rating +
+`staff_attitude_rating`,
+`cleanliness_rating`,
+`waiting_times_rating`,
+`drug_availability_rating`,
+`infection_control_rating`,
+`safe_and_secure_care_rating`,
+round(((
+    staff_attitude_rating +
 cleanliness_rating +
 waiting_times_rating +
 drug_availability_rating +
 infection_control_rating +
-safe_and_secure_care_rating)/6, 2) AS Average
-FROM `data_mart_rating`
-
-WHERE `province_short_name` like $P{province_short_name}
+safe_and_secure_care_rating)/6),2) as Average
+FROM
+	(SELECT
+      `clinic_short_name` ,
+count( `clinic_short_name` ) as number_of_responses,
+round(AVG(case when`staff_attitude_rating`= null then 0 else `staff_attitude_rating` end), 2) as staff_attitude_rating,
+round(AVG( case when `cleanliness_rating`= null then 0 else `cleanliness_rating` end), 2) as cleanliness_rating,
+round(AVG( case when`waiting_times_rating`= null then 0 else `waiting_times_rating` end), 2) as waiting_times_rating,
+round(AVG( case when `drug_availability_rating`= null then 0 else `drug_availability_rating` end), 2) as drug_availability_rating,
+round(AVG( case when`infection_control_rating` = null then 0 else `infection_control_rating` end), 2) as infection_control_rating,
+round(AVG( case when `safe_and_secure_care_rating`= null then 0 else `safe_and_secure_care_rating` end), 2) as safe_and_secure_care_rating
+FROM data_mart_rating
+WHERE `province_short_name`  like  $P{province_short_name}
 AND `district_short_name` like $P{dist_short_name}
- AND submission_date BETWEEN  $P{first_of_this_month} AND $P{end_date}
+AND submission_date BETWEEN  $P{first_of_this_month} AND $P{end_date}
+GROUP BY `clinic_short_name`
+     )
+As Data
 GROUP BY `clinic_short_name`
 Order BY Average ASC
 limit 10]]>
 		</queryString>
-		<field name="clinic_short_name" class="java.lang.String"/>
+		<field name="clinic_short_name" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
 		<field name="number_of_responses" class="java.lang.Long"/>
-		<field name="staff_attitude_rating" class="java.lang.Double"/>
-		<field name="cleanliness_rating" class="java.lang.Double"/>
-		<field name="waiting_times_rating" class="java.lang.Double"/>
-		<field name="drug_availability_rating" class="java.lang.Double"/>
-		<field name="infection_control_rating" class="java.lang.Double"/>
-		<field name="safe_and_secure_care_rating" class="java.lang.Double"/>
+		<field name="staff_attitude_rating" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="cleanliness_rating" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="waiting_times_rating" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="drug_availability_rating" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="infection_control_rating" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="safe_and_secure_care_rating" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
 		<field name="Average" class="java.lang.Double"/>
 	</subDataset>
 	<parameter name="cal" class="java.util.Calendar" isForPrompting="false">
@@ -92,7 +121,7 @@ limit 10]]>
 	<columnHeader>
 		<band height="105">
 			<staticText>
-				<reportElement x="0" y="-22" width="400" height="22"/>
+				<reportElement x="0" y="-22" width="400" height="22" uuid="584458b8-35c2-4c5a-962f-afddc2fa36ae"/>
 				<box leftPadding="0"/>
 				<textElement>
 					<font size="16" isBold="true"/>
@@ -101,9 +130,9 @@ limit 10]]>
 				<text><![CDATA[Bottom 10 Performing Facilities This Month]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement x="0" y="0" width="509" height="105"/>
+				<reportElement x="0" y="0" width="509" height="105" uuid="fbd4617b-ae7e-4f6c-8ca5-3b4e2188f723"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
-					<datasetRun subDataset="DistrictWorstTenMonthlyDS">
+					<datasetRun subDataset="DistrictWorstTenMonthlyDS" uuid="8439be4f-c820-4b87-a2d1-39f062397123">
 						<datasetParameter name="first_of_this_month">
 							<datasetParameterExpression><![CDATA[$P{first_of_this_month}]]></datasetParameterExpression>
 						</datasetParameter>
@@ -118,10 +147,10 @@ limit 10]]>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="290">
+					<jr:column width="290" uuid="cdedda0d-da7c-42d6-ae67-493eb57bb1aa">
 						<jr:columnHeader style="Table_CH" height="90">
 							<staticText>
-								<reportElement x="0" y="0" width="290" height="90"/>
+								<reportElement x="0" y="0" width="290" height="90" uuid="3cd245f3-2091-4d0f-8b52-d13df0e339d9"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font isBold="true"/>
@@ -131,7 +160,7 @@ limit 10]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="290" height="15"/>
+								<reportElement x="0" y="0" width="290" height="15" uuid="9feb1c7b-4a75-4431-9779-915180e884a2"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font isBold="false"/>
@@ -140,10 +169,10 @@ limit 10]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="25">
+					<jr:column width="25" uuid="92d89200-925e-4692-8939-31b7218a1638">
 						<jr:columnHeader style="Table_CH" height="90">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="90"/>
+								<reportElement x="0" y="0" width="25" height="90" uuid="890a49c6-31e3-4584-9c6f-76eed29aa145"/>
 								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -154,7 +183,7 @@ limit 10]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="15"/>
+								<reportElement x="0" y="0" width="25" height="15" uuid="ffdabefb-e911-46b5-bef5-3d40d5350539"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font isBold="false"/>
@@ -163,10 +192,10 @@ limit 10]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="25">
+					<jr:column width="25" uuid="59751f3f-0573-4228-b5e1-87819b8b0bd0">
 						<jr:columnHeader style="Table_CH" height="90">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="90"/>
+								<reportElement x="0" y="0" width="25" height="90" uuid="0c6dafec-0a8e-4ce5-8909-d4bdb6b28706"/>
 								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -177,7 +206,7 @@ limit 10]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="15"/>
+								<reportElement x="0" y="0" width="25" height="15" uuid="021dd561-df24-464c-a9c5-69985ed82627"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font isBold="false"/>
@@ -186,10 +215,10 @@ limit 10]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="25">
+					<jr:column width="25" uuid="581b2a1e-e6a4-4823-89d6-ce4cbfb6f418">
 						<jr:columnHeader style="Table_CH" height="90">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="90"/>
+								<reportElement x="0" y="0" width="25" height="90" uuid="b44ffdd5-4349-4e13-8e99-ba35cfd02cb4"/>
 								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -200,7 +229,7 @@ limit 10]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="15"/>
+								<reportElement x="0" y="0" width="25" height="15" uuid="d9780aec-8e23-4f82-8120-c58ea8898fd0"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font isBold="false"/>
@@ -209,10 +238,10 @@ limit 10]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="25">
+					<jr:column width="25" uuid="62c565a9-ce24-44cd-8a7b-2e55eb37192b">
 						<jr:columnHeader style="Table_CH" height="90">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="90"/>
+								<reportElement x="0" y="0" width="25" height="90" uuid="0b6823ca-4ada-46fd-8950-ff94e1d1d0bb"/>
 								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -223,7 +252,7 @@ limit 10]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="15"/>
+								<reportElement x="0" y="0" width="25" height="15" uuid="faab06df-896d-4930-a07b-7af6260b2d77"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font isBold="false"/>
@@ -232,10 +261,10 @@ limit 10]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="25">
+					<jr:column width="25" uuid="bcb6c4f8-276b-450e-b6d8-d54fc3786726">
 						<jr:columnHeader style="Table_CH" height="90">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="90"/>
+								<reportElement x="0" y="0" width="25" height="90" uuid="4703918d-1401-4ba7-a147-db1b030e7c4d"/>
 								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -246,7 +275,7 @@ limit 10]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="15"/>
+								<reportElement x="0" y="0" width="25" height="15" uuid="c050f134-3a20-4e41-a12a-29daa8ed1805"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font isBold="false"/>
@@ -255,10 +284,10 @@ limit 10]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="25">
+					<jr:column width="25" uuid="438e5d3e-d376-4be0-8cfb-c1b4cea63040">
 						<jr:columnHeader style="Table_CH" height="90">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="90"/>
+								<reportElement x="0" y="0" width="25" height="90" uuid="4638de70-189b-42d7-b11d-eca294b6399b"/>
 								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -269,7 +298,7 @@ limit 10]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="15"/>
+								<reportElement x="0" y="0" width="25" height="15" uuid="f4273edd-853f-4bed-8609-3d002648abf2"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font isBold="false"/>
@@ -278,10 +307,10 @@ limit 10]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="25">
+					<jr:column width="25" uuid="1e8f1c90-fc95-4beb-b276-9f6008b9b8e7">
 						<jr:columnHeader style="Table_CH" height="90">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="90"/>
+								<reportElement x="0" y="0" width="25" height="90" uuid="99d1f979-0ad6-4488-b0f9-6793225e025b"/>
 								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -292,7 +321,7 @@ limit 10]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="15"/>
+								<reportElement x="0" y="0" width="25" height="15" uuid="66b22361-e86f-4fe1-919f-a9f6715a5902"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font isBold="false"/>
@@ -301,10 +330,10 @@ limit 10]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="48">
+					<jr:column width="48" uuid="a863d6ff-5cf1-44c2-b922-d773136ff87d">
 						<jr:columnHeader style="Table_CH" height="90">
 							<staticText>
-								<reportElement x="0" y="0" width="48" height="90"/>
+								<reportElement x="0" y="0" width="48" height="90" uuid="a18dae4f-1608-4a82-9d8d-caf218fe980a"/>
 								<box topPadding="2"/>
 								<textElement rotation="Right">
 									<font isBold="true"/>
@@ -315,7 +344,7 @@ limit 10]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField>
-								<reportElement x="0" y="0" width="48" height="15"/>
+								<reportElement x="0" y="0" width="48" height="15" uuid="3f6cb200-0aaf-4b72-bb47-7fefaf5a69bc"/>
 								<box leftPadding="2"/>
 								<textElement>
 									<font isBold="true"/>
