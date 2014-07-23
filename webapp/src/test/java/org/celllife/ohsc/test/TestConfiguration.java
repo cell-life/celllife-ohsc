@@ -23,6 +23,7 @@ import org.springframework.context.annotation.ImportResource;
         "classpath:/META-INF/spring/spring-json.xml",
         "classpath:/META-INF/spring/spring-orm.xml",
         "classpath:/META-INF/spring/spring-reports.xml",
+        "classpath:/META-INF/spring/spring-mail.xml",
         "classpath:/META-INF/spring/spring-task.xml",
         "classpath:/META-INF/spring/spring-tx.xml",
         "classpath:/META-INF/spring-data/spring-data-jpa.xml"
