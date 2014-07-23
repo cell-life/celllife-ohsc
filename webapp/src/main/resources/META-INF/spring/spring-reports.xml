@@ -13,5 +13,6 @@
         <property name="reportLoader">
             <bean class="org.celllife.reporting.service.impl.SpringResourceLoader"/>
         </property>
+        <property name="mailService" ref="mailService" />
     </bean>
 </beans>
