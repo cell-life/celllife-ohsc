@@ -25,7 +25,7 @@
         <spring.version>3.2.1.RELEASE</spring.version>
         <spring-integration.version>2.2.1.RELEASE</spring-integration.version>
         <spring-security.version>3.1.0.RELEASE</spring-security.version>
-        <jasperreports.version>5.5.1</jasperreports.version>
+        <jasperreports.version>5.6.1</jasperreports.version>
     </properties>
 
     <build>
@@ -472,12 +472,12 @@
             <dependency>
 			    <groupId>org.celllife.report</groupId>
 			    <artifactId>celllife-report-pconfig</artifactId>
-			    <version>1.0.1</version>
+			    <version>1.0.2</version>
 			</dependency>
 			<dependency>
 			    <groupId>org.celllife.report</groupId>
 			    <artifactId>celllife-report-reporting</artifactId>
-			    <version>1.0.1</version>
+			    <version>1.0.2</version>
 			</dependency>
 			
 			<!-- Jasper -->
