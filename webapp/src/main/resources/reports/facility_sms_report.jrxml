@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="demo_txt" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="net.sf.jasperreports.export.text.page.width" value="380"/>
+	<property name="net.sf.jasperreports.export.text.page.height" value="120"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cal" class="java.util.Calendar" isForPrompting="false">
+		<defaultValueExpression><![CDATA[Calendar.getInstance()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="start_date" class="java.util.Date">
+		<defaultValueExpression><![CDATA[(
+    $P{cal}.add(java.util.Calendar.MONTH, -1) ||
+    $P{cal}.set(java.util.Calendar.DAY_OF_MONTH, 1)
+)
+? null : $P{cal}.getTime()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="end_date" class="java.util.Date">
+		<defaultValueExpression><![CDATA[(
+$P{cal}.set(java.util.Calendar.DAY_OF_MONTH, $P{cal}.getActualMaximum(java.util.Calendar.DAY_OF_MONTH))
+)
+? null : $P{cal}.getTime()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="facility_code" class="java.lang.String">
+		<defaultValueExpression><![CDATA["0000"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+ clinic_short_name
+, count(*) as submissions
+, round(avg(staff_attitude_rating),0) as staff_attitude
+, round(avg(cleanliness_rating),0) as clean
+, round(avg(waiting_times_rating),0) as wait_time
+, round(avg(drug_availability_rating),0) as drugs_available
+, round(avg(infection_control_rating),0) as infection_control
+, round(avg(safe_and_secure_care_rating),0) as safe_care
+, round((avg(staff_attitude_rating + cleanliness_rating + waiting_times_rating + drug_availability_rating + infection_control_rating + safe_and_secure_care_rating)/6),0) as average
+ from data_mart_rating
+ where submission_date between $P{start_date} and $P{end_date}
+ and clinic_code = $P{facility_code}
+ group by clinic_short_name
+ limit 1;]]>
+	</queryString>
+	<field name="clinic_short_name" class="java.lang.String"/>
+	<field name="submissions" class="java.lang.Number"/>
+	<field name="staff_attitude" class="java.lang.Number"/>
+	<field name="clean" class="java.lang.Number"/>
+	<field name="wait_time" class="java.lang.Number"/>
+	<field name="drugs_available" class="java.lang.Number"/>
+	<field name="infection_control" class="java.lang.Number"/>
+	<field name="safe_care" class="java.lang.Number"/>
+	<field name="average" class="java.lang.Number"/>
+	<detail>
+		<band height="120" splitType="Stretch">
+			<textField isStretchWithOverflow="true" evaluationTime="Report">
+				<reportElement x="0" y="0" width="380" height="120"/>
+				<textElement markup="html"/>
+				<textFieldExpression><![CDATA["" + "Rate My Clinic. " + $F{clinic_short_name} + " report:"
++ "<br/>Staff Attitude" + ($F{staff_attitude} == 4 ? "****" : ($F{staff_attitude} == 3 ? "***" : ($F{staff_attitude} == 2 ? "**" : ($F{staff_attitude} == 1 ? "*" : "-"))))
++ "<br/>Clean" + ($F{clean} == 4 ? "****" : ($F{clean} == 3 ? "***" : ($F{clean} == 2 ? "**" : ($F{clean} == 1 ? "*" : "-"))))
++ "<br/>Wait Time" + ($F{wait_time} == 4 ? "****" : ($F{wait_time} == 3 ? "***" : ($F{wait_time} == 2 ? "**" : ($F{wait_time} == 1 ? "*" : "-"))))
++ "<br/>Safe Care" + ($F{safe_care} == 4 ? "****" : ($F{safe_care} == 3 ? "***" : ($F{safe_care} == 2 ? "**" : ($F{safe_care} == 1 ? "*" : "-"))))
++ "<br/>Infection Control" + ($F{infection_control} == 4 ? "****" : ($F{infection_control} == 3 ? "***" : ($F{infection_control} == 2 ? "**" : ($F{infection_control} == 1 ? "*" : "-"))))
++ "<br/>Drugs Available" + ($F{drugs_available} == 4 ? "****" : ($F{drugs_available} == 3 ? "***" : ($F{drugs_available} == 2 ? "**" : ($F{drugs_available} == 1 ? "*" : "-"))))
++ "<br/>AVERAGE" + ($F{average} == 4 ? "****" : ($F{average} == 3 ? "***" : ($F{average} == 2 ? "**" : ($F{average} == 1 ? "*" : "-"))))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
