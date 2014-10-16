@@ -27,6 +27,23 @@
         <spring-security.version>3.1.0.RELEASE</spring-security.version>
         <jasperreports.version>5.6.1</jasperreports.version>
     </properties>
+    
+    <distributionManagement>
+        <repository>
+            <id>celllife-releases</id>
+            <url>https://www.cell-life.org/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>celllife-snapshots</id>
+            <url>https://www.cell-life.org/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <scm>
+        <connection>scm:git:git@git.cell-life.org:celllife-ohsc.git</connection>
+        <developerConnection>scm:git:git@git.cell-life.org:celllife-ohsc.git</developerConnection>
+        <url>https://www.cell-life.org/gitlab/celllife-ohsc</url>
+    </scm>
 
     <build>
         <pluginManagement>
