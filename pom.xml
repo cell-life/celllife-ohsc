@@ -5,7 +5,7 @@
 
     <groupId>org.celllife.ohsc</groupId>
     <artifactId>celllife-ohsc-parent</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>celllife-ohsc-parent</name>
